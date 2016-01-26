@@ -1,0 +1,952 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713EC9C1C2C51B600B6234E /* ServerConfig.swift */; };
+		A713ECB81C2C59D400B6234E /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713ECB71C2C59D400B6234E /* Method.swift */; };
+		A753B56C1C2EED9800FDB616 /* KsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B56B1C2EED9800FDB616 /* KsApiTests.swift */; };
+		A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
+		A753B57E1C2EEECA00FDB616 /* DiscoveryParamsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B57D1C2EEECA00FDB616 /* DiscoveryParamsTests.swift */; };
+		A77967731C2B431C0002166F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
+		A77967741C2B431C0002166F /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
+		A77967751C2B431C0002166F /* Alamofire.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967661C2B431C0002166F /* Alamofire.Request.swift */; };
+		A77967771C2B431C0002166F /* JSONObjectWithData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967691C2B431C0002166F /* JSONObjectWithData.swift */; };
+		A77967791C2B431C0002166F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779676B1C2B431C0002166F /* Route.swift */; };
+		A779677A1C2B431C0002166F /* AccessTokenEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779676D1C2B431C0002166F /* AccessTokenEnvelope.swift */; };
+		A779677B1C2B431C0002166F /* CategoriesEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779676E1C2B431C0002166F /* CategoriesEnvelope.swift */; };
+		A779677C1C2B431C0002166F /* DiscoveryEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779676F1C2B431C0002166F /* DiscoveryEnvelope.swift */; };
+		A779677D1C2B431C0002166F /* DiscoveryParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967701C2B431C0002166F /* DiscoveryParams.swift */; };
+		A779677E1C2B431C0002166F /* ErrorEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967711C2B431C0002166F /* ErrorEnvelope.swift */; };
+		A779677F1C2B431C0002166F /* StarEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967721C2B431C0002166F /* StarEnvelope.swift */; };
+		A77967841C2B43950002166F /* BasicHTTPAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967831C2B43950002166F /* BasicHTTPAuth.swift */; };
+		A77967861C2B43EC0002166F /* ClientAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967851C2B43EC0002166F /* ClientAuth.swift */; };
+		A77967881C2B44440002166F /* OauthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967871C2B44440002166F /* OauthToken.swift */; };
+		A7BBF30B1C2F91E700AC62B4 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF30A1C2F91E700AC62B4 /* MockService.swift */; };
+		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
+		A7BF773C1C582BC3003D0881 /* Alamofire.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7BF773D1C582BC3003D0881 /* Argo.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77351C582BC3003D0881 /* Argo.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7BF773E1C582BC3003D0881 /* Curry.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77361C582BC3003D0881 /* Curry.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7BF773F1C582BC3003D0881 /* Models.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77371C582BC3003D0881 /* Models.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7BF77401C582BC3003D0881 /* Prelude.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77381C582BC3003D0881 /* Prelude.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7BF77411C582BC3003D0881 /* ReactiveCocoa.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77391C582BC3003D0881 /* ReactiveCocoa.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7BF77421C582BC3003D0881 /* ReactiveExtensions.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF773A1C582BC3003D0881 /* ReactiveExtensions.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7BF77431C582BC3003D0881 /* Result.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF773B1C582BC3003D0881 /* Result.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7BF774C1C582BD0003D0881 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77441C582BD0003D0881 /* Alamofire.framework */; };
+		A7BF774D1C582BD0003D0881 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77451C582BD0003D0881 /* Argo.framework */; };
+		A7BF774E1C582BD0003D0881 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77461C582BD0003D0881 /* Curry.framework */; };
+		A7BF774F1C582BD0003D0881 /* Models.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77471C582BD0003D0881 /* Models.framework */; };
+		A7BF77501C582BD0003D0881 /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77481C582BD0003D0881 /* Prelude.framework */; };
+		A7BF77511C582BD0003D0881 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77491C582BD0003D0881 /* ReactiveCocoa.framework */; };
+		A7BF77521C582BD0003D0881 /* ReactiveExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF774A1C582BD0003D0881 /* ReactiveExtensions.framework */; };
+		A7BF77531C582BD0003D0881 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF774B1C582BD0003D0881 /* Result.framework */; };
+		CA43C5FD1BB358F200C180DA /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A753B56F1C2EED9800FDB616 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA43C5F01BB358F200C180DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA43C5F81BB358F200C180DA;
+			remoteInfo = "KsApi-tvOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CA43C64F1BB35C5E00C180DA /* carthage dsym */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				A7BF773C1C582BC3003D0881 /* Alamofire.framework.dSYM in carthage dsym */,
+				A7BF773D1C582BC3003D0881 /* Argo.framework.dSYM in carthage dsym */,
+				A7BF773E1C582BC3003D0881 /* Curry.framework.dSYM in carthage dsym */,
+				A7BF773F1C582BC3003D0881 /* Models.framework.dSYM in carthage dsym */,
+				A7BF77401C582BC3003D0881 /* Prelude.framework.dSYM in carthage dsym */,
+				A7BF77411C582BC3003D0881 /* ReactiveCocoa.framework.dSYM in carthage dsym */,
+				A7BF77421C582BC3003D0881 /* ReactiveExtensions.framework.dSYM in carthage dsym */,
+				A7BF77431C582BC3003D0881 /* Result.framework.dSYM in carthage dsym */,
+			);
+			name = "carthage dsym";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A713EC9C1C2C51B600B6234E /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
+		A713ECB71C2C59D400B6234E /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
+		A753B5691C2EED9800FDB616 /* KsApiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KsApiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A753B56B1C2EED9800FDB616 /* KsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsApiTests.swift; sourceTree = "<group>"; };
+		A753B56D1C2EED9800FDB616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A753B57D1C2EEECA00FDB616 /* DiscoveryParamsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryParamsTests.swift; sourceTree = "<group>"; };
+		A77967631C2B431C0002166F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		A77967641C2B431C0002166F /* ServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
+		A77967661C2B431C0002166F /* Alamofire.Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.Request.swift; sourceTree = "<group>"; };
+		A77967691C2B431C0002166F /* JSONObjectWithData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObjectWithData.swift; sourceTree = "<group>"; };
+		A779676B1C2B431C0002166F /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		A779676D1C2B431C0002166F /* AccessTokenEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenEnvelope.swift; sourceTree = "<group>"; };
+		A779676E1C2B431C0002166F /* CategoriesEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesEnvelope.swift; sourceTree = "<group>"; };
+		A779676F1C2B431C0002166F /* DiscoveryEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryEnvelope.swift; sourceTree = "<group>"; };
+		A77967701C2B431C0002166F /* DiscoveryParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryParams.swift; sourceTree = "<group>"; };
+		A77967711C2B431C0002166F /* ErrorEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorEnvelope.swift; sourceTree = "<group>"; };
+		A77967721C2B431C0002166F /* StarEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarEnvelope.swift; sourceTree = "<group>"; };
+		A77967831C2B43950002166F /* BasicHTTPAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHTTPAuth.swift; sourceTree = "<group>"; };
+		A77967851C2B43EC0002166F /* ClientAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientAuth.swift; sourceTree = "<group>"; };
+		A77967871C2B44440002166F /* OauthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthToken.swift; sourceTree = "<group>"; };
+		A7BBF30A1C2F91E700AC62B4 /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
+		A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Alamofire.framework.dSYM; path = Carthage/Build/tvOS/Alamofire.framework.dSYM; sourceTree = "<group>"; };
+		A7BF77351C582BC3003D0881 /* Argo.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Argo.framework.dSYM; path = Carthage/Build/tvOS/Argo.framework.dSYM; sourceTree = "<group>"; };
+		A7BF77361C582BC3003D0881 /* Curry.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Curry.framework.dSYM; path = Carthage/Build/tvOS/Curry.framework.dSYM; sourceTree = "<group>"; };
+		A7BF77371C582BC3003D0881 /* Models.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Models.framework.dSYM; path = Carthage/Build/tvOS/Models.framework.dSYM; sourceTree = "<group>"; };
+		A7BF77381C582BC3003D0881 /* Prelude.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Prelude.framework.dSYM; path = Carthage/Build/tvOS/Prelude.framework.dSYM; sourceTree = "<group>"; };
+		A7BF77391C582BC3003D0881 /* ReactiveCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ReactiveCocoa.framework.dSYM; path = Carthage/Build/tvOS/ReactiveCocoa.framework.dSYM; sourceTree = "<group>"; };
+		A7BF773A1C582BC3003D0881 /* ReactiveExtensions.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ReactiveExtensions.framework.dSYM; path = Carthage/Build/tvOS/ReactiveExtensions.framework.dSYM; sourceTree = "<group>"; };
+		A7BF773B1C582BC3003D0881 /* Result.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Result.framework.dSYM; path = Carthage/Build/tvOS/Result.framework.dSYM; sourceTree = "<group>"; };
+		A7BF77441C582BD0003D0881 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/tvOS/Alamofire.framework; sourceTree = "<group>"; };
+		A7BF77451C582BD0003D0881 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/tvOS/Argo.framework; sourceTree = "<group>"; };
+		A7BF77461C582BD0003D0881 /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = Carthage/Build/tvOS/Curry.framework; sourceTree = "<group>"; };
+		A7BF77471C582BD0003D0881 /* Models.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Models.framework; path = Carthage/Build/tvOS/Models.framework; sourceTree = "<group>"; };
+		A7BF77481C582BD0003D0881 /* Prelude.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prelude.framework; path = Carthage/Build/tvOS/Prelude.framework; sourceTree = "<group>"; };
+		A7BF77491C582BD0003D0881 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/tvOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		A7BF774A1C582BD0003D0881 /* ReactiveExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveExtensions.framework; path = Carthage/Build/tvOS/ReactiveExtensions.framework; sourceTree = "<group>"; };
+		A7BF774B1C582BD0003D0881 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/tvOS/Result.framework; sourceTree = "<group>"; };
+		CA43C5F91BB358F200C180DA /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA43C5FC1BB358F200C180DA /* KsApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsApi.h; sourceTree = "<group>"; };
+		CA43C5FE1BB358F200C180DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A753B5661C2EED9800FDB616 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA43C5F51BB358F200C180DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7BF774C1C582BD0003D0881 /* Alamofire.framework in Frameworks */,
+				A7BF774D1C582BD0003D0881 /* Argo.framework in Frameworks */,
+				A7BF774E1C582BD0003D0881 /* Curry.framework in Frameworks */,
+				A7BF774F1C582BD0003D0881 /* Models.framework in Frameworks */,
+				A7BF77501C582BD0003D0881 /* Prelude.framework in Frameworks */,
+				A7BF77511C582BD0003D0881 /* ReactiveCocoa.framework in Frameworks */,
+				A7BF77521C582BD0003D0881 /* ReactiveExtensions.framework in Frameworks */,
+				A7BF77531C582BD0003D0881 /* Result.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A753B56A1C2EED9800FDB616 /* KsApiTests */ = {
+			isa = PBXGroup;
+			children = (
+				A753B56B1C2EED9800FDB616 /* KsApiTests.swift */,
+				A753B56D1C2EED9800FDB616 /* Info.plist */,
+				A753B57D1C2EEECA00FDB616 /* DiscoveryParamsTests.swift */,
+				A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */,
+			);
+			path = KsApiTests;
+			sourceTree = "<group>";
+		};
+		A77967651C2B431C0002166F /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A77967661C2B431C0002166F /* Alamofire.Request.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		A77967671C2B431C0002166F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A77967801C2B43840002166F /* auth */,
+				A77967691C2B431C0002166F /* JSONObjectWithData.swift */,
+				A779676B1C2B431C0002166F /* Route.swift */,
+				A713ECB71C2C59D400B6234E /* Method.swift */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		A779676C1C2B431C0002166F /* models */ = {
+			isa = PBXGroup;
+			children = (
+				A779676D1C2B431C0002166F /* AccessTokenEnvelope.swift */,
+				A779676E1C2B431C0002166F /* CategoriesEnvelope.swift */,
+				A779676F1C2B431C0002166F /* DiscoveryEnvelope.swift */,
+				A77967701C2B431C0002166F /* DiscoveryParams.swift */,
+				A77967711C2B431C0002166F /* ErrorEnvelope.swift */,
+				A77967721C2B431C0002166F /* StarEnvelope.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		A77967801C2B43840002166F /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				A77967831C2B43950002166F /* BasicHTTPAuth.swift */,
+				A77967851C2B43EC0002166F /* ClientAuth.swift */,
+				A77967871C2B44440002166F /* OauthToken.swift */,
+			);
+			path = auth;
+			sourceTree = "<group>";
+		};
+		CA43C5EF1BB358F200C180DA = {
+			isa = PBXGroup;
+			children = (
+				A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */,
+				A7BF77351C582BC3003D0881 /* Argo.framework.dSYM */,
+				A7BF77361C582BC3003D0881 /* Curry.framework.dSYM */,
+				A7BF77371C582BC3003D0881 /* Models.framework.dSYM */,
+				A7BF77381C582BC3003D0881 /* Prelude.framework.dSYM */,
+				A7BF77391C582BC3003D0881 /* ReactiveCocoa.framework.dSYM */,
+				A7BF773A1C582BC3003D0881 /* ReactiveExtensions.framework.dSYM */,
+				A7BF773B1C582BC3003D0881 /* Result.framework.dSYM */,
+				A7BF77441C582BD0003D0881 /* Alamofire.framework */,
+				A7BF77451C582BD0003D0881 /* Argo.framework */,
+				A7BF77461C582BD0003D0881 /* Curry.framework */,
+				A7BF77471C582BD0003D0881 /* Models.framework */,
+				A7BF77481C582BD0003D0881 /* Prelude.framework */,
+				A7BF77491C582BD0003D0881 /* ReactiveCocoa.framework */,
+				A7BF774A1C582BD0003D0881 /* ReactiveExtensions.framework */,
+				A7BF774B1C582BD0003D0881 /* Result.framework */,
+				CA43C5FB1BB358F200C180DA /* KsApi */,
+				A753B56A1C2EED9800FDB616 /* KsApiTests */,
+				CA43C5FA1BB358F200C180DA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CA43C5FA1BB358F200C180DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA43C5F91BB358F200C180DA /* KsApi.framework */,
+				A753B5691C2EED9800FDB616 /* KsApiTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CA43C5FB1BB358F200C180DA /* KsApi */ = {
+			isa = PBXGroup;
+			children = (
+				A7BBF30A1C2F91E700AC62B4 /* MockService.swift */,
+				A77967631C2B431C0002166F /* Service.swift */,
+				A77967641C2B431C0002166F /* ServiceType.swift */,
+				A713EC9C1C2C51B600B6234E /* ServerConfig.swift */,
+				A77967651C2B431C0002166F /* extensions */,
+				CA43C5FE1BB358F200C180DA /* Info.plist */,
+				CA43C5FC1BB358F200C180DA /* KsApi.h */,
+				A77967671C2B431C0002166F /* lib */,
+				A779676C1C2B431C0002166F /* models */,
+			);
+			path = KsApi;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		CA43C5F61BB358F200C180DA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA43C5FD1BB358F200C180DA /* KsApi.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A753B5681C2EED9800FDB616 /* KsApiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A753B5711C2EED9800FDB616 /* Build configuration list for PBXNativeTarget "KsApiTests" */;
+			buildPhases = (
+				A753B5651C2EED9800FDB616 /* Sources */,
+				A753B5661C2EED9800FDB616 /* Frameworks */,
+				A753B5671C2EED9800FDB616 /* Resources */,
+				A753B57C1C2EEDE900FDB616 /* carthage copy-frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A753B5701C2EED9800FDB616 /* PBXTargetDependency */,
+			);
+			name = KsApiTests;
+			productName = KsApiTests;
+			productReference = A753B5691C2EED9800FDB616 /* KsApiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CA43C5F81BB358F200C180DA /* KsApi-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA43C60D1BB358F200C180DA /* Build configuration list for PBXNativeTarget "KsApi-tvOS" */;
+			buildPhases = (
+				CA43C5F41BB358F200C180DA /* Sources */,
+				CA43C5F51BB358F200C180DA /* Frameworks */,
+				CA43C5F61BB358F200C180DA /* Headers */,
+				CA43C5F71BB358F200C180DA /* Resources */,
+				CA43C64F1BB35C5E00C180DA /* carthage dsym */,
+				CA43C6581BB35C7900C180DA /* charthage copy-frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KsApi-tvOS";
+			productName = KsApi;
+			productReference = CA43C5F91BB358F200C180DA /* KsApi.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CA43C5F01BB358F200C180DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Kickstarter;
+				TargetAttributes = {
+					A753B5681C2EED9800FDB616 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					CA43C5F81BB358F200C180DA = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 48YBP49Y5N;
+					};
+				};
+			};
+			buildConfigurationList = CA43C5F31BB358F200C180DA /* Build configuration list for PBXProject "KsApi" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CA43C5EF1BB358F200C180DA;
+			productRefGroup = CA43C5FA1BB358F200C180DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA43C5F81BB358F200C180DA /* KsApi-tvOS */,
+				A753B5681C2EED9800FDB616 /* KsApiTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A753B5671C2EED9800FDB616 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA43C5F71BB358F200C180DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A753B57C1C2EEDE900FDB616 /* carthage copy-frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/tvOS/Argo.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Curry.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/ReactiveCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/ReactiveExtensions.framework",
+			);
+			name = "carthage copy-frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		CA43C6581BB35C7900C180DA /* charthage copy-frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/tvOS/Argo.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Curry.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/ReactiveCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Prelude.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Models.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/ReactiveExtensions.framework",
+			);
+			name = "charthage copy-frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A753B5651C2EED9800FDB616 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A753B57E1C2EEECA00FDB616 /* DiscoveryParamsTests.swift in Sources */,
+				A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */,
+				A753B56C1C2EED9800FDB616 /* KsApiTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA43C5F41BB358F200C180DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A77967741C2B431C0002166F /* ServiceType.swift in Sources */,
+				A77967751C2B431C0002166F /* Alamofire.Request.swift in Sources */,
+				A77967881C2B44440002166F /* OauthToken.swift in Sources */,
+				A779677F1C2B431C0002166F /* StarEnvelope.swift in Sources */,
+				A77967791C2B431C0002166F /* Route.swift in Sources */,
+				A77967731C2B431C0002166F /* Service.swift in Sources */,
+				A779677B1C2B431C0002166F /* CategoriesEnvelope.swift in Sources */,
+				A713ECB81C2C59D400B6234E /* Method.swift in Sources */,
+				A779677E1C2B431C0002166F /* ErrorEnvelope.swift in Sources */,
+				A779677C1C2B431C0002166F /* DiscoveryEnvelope.swift in Sources */,
+				A779677A1C2B431C0002166F /* AccessTokenEnvelope.swift in Sources */,
+				A77967771C2B431C0002166F /* JSONObjectWithData.swift in Sources */,
+				A77967841C2B43950002166F /* BasicHTTPAuth.swift in Sources */,
+				A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */,
+				A7BBF30B1C2F91E700AC62B4 /* MockService.swift in Sources */,
+				A77967861C2B43EC0002166F /* ClientAuth.swift in Sources */,
+				A779677D1C2B431C0002166F /* DiscoveryParams.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A753B5701C2EED9800FDB616 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA43C5F81BB358F200C180DA /* KsApi-tvOS */;
+			targetProxy = A753B56F1C2EED9800FDB616 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A753B5721C2EED9800FDB616 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		A753B5731C2EED9800FDB616 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Development;
+		};
+		A753B5741C2EED9800FDB616 /* Alpha */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Alpha;
+		};
+		A753B5751C2EED9800FDB616 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Beta;
+		};
+		A753B5761C2EED9800FDB616 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
+		CA43C60B1BB358F200C180DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = KsApi;
+				STRIP_BITCODE_FROM_COPIED_FILES = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CA43C60C1BB358F200C180DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = KsApi;
+				STRIP_BITCODE_FROM_COPIED_FILES = NO;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CA43C60E1BB358F200C180DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		CA43C60F1BB358F200C180DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
+		CA43C63C1BB35BD000C180DA /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = KsApi;
+				STRIP_BITCODE_FROM_COPIED_FILES = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Beta;
+		};
+		CA43C63D1BB35BD000C180DA /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Beta;
+		};
+		CA43C63F1BB35BD400C180DA /* Alpha */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = KsApi;
+				STRIP_BITCODE_FROM_COPIED_FILES = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Alpha;
+		};
+		CA43C6401BB35BD400C180DA /* Alpha */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Alpha;
+		};
+		CA43C6421BB35BD800C180DA /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				ENABLE_BITCODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = KsApi;
+				STRIP_BITCODE_FROM_COPIED_FILES = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Development;
+		};
+		CA43C6431BB35BD800C180DA /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Development;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A753B5711C2EED9800FDB616 /* Build configuration list for PBXNativeTarget "KsApiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A753B5721C2EED9800FDB616 /* Debug */,
+				A753B5731C2EED9800FDB616 /* Development */,
+				A753B5741C2EED9800FDB616 /* Alpha */,
+				A753B5751C2EED9800FDB616 /* Beta */,
+				A753B5761C2EED9800FDB616 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA43C5F31BB358F200C180DA /* Build configuration list for PBXProject "KsApi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA43C60B1BB358F200C180DA /* Debug */,
+				CA43C6421BB35BD800C180DA /* Development */,
+				CA43C63F1BB35BD400C180DA /* Alpha */,
+				CA43C63C1BB35BD000C180DA /* Beta */,
+				CA43C60C1BB358F200C180DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA43C60D1BB358F200C180DA /* Build configuration list for PBXNativeTarget "KsApi-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA43C60E1BB358F200C180DA /* Debug */,
+				CA43C6431BB35BD800C180DA /* Development */,
+				CA43C6401BB35BD400C180DA /* Alpha */,
+				CA43C63D1BB35BD000C180DA /* Beta */,
+				CA43C60F1BB358F200C180DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CA43C5F01BB358F200C180DA /* Project object */;
+}
