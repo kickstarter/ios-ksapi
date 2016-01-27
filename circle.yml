@@ -5,6 +5,8 @@ dependencies:
   pre:
     - brew install carthage
     - carthage bootstrap --platform tvos
+  cache_directories:
+    - Carthage
 test:
   override:
     - xctool
