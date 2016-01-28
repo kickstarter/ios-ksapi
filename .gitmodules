@@ -9,7 +9,7 @@
 	url = https://github.com/thoughtbot/Curry.git
 [submodule "Carthage/Checkouts/Kickstarter-Prelude"]
 	path = Carthage/Checkouts/Kickstarter-Prelude
-	url = https://github.com/kickstarter/Kickstarter-Prelude.git
+	url = git@github.com:kickstarter/Kickstarter-Prelude.git
 [submodule "Carthage/Checkouts/Result"]
 	path = Carthage/Checkouts/Result
 	url = https://github.com/antitypical/Result.git
@@ -18,7 +18,7 @@
 	url = https://github.com/ReactiveCocoa/ReactiveCocoa.git
 [submodule "Carthage/Checkouts/Kickstarter-Models"]
 	path = Carthage/Checkouts/Kickstarter-Models
-	url = https://github.com/kickstarter/Kickstarter-Models.git
+	url = git@github.com:kickstarter/Kickstarter-Models.git
 [submodule "Carthage/Checkouts/Kickstarter-ReactiveExtensions"]
 	path = Carthage/Checkouts/Kickstarter-ReactiveExtensions
-	url = https://github.com/kickstarter/Kickstarter-ReactiveExtensions.git
+	url = git@github.com:kickstarter/Kickstarter-ReactiveExtensions.git
