@@ -12,12 +12,12 @@ let categories = service.fetchCategories()
   .sort()
   .uncollect()
   .filter { c in c.isRoot }
-  .startAndShare()
+  .replayLazily(1)
 
 categories
   .map { c in c.name }
   .startWithNext { c in
-    print(c)
+    print("Root category ----> \(c)")
 }
 
 categories
@@ -25,5 +25,5 @@ categories
   .mergeMap(service.fetchProject)
   .map { p in (p.name, p.category.name) }
   .startWithNext { data in
-    print(data)
+    print("Project -----> \(data)")
 }
