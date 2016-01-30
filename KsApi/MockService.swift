@@ -1,5 +1,6 @@
 import ReactiveCocoa
 import Models
+import Prelude
 
 /**
  A `ServerType` that gets data from locally stored JSON files.
@@ -30,7 +31,8 @@ public struct MockService : ServiceType {
         } catch {
           return nil
         }
-      }!
+      }
+      .coalesceWith([:])
   }
 
   public func fetchDiscovery(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
@@ -45,7 +47,7 @@ public struct MockService : ServiceType {
   }
 
   public func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
-    return fetchDiscovery(params).flatMap { $0.projects.first }
+    return fetchDiscovery(params).flatMap { $0.projects.randomElement }
   }
 
   public func fetchProject(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
