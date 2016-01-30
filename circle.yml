@@ -1,17 +1,17 @@
-machine:
-  xcode:
-    version: 7.2
-dependencies:
-  override:
-    - bin/carthage-bootstrap-if-needed
-  cache_directories:
-    - Carthage
-test:
-  override:
-    - set -o pipefail &&
-      xcodebuild
-        -destination 'platform=tvOS Simulator,OS=9.1,name=Apple TV 1080p'
-        -scheme KsApi-tvOS
-        clean build test |
-      tee $CIRCLE_ARTIFACTS/xcode_raw.log |
-      xcpretty
+# machine:
+#   xcode:
+#     version: 7.2
+# dependencies:
+#   override:
+#     - bin/carthage-bootstrap-if-needed
+#   cache_directories:
+#     - Carthage
+# test:
+#   override:
+#     - set -o pipefail &&
+#       xcodebuild
+#         -destination 'platform=tvOS Simulator,OS=9.1,name=Apple TV 1080p'
+#         -scheme KsApi-tvOS
+#         clean build test |
+#       tee $CIRCLE_ARTIFACTS/xcode_raw.log |
+#       xcpretty
