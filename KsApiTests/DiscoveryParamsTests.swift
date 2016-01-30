@@ -1,6 +1,6 @@
 import XCTest
 @testable import KsApi
-@testable import Models
+import Models
 
 class DiscoveryParamsTests: XCTestCase {
 
@@ -65,7 +65,7 @@ class DiscoveryParamsTests: XCTestCase {
       social: true,
       recommended: true,
       similarTo: nil,
-      category: Models.Category(id: 1, name: "Art", slug: "art", position: 1, parentId: nil, _parent: {nil}, color: nil),
+      category: Models.Category(id: 1, name: "Art", slug: "art", position: 1, parentId: nil, parent: nil, color: nil),
       query: "wallet",
       state: .Live,
       sort: .Popular,
