@@ -31,7 +31,6 @@
 		A7BF773C1C582BC3003D0881 /* Alamofire.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A7BF773D1C582BC3003D0881 /* Argo.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77351C582BC3003D0881 /* Argo.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A7BF773E1C582BC3003D0881 /* Curry.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77361C582BC3003D0881 /* Curry.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		A7BF773F1C582BC3003D0881 /* Models.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77371C582BC3003D0881 /* Models.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A7BF77401C582BC3003D0881 /* Prelude.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77381C582BC3003D0881 /* Prelude.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A7BF77411C582BC3003D0881 /* ReactiveCocoa.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77391C582BC3003D0881 /* ReactiveCocoa.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A7BF77421C582BC3003D0881 /* ReactiveExtensions.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF773A1C582BC3003D0881 /* ReactiveExtensions.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -39,11 +38,12 @@
 		A7BF774C1C582BD0003D0881 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77441C582BD0003D0881 /* Alamofire.framework */; };
 		A7BF774D1C582BD0003D0881 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77451C582BD0003D0881 /* Argo.framework */; };
 		A7BF774E1C582BD0003D0881 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77461C582BD0003D0881 /* Curry.framework */; };
-		A7BF774F1C582BD0003D0881 /* Models.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77471C582BD0003D0881 /* Models.framework */; };
 		A7BF77501C582BD0003D0881 /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77481C582BD0003D0881 /* Prelude.framework */; };
 		A7BF77511C582BD0003D0881 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF77491C582BD0003D0881 /* ReactiveCocoa.framework */; };
 		A7BF77521C582BD0003D0881 /* ReactiveExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF774A1C582BD0003D0881 /* ReactiveExtensions.framework */; };
 		A7BF77531C582BD0003D0881 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF774B1C582BD0003D0881 /* Result.framework */; };
+		A7E070401C5D327500EBDCC2 /* Models.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7E0703F1C5D327500EBDCC2 /* Models.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7E070421C5D328C00EBDCC2 /* Models.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E070411C5D328C00EBDCC2 /* Models.framework */; };
 		CA43C5FD1BB358F200C180DA /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -67,9 +67,9 @@
 				A7BF773C1C582BC3003D0881 /* Alamofire.framework.dSYM in carthage dsym */,
 				A7BF773D1C582BC3003D0881 /* Argo.framework.dSYM in carthage dsym */,
 				A7BF773E1C582BC3003D0881 /* Curry.framework.dSYM in carthage dsym */,
-				A7BF773F1C582BC3003D0881 /* Models.framework.dSYM in carthage dsym */,
 				A7BF77401C582BC3003D0881 /* Prelude.framework.dSYM in carthage dsym */,
 				A7BF77411C582BC3003D0881 /* ReactiveCocoa.framework.dSYM in carthage dsym */,
+				A7E070401C5D327500EBDCC2 /* Models.framework.dSYM in carthage dsym */,
 				A7BF77421C582BC3003D0881 /* ReactiveExtensions.framework.dSYM in carthage dsym */,
 				A7BF77431C582BC3003D0881 /* Result.framework.dSYM in carthage dsym */,
 			);
@@ -104,7 +104,6 @@
 		A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Alamofire.framework.dSYM; path = Carthage/Build/tvOS/Alamofire.framework.dSYM; sourceTree = "<group>"; };
 		A7BF77351C582BC3003D0881 /* Argo.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Argo.framework.dSYM; path = Carthage/Build/tvOS/Argo.framework.dSYM; sourceTree = "<group>"; };
 		A7BF77361C582BC3003D0881 /* Curry.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Curry.framework.dSYM; path = Carthage/Build/tvOS/Curry.framework.dSYM; sourceTree = "<group>"; };
-		A7BF77371C582BC3003D0881 /* Models.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Models.framework.dSYM; path = Carthage/Build/tvOS/Models.framework.dSYM; sourceTree = "<group>"; };
 		A7BF77381C582BC3003D0881 /* Prelude.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Prelude.framework.dSYM; path = Carthage/Build/tvOS/Prelude.framework.dSYM; sourceTree = "<group>"; };
 		A7BF77391C582BC3003D0881 /* ReactiveCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ReactiveCocoa.framework.dSYM; path = Carthage/Build/tvOS/ReactiveCocoa.framework.dSYM; sourceTree = "<group>"; };
 		A7BF773A1C582BC3003D0881 /* ReactiveExtensions.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ReactiveExtensions.framework.dSYM; path = Carthage/Build/tvOS/ReactiveExtensions.framework.dSYM; sourceTree = "<group>"; };
@@ -112,11 +111,12 @@
 		A7BF77441C582BD0003D0881 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/tvOS/Alamofire.framework; sourceTree = "<group>"; };
 		A7BF77451C582BD0003D0881 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/tvOS/Argo.framework; sourceTree = "<group>"; };
 		A7BF77461C582BD0003D0881 /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = Carthage/Build/tvOS/Curry.framework; sourceTree = "<group>"; };
-		A7BF77471C582BD0003D0881 /* Models.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Models.framework; path = Carthage/Build/tvOS/Models.framework; sourceTree = "<group>"; };
 		A7BF77481C582BD0003D0881 /* Prelude.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prelude.framework; path = Carthage/Build/tvOS/Prelude.framework; sourceTree = "<group>"; };
 		A7BF77491C582BD0003D0881 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/tvOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		A7BF774A1C582BD0003D0881 /* ReactiveExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveExtensions.framework; path = Carthage/Build/tvOS/ReactiveExtensions.framework; sourceTree = "<group>"; };
 		A7BF774B1C582BD0003D0881 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/tvOS/Result.framework; sourceTree = "<group>"; };
+		A7E0703F1C5D327500EBDCC2 /* Models.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Models.framework.dSYM; path = Carthage/Build/tvOS/Models.framework.dSYM; sourceTree = "<group>"; };
+		A7E070411C5D328C00EBDCC2 /* Models.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Models.framework; path = Carthage/Build/tvOS/Models.framework; sourceTree = "<group>"; };
 		CA43C5F91BB358F200C180DA /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA43C5FC1BB358F200C180DA /* KsApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsApi.h; sourceTree = "<group>"; };
 		CA43C5FE1BB358F200C180DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,9 +138,9 @@
 				A7BF774C1C582BD0003D0881 /* Alamofire.framework in Frameworks */,
 				A7BF774D1C582BD0003D0881 /* Argo.framework in Frameworks */,
 				A7BF774E1C582BD0003D0881 /* Curry.framework in Frameworks */,
-				A7BF774F1C582BD0003D0881 /* Models.framework in Frameworks */,
 				A7BF77501C582BD0003D0881 /* Prelude.framework in Frameworks */,
 				A7BF77511C582BD0003D0881 /* ReactiveCocoa.framework in Frameworks */,
+				A7E070421C5D328C00EBDCC2 /* Models.framework in Frameworks */,
 				A7BF77521C582BD0003D0881 /* ReactiveExtensions.framework in Frameworks */,
 				A7BF77531C582BD0003D0881 /* Result.framework in Frameworks */,
 			);
@@ -208,7 +208,7 @@
 				A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */,
 				A7BF77351C582BC3003D0881 /* Argo.framework.dSYM */,
 				A7BF77361C582BC3003D0881 /* Curry.framework.dSYM */,
-				A7BF77371C582BC3003D0881 /* Models.framework.dSYM */,
+				A7E0703F1C5D327500EBDCC2 /* Models.framework.dSYM */,
 				A7BF77381C582BC3003D0881 /* Prelude.framework.dSYM */,
 				A7BF77391C582BC3003D0881 /* ReactiveCocoa.framework.dSYM */,
 				A7BF773A1C582BC3003D0881 /* ReactiveExtensions.framework.dSYM */,
@@ -216,7 +216,7 @@
 				A7BF77441C582BD0003D0881 /* Alamofire.framework */,
 				A7BF77451C582BD0003D0881 /* Argo.framework */,
 				A7BF77461C582BD0003D0881 /* Curry.framework */,
-				A7BF77471C582BD0003D0881 /* Models.framework */,
+				A7E070411C5D328C00EBDCC2 /* Models.framework */,
 				A7BF77481C582BD0003D0881 /* Prelude.framework */,
 				A7BF77491C582BD0003D0881 /* ReactiveCocoa.framework */,
 				A7BF774A1C582BD0003D0881 /* ReactiveExtensions.framework */,
