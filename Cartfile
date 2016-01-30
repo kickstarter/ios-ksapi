@@ -9,4 +9,4 @@ github "Alamofire/Alamofire" == 3.1.5
 # Switch back to the github syntax when these are public
 git "git@github.com:kickstarter/Kickstarter-Prelude.git" == 1.0.0
 git "git@github.com:kickstarter/Kickstarter-ReactiveExtensions.git" == 1.0.1
-git "git@github.com:kickstarter/Kickstarter-Models.git" == 1.0.0
+git "git@github.com:kickstarter/Kickstarter-Models.git" == 1.0.1
