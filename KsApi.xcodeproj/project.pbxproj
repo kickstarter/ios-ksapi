@@ -374,6 +374,8 @@
 				"$(SRCROOT)/Carthage/Build/tvOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/tvOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/tvOS/ReactiveExtensions.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Models.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Prelude.framework",
 			);
 			name = "carthage copy-frameworks";
 			outputPaths = (
