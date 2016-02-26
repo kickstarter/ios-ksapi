@@ -47,7 +47,7 @@ public struct MockService : ServiceType {
   }
 
   public func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
-    return fetchDiscovery(params).flatMap { $0.projects.randomElement }
+    return fetchDiscovery(params).flatMap { $0.projects.first }
   }
 
   public func fetchProject(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
