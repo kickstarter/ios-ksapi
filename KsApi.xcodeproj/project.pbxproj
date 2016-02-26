@@ -81,6 +81,7 @@
 /* Begin PBXFileReference section */
 		A713EC9C1C2C51B600B6234E /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
 		A713ECB71C2C59D400B6234E /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
+		A7378CCC1C809A7500F0A562 /* KsApi.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KsApi.playground; sourceTree = "<group>"; };
 		A753B5691C2EED9800FDB616 /* KsApiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KsApiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A753B56B1C2EED9800FDB616 /* KsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsApiTests.swift; sourceTree = "<group>"; };
 		A753B56D1C2EED9800FDB616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -205,6 +206,7 @@
 		CA43C5EF1BB358F200C180DA = {
 			isa = PBXGroup;
 			children = (
+				A7378CCC1C809A7500F0A562 /* KsApi.playground */,
 				A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */,
 				A7BF77351C582BC3003D0881 /* Argo.framework.dSYM */,
 				A7BF77361C582BC3003D0881 /* Curry.framework.dSYM */,
