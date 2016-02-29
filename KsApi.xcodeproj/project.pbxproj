@@ -452,7 +452,7 @@
 				A7FD098A1C83E74F00332CCB /* Headers */,
 				A7FD098C1C83E74F00332CCB /* Resources */,
 				A7FD098D1C83E74F00332CCB /* carthage dsym */,
-				A7FD09961C83E74F00332CCB /* charthage copy-frameworks */,
+				A7FD09961C83E74F00332CCB /* carthage copy-frameworks */,
 			);
 			buildRules = (
 			);
@@ -491,7 +491,7 @@
 				CA43C5F61BB358F200C180DA /* Headers */,
 				CA43C5F71BB358F200C180DA /* Resources */,
 				CA43C64F1BB35C5E00C180DA /* carthage dsym */,
-				CA43C6581BB35C7900C180DA /* charthage copy-frameworks */,
+				CA43C6581BB35C7900C180DA /* carthage copy-frameworks */,
 			);
 			buildRules = (
 			);
@@ -573,7 +573,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A7FD09961C83E74F00332CCB /* charthage copy-frameworks */ = {
+		A7FD09961C83E74F00332CCB /* carthage copy-frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -588,7 +588,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Models.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveExtensions.framework",
 			);
-			name = "charthage copy-frameworks";
+			name = "carthage copy-frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -625,7 +625,7 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
-		CA43C6581BB35C7900C180DA /* charthage copy-frameworks */ = {
+		CA43C6581BB35C7900C180DA /* carthage copy-frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -640,7 +640,7 @@
 				"$(SRCROOT)/Carthage/Build/tvOS/Models.framework",
 				"$(SRCROOT)/Carthage/Build/tvOS/ReactiveExtensions.framework",
 			);
-			name = "charthage copy-frameworks";
+			name = "carthage copy-frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
