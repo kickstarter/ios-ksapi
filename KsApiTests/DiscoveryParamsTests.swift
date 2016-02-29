@@ -27,11 +27,35 @@ class DiscoveryParamsTests: XCTestCase {
   }
 
   func testWith() {
-    let params = DiscoveryParams()
-    let newParams = params.with(state: .Live, sort: .Popular)
+    let params = DiscoveryParams(
+      staffPicks: true,
+      hasVideo: true,
+      starred: false,
+      backed: false,
+      social: nil,
+      recommended: nil,
+      similarTo: nil,
+      category: nil,
+      query: "wallet",
+      state: .Live,
+      sort: .Magic,
+      page: 1,
+      perPage: 20,
+      includePOTD: nil,
+      seed: nil
+    )
 
-    XCTAssertEqual(newParams.state, .Live)
-    XCTAssertEqual(newParams.sort, .Popular)
+    XCTAssertEqual(params.with(state: .Live).state, .Live)
+    XCTAssertEqual(params.with(sort: .Popular).sort, .Popular)
+    XCTAssertEqual(params.with(staffPicks: false).staffPicks, false)
+    XCTAssertEqual(params.with(hasVideo: false).hasVideo, false)
+    XCTAssertEqual(params.with(starred: true).starred, true)
+    XCTAssertEqual(params.with(backed: true).backed, true)
+    XCTAssertEqual(params.with(social: false).social, false)
+    XCTAssertEqual(params.with(recommended: false).recommended, false)
+    XCTAssertEqual(params.with(page: 2).page, 2)
+    XCTAssertEqual(params.with(perPage: 2).perPage, 2)
+    XCTAssertEqual(params.with(seed: 123).seed, 123)
   }
 
   func testNextPage() {
