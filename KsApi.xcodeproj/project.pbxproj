@@ -44,6 +44,45 @@
 		A7BF77531C582BD0003D0881 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BF774B1C582BD0003D0881 /* Result.framework */; };
 		A7E070401C5D327500EBDCC2 /* Models.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7E0703F1C5D327500EBDCC2 /* Models.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A7E070421C5D328C00EBDCC2 /* Models.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E070411C5D328C00EBDCC2 /* Models.framework */; };
+		A7FD09701C83E74F00332CCB /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
+		A7FD09711C83E74F00332CCB /* Alamofire.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967661C2B431C0002166F /* Alamofire.Request.swift */; };
+		A7FD09721C83E74F00332CCB /* OauthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967871C2B44440002166F /* OauthToken.swift */; };
+		A7FD09731C83E74F00332CCB /* StarEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967721C2B431C0002166F /* StarEnvelope.swift */; };
+		A7FD09741C83E74F00332CCB /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779676B1C2B431C0002166F /* Route.swift */; };
+		A7FD09751C83E74F00332CCB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
+		A7FD09761C83E74F00332CCB /* CategoriesEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779676E1C2B431C0002166F /* CategoriesEnvelope.swift */; };
+		A7FD09771C83E74F00332CCB /* Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713ECB71C2C59D400B6234E /* Method.swift */; };
+		A7FD09781C83E74F00332CCB /* ErrorEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967711C2B431C0002166F /* ErrorEnvelope.swift */; };
+		A7FD09791C83E74F00332CCB /* DiscoveryEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779676F1C2B431C0002166F /* DiscoveryEnvelope.swift */; };
+		A7FD097A1C83E74F00332CCB /* AccessTokenEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A779676D1C2B431C0002166F /* AccessTokenEnvelope.swift */; };
+		A7FD097B1C83E74F00332CCB /* JSONObjectWithData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967691C2B431C0002166F /* JSONObjectWithData.swift */; };
+		A7FD097C1C83E74F00332CCB /* BasicHTTPAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967831C2B43950002166F /* BasicHTTPAuth.swift */; };
+		A7FD097D1C83E74F00332CCB /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713EC9C1C2C51B600B6234E /* ServerConfig.swift */; };
+		A7FD097E1C83E74F00332CCB /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF30A1C2F91E700AC62B4 /* MockService.swift */; };
+		A7FD097F1C83E74F00332CCB /* ClientAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967851C2B43EC0002166F /* ClientAuth.swift */; };
+		A7FD09801C83E74F00332CCB /* DiscoveryParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967701C2B431C0002166F /* DiscoveryParams.swift */; };
+		A7FD098B1C83E74F00332CCB /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7FD09AA1C83E7AD00332CCB /* Alamofire.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7FD09A21C83E7AD00332CCB /* Alamofire.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7FD09AB1C83E7AD00332CCB /* Argo.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7FD09A31C83E7AD00332CCB /* Argo.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7FD09AC1C83E7AD00332CCB /* Curry.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7FD09A41C83E7AD00332CCB /* Curry.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7FD09AD1C83E7AD00332CCB /* Models.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7FD09A51C83E7AD00332CCB /* Models.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7FD09AE1C83E7AD00332CCB /* Prelude.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7FD09A61C83E7AD00332CCB /* Prelude.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7FD09AF1C83E7AD00332CCB /* ReactiveCocoa.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7FD09A71C83E7AD00332CCB /* ReactiveCocoa.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7FD09B01C83E7AD00332CCB /* ReactiveExtensions.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7FD09A81C83E7AD00332CCB /* ReactiveExtensions.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7FD09B11C83E7AD00332CCB /* Result.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7FD09A91C83E7AD00332CCB /* Result.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A7FD09BA1C83E7C500332CCB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD09B21C83E7C500332CCB /* Alamofire.framework */; };
+		A7FD09BB1C83E7C500332CCB /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD09B31C83E7C500332CCB /* Argo.framework */; };
+		A7FD09BC1C83E7C500332CCB /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD09B41C83E7C500332CCB /* Curry.framework */; };
+		A7FD09BD1C83E7C500332CCB /* Models.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD09B51C83E7C500332CCB /* Models.framework */; };
+		A7FD09BE1C83E7C500332CCB /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD09B61C83E7C500332CCB /* Prelude.framework */; };
+		A7FD09BF1C83E7C500332CCB /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD09B71C83E7C500332CCB /* ReactiveCocoa.framework */; };
+		A7FD09C01C83E7C500332CCB /* ReactiveExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD09B81C83E7C500332CCB /* ReactiveExtensions.framework */; };
+		A7FD09C11C83E7C500332CCB /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD09B91C83E7C500332CCB /* Result.framework */; };
+		A7FD09C61C83E8E900332CCB /* DiscoveryParamsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B57D1C2EEECA00FDB616 /* DiscoveryParamsTests.swift */; };
+		A7FD09C71C83E8E900332CCB /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
+		A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B56B1C2EED9800FDB616 /* KsApiTests.swift */; };
+		A7FD09CA1C83E8E900332CCB /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
+		A7FD09D61C83EBFD00332CCB /* Models.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD09B51C83E7C500332CCB /* Models.framework */; };
 		CA43C5FD1BB358F200C180DA /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -55,9 +94,34 @@
 			remoteGlobalIDString = CA43C5F81BB358F200C180DA;
 			remoteInfo = "KsApi-tvOS";
 		};
+		A7FD09D41C83E8FE00332CCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA43C5F01BB358F200C180DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7FD096E1C83E74F00332CCB;
+			remoteInfo = "KsApi-iOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		A7FD098D1C83E74F00332CCB /* carthage dsym */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				A7FD09AA1C83E7AD00332CCB /* Alamofire.framework.dSYM in carthage dsym */,
+				A7FD09AB1C83E7AD00332CCB /* Argo.framework.dSYM in carthage dsym */,
+				A7FD09AC1C83E7AD00332CCB /* Curry.framework.dSYM in carthage dsym */,
+				A7FD09AD1C83E7AD00332CCB /* Models.framework.dSYM in carthage dsym */,
+				A7FD09AE1C83E7AD00332CCB /* Prelude.framework.dSYM in carthage dsym */,
+				A7FD09AF1C83E7AD00332CCB /* ReactiveCocoa.framework.dSYM in carthage dsym */,
+				A7FD09B01C83E7AD00332CCB /* ReactiveExtensions.framework.dSYM in carthage dsym */,
+				A7FD09B11C83E7AD00332CCB /* Result.framework.dSYM in carthage dsym */,
+			);
+			name = "carthage dsym";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA43C64F1BB35C5E00C180DA /* carthage dsym */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -82,7 +146,7 @@
 		A713EC9C1C2C51B600B6234E /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
 		A713ECB71C2C59D400B6234E /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
 		A7378CCC1C809A7500F0A562 /* KsApi.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KsApi.playground; sourceTree = "<group>"; };
-		A753B5691C2EED9800FDB616 /* KsApiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KsApiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A753B5691C2EED9800FDB616 /* KsApi-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A753B56B1C2EED9800FDB616 /* KsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsApiTests.swift; sourceTree = "<group>"; };
 		A753B56D1C2EED9800FDB616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A753B57D1C2EEECA00FDB616 /* DiscoveryParamsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryParamsTests.swift; sourceTree = "<group>"; };
@@ -118,6 +182,24 @@
 		A7BF774B1C582BD0003D0881 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/tvOS/Result.framework; sourceTree = "<group>"; };
 		A7E0703F1C5D327500EBDCC2 /* Models.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Models.framework.dSYM; path = Carthage/Build/tvOS/Models.framework.dSYM; sourceTree = "<group>"; };
 		A7E070411C5D328C00EBDCC2 /* Models.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Models.framework; path = Carthage/Build/tvOS/Models.framework; sourceTree = "<group>"; };
+		A7FD099D1C83E74F00332CCB /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7FD09A21C83E7AD00332CCB /* Alamofire.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Alamofire.framework.dSYM; path = Carthage/Build/iOS/Alamofire.framework.dSYM; sourceTree = "<group>"; };
+		A7FD09A31C83E7AD00332CCB /* Argo.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Argo.framework.dSYM; path = Carthage/Build/iOS/Argo.framework.dSYM; sourceTree = "<group>"; };
+		A7FD09A41C83E7AD00332CCB /* Curry.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Curry.framework.dSYM; path = Carthage/Build/iOS/Curry.framework.dSYM; sourceTree = "<group>"; };
+		A7FD09A51C83E7AD00332CCB /* Models.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Models.framework.dSYM; path = Carthage/Build/iOS/Models.framework.dSYM; sourceTree = "<group>"; };
+		A7FD09A61C83E7AD00332CCB /* Prelude.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Prelude.framework.dSYM; path = Carthage/Build/iOS/Prelude.framework.dSYM; sourceTree = "<group>"; };
+		A7FD09A71C83E7AD00332CCB /* ReactiveCocoa.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ReactiveCocoa.framework.dSYM; path = Carthage/Build/iOS/ReactiveCocoa.framework.dSYM; sourceTree = "<group>"; };
+		A7FD09A81C83E7AD00332CCB /* ReactiveExtensions.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ReactiveExtensions.framework.dSYM; path = Carthage/Build/iOS/ReactiveExtensions.framework.dSYM; sourceTree = "<group>"; };
+		A7FD09A91C83E7AD00332CCB /* Result.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Result.framework.dSYM; path = Carthage/Build/iOS/Result.framework.dSYM; sourceTree = "<group>"; };
+		A7FD09B21C83E7C500332CCB /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		A7FD09B31C83E7C500332CCB /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
+		A7FD09B41C83E7C500332CCB /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = Carthage/Build/iOS/Curry.framework; sourceTree = "<group>"; };
+		A7FD09B51C83E7C500332CCB /* Models.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Models.framework; path = Carthage/Build/iOS/Models.framework; sourceTree = "<group>"; };
+		A7FD09B61C83E7C500332CCB /* Prelude.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Prelude.framework; path = Carthage/Build/iOS/Prelude.framework; sourceTree = "<group>"; };
+		A7FD09B71C83E7C500332CCB /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		A7FD09B81C83E7C500332CCB /* ReactiveExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveExtensions.framework; path = Carthage/Build/iOS/ReactiveExtensions.framework; sourceTree = "<group>"; };
+		A7FD09B91C83E7C500332CCB /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		A7FD09D21C83E8E900332CCB /* KsApi-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA43C5F91BB358F200C180DA /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA43C5FC1BB358F200C180DA /* KsApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsApi.h; sourceTree = "<group>"; };
 		CA43C5FE1BB358F200C180DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,6 +211,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FD09811C83E74F00332CCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FD09BA1C83E7C500332CCB /* Alamofire.framework in Frameworks */,
+				A7FD09BB1C83E7C500332CCB /* Argo.framework in Frameworks */,
+				A7FD09BC1C83E7C500332CCB /* Curry.framework in Frameworks */,
+				A7FD09BD1C83E7C500332CCB /* Models.framework in Frameworks */,
+				A7FD09BE1C83E7C500332CCB /* Prelude.framework in Frameworks */,
+				A7FD09BF1C83E7C500332CCB /* ReactiveCocoa.framework in Frameworks */,
+				A7FD09C01C83E7C500332CCB /* ReactiveExtensions.framework in Frameworks */,
+				A7FD09C11C83E7C500332CCB /* Result.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FD09C91C83E8E900332CCB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FD09CA1C83E8E900332CCB /* KsApi.framework in Frameworks */,
+				A7FD09D61C83EBFD00332CCB /* Models.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,10 +309,41 @@
 			path = auth;
 			sourceTree = "<group>";
 		};
-		CA43C5EF1BB358F200C180DA = {
+		A7FD099F1C83E77B00332CCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A7378CCC1C809A7500F0A562 /* KsApi.playground */,
+				A7FD09A01C83E78000332CCB /* iOS */,
+				A7FD09A11C83E78500332CCB /* tvOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A7FD09A01C83E78000332CCB /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A7FD09A21C83E7AD00332CCB /* Alamofire.framework.dSYM */,
+				A7FD09A31C83E7AD00332CCB /* Argo.framework.dSYM */,
+				A7FD09A41C83E7AD00332CCB /* Curry.framework.dSYM */,
+				A7FD09A51C83E7AD00332CCB /* Models.framework.dSYM */,
+				A7FD09A61C83E7AD00332CCB /* Prelude.framework.dSYM */,
+				A7FD09A71C83E7AD00332CCB /* ReactiveCocoa.framework.dSYM */,
+				A7FD09A81C83E7AD00332CCB /* ReactiveExtensions.framework.dSYM */,
+				A7FD09A91C83E7AD00332CCB /* Result.framework.dSYM */,
+				A7FD09B21C83E7C500332CCB /* Alamofire.framework */,
+				A7FD09B31C83E7C500332CCB /* Argo.framework */,
+				A7FD09B41C83E7C500332CCB /* Curry.framework */,
+				A7FD09B51C83E7C500332CCB /* Models.framework */,
+				A7FD09B61C83E7C500332CCB /* Prelude.framework */,
+				A7FD09B71C83E7C500332CCB /* ReactiveCocoa.framework */,
+				A7FD09B81C83E7C500332CCB /* ReactiveExtensions.framework */,
+				A7FD09B91C83E7C500332CCB /* Result.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		A7FD09A11C83E78500332CCB /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
 				A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */,
 				A7BF77351C582BC3003D0881 /* Argo.framework.dSYM */,
 				A7BF77361C582BC3003D0881 /* Curry.framework.dSYM */,
@@ -223,6 +360,15 @@
 				A7BF77491C582BD0003D0881 /* ReactiveCocoa.framework */,
 				A7BF774A1C582BD0003D0881 /* ReactiveExtensions.framework */,
 				A7BF774B1C582BD0003D0881 /* Result.framework */,
+			);
+			name = tvOS;
+			sourceTree = "<group>";
+		};
+		CA43C5EF1BB358F200C180DA = {
+			isa = PBXGroup;
+			children = (
+				A7378CCC1C809A7500F0A562 /* KsApi.playground */,
+				A7FD099F1C83E77B00332CCB /* Frameworks */,
 				CA43C5FB1BB358F200C180DA /* KsApi */,
 				A753B56A1C2EED9800FDB616 /* KsApiTests */,
 				CA43C5FA1BB358F200C180DA /* Products */,
@@ -233,7 +379,9 @@
 			isa = PBXGroup;
 			children = (
 				CA43C5F91BB358F200C180DA /* KsApi.framework */,
-				A753B5691C2EED9800FDB616 /* KsApiTests.xctest */,
+				A753B5691C2EED9800FDB616 /* KsApi-tvOSTests.xctest */,
+				A7FD099D1C83E74F00332CCB /* KsApi.framework */,
+				A7FD09D21C83E8E900332CCB /* KsApi-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,6 +405,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		A7FD098A1C83E74F00332CCB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FD098B1C83E74F00332CCB /* KsApi.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA43C5F61BB358F200C180DA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,23 +424,62 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		A753B5681C2EED9800FDB616 /* KsApiTests */ = {
+		A753B5681C2EED9800FDB616 /* KsApi-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A753B5711C2EED9800FDB616 /* Build configuration list for PBXNativeTarget "KsApiTests" */;
+			buildConfigurationList = A753B5711C2EED9800FDB616 /* Build configuration list for PBXNativeTarget "KsApi-tvOSTests" */;
 			buildPhases = (
 				A753B5651C2EED9800FDB616 /* Sources */,
 				A753B5661C2EED9800FDB616 /* Frameworks */,
 				A753B5671C2EED9800FDB616 /* Resources */,
-				A753B57C1C2EEDE900FDB616 /* carthage copy-frameworks */,
+				A7FD09D91C848A1100332CCB /* carthage copy-frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				A753B5701C2EED9800FDB616 /* PBXTargetDependency */,
 			);
-			name = KsApiTests;
+			name = "KsApi-tvOSTests";
 			productName = KsApiTests;
-			productReference = A753B5691C2EED9800FDB616 /* KsApiTests.xctest */;
+			productReference = A753B5691C2EED9800FDB616 /* KsApi-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A7FD096E1C83E74F00332CCB /* KsApi-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7FD09971C83E74F00332CCB /* Build configuration list for PBXNativeTarget "KsApi-iOS" */;
+			buildPhases = (
+				A7FD096F1C83E74F00332CCB /* Sources */,
+				A7FD09811C83E74F00332CCB /* Frameworks */,
+				A7FD098A1C83E74F00332CCB /* Headers */,
+				A7FD098C1C83E74F00332CCB /* Resources */,
+				A7FD098D1C83E74F00332CCB /* carthage dsym */,
+				A7FD09961C83E74F00332CCB /* charthage copy-frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KsApi-iOS";
+			productName = KsApi;
+			productReference = A7FD099D1C83E74F00332CCB /* KsApi.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A7FD09C21C83E8E900332CCB /* KsApi-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7FD09CC1C83E8E900332CCB /* Build configuration list for PBXNativeTarget "KsApi-iOSTests" */;
+			buildPhases = (
+				A7FD09C51C83E8E900332CCB /* Sources */,
+				A7FD09C91C83E8E900332CCB /* Frameworks */,
+				A7FD09CB1C83E8E900332CCB /* Resources */,
+				A7FD09D81C83EC1500332CCB /* carthage copy-frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7FD09D51C83E8FE00332CCB /* PBXTargetDependency */,
+			);
+			name = "KsApi-iOSTests";
+			productName = KsApiTests;
+			productReference = A7FD09D21C83E8E900332CCB /* KsApi-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		CA43C5F81BB358F200C180DA /* KsApi-tvOS */ = {
@@ -338,14 +533,30 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				A7FD096E1C83E74F00332CCB /* KsApi-iOS */,
+				A7FD09C21C83E8E900332CCB /* KsApi-iOSTests */,
 				CA43C5F81BB358F200C180DA /* KsApi-tvOS */,
-				A753B5681C2EED9800FDB616 /* KsApiTests */,
+				A753B5681C2EED9800FDB616 /* KsApi-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A753B5671C2EED9800FDB616 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FD098C1C83E74F00332CCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FD09CB1C83E8E900332CCB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -362,20 +573,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A753B57C1C2EEDE900FDB616 /* carthage copy-frameworks */ = {
+		A7FD09961C83E74F00332CCB /* charthage copy-frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/tvOS/Argo.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/Curry.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/ReactiveCocoa.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/Result.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/ReactiveExtensions.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Curry.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Prelude.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Models.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReactiveExtensions.framework",
+			);
+			name = "charthage copy-frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		A7FD09D81C83EC1500332CCB /* carthage copy-frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Models.framework",
+			);
+			name = "carthage copy-frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		A7FD09D91C848A1100332CCB /* carthage copy-frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/tvOS/Models.framework",
-				"$(SRCROOT)/Carthage/Build/tvOS/Prelude.framework",
 			);
 			name = "carthage copy-frameworks";
 			outputPaths = (
@@ -419,6 +660,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A7FD096F1C83E74F00332CCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FD09701C83E74F00332CCB /* ServiceType.swift in Sources */,
+				A7FD09711C83E74F00332CCB /* Alamofire.Request.swift in Sources */,
+				A7FD09721C83E74F00332CCB /* OauthToken.swift in Sources */,
+				A7FD09731C83E74F00332CCB /* StarEnvelope.swift in Sources */,
+				A7FD09741C83E74F00332CCB /* Route.swift in Sources */,
+				A7FD09751C83E74F00332CCB /* Service.swift in Sources */,
+				A7FD09761C83E74F00332CCB /* CategoriesEnvelope.swift in Sources */,
+				A7FD09771C83E74F00332CCB /* Method.swift in Sources */,
+				A7FD09781C83E74F00332CCB /* ErrorEnvelope.swift in Sources */,
+				A7FD09791C83E74F00332CCB /* DiscoveryEnvelope.swift in Sources */,
+				A7FD097A1C83E74F00332CCB /* AccessTokenEnvelope.swift in Sources */,
+				A7FD097B1C83E74F00332CCB /* JSONObjectWithData.swift in Sources */,
+				A7FD097C1C83E74F00332CCB /* BasicHTTPAuth.swift in Sources */,
+				A7FD097D1C83E74F00332CCB /* ServerConfig.swift in Sources */,
+				A7FD097E1C83E74F00332CCB /* MockService.swift in Sources */,
+				A7FD097F1C83E74F00332CCB /* ClientAuth.swift in Sources */,
+				A7FD09801C83E74F00332CCB /* DiscoveryParams.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FD09C51C83E8E900332CCB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FD09C61C83E8E900332CCB /* DiscoveryParamsTests.swift in Sources */,
+				A7FD09C71C83E8E900332CCB /* ServiceTests.swift in Sources */,
+				A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA43C5F41BB358F200C180DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -450,6 +725,11 @@
 			isa = PBXTargetDependency;
 			target = CA43C5F81BB358F200C180DA /* KsApi-tvOS */;
 			targetProxy = A753B56F1C2EED9800FDB616 /* PBXContainerItemProxy */;
+		};
+		A7FD09D51C83E8FE00332CCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7FD096E1C83E74F00332CCB /* KsApi-iOS */;
+			targetProxy = A7FD09D41C83E8FE00332CCB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -531,6 +811,230 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Release;
+		};
+		A7FD09981C83E74F00332CCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+			};
+			name = Debug;
+		};
+		A7FD09991C83E74F00332CCB /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+			};
+			name = Development;
+		};
+		A7FD099A1C83E74F00332CCB /* Alpha */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+			};
+			name = Alpha;
+		};
+		A7FD099B1C83E74F00332CCB /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+			};
+			name = Beta;
+		};
+		A7FD099C1C83E74F00332CCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+			};
+			name = Release;
+		};
+		A7FD09CD1C83E8E900332CCB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+			};
+			name = Debug;
+		};
+		A7FD09CE1C83E8E900332CCB /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+			};
+			name = Development;
+		};
+		A7FD09CF1C83E8E900332CCB /* Alpha */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+			};
+			name = Alpha;
+		};
+		A7FD09D01C83E8E900332CCB /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+			};
+			name = Beta;
+		};
+		A7FD09D11C83E8E900332CCB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = KsApiTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
 		};
@@ -914,7 +1418,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A753B5711C2EED9800FDB616 /* Build configuration list for PBXNativeTarget "KsApiTests" */ = {
+		A753B5711C2EED9800FDB616 /* Build configuration list for PBXNativeTarget "KsApi-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A753B5721C2EED9800FDB616 /* Debug */,
@@ -922,6 +1426,30 @@
 				A753B5741C2EED9800FDB616 /* Alpha */,
 				A753B5751C2EED9800FDB616 /* Beta */,
 				A753B5761C2EED9800FDB616 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7FD09971C83E74F00332CCB /* Build configuration list for PBXNativeTarget "KsApi-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7FD09981C83E74F00332CCB /* Debug */,
+				A7FD09991C83E74F00332CCB /* Development */,
+				A7FD099A1C83E74F00332CCB /* Alpha */,
+				A7FD099B1C83E74F00332CCB /* Beta */,
+				A7FD099C1C83E74F00332CCB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7FD09CC1C83E8E900332CCB /* Build configuration list for PBXNativeTarget "KsApi-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7FD09CD1C83E8E900332CCB /* Debug */,
+				A7FD09CE1C83E8E900332CCB /* Development */,
+				A7FD09CF1C83E8E900332CCB /* Alpha */,
+				A7FD09D01C83E8E900332CCB /* Beta */,
+				A7FD09D11C83E8E900332CCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
