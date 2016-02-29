@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA43C5F81BB358F200C180DA"
+               BlueprintIdentifier = "A7FD096E1C83E74F00332CCB"
                BuildableName = "KsApi.framework"
-               BlueprintName = "KsApi-tvOS"
+               BlueprintName = "KsApi-iOS"
                ReferencedContainer = "container:KsApi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A753B5681C2EED9800FDB616"
-               BuildableName = "KsApi-tvOSTests.xctest"
-               BlueprintName = "KsApi-tvOSTests"
+               BlueprintIdentifier = "A7FD09C21C83E8E900332CCB"
+               BuildableName = "KsApi-iOSTests.xctest"
+               BlueprintName = "KsApi-iOSTests"
                ReferencedContainer = "container:KsApi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,16 +40,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A753B5681C2EED9800FDB616"
-               BuildableName = "KsApi-tvOSTests.xctest"
-               BlueprintName = "KsApi-tvOSTests"
+               BlueprintIdentifier = "A7FD09C21C83E8E900332CCB"
+               BuildableName = "KsApi-iOSTests.xctest"
+               BlueprintName = "KsApi-iOSTests"
                ReferencedContainer = "container:KsApi.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -57,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA43C5F81BB358F200C180DA"
+            BlueprintIdentifier = "A7FD096E1C83E74F00332CCB"
             BuildableName = "KsApi.framework"
-            BlueprintName = "KsApi-tvOS"
+            BlueprintName = "KsApi-iOS"
             ReferencedContainer = "container:KsApi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,9 +78,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA43C5F81BB358F200C180DA"
+            BlueprintIdentifier = "A7FD096E1C83E74F00332CCB"
             BuildableName = "KsApi.framework"
-            BlueprintName = "KsApi-tvOS"
+            BlueprintName = "KsApi-iOS"
             ReferencedContainer = "container:KsApi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -97,9 +96,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA43C5F81BB358F200C180DA"
+            BlueprintIdentifier = "A7FD096E1C83E74F00332CCB"
             BuildableName = "KsApi.framework"
-            BlueprintName = "KsApi-tvOS"
+            BlueprintName = "KsApi-iOS"
             ReferencedContainer = "container:KsApi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
