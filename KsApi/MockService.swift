@@ -2,6 +2,10 @@ import ReactiveCocoa
 import Models
 import Prelude
 
+private func fileContentsAtPath(path: String) -> NSString? {
+  return try? NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+}
+
 /**
  A `ServerType` that gets data from locally stored JSON files.
 */
@@ -13,25 +17,12 @@ public struct MockService : ServiceType {
   public init() {
   }
 
-  public func loadJSON(fileName: String) -> [String:AnyObject] {
+  private func loadJSON(fileName: String) -> [String:AnyObject] {
     return NSBundle.mainBundle().pathForResource(fileName, ofType: "json")
-      .flatMap { path -> NSString? in
-        do {
-          let string = try NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
-          return string
-        } catch {
-          return nil
-        }
-      }
+      .flatMap(fileContentsAtPath)
       .flatMap { $0.dataUsingEncoding(NSUTF8StringEncoding) }
-      .flatMap { data -> [String:AnyObject]? in
-        do {
-          let json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-          return json as? [String:AnyObject]
-        } catch {
-          return nil
-        }
-      }
+      .flatMap(parseJSONData)
+      .flatMap { $0 as? [String:AnyObject] }
       .coalesceWith([:])
   }
 
