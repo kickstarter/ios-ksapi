@@ -431,6 +431,7 @@
 				A753B5651C2EED9800FDB616 /* Sources */,
 				A753B5661C2EED9800FDB616 /* Frameworks */,
 				A753B5671C2EED9800FDB616 /* Resources */,
+				A7FD09D91C848A1100332CCB /* carthage copy-frameworks */,
 			);
 			buildRules = (
 			);
@@ -601,6 +602,21 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Models.framework",
+			);
+			name = "carthage copy-frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		A7FD09D91C848A1100332CCB /* carthage copy-frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/tvOS/Models.framework",
 			);
 			name = "carthage copy-frameworks";
 			outputPaths = (
