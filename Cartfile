@@ -7,6 +7,6 @@ github "Alamofire/Alamofire" == 3.2.1
 
 # Use git over ssh to clone private repos with CircleCI
 # Switch back to the github syntax when these are public
-git "git@github.com:kickstarter/Kickstarter-Prelude.git" == 1.0.4
+git "git@github.com:kickstarter/Kickstarter-Prelude.git" == 1.0.5
 git "git@github.com:kickstarter/Kickstarter-ReactiveExtensions.git" == 1.0.5
-git "git@github.com:kickstarter/Kickstarter-Models.git" == 1.0.4
+git "git@github.com:kickstarter/Kickstarter-Models.git" == 1.0.5
