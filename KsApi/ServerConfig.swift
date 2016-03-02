@@ -1,5 +1,3 @@
-import Foundation
-
 /**
  A type that knows the location of a Kickstarter API and web server.
 */

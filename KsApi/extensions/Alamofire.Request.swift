@@ -1,7 +1,8 @@
-import Foundation
-import Alamofire
-import Argo
-import ReactiveCocoa
+import protocol Argo.Decodable
+import func Argo.decode
+import class Alamofire.Request
+import class ReactiveCocoa.QueueScheduler
+import struct ReactiveCocoa.SignalProducer
 
 internal extension Alamofire.Request {
   static let queue = dispatch_queue_create("com.kickstarter.ksapi", nil)

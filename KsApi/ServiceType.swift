@@ -1,5 +1,7 @@
-import ReactiveCocoa
-import Models
+import struct Models.Category
+import struct Models.Project
+import struct Models.User
+import struct ReactiveCocoa.SignalProducer
 
 /**
  A type that knows how to perform requests for Kickstarter data.

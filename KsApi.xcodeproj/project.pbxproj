@@ -26,6 +26,8 @@
 		A77967841C2B43950002166F /* BasicHTTPAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967831C2B43950002166F /* BasicHTTPAuth.swift */; };
 		A77967861C2B43EC0002166F /* ClientAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967851C2B43EC0002166F /* ClientAuth.swift */; };
 		A77967881C2B44440002166F /* OauthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967871C2B44440002166F /* OauthToken.swift */; };
+		A7B6943F1C87A48F00C49A4F /* SignalProducer+FailOnNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B6943E1C87A48F00C49A4F /* SignalProducer+FailOnNil.swift */; };
+		A7B694401C87A4A800C49A4F /* SignalProducer+FailOnNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B6943E1C87A48F00C49A4F /* SignalProducer+FailOnNil.swift */; };
 		A7BBF30B1C2F91E700AC62B4 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF30A1C2F91E700AC62B4 /* MockService.swift */; };
 		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
 		A7BF773C1C582BC3003D0881 /* Alamofire.framework.dSYM in carthage dsym */ = {isa = PBXBuildFile; fileRef = A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -164,6 +166,7 @@
 		A77967831C2B43950002166F /* BasicHTTPAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHTTPAuth.swift; sourceTree = "<group>"; };
 		A77967851C2B43EC0002166F /* ClientAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientAuth.swift; sourceTree = "<group>"; };
 		A77967871C2B44440002166F /* OauthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthToken.swift; sourceTree = "<group>"; };
+		A7B6943E1C87A48F00C49A4F /* SignalProducer+FailOnNil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SignalProducer+FailOnNil.swift"; sourceTree = "<group>"; };
 		A7BBF30A1C2F91E700AC62B4 /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
 		A7BF77341C582BC3003D0881 /* Alamofire.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Alamofire.framework.dSYM; path = Carthage/Build/tvOS/Alamofire.framework.dSYM; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				A77967661C2B431C0002166F /* Alamofire.Request.swift */,
+				A7B6943E1C87A48F00C49A4F /* SignalProducer+FailOnNil.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -674,6 +678,7 @@
 				A7FD09771C83E74F00332CCB /* Method.swift in Sources */,
 				A7FD09781C83E74F00332CCB /* ErrorEnvelope.swift in Sources */,
 				A7FD09791C83E74F00332CCB /* DiscoveryEnvelope.swift in Sources */,
+				A7B6943F1C87A48F00C49A4F /* SignalProducer+FailOnNil.swift in Sources */,
 				A7FD097A1C83E74F00332CCB /* AccessTokenEnvelope.swift in Sources */,
 				A7FD097B1C83E74F00332CCB /* JSONObjectWithData.swift in Sources */,
 				A7FD097C1C83E74F00332CCB /* BasicHTTPAuth.swift in Sources */,
@@ -708,6 +713,7 @@
 				A713ECB81C2C59D400B6234E /* Method.swift in Sources */,
 				A779677E1C2B431C0002166F /* ErrorEnvelope.swift in Sources */,
 				A779677C1C2B431C0002166F /* DiscoveryEnvelope.swift in Sources */,
+				A7B694401C87A4A800C49A4F /* SignalProducer+FailOnNil.swift in Sources */,
 				A779677A1C2B431C0002166F /* AccessTokenEnvelope.swift in Sources */,
 				A77967771C2B431C0002166F /* JSONObjectWithData.swift in Sources */,
 				A77967841C2B43950002166F /* BasicHTTPAuth.swift in Sources */,
