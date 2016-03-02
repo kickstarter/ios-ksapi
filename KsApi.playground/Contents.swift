@@ -1,7 +1,6 @@
 import XCPlayground
 import KsApi
 import ReactiveCocoa
-import ReactiveExtensions
 import Alamofire
 
 XCPlaygroundPage.currentPage.needsIndefiniteExecution = true

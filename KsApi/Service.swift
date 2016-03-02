@@ -1,7 +1,11 @@
-import Models
-import ReactiveCocoa
-import ReactiveExtensions
-import Alamofire
+import enum Alamofire.ParameterEncoding
+import class Alamofire.Request
+import func Alamofire.request
+import protocol Alamofire.URLRequestConvertible
+import struct Models.Category
+import struct Models.Project
+import struct Models.User
+import struct ReactiveCocoa.SignalProducer
 
 /**
  A `ServerType` that requests data from an API webservice.
@@ -38,7 +42,8 @@ public struct Service : ServiceType {
   public func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
     return request(.Discover(params.with(perPage: 1)))
       .decodeModel(DiscoveryEnvelope.self)
-      .flatMap { envelope in envelope.projects.first }
+      .map { envelope in envelope.projects.first }
+      .ignoreNil()
   }
 
   public func fetchProject(project: Project) -> SignalProducer<Project, ErrorEnvelope> {

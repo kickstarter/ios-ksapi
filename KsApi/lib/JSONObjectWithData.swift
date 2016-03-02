@@ -1,5 +1,3 @@
-import Foundation
-
 /**
  Free function for parsing raw `NSData` into raw JSON.
 */

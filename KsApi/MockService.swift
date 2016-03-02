@@ -1,6 +1,7 @@
-import ReactiveCocoa
-import Models
-import Prelude
+import struct Models.Category
+import struct Models.Project
+import struct Models.User
+import struct ReactiveCocoa.SignalProducer
 
 private func fileContentsAtPath(path: String) -> NSString? {
   return try? NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
@@ -38,7 +39,9 @@ public struct MockService : ServiceType {
   }
 
   public func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
-    return fetchDiscovery(params).flatMap { $0.projects.first }
+    return fetchDiscovery(params)
+      .map { $0.projects.first }
+      .ignoreNil()
   }
 
   public func fetchProject(project: Project) -> SignalProducer<Project, ErrorEnvelope> {

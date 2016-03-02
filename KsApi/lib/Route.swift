@@ -1,4 +1,6 @@
-import Models
+import struct Models.Category
+import struct Models.Project
+import struct Models.User
 
 /**
  A list of possible requests that can be made for Kickstarter data.

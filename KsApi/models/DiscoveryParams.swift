@@ -1,4 +1,5 @@
-import Models
+import struct Models.Project
+import struct Models.Category
 import Prelude
 
 public struct DiscoveryParams {

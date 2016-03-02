@@ -1,6 +1,14 @@
-import Alamofire
-import Argo
-import Curry
+import protocol Argo.Decodable
+import enum Argo.Decoded
+import enum Argo.JSON
+import func Argo.pure
+import func Argo.<||
+import func Argo.<||?
+import func Argo.<|
+import func Argo.<|?
+import func Argo.<^>
+import func Argo.<*>
+import func Curry.curry
 
 public struct ErrorEnvelope {
   public let errorMessages: [String]
