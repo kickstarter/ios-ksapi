@@ -1,7 +1,7 @@
 import XCPlayground
 import KsApi
-import ReactiveCocoa
-import Alamofire
+import struct ReactiveCocoa.SignalProducer
+import enum ReactiveCocoa.FlattenStrategy
 import struct Models.Category
 import enum Result.NoError
 
@@ -10,7 +10,7 @@ XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 let service = Service.shared
 
 let categories = service.fetchCategories()
-  .flatMap(FlattenStrategy.Concat) { SignalProducer<Category, ErrorEnvelope>(values: $0) }
+  .flatMap(.Concat) { SignalProducer<Category, ErrorEnvelope>(values: $0) }
   .filter { c in c.isRoot }
   .replayLazily(1)
 
