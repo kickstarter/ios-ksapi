@@ -1,6 +1,5 @@
 import struct Models.Project
 import struct Models.Category
-import Prelude
 
 public struct DiscoveryParams {
   public let staffPicks: Bool?
@@ -125,7 +124,7 @@ public struct DiscoveryParams {
       "per_page": self.perPage?.description,
       "include_potd": self.includePOTD?.description,
       "seed": self.seed?.description,
-    ].compact()
+      ].compact()
   }
 }
 
