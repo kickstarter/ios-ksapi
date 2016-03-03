@@ -24,7 +24,7 @@ public struct MockService : ServiceType {
       .flatMap { $0.dataUsingEncoding(NSUTF8StringEncoding) }
       .flatMap(parseJSONData)
       .flatMap { $0 as? [String:AnyObject] }
-      .coalesceWith([:])
+      ?? [:]
   }
 
   public func fetchDiscovery(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
