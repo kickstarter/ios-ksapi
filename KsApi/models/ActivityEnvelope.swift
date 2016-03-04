@@ -1,0 +1,44 @@
+import struct Models.Activity
+import protocol Argo.Decodable
+import enum Argo.Decoded
+import enum Argo.JSON
+import func Argo.<||
+import func Argo.<|
+import func Argo.<^>
+import func Argo.<*>
+import func Curry.curry
+
+public struct ActivityEnvelope {
+  public let activities: [Activity]
+  public let urls: UrlsEnvelope
+
+  public struct UrlsEnvelope {
+    public let api: ApiEnvelope
+
+    public struct ApiEnvelope {
+      public let moreActivities: String
+    }
+  }
+}
+
+extension ActivityEnvelope: Decodable {
+  public static func decode(json: JSON) -> Decoded<ActivityEnvelope> {
+    return curry(ActivityEnvelope.init)
+      <^> json <|| "activities"
+      <*> json <|  "urls"
+  }
+}
+
+extension ActivityEnvelope.UrlsEnvelope: Decodable {
+  public static func decode(json: JSON) -> Decoded<ActivityEnvelope.UrlsEnvelope> {
+    return curry(ActivityEnvelope.UrlsEnvelope.init)
+      <^> json <| "api"
+  }
+}
+
+extension ActivityEnvelope.UrlsEnvelope.ApiEnvelope: Decodable {
+  public static func decode(json: JSON) -> Decoded<ActivityEnvelope.UrlsEnvelope.ApiEnvelope> {
+    return curry(ActivityEnvelope.UrlsEnvelope.ApiEnvelope.init)
+      <^> json <| "more_activities"
+  }
+}
