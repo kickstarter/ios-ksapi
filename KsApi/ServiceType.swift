@@ -1,3 +1,4 @@
+import struct Models.Activity
 import struct Models.Category
 import struct Models.Project
 import struct Models.User
@@ -10,6 +11,13 @@ public protocol ServiceType {
   var serverConfig: ServerConfigType { get }
   var oauthToken: OauthTokenAuthType? { get }
   var language: String { get }
+
+  /**
+   Fetch a page of activities.
+
+   - returns: A product of an activity envelope.
+   */
+  func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
 
   /// Fetch the full discovery envelope with specified discovery params.
   func fetchDiscovery(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>

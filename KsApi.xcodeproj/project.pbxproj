@@ -18,6 +18,8 @@
 		A753B56C1C2EED9800FDB616 /* KsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B56B1C2EED9800FDB616 /* KsApiTests.swift */; };
 		A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		A753B57E1C2EEECA00FDB616 /* DiscoveryParamsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B57D1C2EEECA00FDB616 /* DiscoveryParamsTests.swift */; };
+		A75AB1991C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AB1981C8A3F6D002FC3E6 /* ActivityEnvelope.swift */; };
+		A75AB19A1C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AB1981C8A3F6D002FC3E6 /* ActivityEnvelope.swift */; };
 		A77967731C2B431C0002166F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
 		A77967741C2B431C0002166F /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
 		A77967751C2B431C0002166F /* Alamofire.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967661C2B431C0002166F /* Alamofire.Request.swift */; };
@@ -242,6 +244,7 @@
 		A753B56B1C2EED9800FDB616 /* KsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsApiTests.swift; sourceTree = "<group>"; };
 		A753B56D1C2EED9800FDB616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A753B57D1C2EEECA00FDB616 /* DiscoveryParamsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryParamsTests.swift; sourceTree = "<group>"; };
+		A75AB1981C8A3F6D002FC3E6 /* ActivityEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnvelope.swift; sourceTree = "<group>"; };
 		A77967631C2B431C0002166F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A77967641C2B431C0002166F /* ServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		A77967661C2B431C0002166F /* Alamofire.Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.Request.swift; sourceTree = "<group>"; };
@@ -388,6 +391,7 @@
 				A77967701C2B431C0002166F /* DiscoveryParams.swift */,
 				A77967711C2B431C0002166F /* ErrorEnvelope.swift */,
 				A77967721C2B431C0002166F /* StarEnvelope.swift */,
+				A75AB1981C8A3F6D002FC3E6 /* ActivityEnvelope.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -783,6 +787,7 @@
 				A7FD097B1C83E74F00332CCB /* JSONObjectWithData.swift in Sources */,
 				A7FD097C1C83E74F00332CCB /* BasicHTTPAuth.swift in Sources */,
 				A7FD097D1C83E74F00332CCB /* ServerConfig.swift in Sources */,
+				A75AB1991C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */,
 				A7FD097E1C83E74F00332CCB /* MockService.swift in Sources */,
 				A7FD097F1C83E74F00332CCB /* ClientAuth.swift in Sources */,
 				A7FD09801C83E74F00332CCB /* DiscoveryParams.swift in Sources */,
@@ -821,6 +826,7 @@
 				A77967771C2B431C0002166F /* JSONObjectWithData.swift in Sources */,
 				A77967841C2B43950002166F /* BasicHTTPAuth.swift in Sources */,
 				A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */,
+				A75AB19A1C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */,
 				A7BBF30B1C2F91E700AC62B4 /* MockService.swift in Sources */,
 				A77967861C2B43EC0002166F /* ClientAuth.swift in Sources */,
 				A779677D1C2B431C0002166F /* DiscoveryParams.swift in Sources */,

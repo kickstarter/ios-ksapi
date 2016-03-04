@@ -2,6 +2,7 @@ import enum Alamofire.ParameterEncoding
 import class Alamofire.Request
 import func Alamofire.request
 import protocol Alamofire.URLRequestConvertible
+import struct Models.Activity
 import struct Models.Category
 import struct Models.Project
 import struct Models.User
@@ -17,16 +18,15 @@ public struct Service : ServiceType {
   public let oauthToken: OauthTokenAuthType?
   public let language: String
 
-  private init() {
-    self.serverConfig = ServerConfig.production
-    self.oauthToken = nil
-    self.language = "en"
-  }
-
-  public init(serverConfig: ServerConfigType, oauthToken: OauthTokenAuthType?, language: String) {
+  public init(serverConfig: ServerConfigType = ServerConfig.production, oauthToken: OauthTokenAuthType? = nil, language: String = "en") {
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
     self.language = language
+  }
+
+  public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
+    return request(.Activities)
+      .decodeModel(ActivityEnvelope.self)
   }
 
   public func fetchDiscovery(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
