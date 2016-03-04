@@ -1,6 +1,0 @@
-github "Alamofire/Alamofire" "3.2.1"
-github "kickstarter/Argo" "a2620bff62d04f9e77460aab810ee6d6c2a18c45"
-github "thoughtbot/Curry" "v1.4.0"
-github "antitypical/Result" "1.0.2"
-github "ReactiveCocoa/ReactiveCocoa" "v4.0.1"
-git "git@github.com:kickstarter/Kickstarter-Models.git" "1.0.5"
