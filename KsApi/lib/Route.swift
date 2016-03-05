@@ -1,3 +1,4 @@
+import struct Models.Activity
 import struct Models.Category
 import struct Models.Project
 import struct Models.User
@@ -6,7 +7,7 @@ import struct Models.User
  A list of possible requests that can be made for Kickstarter data.
 */
 public enum Route {
-  case Activities
+  case Activities(categories: [Activity.Category])
   case Discover(DiscoveryParams)
   case Project(Models.Project)
   case UserSelf
@@ -19,8 +20,8 @@ public enum Route {
 
   internal var requestProperties: (method: KsApi.Method, path: String, query: [String:AnyObject]) {
     switch self {
-    case .Activities:
-      return (.GET, "/v1/activities", [:])
+    case let .Activities(categories):
+      return (.GET, "/v1/activities", ["categories": categories.map { $0.rawValue }])
     case let .Discover(params):
       return (.GET, "/v1/discover", params.queryParams)
     case let .Project(p):

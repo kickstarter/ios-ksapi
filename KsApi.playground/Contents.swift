@@ -38,7 +38,6 @@ service.fetchActivities()
   .flatMap(.Concat) { SignalProducer<Activity, ErrorEnvelope>(values: $0.activities) }
   .map { $0.user?.name }
   .ignoreNil()
-  .replayLazily(1)
   .startWithNext { name in
-  print("Activity user's name: \(name)")
+    print("Activity user's name: \(name)")
 }

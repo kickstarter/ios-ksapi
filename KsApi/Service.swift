@@ -25,7 +25,16 @@ public struct Service : ServiceType {
   }
 
   public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
-    return request(.Activities)
+    let categories = [
+      Activity.Category.Backing,
+      Activity.Category.Cancellation,
+      Activity.Category.Failure,
+      Activity.Category.Follow,
+      Activity.Category.Launch,
+      Activity.Category.Success,
+      Activity.Category.Update,
+    ]
+    return request(.Activities(categories: categories))
       .decodeModel(ActivityEnvelope.self)
   }
 
