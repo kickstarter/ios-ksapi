@@ -2,6 +2,7 @@ import protocol Argo.Decodable
 import enum Argo.Decoded
 import enum Argo.JSON
 import func Argo.pure
+import enum Argo.DecodeError
 import func Argo.<||
 import func Argo.<||?
 import func Argo.<|
@@ -37,7 +38,7 @@ public struct ErrorEnvelope {
     public let message: String?
   }
 
-  init(error_messages: [String], ksr_code: KsrCode? = nil, http_code: Int, exception: Exception? = nil) {
+  internal init(error_messages: [String], ksr_code: KsrCode? = nil, http_code: Int, exception: Exception? = nil) {
     self.errorMessages = error_messages
     self.ksrCode = ksr_code
     self.httpCode = http_code
@@ -47,22 +48,26 @@ public struct ErrorEnvelope {
   /**
    A general error that JSON could not be parsed.
   */
-  static var couldNotParseJSON: ErrorEnvelope {
+  internal static var couldNotParseJSON: ErrorEnvelope {
     return ErrorEnvelope(error_messages: [], ksr_code: .JSONParsingFailed, http_code: 400)
   }
 
   /**
    A general error that the error envelope JSON could not be parsed.
   */
-  static var couldNotParseErrorEnvelopeJSON: ErrorEnvelope {
+  internal static var couldNotParseErrorEnvelopeJSON: ErrorEnvelope {
     return ErrorEnvelope(error_messages: [], ksr_code: .ErrorEnvelopeJSONParsingFailed, http_code: 400)
   }
 
   /**
    A general error that some JSON could not be decoded into a model.
   */
-  static var couldNotDecodeJSON: ErrorEnvelope {
-    return ErrorEnvelope(error_messages: [], ksr_code: .DecodingJSONFailed, http_code: 400)
+  internal static func couldNotDecodeJSON(decodeError: DecodeError) -> ErrorEnvelope {
+    return ErrorEnvelope(
+      error_messages: [decodeError.description],
+      ksr_code: .DecodingJSONFailed,
+      http_code: 400
+    )
   }
 }
 

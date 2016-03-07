@@ -1,5 +1,6 @@
 import protocol Argo.Decodable
 import func Argo.decode
+import enum Argo.Decoded
 import class Alamofire.Request
 import class ReactiveCocoa.QueueScheduler
 import struct ReactiveCocoa.SignalProducer
@@ -13,10 +14,18 @@ internal extension Alamofire.Request {
   - Decoding JSON into a model.
   - Fail if the decoding returns `nil`.
   */
-  internal func decodeModel <M: Decodable where M == M.DecodedType> (klass: M.Type) -> SignalProducer<M, ErrorEnvelope> {
+  internal func decodeModel<M: Decodable where M == M.DecodedType>(_: M.Type) -> SignalProducer<M, ErrorEnvelope> {
+
     return self.rac_JSONResponse()
-      .map { json in decode(json) as M? }
-      .failOnNil(ErrorEnvelope.couldNotDecodeJSON)
+      .map { json in decode(json) as Decoded<M> }
+      .flatMap(.Concat) { (decoded: Decoded<M>) -> SignalProducer<M, ErrorEnvelope> in
+        if let value = decoded.value {
+          return SignalProducer(value: value)
+        } else if let error = decoded.error {
+          return SignalProducer(error: ErrorEnvelope.couldNotDecodeJSON(error))
+        }
+        return .empty
+      }
   }
 
   /**
