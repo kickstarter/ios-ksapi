@@ -4,6 +4,7 @@ import enum Argo.Decoded
 import class Alamofire.Request
 import class ReactiveCocoa.QueueScheduler
 import struct ReactiveCocoa.SignalProducer
+import enum ReactiveCocoa.FlattenStrategy
 
 internal extension Alamofire.Request {
   static let queue = dispatch_queue_create("com.kickstarter.ksapi", nil)
@@ -65,6 +66,11 @@ internal extension Alamofire.Request {
     return rac_dataResponse()
       .observeOn(QueueScheduler(queue: Alamofire.Request.queue))
       .map(parseJSONData)
-      .failOnNil(ErrorEnvelope.couldNotParseJSON)
+      .flatMap(.Concat) { json -> SignalProducer<AnyObject, ErrorEnvelope> in
+        if let json = json {
+          return SignalProducer(value: json)
+        }
+        return SignalProducer(error: ErrorEnvelope.couldNotParseJSON)
+      }
   }
 }
