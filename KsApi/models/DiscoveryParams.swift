@@ -133,6 +133,12 @@ public func == (a: DiscoveryParams, b: DiscoveryParams) -> Bool {
   return a.queryParams == b.queryParams
 }
 
+extension DiscoveryParams: Hashable {
+  public var hashValue: Int {
+    return self.description.hash
+  }
+}
+
 extension DiscoveryParams : CustomStringConvertible, CustomDebugStringConvertible {
   public var description: String {
     return self.queryParams.description
