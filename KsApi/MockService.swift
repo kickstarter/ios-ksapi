@@ -2,6 +2,8 @@ import struct Models.Category
 import struct Models.Project
 import struct Models.User
 import struct ReactiveCocoa.SignalProducer
+import func Darwin.srand48
+import func Darwin.rand
 
 private func fileContentsAtPath(path: String) -> NSString? {
   return try? NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
@@ -39,7 +41,11 @@ internal struct MockService : ServiceType {
   }
 
   internal func fetchProjects(params: DiscoveryParams) -> SignalProducer<[Project], ErrorEnvelope> {
-    return fetchDiscovery(params).map { $0.projects }
+
+    srand48(params.hashValue)
+    return fetchDiscovery(params)
+      .map { $0.projects }
+      .map { $0.sort { _, _ in rand() % 2 == 0 } }
   }
 
   internal func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
