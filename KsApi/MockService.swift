@@ -78,11 +78,11 @@ internal struct MockService : ServiceType {
   }
 
   internal func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return .empty
+    return .init(value: project)
   }
 
   internal func star(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return .empty
+    return .init(value: project)
   }
 
   internal func login(email email: String, password: String) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
