@@ -32,14 +32,19 @@
 		A77967841C2B43950002166F /* BasicHTTPAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967831C2B43950002166F /* BasicHTTPAuth.swift */; };
 		A77967861C2B43EC0002166F /* ClientAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967851C2B43EC0002166F /* ClientAuth.swift */; };
 		A77967881C2B44440002166F /* OauthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967871C2B44440002166F /* OauthToken.swift */; };
+		A782BAE91C9F60D2007B13C8 /* Models_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DB1D771C9F53D1008244DA /* Models_TestHelpers.framework */; };
+		A782BAEA1C9F60D8007B13C8 /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		A7937C571C8E3A5200502F7C /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7937C501C8E3A4100502F7C /* ReactiveCocoa.framework */; };
 		A7937C5C1C8E3A7A00502F7C /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7937C561C8E3A4100502F7C /* ReactiveCocoa.framework */; };
 		A7937C7A1C8E3E0900502F7C /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7937C6D1C8E3DF500502F7C /* Result.framework */; };
 		A7937C7D1C8E3E1D00502F7C /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7937C711C8E3DF500502F7C /* Result.framework */; };
-		A7B694461C87AAB300C49A4F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B694451C87AAB300C49A4F /* Array.swift */; };
-		A7B694471C87AAB300C49A4F /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B694451C87AAB300C49A4F /* Array.swift */; };
-		A7BBF30B1C2F91E700AC62B4 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF30A1C2F91E700AC62B4 /* MockService.swift */; };
 		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
+		A7DB1D8A1C9F5401008244DA /* KsApi-TestHelpers-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = A7DB1D891C9F5401008244DA /* KsApi-TestHelpers-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A7DB1D901C9F540C008244DA /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB1D8F1C9F540C008244DA /* MockService.swift */; };
+		A7DB1D931C9F541F008244DA /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD099D1C83E74F00332CCB /* KsApi.framework */; };
+		A7DB1D961C9F5473008244DA /* Models_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DB1D751C9F53D1008244DA /* Models_TestHelpers.framework */; };
+		A7DB1D9D1C9F5848008244DA /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB1D8F1C9F540C008244DA /* MockService.swift */; };
+		A7DB1DA21C9F5848008244DA /* KsApi-TestHelpers-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = A7DB1D891C9F5401008244DA /* KsApi-TestHelpers-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7E315A41C8891E2000DD85A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E315A31C8891E2000DD85A /* Dictionary.swift */; };
 		A7E315A51C8891E2000DD85A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E315A31C8891E2000DD85A /* Dictionary.swift */; };
 		A7FD09701C83E74F00332CCB /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
@@ -56,7 +61,6 @@
 		A7FD097B1C83E74F00332CCB /* JSONObjectWithData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967691C2B431C0002166F /* JSONObjectWithData.swift */; };
 		A7FD097C1C83E74F00332CCB /* BasicHTTPAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967831C2B43950002166F /* BasicHTTPAuth.swift */; };
 		A7FD097D1C83E74F00332CCB /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713EC9C1C2C51B600B6234E /* ServerConfig.swift */; };
-		A7FD097E1C83E74F00332CCB /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF30A1C2F91E700AC62B4 /* MockService.swift */; };
 		A7FD097F1C83E74F00332CCB /* ClientAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967851C2B43EC0002166F /* ClientAuth.swift */; };
 		A7FD09801C83E74F00332CCB /* DiscoveryParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967701C2B431C0002166F /* DiscoveryParams.swift */; };
 		A7FD098B1C83E74F00332CCB /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -179,6 +183,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = CA43C5F81BB358F200C180DA;
 			remoteInfo = "KsApi-tvOS";
+		};
+		A782BAE51C9F60BE007B13C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA43C5F01BB358F200C180DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA43C5F81BB358F200C180DA;
+			remoteInfo = "KsApi-tvOS";
+		};
+		A782BAE71C9F60C9007B13C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 807571991C88B4FD00E7DA8A /* Models.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A7DB1CDD1C9F1644008244DA;
+			remoteInfo = "Models-TestHelpers-tvOS";
 		};
 		A7937C4B1C8E3A4100502F7C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -306,6 +324,34 @@
 			remoteGlobalIDString = 57FCDE3C1BA280DC00130C48;
 			remoteInfo = "Result-tvOS";
 		};
+		A7DB1D741C9F53D1008244DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 807571991C88B4FD00E7DA8A /* Models.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7DB1CA21C9F1046008244DA;
+			remoteInfo = "Models-iOS-TestHelpers";
+		};
+		A7DB1D761C9F53D1008244DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 807571991C88B4FD00E7DA8A /* Models.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7DB1CF21C9F1644008244DA;
+			remoteInfo = "Models-tvOS-TestHelpers";
+		};
+		A7DB1D911C9F5419008244DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA43C5F01BB358F200C180DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7FD096E1C83E74F00332CCB;
+			remoteInfo = "KsApi-iOS";
+		};
+		A7DB1D941C9F546D008244DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 807571991C88B4FD00E7DA8A /* Models.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A7DB1CA11C9F1046008244DA;
+			remoteInfo = "Models-iOS-TestHelpers";
+		};
 		A7FD09D41C83E8FE00332CCB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA43C5F01BB358F200C180DA /* Project object */;
@@ -342,9 +388,13 @@
 		A77967871C2B44440002166F /* OauthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthToken.swift; sourceTree = "<group>"; };
 		A7937C421C8E3A4100502F7C /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = Frameworks/ReactiveExtensions/Frameworks/ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
 		A7937C5D1C8E3DF500502F7C /* Result.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Result.xcodeproj; path = Frameworks/ReactiveExtensions/Frameworks/ReactiveCocoa/Carthage/Checkouts/Result/Result.xcodeproj; sourceTree = "<group>"; };
-		A7B694451C87AAB300C49A4F /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		A7BBF30A1C2F91E700AC62B4 /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
+		A7DB1D871C9F5401008244DA /* KsApi_TestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi_TestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7DB1D891C9F5401008244DA /* KsApi-TestHelpers-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KsApi-TestHelpers-iOS.h"; sourceTree = "<group>"; };
+		A7DB1D8B1C9F5401008244DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7DB1D8F1C9F540C008244DA /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		A7DB1DA71C9F5848008244DA /* KsApi_TestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi_TestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7DB1DA81C9F5848008244DA /* KsApi-TestHelpers-iOS copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "KsApi-TestHelpers-iOS copy-Info.plist"; path = "/Users/brandonwilliams/projects/kickstarter-tv/Frameworks/KsApi/KsApi-TestHelpers-iOS copy-Info.plist"; sourceTree = "<absolute>"; };
 		A7E315A31C8891E2000DD85A /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		A7FD099D1C83E74F00332CCB /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FD09D21C83E8E900332CCB /* KsApi-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -359,6 +409,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7DB1D831C9F5401008244DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7DB1D961C9F5473008244DA /* Models_TestHelpers.framework in Frameworks */,
+				A7DB1D931C9F541F008244DA /* KsApi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7DB1D9E1C9F5848008244DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A782BAEA1C9F60D8007B13C8 /* KsApi.framework in Frameworks */,
+				A782BAE91C9F60D2007B13C8 /* Models_TestHelpers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +484,8 @@
 				807571A31C88B4FD00E7DA8A /* Models-iOSTests.xctest */,
 				807571A51C88B4FD00E7DA8A /* Models.framework */,
 				807571A71C88B4FD00E7DA8A /* Models-tvOSTests.xctest */,
+				A7DB1D751C9F53D1008244DA /* Models_TestHelpers.framework */,
+				A7DB1D771C9F53D1008244DA /* Models_TestHelpers.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -507,9 +577,18 @@
 		A7B694441C87AAAA00C49A4F /* TestHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				A7B694451C87AAB300C49A4F /* Array.swift */,
+				A7DB1D8F1C9F540C008244DA /* MockService.swift */,
 			);
 			path = TestHelpers;
+			sourceTree = "<group>";
+		};
+		A7DB1D881C9F5401008244DA /* KsApi-TestHelpers-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A7DB1D891C9F5401008244DA /* KsApi-TestHelpers-iOS.h */,
+				A7DB1D8B1C9F5401008244DA /* Info.plist */,
+			);
+			path = "KsApi-TestHelpers-iOS";
 			sourceTree = "<group>";
 		};
 		A7FD099F1C83E77B00332CCB /* Frameworks */ = {
@@ -527,10 +606,12 @@
 			isa = PBXGroup;
 			children = (
 				A7378CCC1C809A7500F0A562 /* KsApi.playground */,
+				A7DB1D881C9F5401008244DA /* KsApi-TestHelpers-iOS */,
 				A7FD099F1C83E77B00332CCB /* Frameworks */,
 				CA43C5FB1BB358F200C180DA /* KsApi */,
 				A753B56A1C2EED9800FDB616 /* KsApiTests */,
 				CA43C5FA1BB358F200C180DA /* Products */,
+				A7DB1DA81C9F5848008244DA /* KsApi-TestHelpers-iOS copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -541,6 +622,8 @@
 				A753B5691C2EED9800FDB616 /* KsApi-tvOSTests.xctest */,
 				A7FD099D1C83E74F00332CCB /* KsApi.framework */,
 				A7FD09D21C83E8E900332CCB /* KsApi-iOSTests.xctest */,
+				A7DB1D871C9F5401008244DA /* KsApi_TestHelpers.framework */,
+				A7DB1DA71C9F5848008244DA /* KsApi_TestHelpers.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -550,7 +633,6 @@
 			children = (
 				CA43C5FC1BB358F200C180DA /* KsApi.h */,
 				CA43C5FE1BB358F200C180DA /* Info.plist */,
-				A7BBF30A1C2F91E700AC62B4 /* MockService.swift */,
 				A713EC9C1C2C51B600B6234E /* ServerConfig.swift */,
 				A77967631C2B431C0002166F /* Service.swift */,
 				A77967641C2B431C0002166F /* ServiceType.swift */,
@@ -564,6 +646,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		A7DB1D841C9F5401008244DA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7DB1D8A1C9F5401008244DA /* KsApi-TestHelpers-iOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7DB1DA11C9F5848008244DA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7DB1DA21C9F5848008244DA /* KsApi-TestHelpers-iOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7FD098A1C83E74F00332CCB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -600,6 +698,46 @@
 			productName = KsApiTests;
 			productReference = A753B5691C2EED9800FDB616 /* KsApi-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A7DB1D861C9F5401008244DA /* KsApi-TestHelpers-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7DB1D8C1C9F5401008244DA /* Build configuration list for PBXNativeTarget "KsApi-TestHelpers-iOS" */;
+			buildPhases = (
+				A7DB1D821C9F5401008244DA /* Sources */,
+				A7DB1D831C9F5401008244DA /* Frameworks */,
+				A7DB1D841C9F5401008244DA /* Headers */,
+				A7DB1D851C9F5401008244DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7DB1D951C9F546D008244DA /* PBXTargetDependency */,
+				A7DB1D921C9F5419008244DA /* PBXTargetDependency */,
+			);
+			name = "KsApi-TestHelpers-iOS";
+			productName = "KsApi-TestHelpers-iOS";
+			productReference = A7DB1D871C9F5401008244DA /* KsApi_TestHelpers.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A7DB1D971C9F5848008244DA /* KsApi-TestHelpers-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7DB1DA41C9F5848008244DA /* Build configuration list for PBXNativeTarget "KsApi-TestHelpers-tvOS" */;
+			buildPhases = (
+				A7DB1D9C1C9F5848008244DA /* Sources */,
+				A7DB1D9E1C9F5848008244DA /* Frameworks */,
+				A7DB1DA11C9F5848008244DA /* Headers */,
+				A7DB1DA31C9F5848008244DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A782BAE81C9F60C9007B13C8 /* PBXTargetDependency */,
+				A782BAE61C9F60BE007B13C8 /* PBXTargetDependency */,
+			);
+			name = "KsApi-TestHelpers-tvOS";
+			productName = "KsApi-TestHelpers-iOS";
+			productReference = A7DB1DA71C9F5848008244DA /* KsApi_TestHelpers.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		A7FD096E1C83E74F00332CCB /* KsApi-iOS */ = {
 			isa = PBXNativeTarget;
@@ -676,6 +814,9 @@
 					A753B5681C2EED9800FDB616 = {
 						CreatedOnToolsVersion = 7.2;
 					};
+					A7DB1D861C9F5401008244DA = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 					CA43C5F81BB358F200C180DA = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 48YBP49Y5N;
@@ -716,6 +857,8 @@
 				A7FD09C21C83E8E900332CCB /* KsApi-iOSTests */,
 				CA43C5F81BB358F200C180DA /* KsApi-tvOS */,
 				A753B5681C2EED9800FDB616 /* KsApi-tvOSTests */,
+				A7DB1D861C9F5401008244DA /* KsApi-TestHelpers-iOS */,
+				A7DB1D971C9F5848008244DA /* KsApi-TestHelpers-tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -896,10 +1039,38 @@
 			remoteRef = A7937C761C8E3DF500502F7C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		A7DB1D751C9F53D1008244DA /* Models_TestHelpers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Models_TestHelpers.framework;
+			remoteRef = A7DB1D741C9F53D1008244DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A7DB1D771C9F53D1008244DA /* Models_TestHelpers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Models_TestHelpers.framework;
+			remoteRef = A7DB1D761C9F53D1008244DA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A753B5671C2EED9800FDB616 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7DB1D851C9F5401008244DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7DB1DA31C9F5848008244DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -935,9 +1106,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				A753B57E1C2EEECA00FDB616 /* DiscoveryParamsTests.swift in Sources */,
-				A7B694471C87AAB300C49A4F /* Array.swift in Sources */,
 				A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */,
 				A753B56C1C2EED9800FDB616 /* KsApiTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7DB1D821C9F5401008244DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7DB1D901C9F540C008244DA /* MockService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7DB1D9C1C9F5848008244DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7DB1D9D1C9F5848008244DA /* MockService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -961,7 +1147,6 @@
 				A7FD097C1C83E74F00332CCB /* BasicHTTPAuth.swift in Sources */,
 				A7FD097D1C83E74F00332CCB /* ServerConfig.swift in Sources */,
 				A75AB1991C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */,
-				A7FD097E1C83E74F00332CCB /* MockService.swift in Sources */,
 				A7FD097F1C83E74F00332CCB /* ClientAuth.swift in Sources */,
 				A7FD09801C83E74F00332CCB /* DiscoveryParams.swift in Sources */,
 			);
@@ -972,7 +1157,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7FD09C61C83E8E900332CCB /* DiscoveryParamsTests.swift in Sources */,
-				A7B694461C87AAB300C49A4F /* Array.swift in Sources */,
 				A7FD09C71C83E8E900332CCB /* ServiceTests.swift in Sources */,
 				A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */,
 			);
@@ -998,7 +1182,6 @@
 				A77967841C2B43950002166F /* BasicHTTPAuth.swift in Sources */,
 				A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */,
 				A75AB19A1C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */,
-				A7BBF30B1C2F91E700AC62B4 /* MockService.swift in Sources */,
 				A77967861C2B43EC0002166F /* ClientAuth.swift in Sources */,
 				A779677D1C2B431C0002166F /* DiscoveryParams.swift in Sources */,
 			);
@@ -1032,6 +1215,16 @@
 			target = CA43C5F81BB358F200C180DA /* KsApi-tvOS */;
 			targetProxy = A753B56F1C2EED9800FDB616 /* PBXContainerItemProxy */;
 		};
+		A782BAE61C9F60BE007B13C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA43C5F81BB358F200C180DA /* KsApi-tvOS */;
+			targetProxy = A782BAE51C9F60BE007B13C8 /* PBXContainerItemProxy */;
+		};
+		A782BAE81C9F60C9007B13C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Models-TestHelpers-tvOS";
+			targetProxy = A782BAE71C9F60C9007B13C8 /* PBXContainerItemProxy */;
+		};
 		A7937C591C8E3A5E00502F7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "ReactiveCocoa-iOS";
@@ -1051,6 +1244,16 @@
 			isa = PBXTargetDependency;
 			name = "Result-tvOS";
 			targetProxy = A7937C7B1C8E3E1600502F7C /* PBXContainerItemProxy */;
+		};
+		A7DB1D921C9F5419008244DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7FD096E1C83E74F00332CCB /* KsApi-iOS */;
+			targetProxy = A7DB1D911C9F5419008244DA /* PBXContainerItemProxy */;
+		};
+		A7DB1D951C9F546D008244DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Models-iOS-TestHelpers";
+			targetProxy = A7DB1D941C9F546D008244DA /* PBXContainerItemProxy */;
 		};
 		A7FD09D51C83E8FE00332CCB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1083,6 +1286,88 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+			};
+			name = Release;
+		};
+		A7DB1D8D1C9F5401008244DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ksapi.testhelpers;
+				PRODUCT_NAME = KsApi_TestHelpers;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A7DB1D8E1C9F5401008244DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KsApi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ksapi.testhelpers;
+				PRODUCT_NAME = KsApi_TestHelpers;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A7DB1DA51C9F5848008244DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "KsApi-TestHelpers-iOS copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ksapi.testhelpers;
+				PRODUCT_NAME = KsApi_TestHelpers;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A7DB1DA61C9F5848008244DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "KsApi-TestHelpers-iOS copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ksapi.testhelpers;
+				PRODUCT_NAME = KsApi_TestHelpers;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1202,7 +1487,7 @@
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.1;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1247,7 +1532,7 @@
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.1;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1304,6 +1589,24 @@
 			buildConfigurations = (
 				A753B5721C2EED9800FDB616 /* Debug */,
 				A753B5761C2EED9800FDB616 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7DB1D8C1C9F5401008244DA /* Build configuration list for PBXNativeTarget "KsApi-TestHelpers-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7DB1D8D1C9F5401008244DA /* Debug */,
+				A7DB1D8E1C9F5401008244DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7DB1DA41C9F5848008244DA /* Build configuration list for PBXNativeTarget "KsApi-TestHelpers-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7DB1DA51C9F5848008244DA /* Debug */,
+				A7DB1DA61C9F5848008244DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
