@@ -1,11 +1,5 @@
 import struct Models.Activity
-import protocol Argo.Decodable
-import enum Argo.Decoded
-import enum Argo.JSON
-import func Argo.<||
-import func Argo.<|
-import func Argo.<^>
-import func Argo.<*>
+import Argo
 import func Curry.curry
 
 public struct ActivityEnvelope {
