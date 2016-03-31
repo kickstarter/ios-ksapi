@@ -52,3 +52,11 @@ public protocol ServiceType {
   /// Attempt a login with an email and password.
   func login(email email: String, password: String) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
 }
+
+public func == (lhs: ServiceType, rhs: ServiceType) -> Bool {
+  return
+    lhs.dynamicType == rhs.dynamicType &&
+    lhs.serverConfig == rhs.serverConfig &&
+    lhs.oauthToken == rhs.oauthToken &&
+    lhs.language == rhs.language
+}

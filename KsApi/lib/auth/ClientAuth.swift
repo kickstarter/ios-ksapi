@@ -5,6 +5,11 @@ public protocol ClientAuthType {
   var clientId: String { get }
 }
 
+public func == (lhs: ClientAuthType, rhs: ClientAuthType) -> Bool {
+  return lhs.dynamicType == rhs.dynamicType &&
+    lhs.clientId == rhs.clientId
+}
+
 public struct ClientAuth : ClientAuthType {
   public let clientId: String
 

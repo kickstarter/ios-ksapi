@@ -8,6 +8,15 @@ public protocol ServerConfigType {
   var basicHTTPAuth: BasicHTTPAuthType? { get }
 }
 
+public func == (lhs: ServerConfigType, rhs: ServerConfigType) -> Bool {
+  return
+    lhs.dynamicType == rhs.dynamicType &&
+    lhs.apiBaseUrl == rhs.apiBaseUrl &&
+    lhs.webBaseUrl == rhs.webBaseUrl &&
+    lhs.apiClientAuth == rhs.apiClientAuth &&
+    lhs.basicHTTPAuth == rhs.basicHTTPAuth
+}
+
 public struct ServerConfig : ServerConfigType {
   public let apiBaseUrl: NSURL
   public let webBaseUrl: NSURL
