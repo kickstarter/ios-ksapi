@@ -16,7 +16,10 @@ public enum Route {
   case Category(Models.Category)
   case ToggleStar(Models.Project)
   case Star(Models.Project)
-  case Login(email: String, password: String)
+  case Login(email: String, password: String, code: String?)
+  case FacebookLogin(facebookAccessToken: String, code: String?)
+  case ResetPassword(email: String)
+  case FacebookSignup(facebookAccessToken: String, sendNewsletters: Bool)
 
   internal var requestProperties: (method: KsApi.Method, path: String, query: [String:AnyObject]) {
     switch self {
@@ -38,8 +41,14 @@ public enum Route {
       return (.POST, "/v1/projects/\(p.id)/star/toggle", [:])
     case let .Star(p):
       return (.PUT, "/v1/projects/\(p.id)/star", [:])
-    case let .Login(email, password):
-      return (.POST, "/xauth/access_token", ["email": email, "password": password])
+    case let .Login(email, password, code):
+      return (.POST, "/xauth/access_token", ["email": email, "password": password, "code": code ?? ""])
+    case let .FacebookLogin(facebookAccessToken, code):
+      return (.POST, "/xauth/access_token", ["access_token": facebookAccessToken, "code": code ?? ""])
+    case let .ResetPassword(email):
+      return (.POST, "/v1/users/reset", ["email": email])
+    case let .FacebookSignup(facebookAccessToken, sendNewsletters):
+      return (.PUT, "/v1/facebook/access_token?intent=register", ["access_token": facebookAccessToken, "send_newsletters": sendNewsletters, "newsletter_opt_in": sendNewsletters])
     }
   }
 }
