@@ -23,6 +23,8 @@
 		A75AB19A1C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AB1981C8A3F6D002FC3E6 /* ActivityEnvelope.swift */; };
 		A76077951CADBD95001B39D0 /* ErrorEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76077941CADBD95001B39D0 /* ErrorEnvelopeTests.swift */; };
 		A76077961CADBD95001B39D0 /* ErrorEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76077941CADBD95001B39D0 /* ErrorEnvelopeTests.swift */; };
+		A76077BF1CADC2CE001B39D0 /* KsApi_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DB1D871C9F5401008244DA /* KsApi_TestHelpers.framework */; };
+		A76077C21CADC2DD001B39D0 /* KsApi_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DB1DA71C9F5848008244DA /* KsApi_TestHelpers.framework */; };
 		A77967731C2B431C0002166F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
 		A77967741C2B431C0002166F /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
 		A77967751C2B431C0002166F /* Alamofire.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967661C2B431C0002166F /* Alamofire.Request.swift */; };
@@ -187,6 +189,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = CA43C5F81BB358F200C180DA;
 			remoteInfo = "KsApi-tvOS";
+		};
+		A76077AC1CADC2C6001B39D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA43C5F01BB358F200C180DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7DB1D861C9F5401008244DA;
+			remoteInfo = "KsApi-TestHelpers-iOS";
+		};
+		A76077C01CADC2D4001B39D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA43C5F01BB358F200C180DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7DB1D971C9F5848008244DA;
+			remoteInfo = "KsApi-TestHelpers-tvOS";
 		};
 		A782BAE51C9F60BE007B13C8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -414,6 +430,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76077C21CADC2DD001B39D0 /* KsApi_TestHelpers.framework in Frameworks */,
 				A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,6 +468,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76077BF1CADC2CE001B39D0 /* KsApi_TestHelpers.framework in Frameworks */,
 				A7FD09CA1C83E8E900332CCB /* KsApi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -708,6 +726,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A76077C11CADC2D4001B39D0 /* PBXTargetDependency */,
 				A753B5701C2EED9800FDB616 /* PBXTargetDependency */,
 			);
 			name = "KsApi-tvOSTests";
@@ -788,6 +807,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A76077AD1CADC2C6001B39D0 /* PBXTargetDependency */,
 				A7FD09D51C83E8FE00332CCB /* PBXTargetDependency */,
 			);
 			name = "KsApi-iOSTests";
@@ -1234,6 +1254,16 @@
 			isa = PBXTargetDependency;
 			target = CA43C5F81BB358F200C180DA /* KsApi-tvOS */;
 			targetProxy = A753B56F1C2EED9800FDB616 /* PBXContainerItemProxy */;
+		};
+		A76077AD1CADC2C6001B39D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7DB1D861C9F5401008244DA /* KsApi-TestHelpers-iOS */;
+			targetProxy = A76077AC1CADC2C6001B39D0 /* PBXContainerItemProxy */;
+		};
+		A76077C11CADC2D4001B39D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7DB1D971C9F5848008244DA /* KsApi-TestHelpers-tvOS */;
+			targetProxy = A76077C01CADC2D4001B39D0 /* PBXContainerItemProxy */;
 		};
 		A782BAE61C9F60BE007B13C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
