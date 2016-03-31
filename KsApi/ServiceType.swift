@@ -12,11 +12,15 @@ public protocol ServiceType {
   var oauthToken: OauthTokenAuthType? { get }
   var language: String { get }
 
-  /**
-   Fetch a page of activities.
+  init(serverConfig: ServerConfigType, oauthToken: OauthTokenAuthType?, language: String)
 
-   - returns: A product of an activity envelope.
-   */
+  /// Returns a new service with the oauth token replaced.
+  func login(oauthToken: OauthTokenAuthType) -> Self
+
+  /// Returns a new service with the oauth token set to `nil`.
+  func logout() -> Self
+
+  /// Fetch a page of activities.
   func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
 
   /// Fetch the full discovery envelope with specified discovery params.
@@ -51,6 +55,13 @@ public protocol ServiceType {
 
   /// Attempt a login with an email and password.
   func login(email email: String, password: String) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+}
+
+extension ServiceType {
+  /// Returns `true` if an oauth token is present, and `false` otherwise.
+  public var isAuthenticated: Bool {
+    return self.oauthToken != nil
+  }
 }
 
 public func == (lhs: ServiceType, rhs: ServiceType) -> Bool {

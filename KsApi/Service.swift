@@ -24,6 +24,14 @@ public struct Service : ServiceType {
     self.language = language
   }
 
+  public func login(oauthToken: OauthTokenAuthType) -> Service {
+    return Service(serverConfig: self.serverConfig, oauthToken: oauthToken, language: self.language)
+  }
+
+  public func logout() -> Service {
+    return Service(serverConfig: self.serverConfig, oauthToken: nil, language: self.language)
+  }
+
   public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
     let categories = [
       Activity.Category.Backing,

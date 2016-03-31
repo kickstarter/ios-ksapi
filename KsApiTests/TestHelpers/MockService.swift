@@ -9,20 +9,69 @@ internal struct MockService : ServiceType {
   internal let oauthToken: OauthTokenAuthType?
   internal let language: String
 
-  internal init(serverConfig: ServerConfigType = ServerConfig.production, oauthToken: OauthTokenAuthType? = nil, language: String = "en") {
+  private let activities: [Activity]
+
+  internal init(serverConfig: ServerConfigType = ServerConfig.production,
+                oauthToken: OauthTokenAuthType? = nil,
+                language: String = "en") {
+
+    self.init(
+      serverConfig: serverConfig,
+      oauthToken: oauthToken,
+      language: language,
+      activities: [
+        ActivityFactory.updateActivity,
+        ActivityFactory.backingActivity,
+        ActivityFactory.successActivity
+      ]
+    )
+  }
+
+  internal init(serverConfig: ServerConfigType = ServerConfig.production,
+                oauthToken: OauthTokenAuthType? = nil,
+                language: String = "en",
+                activities: [Activity]) {
+
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
     self.language = language
+
+    self.activities = activities
+  }
+
+  internal func login(oauthToken: OauthTokenAuthType) -> MockService {
+    return MockService(
+      serverConfig: self.serverConfig,
+      oauthToken: oauthToken,
+      language: self.language,
+      activities: self.activities
+    )
+  }
+
+  internal func logout() -> MockService {
+    return MockService(
+      serverConfig: self.serverConfig,
+      oauthToken: nil,
+      language: self.language,
+      activities: self.activities
+    )
   }
 
   internal func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
+    if self.oauthToken == nil {
+      return SignalProducer(
+        error: ErrorEnvelope(
+          errorMessages: ["Something went wrong"],
+          ksrCode: .AccessTokenInvalid,
+          httpCode: 401,
+          exception: nil
+        )
+      )
+    }
+
     return SignalProducer(value:
       ActivityEnvelope(
-        activities: [
-          ActivityFactory.updateActivity,
-          ActivityFactory.backingActivity,
-          ActivityFactory.successActivity
-        ],
+        activities: self.activities,
         urls: ActivityEnvelope.UrlsEnvelope(
           api: ActivityEnvelope.UrlsEnvelope.ApiEnvelope(
             moreActivities: ""
@@ -67,7 +116,18 @@ internal struct MockService : ServiceType {
   }
 
   internal func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
-    return .empty
+    if self.oauthToken == nil {
+      return SignalProducer(
+        error: ErrorEnvelope(
+          errorMessages: ["Something went wrong"],
+          ksrCode: .AccessTokenInvalid,
+          httpCode: 401,
+          exception: nil
+        )
+      )
+    }
+
+    return SignalProducer(value: UserFactory.user)
   }
 
   internal func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope> {

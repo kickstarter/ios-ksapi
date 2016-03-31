@@ -6,7 +6,7 @@ public struct AccessTokenEnvelope {
   public let accessToken: String
   public let user: User
 
-  init(access_token: String, user: User) {
+  internal init(access_token: String, user: User) {
     self.accessToken = access_token
     self.user = user
   }

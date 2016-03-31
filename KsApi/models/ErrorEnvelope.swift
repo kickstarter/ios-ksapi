@@ -7,7 +7,7 @@ public struct ErrorEnvelope {
   public let httpCode: Int
   public let exception: Exception?
 
-  public enum KsrCode : String {
+  public enum KsrCode: String {
     // Codes defined by the server
     case AccessTokenInvalid = "access_token_invalid"
     case InvalidXauthLogin = "invalid_xauth_login"
@@ -28,25 +28,28 @@ public struct ErrorEnvelope {
     public let message: String?
   }
 
-  internal init(error_messages: [String], ksr_code: KsrCode? = nil, http_code: Int, exception: Exception? = nil) {
-    self.errorMessages = error_messages
-    self.ksrCode = ksr_code
-    self.httpCode = http_code
-    self.exception = exception
-  }
-
   /**
    A general error that JSON could not be parsed.
   */
   internal static var couldNotParseJSON: ErrorEnvelope {
-    return ErrorEnvelope(error_messages: [], ksr_code: .JSONParsingFailed, http_code: 400)
+    return ErrorEnvelope(
+      errorMessages: [],
+      ksrCode: .JSONParsingFailed,
+      httpCode: 400,
+      exception: nil
+    )
   }
 
   /**
    A general error that the error envelope JSON could not be parsed.
   */
   internal static var couldNotParseErrorEnvelopeJSON: ErrorEnvelope {
-    return ErrorEnvelope(error_messages: [], ksr_code: .ErrorEnvelopeJSONParsingFailed, http_code: 400)
+    return ErrorEnvelope(
+      errorMessages: [],
+      ksrCode: .ErrorEnvelopeJSONParsingFailed,
+      httpCode: 400,
+      exception: nil
+    )
   }
 
   /**
@@ -54,9 +57,10 @@ public struct ErrorEnvelope {
   */
   internal static func couldNotDecodeJSON(decodeError: DecodeError) -> ErrorEnvelope {
     return ErrorEnvelope(
-      error_messages: [decodeError.description],
-      ksr_code: .DecodingJSONFailed,
-      http_code: 400
+      errorMessages: [decodeError.description],
+      ksrCode: .DecodingJSONFailed,
+      httpCode: 400,
+      exception: nil
     )
   }
 }
