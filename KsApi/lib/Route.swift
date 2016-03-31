@@ -44,7 +44,7 @@ public enum Route {
     case let .Login(email, password, code):
       return (.POST, "/xauth/access_token", ["email": email, "password": password, "code": code ?? ""])
     case let .FacebookLogin(facebookAccessToken, code):
-      return (.POST, "/xauth/access_token", ["access_token": facebookAccessToken, "code": code ?? ""])
+      return (.PUT, "/v1/facebook/access_token?intent=login", ["access_token": facebookAccessToken, "code": code ?? ""])
     case let .ResetPassword(email):
       return (.POST, "/v1/users/reset", ["email": email])
     case let .FacebookSignup(facebookAccessToken, sendNewsletters):

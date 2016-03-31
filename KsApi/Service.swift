@@ -109,7 +109,8 @@ public struct Service : ServiceType {
   }
 
   public func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
-    return request(.FacebookSignup(facebookAccessToken: facebookAccessToken, sendNewsletters: sendNewsletters)).decodeModel(AccessTokenEnvelope.self)
+    return request(.FacebookSignup(facebookAccessToken: facebookAccessToken, sendNewsletters: sendNewsletters))
+      .decodeModel(AccessTokenEnvelope.self)
   }
 
   // MARK: Private methods
