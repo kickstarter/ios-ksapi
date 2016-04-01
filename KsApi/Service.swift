@@ -93,10 +93,27 @@ public struct Service : ServiceType {
       .map { envelope in envelope.project }
   }
 
-  public func login(email email: String, password: String) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
-    return request(.Login(email: email, password: password))
+  public func login(email email: String, password: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+    return request(.Login(email: email, password: password, code: code))
       .decodeModel(AccessTokenEnvelope.self)
   }
+
+  public func login(facebookAccessToken facebookAccessToken: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+    return request(.FacebookLogin(facebookAccessToken: facebookAccessToken, code: code))
+      .decodeModel(AccessTokenEnvelope.self)
+  }
+
+  public func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {
+    return request(.ResetPassword(email: email))
+      .decodeModel(User.self)
+  }
+
+  public func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+    return request(.FacebookSignup(facebookAccessToken: facebookAccessToken, sendNewsletters: sendNewsletters))
+      .decodeModel(AccessTokenEnvelope.self)
+  }
+
+  // MARK: Private methods
 
   private func request(route: Route) -> Alamofire.Request {
     return Alamofire.request(self.requestFromRoute(route))

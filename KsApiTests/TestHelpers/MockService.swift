@@ -96,7 +96,7 @@ internal struct MockService : ServiceType {
     return .init(value: project)
   }
 
-  internal func login(email email: String, password: String) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+  internal func login(email email: String, password: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
     return SignalProducer(value:
       AccessTokenEnvelope(
@@ -105,4 +105,29 @@ internal struct MockService : ServiceType {
       )
     )
   }
+
+  internal func login(facebookAccessToken facebookAccessToken: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+
+    return SignalProducer(value:
+      AccessTokenEnvelope(
+        access_token: "deadbeef",
+        user: UserFactory.user
+      )
+    )
+  }
+
+  func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {
+    return SignalProducer(value: UserFactory.user)
+  }
+
+  func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+
+    return SignalProducer(value:
+      AccessTokenEnvelope(
+        access_token: "deadbeef",
+        user: UserFactory.user
+      )
+    )
+  }
+
 }

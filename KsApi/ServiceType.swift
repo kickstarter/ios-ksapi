@@ -49,6 +49,15 @@ public protocol ServiceType {
   /// Star a project.
   func star(project: Project) -> SignalProducer<Project, ErrorEnvelope>
 
-  /// Attempt a login with an email and password.
-  func login(email email: String, password: String) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+  /// Attempt a login with an email, password and optional code.
+  func login(email email: String, password: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+
+  /// Attempt a login with Facebook access token and optional code.
+  func login(facebookAccessToken facebookAccessToken: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+
+  /// Reset user password with email address.
+  func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope>
+
+  /// Signup with Facebook access token and newsletter bool.
+  func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
 }
