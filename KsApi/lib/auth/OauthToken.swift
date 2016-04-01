@@ -5,6 +5,16 @@ public protocol OauthTokenAuthType {
   var token: String { get }
 }
 
+public func == (lhs: OauthTokenAuthType, rhs: OauthTokenAuthType) -> Bool {
+  return lhs.dynamicType == rhs.dynamicType &&
+    lhs.token == rhs.token
+}
+
+public func == (lhs: OauthTokenAuthType?, rhs: OauthTokenAuthType?) -> Bool {
+  return lhs?.dynamicType == rhs?.dynamicType &&
+    lhs?.token == rhs?.token
+}
+
 public struct OauthToken : OauthTokenAuthType {
   public let token: String
 

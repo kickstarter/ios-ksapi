@@ -6,6 +6,18 @@ public protocol BasicHTTPAuthType {
   var password: String { get }
 }
 
+public func == (lhs: BasicHTTPAuthType, rhs: BasicHTTPAuthType) -> Bool {
+  return lhs.dynamicType == rhs.dynamicType &&
+    lhs.username == rhs.username &&
+    lhs.password == rhs.password
+}
+
+public func == (lhs: BasicHTTPAuthType?, rhs: BasicHTTPAuthType?) -> Bool {
+  return lhs?.dynamicType == rhs?.dynamicType &&
+    lhs?.username == rhs?.username &&
+    lhs?.password == rhs?.password
+}
+
 extension BasicHTTPAuthType {
   /**
    Contents of the `Authorization` header needed to perform basic HTTP auth.

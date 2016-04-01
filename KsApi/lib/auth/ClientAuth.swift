@@ -5,8 +5,17 @@ public protocol ClientAuthType {
   var clientId: String { get }
 }
 
+public func == (lhs: ClientAuthType, rhs: ClientAuthType) -> Bool {
+  return lhs.dynamicType == rhs.dynamicType &&
+    lhs.clientId == rhs.clientId
+}
+
 public struct ClientAuth : ClientAuthType {
   public let clientId: String
+
+  public init(clientId: String) {
+    self.clientId = clientId
+  }
 
   public static let production: ClientAuthType = ClientAuth(
     clientId: "***REMOVED***"
