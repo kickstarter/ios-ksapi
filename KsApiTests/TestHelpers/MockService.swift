@@ -137,9 +137,9 @@ internal struct MockService : ServiceType {
   internal func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope> {
 
     return SignalProducer(value: [
-      CategoryFactor.art,
-      CategoryFactor.comics,
-      CategoryFactor.illustration,
+      CategoryFactory.art,
+      CategoryFactory.comics,
+      CategoryFactory.illustration,
       ]
     )
   }
