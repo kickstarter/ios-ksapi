@@ -148,9 +148,7 @@ public struct Service : ServiceType {
 
     // Add some headers
     var headers = request.allHTTPHeaderFields ?? [:]
-    if let authHeader = self.serverConfig.basicHTTPAuth?.authorizationHeader {
-      headers["Authorization"] = authHeader
-    }
+    headers["Authorization"] = self.serverConfig.basicHTTPAuth?.authorizationHeader
     headers["Accept-Language"] = self.language
     headers["Kickstarter-iOS-App"] = "9999" // TODO: make this a dependency
     request.allHTTPHeaderFields = headers
