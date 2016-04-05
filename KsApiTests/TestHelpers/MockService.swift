@@ -3,40 +3,74 @@
 @testable import Models_TestHelpers
 import ReactiveCocoa
 
-internal struct MockService : ServiceType {
-
+internal struct MockService: ServiceType {
   internal let serverConfig: ServerConfigType
   internal let oauthToken: OauthTokenAuthType?
   internal let language: String
 
-  private let activities: [Activity]
+  private let fetchActivitiesResponse: [Activity]?
+  private let fetchActivitiesError: ErrorEnvelope?
 
-  internal init(serverConfig: ServerConfigType = ServerConfig.production,
-                oauthToken: OauthTokenAuthType? = nil,
-                language: String = "en") {
+  private let fetchCommentsResponse: [Comment]?
+  private let fetchCommentsError: ErrorEnvelope?
+
+  private let postCommentResponse: Comment?
+  private let postCommentError: ErrorEnvelope?
+
+  internal init(serverConfig: ServerConfigType,
+                oauthToken: OauthTokenAuthType?,
+                language: String) {
 
     self.init(
       serverConfig: serverConfig,
       oauthToken: oauthToken,
       language: language,
-      activities: [
-        ActivityFactory.updateActivity,
-        ActivityFactory.backingActivity,
-        ActivityFactory.successActivity
-      ]
+      fetchActivitiesResponse: nil
     )
   }
 
   internal init(serverConfig: ServerConfigType = ServerConfig.production,
                 oauthToken: OauthTokenAuthType? = nil,
                 language: String = "en",
-                activities: [Activity]) {
+                fetchActivitiesResponse: [Activity]? = nil,
+                fetchActivitiesError: ErrorEnvelope? = nil,
+                fetchCommentsResponse: [Comment]? = nil,
+                fetchCommentsError: ErrorEnvelope? = nil,
+                postCommentResponse: Comment? = nil,
+                postCommentError: ErrorEnvelope? = nil) {
 
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
     self.language = language
 
-    self.activities = activities
+    self.fetchActivitiesResponse = fetchActivitiesResponse ?? [
+      ActivityFactory.updateActivity,
+      ActivityFactory.backingActivity,
+      ActivityFactory.successActivity
+    ]
+
+    self.fetchActivitiesError = fetchActivitiesError
+
+    self.fetchCommentsResponse = fetchCommentsResponse ?? [
+      CommentFactory.comment(id: 2),
+      CommentFactory.comment(id: 1)
+    ]
+
+    self.fetchCommentsError = fetchCommentsError
+
+    self.postCommentResponse = postCommentResponse ?? CommentFactory.comment()
+    
+    self.postCommentError = postCommentError
+  }
+
+  internal func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
+
+    if let error = fetchCommentsError {
+      return SignalProducer(error: error)
+    } else if let comments = fetchCommentsResponse {
+      return SignalProducer(value: CommentsEnvelope(comments: comments))
+    }
+    return .empty
   }
 
   internal func login(oauthToken: OauthTokenAuthType) -> MockService {
@@ -44,7 +78,12 @@ internal struct MockService : ServiceType {
       serverConfig: self.serverConfig,
       oauthToken: oauthToken,
       language: self.language,
-      activities: self.activities
+      fetchActivitiesResponse: self.fetchActivitiesResponse,
+      fetchActivitiesError: self.fetchActivitiesError,
+      fetchCommentsResponse: self.fetchCommentsResponse,
+      fetchCommentsError: self.fetchCommentsError,
+      postCommentResponse: self.postCommentResponse,
+      postCommentError: self.postCommentError
     )
   }
 
@@ -53,32 +92,32 @@ internal struct MockService : ServiceType {
       serverConfig: self.serverConfig,
       oauthToken: nil,
       language: self.language,
-      activities: self.activities
+      fetchActivitiesResponse: self.fetchActivitiesResponse,
+      fetchActivitiesError: self.fetchActivitiesError,
+      fetchCommentsResponse: self.fetchCommentsResponse,
+      fetchCommentsError: self.fetchCommentsError,
+      postCommentResponse: self.postCommentResponse,
+      postCommentError: self.postCommentError
     )
   }
 
   internal func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
-    if self.oauthToken == nil {
-      return SignalProducer(
-        error: ErrorEnvelope(
-          errorMessages: ["Something went wrong"],
-          ksrCode: .AccessTokenInvalid,
-          httpCode: 401,
-          exception: nil
-        )
-      )
-    }
 
-    return SignalProducer(value:
-      ActivityEnvelope(
-        activities: self.activities,
-        urls: ActivityEnvelope.UrlsEnvelope(
-          api: ActivityEnvelope.UrlsEnvelope.ApiEnvelope(
-            moreActivities: ""
+    if let error = fetchActivitiesError {
+      return SignalProducer(error: error)
+    } else if let activities = fetchActivitiesResponse {
+      return SignalProducer(
+        value: ActivityEnvelope(
+          activities: activities,
+          urls: ActivityEnvelope.UrlsEnvelope(
+            api: ActivityEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreActivities: ""
+            )
           )
         )
       )
-    )
+    }
+    return .empty
   }
 
   internal func fetchDiscovery(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
@@ -174,6 +213,16 @@ internal struct MockService : ServiceType {
         user: UserFactory.user
       )
     )
+  }
+
+  internal func postComment(body: String, toProject project: Project) -> SignalProducer<Comment, ErrorEnvelope> {
+
+    if let error = postCommentError {
+      return SignalProducer(error: error)
+    } else if let comment = postCommentResponse {
+      return SignalProducer(value: comment)
+    }
+    return .empty
   }
 
   func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {

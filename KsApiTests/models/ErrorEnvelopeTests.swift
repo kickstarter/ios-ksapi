@@ -28,7 +28,7 @@ class ErrorEnvelopeTests: XCTestCase {
         "message": "hello"
       ]
       ])
-    XCTAssertNotNil(env)
-    XCTAssertEqual(ErrorEnvelope.KsrCode.UnknownCode, env?.ksrCode)
+    XCTAssertNil(env.error)
+    XCTAssertEqual(ErrorEnvelope.KsrCode.UnknownCode, env.value?.ksrCode)
   }
 }

@@ -1,17 +1,11 @@
-import enum Alamofire.ParameterEncoding
-import class Alamofire.Request
-import func Alamofire.request
-import protocol Alamofire.URLRequestConvertible
-import struct Models.Activity
-import struct Models.Category
-import struct Models.Project
-import struct Models.User
-import struct ReactiveCocoa.SignalProducer
+import Alamofire
+import Models
+import ReactiveCocoa
 
 /**
  A `ServerType` that requests data from an API webservice.
 */
-public struct Service : ServiceType {
+public struct Service: ServiceType {
   public static let shared = Service()
 
   public let serverConfig: ServerConfigType
@@ -44,6 +38,11 @@ public struct Service : ServiceType {
     ]
     return request(.Activities(categories: categories))
       .decodeModel(ActivityEnvelope.self)
+  }
+
+  public func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
+    return request(.ProjectComments(project))
+      .decodeModel(CommentsEnvelope.self)
   }
 
   public func fetchDiscovery(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
@@ -109,6 +108,11 @@ public struct Service : ServiceType {
   public func login(facebookAccessToken facebookAccessToken: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
     return request(.FacebookLogin(facebookAccessToken: facebookAccessToken, code: code))
       .decodeModel(AccessTokenEnvelope.self)
+  }
+
+  public func postComment(body: String, toProject project: Project) -> SignalProducer<Comment, ErrorEnvelope> {
+    return request(.PostProjectComment(project, body: body))
+      .decodeModel(Comment.self)
   }
 
   public func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {
