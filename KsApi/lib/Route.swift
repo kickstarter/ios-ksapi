@@ -41,7 +41,11 @@ public enum Route {
       return (.PUT, "/v1/facebook/access_token?intent=register", ["access_token": facebookAccessToken, "send_newsletters": sendNewsletters, "newsletter_opt_in": sendNewsletters])
 
     case let .Login(email, password, code):
-      return (.POST, "/xauth/access_token", ["email": email, "password": password, "code": code ?? ""])
+      if let code = code {
+        return (.POST, "/xauth/access_token", ["email": email, "password": password, "code": code])
+      } else {
+        return (.POST, "/xauth/access_token", ["email": email, "password": password])
+      }
 
     case let .Project(p):
       return (.GET, "/v1/projects/\(p.id)", [:])
