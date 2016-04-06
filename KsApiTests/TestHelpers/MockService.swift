@@ -17,6 +17,11 @@ internal struct MockService: ServiceType {
   private let postCommentResponse: Comment?
   private let postCommentError: ErrorEnvelope?
 
+  private let loginResponse: AccessTokenEnvelope?
+  private let loginError: ErrorEnvelope?
+  private let resendCodeResponse: ErrorEnvelope?
+  private let resendCodeError: ErrorEnvelope?
+
   internal init(serverConfig: ServerConfigType,
                 oauthToken: OauthTokenAuthType?,
                 language: String) {
@@ -37,7 +42,11 @@ internal struct MockService: ServiceType {
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
                 postCommentResponse: Comment? = nil,
-                postCommentError: ErrorEnvelope? = nil) {
+                postCommentError: ErrorEnvelope? = nil,
+                loginResponse: AccessTokenEnvelope? = nil,
+                loginError: ErrorEnvelope? = nil,
+                resendCodeResponse: ErrorEnvelope? = nil,
+                resendCodeError: ErrorEnvelope? = nil) {
 
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
@@ -61,6 +70,14 @@ internal struct MockService: ServiceType {
     self.postCommentResponse = postCommentResponse ?? CommentFactory.comment()
     
     self.postCommentError = postCommentError
+
+    self.loginResponse = loginResponse
+
+    self.loginError = loginError
+
+    self.resendCodeResponse = resendCodeResponse
+
+    self.resendCodeError = resendCodeError
   }
 
   internal func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
@@ -83,7 +100,11 @@ internal struct MockService: ServiceType {
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
       postCommentResponse: self.postCommentResponse,
-      postCommentError: self.postCommentError
+      postCommentError: self.postCommentError,
+      loginResponse: self.loginResponse,
+      loginError: self.loginError,
+      resendCodeResponse: self.resendCodeResponse,
+      resendCodeError: self.resendCodeError
     )
   }
 
@@ -97,7 +118,11 @@ internal struct MockService: ServiceType {
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
       postCommentResponse: self.postCommentResponse,
-      postCommentError: self.postCommentError
+      postCommentError: self.postCommentError,
+      loginResponse: self.loginResponse,
+      loginError: self.loginError,
+      resendCodeResponse: self.resendCodeResponse,
+      resendCodeError: self.resendCodeError
     )
   }
 
@@ -197,6 +222,16 @@ internal struct MockService: ServiceType {
 
   internal func login(email email: String, password: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
+    if let error = loginError {
+      return SignalProducer(error: error)
+    } else if let accessTokenEnvelope = loginResponse {
+      return SignalProducer(value: accessTokenEnvelope)
+    } else if let resendCodeResponse = resendCodeResponse {
+      return SignalProducer(error: resendCodeResponse)
+    } else if let resendCodeError = resendCodeError {
+      return SignalProducer(error: resendCodeError)
+    }
+
     return SignalProducer(value:
       AccessTokenEnvelope(
         access_token: "deadbeef",
@@ -206,6 +241,16 @@ internal struct MockService: ServiceType {
   }
 
   internal func login(facebookAccessToken facebookAccessToken: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+
+    if let error = loginError {
+      return SignalProducer(error: error)
+    } else if let accessTokenEnvelope = loginResponse {
+      return SignalProducer(value: accessTokenEnvelope)
+    } else if let resendCodeResponse = resendCodeResponse {
+      return SignalProducer(error: resendCodeResponse)
+    } else if let resendCodeError = resendCodeError {
+      return SignalProducer(error: resendCodeError)
+    }
 
     return SignalProducer(value:
       AccessTokenEnvelope(
