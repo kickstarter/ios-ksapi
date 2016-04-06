@@ -247,14 +247,16 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: error)
     } else if let accessTokenEnvelope = loginResponse {
       return SignalProducer(value: accessTokenEnvelope)
-    } else if let resendError = resendCodeResponse {
-      return SignalProducer(error: resendError)
+    } else if let resendCodeResponse = resendCodeResponse {
+      return SignalProducer(error: resendCodeResponse)
+    } else if let resendCodeError = resendCodeError {
+      return SignalProducer(error: resendCodeError)
     }
 
     return SignalProducer(value:
       AccessTokenEnvelope(
-          access_token: "deadbeef",
-          user: UserFactory.user
+        access_token: "deadbeef",
+        user: UserFactory.user
       )
     )
   }
