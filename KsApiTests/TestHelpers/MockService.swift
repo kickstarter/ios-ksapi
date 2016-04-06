@@ -2,7 +2,6 @@
 @testable import Models
 @testable import Models_TestHelpers
 import ReactiveCocoa
-import Result
 
 internal struct MockService: ServiceType {
   internal let serverConfig: ServerConfigType
