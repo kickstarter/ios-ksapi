@@ -2,7 +2,7 @@ import Models
 
 /**
  A list of possible requests that can be made for Kickstarter data.
-*/
+ */
 public enum Route {
   case Activities(categories: [Activity.Category])
   case Categories
@@ -35,17 +35,20 @@ public enum Route {
       return (.GET, "/v1/discover", params.queryParams)
 
     case let .FacebookLogin(facebookAccessToken, code):
-      return (.PUT, "/v1/facebook/access_token?intent=login", ["access_token": facebookAccessToken, "code": code ?? ""])
+      var params = ["access_token": facebookAccessToken]
+      params["code"] = code
+      return (.PUT, "/v1/facebook/access_token?intent=login", params)
 
     case let .FacebookSignup(facebookAccessToken, sendNewsletters):
-      return (.PUT, "/v1/facebook/access_token?intent=register", ["access_token": facebookAccessToken, "send_newsletters": sendNewsletters, "newsletter_opt_in": sendNewsletters])
+      let params: [String:AnyObject] = ["access_token": facebookAccessToken,
+                                        "send_newsletters": sendNewsletters,
+                                        "newsletter_opt_in": sendNewsletters]
+      return (.PUT, "/v1/facebook/access_token?intent=register", params)
 
     case let .Login(email, password, code):
-      if let code = code {
-        return (.POST, "/xauth/access_token", ["email": email, "password": password, "code": code])
-      } else {
-        return (.POST, "/xauth/access_token", ["email": email, "password": password])
-      }
+      var params = ["email": email, "password": password]
+      params["code"] = code
+      return (.POST, "/xauth/access_token", params)
 
     case let .Project(p):
       return (.GET, "/v1/projects/\(p.id)", [:])
