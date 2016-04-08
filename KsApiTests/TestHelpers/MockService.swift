@@ -22,6 +22,9 @@ internal struct MockService: ServiceType {
   private let resendCodeResponse: ErrorEnvelope?
   private let resendCodeError: ErrorEnvelope?
 
+  private let resetPasswordResponse: User?
+  private let resetPasswordError: ErrorEnvelope?
+
   internal init(serverConfig: ServerConfigType,
                 oauthToken: OauthTokenAuthType?,
                 language: String) {
@@ -46,7 +49,9 @@ internal struct MockService: ServiceType {
                 loginResponse: AccessTokenEnvelope? = nil,
                 loginError: ErrorEnvelope? = nil,
                 resendCodeResponse: ErrorEnvelope? = nil,
-                resendCodeError: ErrorEnvelope? = nil) {
+                resendCodeError: ErrorEnvelope? = nil,
+                resetPasswordResponse: User? = nil,
+                resetPasswordError: ErrorEnvelope? = nil) {
 
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
@@ -78,6 +83,10 @@ internal struct MockService: ServiceType {
     self.resendCodeResponse = resendCodeResponse
 
     self.resendCodeError = resendCodeError
+
+    self.resetPasswordResponse = resetPasswordResponse
+
+    self.resetPasswordError = resetPasswordError
   }
 
   internal func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
@@ -104,7 +113,9 @@ internal struct MockService: ServiceType {
       loginResponse: self.loginResponse,
       loginError: self.loginError,
       resendCodeResponse: self.resendCodeResponse,
-      resendCodeError: self.resendCodeError
+      resendCodeError: self.resendCodeError,
+      resetPasswordResponse: self.resetPasswordResponse,
+      resetPasswordError: self.resetPasswordError
     )
   }
 
@@ -122,7 +133,9 @@ internal struct MockService: ServiceType {
       loginResponse: self.loginResponse,
       loginError: self.loginError,
       resendCodeResponse: self.resendCodeResponse,
-      resendCodeError: self.resendCodeError
+      resendCodeError: self.resendCodeError,
+      resetPasswordResponse: self.resetPasswordResponse,
+      resetPasswordError: self.resetPasswordError
     )
   }
 
@@ -274,6 +287,11 @@ internal struct MockService: ServiceType {
   }
 
   func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {
+    if let response = resetPasswordResponse {
+      return SignalProducer(value: response)
+    } else if let error = resetPasswordError {
+      return SignalProducer(error: error)
+    }
     return SignalProducer(value: UserFactory.user)
   }
 
