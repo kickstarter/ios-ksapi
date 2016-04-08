@@ -3,7 +3,7 @@ import ReactiveCocoa
 
 /**
  A type that knows how to perform requests for Kickstarter data.
-*/
+ */
 public protocol ServiceType {
   var serverConfig: ServerConfigType { get }
   var oauthToken: OauthTokenAuthType? { get }
@@ -48,10 +48,12 @@ public protocol ServiceType {
   func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope>
 
   /// Attempt a login with an email, password and optional code.
-  func login(email email: String, password: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+  func login(email email: String, password: String, code: String?) ->
+    SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
 
   /// Attempt a login with Facebook access token and optional code.
-  func login(facebookAccessToken facebookAccessToken: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+  func login(facebookAccessToken facebookAccessToken: String, code: String?) ->
+    SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
 
   func postComment(body: String, toProject project: Project) -> SignalProducer<Comment, ErrorEnvelope>
 
@@ -59,7 +61,9 @@ public protocol ServiceType {
   func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope>
 
   /// Signup with Facebook access token and newsletter bool.
-  func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+  func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->
+    SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+
   /// Star a project.
   func star(project: Project) -> SignalProducer<Project, ErrorEnvelope>
 
@@ -77,7 +81,7 @@ extension ServiceType {
 public func == (lhs: ServiceType, rhs: ServiceType) -> Bool {
   return
     lhs.dynamicType == rhs.dynamicType &&
-    lhs.serverConfig == rhs.serverConfig &&
-    lhs.oauthToken == rhs.oauthToken &&
-    lhs.language == rhs.language
+      lhs.serverConfig == rhs.serverConfig &&
+      lhs.oauthToken == rhs.oauthToken &&
+      lhs.language == rhs.language
 }

@@ -1,7 +1,7 @@
 import XCTest
 @testable import KsApi
 
-final class ServiceTests : XCTestCase {
+final class ServiceTests: XCTestCase {
 
   func testDefaults() {
     XCTAssertTrue(Service.shared.serverConfig == ServerConfig.production)

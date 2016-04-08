@@ -6,7 +6,7 @@ public struct CategoriesEnvelope {
   public let categories: [Models.Category]
 }
 
-extension CategoriesEnvelope : Decodable {
+extension CategoriesEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<CategoriesEnvelope> {
     return curry(CategoriesEnvelope.init)
       <^> json <|| "categories"

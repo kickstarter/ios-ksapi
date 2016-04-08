@@ -48,12 +48,10 @@
 		A7937C7A1C8E3E0900502F7C /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7937C6D1C8E3DF500502F7C /* Result.framework */; };
 		A7937C7D1C8E3E1D00502F7C /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7937C711C8E3DF500502F7C /* Result.framework */; };
 		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
-		A7DB1D8A1C9F5401008244DA /* KsApi-TestHelpers-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = A7DB1D891C9F5401008244DA /* KsApi-TestHelpers-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7DB1D901C9F540C008244DA /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB1D8F1C9F540C008244DA /* MockService.swift */; };
 		A7DB1D931C9F541F008244DA /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD099D1C83E74F00332CCB /* KsApi.framework */; };
 		A7DB1D961C9F5473008244DA /* Models_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DB1D751C9F53D1008244DA /* Models_TestHelpers.framework */; };
 		A7DB1D9D1C9F5848008244DA /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB1D8F1C9F540C008244DA /* MockService.swift */; };
-		A7DB1DA21C9F5848008244DA /* KsApi-TestHelpers-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = A7DB1D891C9F5401008244DA /* KsApi-TestHelpers-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7E315A41C8891E2000DD85A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E315A31C8891E2000DD85A /* Dictionary.swift */; };
 		A7E315A51C8891E2000DD85A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E315A31C8891E2000DD85A /* Dictionary.swift */; };
 		A7FD09701C83E74F00332CCB /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
@@ -386,12 +384,12 @@
 /* Begin PBXFileReference section */
 		807571811C88B4F800E7DA8A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Frameworks/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		807571991C88B4FD00E7DA8A /* Models.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Models.xcodeproj; path = Frameworks/Models/Models.xcodeproj; sourceTree = "<group>"; };
-		A713EC9C1C2C51B600B6234E /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
-		A713ECB71C2C59D400B6234E /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Method.swift; sourceTree = "<group>"; };
+		A713EC9C1C2C51B600B6234E /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServerConfig.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A713ECB71C2C59D400B6234E /* Method.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Method.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A71405071CAF49FF00A2795B /* CommentsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsEnvelope.swift; sourceTree = "<group>"; };
 		A7378CCC1C809A7500F0A562 /* KsApi.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KsApi.playground; sourceTree = "<group>"; };
-		A745D05E1CA8B13900C12802 /* DiscoveryParamsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryParamsTests.swift; sourceTree = "<group>"; };
-		A745D0611CA8B5D500C12802 /* ServiceTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTypeTests.swift; sourceTree = "<group>"; };
+		A745D05E1CA8B13900C12802 /* DiscoveryParamsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DiscoveryParamsTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A745D0611CA8B5D500C12802 /* ServiceTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTypeTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A753B5691C2EED9800FDB616 /* KsApi-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A753B56B1C2EED9800FDB616 /* KsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsApiTests.swift; sourceTree = "<group>"; };
 		A753B56D1C2EED9800FDB616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -402,24 +400,21 @@
 		A77967661C2B431C0002166F /* Alamofire.Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.Request.swift; sourceTree = "<group>"; };
 		A77967691C2B431C0002166F /* JSONObjectWithData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObjectWithData.swift; sourceTree = "<group>"; };
 		A779676B1C2B431C0002166F /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
-		A779676D1C2B431C0002166F /* AccessTokenEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenEnvelope.swift; sourceTree = "<group>"; };
-		A779676E1C2B431C0002166F /* CategoriesEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesEnvelope.swift; sourceTree = "<group>"; };
-		A779676F1C2B431C0002166F /* DiscoveryEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryEnvelope.swift; sourceTree = "<group>"; };
-		A77967701C2B431C0002166F /* DiscoveryParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryParams.swift; sourceTree = "<group>"; };
-		A77967711C2B431C0002166F /* ErrorEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorEnvelope.swift; sourceTree = "<group>"; };
-		A77967721C2B431C0002166F /* StarEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarEnvelope.swift; sourceTree = "<group>"; };
-		A77967831C2B43950002166F /* BasicHTTPAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHTTPAuth.swift; sourceTree = "<group>"; };
-		A77967851C2B43EC0002166F /* ClientAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientAuth.swift; sourceTree = "<group>"; };
-		A77967871C2B44440002166F /* OauthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthToken.swift; sourceTree = "<group>"; };
+		A779676D1C2B431C0002166F /* AccessTokenEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AccessTokenEnvelope.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A779676E1C2B431C0002166F /* CategoriesEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CategoriesEnvelope.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A779676F1C2B431C0002166F /* DiscoveryEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DiscoveryEnvelope.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A77967701C2B431C0002166F /* DiscoveryParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DiscoveryParams.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A77967711C2B431C0002166F /* ErrorEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ErrorEnvelope.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A77967721C2B431C0002166F /* StarEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StarEnvelope.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A77967831C2B43950002166F /* BasicHTTPAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BasicHTTPAuth.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A77967851C2B43EC0002166F /* ClientAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ClientAuth.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A77967871C2B44440002166F /* OauthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = OauthToken.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A7937C421C8E3A4100502F7C /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = Frameworks/ReactiveExtensions/Frameworks/ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
 		A7937C5D1C8E3DF500502F7C /* Result.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Result.xcodeproj; path = Frameworks/ReactiveExtensions/Frameworks/ReactiveCocoa/Carthage/Checkouts/Result/Result.xcodeproj; sourceTree = "<group>"; };
-		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
+		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A7DB1D871C9F5401008244DA /* KsApi_TestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi_TestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7DB1D891C9F5401008244DA /* KsApi-TestHelpers-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KsApi-TestHelpers-iOS.h"; sourceTree = "<group>"; };
-		A7DB1D8B1C9F5401008244DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7DB1D8F1C9F540C008244DA /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		A7DB1D8F1C9F540C008244DA /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MockService.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A7DB1DA71C9F5848008244DA /* KsApi_TestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi_TestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7DB1DA81C9F5848008244DA /* KsApi-TestHelpers-iOS copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "KsApi-TestHelpers-iOS copy-Info.plist"; path = "/Users/brandonwilliams/projects/kickstarter-tv/Frameworks/KsApi/KsApi-TestHelpers-iOS copy-Info.plist"; sourceTree = "<absolute>"; };
 		A7E315A31C8891E2000DD85A /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		A7FD099D1C83E74F00332CCB /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FD09D21C83E8E900332CCB /* KsApi-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -620,15 +615,6 @@
 			path = TestHelpers;
 			sourceTree = "<group>";
 		};
-		A7DB1D881C9F5401008244DA /* KsApi-TestHelpers-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				A7DB1D891C9F5401008244DA /* KsApi-TestHelpers-iOS.h */,
-				A7DB1D8B1C9F5401008244DA /* Info.plist */,
-			);
-			path = "KsApi-TestHelpers-iOS";
-			sourceTree = "<group>";
-		};
 		A7FD099F1C83E77B00332CCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,12 +630,10 @@
 			isa = PBXGroup;
 			children = (
 				A7378CCC1C809A7500F0A562 /* KsApi.playground */,
-				A7DB1D881C9F5401008244DA /* KsApi-TestHelpers-iOS */,
 				A7FD099F1C83E77B00332CCB /* Frameworks */,
 				CA43C5FB1BB358F200C180DA /* KsApi */,
 				A753B56A1C2EED9800FDB616 /* KsApiTests */,
 				CA43C5FA1BB358F200C180DA /* Products */,
-				A7DB1DA81C9F5848008244DA /* KsApi-TestHelpers-iOS copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -688,7 +672,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7DB1D8A1C9F5401008244DA /* KsApi-TestHelpers-iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,7 +679,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7DB1DA21C9F5848008244DA /* KsApi-TestHelpers-iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,6 +768,7 @@
 				A7FD09811C83E74F00332CCB /* Frameworks */,
 				A7FD098A1C83E74F00332CCB /* Headers */,
 				A7FD098C1C83E74F00332CCB /* Resources */,
+				A78538EE1CB6DB6200385B73 /* swiftlint */,
 			);
 			buildRules = (
 			);
@@ -827,6 +810,7 @@
 				CA43C5F51BB358F200C180DA /* Frameworks */,
 				CA43C5F61BB358F200C180DA /* Headers */,
 				CA43C5F71BB358F200C180DA /* Resources */,
+				A78539001CB6DB6B00385B73 /* swiftlint */,
 			);
 			buildRules = (
 			);
@@ -1140,6 +1124,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A78538EE1CB6DB6200385B73 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		A78539001CB6DB6B00385B73 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A753B5651C2EED9800FDB616 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1395,7 +1410,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "KsApi-TestHelpers-iOS copy-Info.plist";
+				INFOPLIST_FILE = KsApi/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksapi.testhelpers;
@@ -1416,7 +1431,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "KsApi-TestHelpers-iOS copy-Info.plist";
+				INFOPLIST_FILE = KsApi/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ksapi.testhelpers;

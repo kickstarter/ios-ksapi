@@ -10,7 +10,7 @@ public func == (lhs: ClientAuthType, rhs: ClientAuthType) -> Bool {
     lhs.clientId == rhs.clientId
 }
 
-public struct ClientAuth : ClientAuthType {
+public struct ClientAuth: ClientAuthType {
   public let clientId: String
 
   public init(clientId: String) {

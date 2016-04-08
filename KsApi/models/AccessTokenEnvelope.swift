@@ -12,7 +12,7 @@ public struct AccessTokenEnvelope {
   }
 }
 
-extension AccessTokenEnvelope : Decodable {
+extension AccessTokenEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<AccessTokenEnvelope> {
     return curry(AccessTokenEnvelope.init)
       <^> json <| "access_token"

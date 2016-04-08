@@ -68,7 +68,7 @@ internal struct MockService: ServiceType {
     self.fetchCommentsError = fetchCommentsError
 
     self.postCommentResponse = postCommentResponse ?? CommentFactory.comment()
-    
+
     self.postCommentError = postCommentError
 
     self.loginResponse = loginResponse
@@ -213,14 +213,15 @@ internal struct MockService: ServiceType {
   }
 
   internal func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return .init(value: project.isStarred == true ? ProjectFactory.notStarred : ProjectFactory.starred)
+    return .init(value: project.isStarred == true ? ProjectFactory.notStarred: ProjectFactory.starred)
   }
 
   internal func star(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
     return .init(value: ProjectFactory.starred)
   }
 
-  internal func login(email email: String, password: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+  internal func login(email email: String, password: String, code: String?) ->
+    SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
     if let error = loginError {
       return SignalProducer(error: error)
@@ -240,7 +241,8 @@ internal struct MockService: ServiceType {
     )
   }
 
-  internal func login(facebookAccessToken facebookAccessToken: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+  internal func login(facebookAccessToken facebookAccessToken: String, code: String?) ->
+    SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
     if let error = loginError {
       return SignalProducer(error: error)
@@ -260,7 +262,8 @@ internal struct MockService: ServiceType {
     )
   }
 
-  internal func postComment(body: String, toProject project: Project) -> SignalProducer<Comment, ErrorEnvelope> {
+  internal func postComment(body: String, toProject project: Project) ->
+    SignalProducer<Comment, ErrorEnvelope> {
 
     if let error = postCommentError {
       return SignalProducer(error: error)
@@ -274,7 +277,8 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: UserFactory.user)
   }
 
-  func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+  func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->
+    SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
     return SignalProducer(value:
       AccessTokenEnvelope(

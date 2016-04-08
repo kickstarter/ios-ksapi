@@ -74,6 +74,7 @@ class DiscoveryParamsTests: XCTestCase {
     XCTAssertEqual(nextPage.page, 2)
   }
 
+  // swiftlint:disable function_body_length
   func testQueryParams() {
     let defaultParams = DiscoveryParams()
     XCTAssertEqual(defaultParams.queryParams, [
@@ -89,7 +90,15 @@ class DiscoveryParamsTests: XCTestCase {
       social: true,
       recommended: true,
       similarTo: nil,
-      category: Models.Category(id: 1, name: "Art", slug: "art", position: 1, parentId: nil, parent: nil, color: nil),
+      category: Models.Category(
+        id: 1,
+        name: "Art",
+        slug: "art",
+        position: 1,
+        parentId: nil,
+        parent: nil,
+        color: nil
+      ),
       query: "wallet",
       state: .Live,
       sort: .Popular,
@@ -103,7 +112,7 @@ class DiscoveryParamsTests: XCTestCase {
       "staff_picks": "true",
       "has_video": "true",
       "starred": "false",
-      "backed" : "false",
+      "backed": "false",
       "social": "true",
       "recommended": "true",
       "category_id": "1",

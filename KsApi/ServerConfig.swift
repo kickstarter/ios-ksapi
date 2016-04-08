@@ -17,7 +17,7 @@ public func == (lhs: ServerConfigType, rhs: ServerConfigType) -> Bool {
     lhs.basicHTTPAuth == rhs.basicHTTPAuth
 }
 
-public struct ServerConfig : ServerConfigType {
+public struct ServerConfig: ServerConfigType {
   public let apiBaseUrl: NSURL
   public let webBaseUrl: NSURL
   public let apiClientAuth: ClientAuthType
@@ -44,20 +44,14 @@ public struct ServerConfig : ServerConfigType {
     basicHTTPAuth: nil
   )
 
-  public init(apiBaseUrl: NSURL, webBaseUrl: NSURL, apiClientAuth: ClientAuthType, basicHTTPAuth: BasicHTTPAuthType?) {
+  public init(apiBaseUrl: NSURL,
+              webBaseUrl: NSURL,
+              apiClientAuth: ClientAuthType,
+              basicHTTPAuth: BasicHTTPAuthType?) {
+
     self.apiBaseUrl = apiBaseUrl
     self.webBaseUrl = webBaseUrl
     self.apiClientAuth = apiClientAuth
     self.basicHTTPAuth = basicHTTPAuth
-  }
-
-  /**
-   Create a server type with just the base dev instance name.
-  */
-  public init(devEnv: String) {
-    self.apiBaseUrl = NSURL(string: "https://api-\(devEnv).***REMOVED***")!
-    self.webBaseUrl = NSURL(string: "https://\(devEnv).***REMOVED***")!
-    self.apiClientAuth = ClientAuth.development
-    self.basicHTTPAuth = BasicHTTPAuth.development
   }
 }

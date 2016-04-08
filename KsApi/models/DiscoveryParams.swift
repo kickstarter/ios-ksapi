@@ -112,7 +112,7 @@ public struct DiscoveryParams {
       "staff_picks": self.staffPicks?.description,
       "has_video": self.hasVideo?.description,
       "starred": self.starred?.description,
-      "backed" : self.backed?.description,
+      "backed": self.backed?.description,
       "social": self.social?.description,
       "recommended": self.recommended?.description,
       "similar_to": self.similarTo?.id.description,
@@ -128,7 +128,7 @@ public struct DiscoveryParams {
   }
 }
 
-extension DiscoveryParams : Equatable {}
+extension DiscoveryParams: Equatable {}
 public func == (a: DiscoveryParams, b: DiscoveryParams) -> Bool {
   return a.queryParams == b.queryParams
 }
@@ -139,7 +139,7 @@ extension DiscoveryParams: Hashable {
   }
 }
 
-extension DiscoveryParams : CustomStringConvertible, CustomDebugStringConvertible {
+extension DiscoveryParams: CustomStringConvertible, CustomDebugStringConvertible {
   public var description: String {
     return self.queryParams.description
   }

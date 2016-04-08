@@ -12,7 +12,10 @@ public struct Service: ServiceType {
   public let oauthToken: OauthTokenAuthType?
   public let language: String
 
-  public init(serverConfig: ServerConfigType = ServerConfig.production, oauthToken: OauthTokenAuthType? = nil, language: String = "en") {
+  public init(serverConfig: ServerConfigType = ServerConfig.production,
+              oauthToken: OauthTokenAuthType? = nil,
+              language: String = "en") {
+
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
     self.language = language
@@ -100,17 +103,23 @@ public struct Service: ServiceType {
       .map { envelope in envelope.project }
   }
 
-  public func login(email email: String, password: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+  public func login(email email: String, password: String, code: String?) ->
+    SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+
     return request(.Login(email: email, password: password, code: code))
       .decodeModel(AccessTokenEnvelope.self)
   }
 
-  public func login(facebookAccessToken facebookAccessToken: String, code: String?) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+  public func login(facebookAccessToken facebookAccessToken: String, code: String?) ->
+    SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+
     return request(.FacebookLogin(facebookAccessToken: facebookAccessToken, code: code))
       .decodeModel(AccessTokenEnvelope.self)
   }
 
-  public func postComment(body: String, toProject project: Project) -> SignalProducer<Comment, ErrorEnvelope> {
+  public func postComment(body: String, toProject project: Project) ->
+    SignalProducer<Comment, ErrorEnvelope> {
+
     return request(.PostProjectComment(project, body: body))
       .decodeModel(Comment.self)
   }
@@ -120,8 +129,10 @@ public struct Service: ServiceType {
       .decodeModel(User.self)
   }
 
-  public func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
-    return request(.FacebookSignup(facebookAccessToken: facebookAccessToken, sendNewsletters: sendNewsletters))
+  public func signup(facebookAccessToken token: String, sendNewsletters: Bool) ->
+    SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+
+    return request(.FacebookSignup(facebookAccessToken: token, sendNewsletters: sendNewsletters))
       .decodeModel(AccessTokenEnvelope.self)
   }
 
@@ -133,9 +144,7 @@ public struct Service: ServiceType {
       .validate(contentType: ["application/json"])
   }
 
-  /**
-   Converts a `Route` into a URL request that can be used with Alamofire.
-  */
+  // Converts a `Route` into a URL request that can be used with Alamofire.
   private func requestFromRoute(route: Route) -> URLRequestConvertible {
     let properties = route.requestProperties
 

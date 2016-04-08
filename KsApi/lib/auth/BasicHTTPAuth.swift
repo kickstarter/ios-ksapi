@@ -32,7 +32,7 @@ extension BasicHTTPAuthType {
   }
 }
 
-public struct BasicHTTPAuth : BasicHTTPAuthType {
+public struct BasicHTTPAuth: BasicHTTPAuthType {
   public let username: String
   public let password: String
 

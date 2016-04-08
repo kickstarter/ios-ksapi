@@ -8,7 +8,7 @@ public struct StarEnvelope {
   public let project: Project
 }
 
-extension StarEnvelope : Decodable {
+extension StarEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<StarEnvelope> {
     return curry(StarEnvelope.init)
       <^> json <| "user"

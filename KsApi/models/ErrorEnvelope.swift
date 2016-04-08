@@ -54,7 +54,11 @@ public struct ErrorEnvelope {
 
   /**
    A general error that some JSON could not be decoded into a model.
-  */
+
+   - parameter decodeError: The Argo decoding error.
+
+   - returns: An error envelope.
+   */
   internal static func couldNotDecodeJSON(decodeError: DecodeError) -> ErrorEnvelope {
     return ErrorEnvelope(
       errorMessages: [decodeError.description],
@@ -65,10 +69,10 @@ public struct ErrorEnvelope {
   }
 }
 
-extension ErrorEnvelope : ErrorType {
+extension ErrorEnvelope: ErrorType {
 }
 
-extension ErrorEnvelope : Decodable {
+extension ErrorEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<ErrorEnvelope> {
     return curry(ErrorEnvelope.init)
       <^> json <|| "error_messages"
@@ -78,7 +82,7 @@ extension ErrorEnvelope : Decodable {
   }
 }
 
-extension ErrorEnvelope.Exception : Decodable {
+extension ErrorEnvelope.Exception: Decodable {
   public static func decode(json: JSON) -> Decoded<ErrorEnvelope.Exception> {
     return curry(ErrorEnvelope.Exception.init)
       <^> json <||? "backtrace"
@@ -86,7 +90,7 @@ extension ErrorEnvelope.Exception : Decodable {
   }
 }
 
-extension ErrorEnvelope.KsrCode : Decodable {
+extension ErrorEnvelope.KsrCode: Decodable {
   public static func decode(j: JSON) -> Decoded<ErrorEnvelope.KsrCode> {
     switch j {
     case let .String(s):

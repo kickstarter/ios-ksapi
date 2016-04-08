@@ -15,7 +15,8 @@ internal extension Alamofire.Request {
   - Decoding JSON into a model.
   - Fail if the decoding returns `nil`.
   */
-  internal func decodeModel<M: Decodable where M == M.DecodedType>(_: M.Type) -> SignalProducer<M, ErrorEnvelope> {
+  internal func decodeModel<M: Decodable where M == M.DecodedType>(_: M.Type) ->
+    SignalProducer<M, ErrorEnvelope> {
 
     return self.rac_JSONResponse()
       .map { json in decode(json) as Decoded<M> }
@@ -29,9 +30,7 @@ internal extension Alamofire.Request {
       }
   }
 
-  /**
-   Convert an Alamofire request into a signal producer of `NSData`.
-  */
+  // Convert an Alamofire request into a signal producer of `NSData`.
   private func rac_dataResponse() -> SignalProducer<NSData, ErrorEnvelope> {
 
     return SignalProducer { observer, dispossable in
@@ -58,10 +57,8 @@ internal extension Alamofire.Request {
     }
   }
 
-  /**
-   Converts an Alamofire request into a signal producer of raw JSON data. If the JSON does not parse
-   successfully, an `ErrorEnvelope.errorJSONCouldNotParse()` error is emitted.
-  */
+  // Converts an Alamofire request into a signal producer of raw JSON data. If the JSON does not parse
+  // successfully, an `ErrorEnvelope.errorJSONCouldNotParse()` error is emitted.
   private func rac_JSONResponse() -> SignalProducer<AnyObject, ErrorEnvelope> {
     return rac_dataResponse()
       .observeOn(QueueScheduler(queue: Alamofire.Request.queue))

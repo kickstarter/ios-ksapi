@@ -15,7 +15,7 @@ public func == (lhs: OauthTokenAuthType?, rhs: OauthTokenAuthType?) -> Bool {
     lhs?.token == rhs?.token
 }
 
-public struct OauthToken : OauthTokenAuthType {
+public struct OauthToken: OauthTokenAuthType {
   public let token: String
 
   public init(token: String) {
