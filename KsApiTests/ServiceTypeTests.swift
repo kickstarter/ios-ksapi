@@ -5,6 +5,6 @@ import XCTest
 final class ServiceTypeTests: XCTestCase {
 
   func testEquals() {
-    XCTAssertFalse(Service() == MockService())
+    XCTAssertTrue(Service() != MockService())
   }
 }

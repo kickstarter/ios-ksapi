@@ -86,3 +86,7 @@ public func == (lhs: ServiceType, rhs: ServiceType) -> Bool {
       lhs.oauthToken == rhs.oauthToken &&
       lhs.language == rhs.language
 }
+
+public func != (lhs: ServiceType, rhs: ServiceType) -> Bool {
+  return !(lhs == rhs)
+}
