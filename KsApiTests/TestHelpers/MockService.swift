@@ -254,7 +254,7 @@ internal struct MockService: ServiceType {
 
     return SignalProducer(value:
       AccessTokenEnvelope(
-        access_token: "deadbeef",
+        accessToken: "deadbeef",
         user: UserFactory.user
       )
     )
@@ -275,7 +275,7 @@ internal struct MockService: ServiceType {
 
     return SignalProducer(value:
       AccessTokenEnvelope(
-        access_token: "deadbeef",
+        accessToken: "deadbeef",
         user: UserFactory.user
       )
     )
@@ -306,7 +306,7 @@ internal struct MockService: ServiceType {
 
     return SignalProducer(value:
       AccessTokenEnvelope(
-        access_token: "deadbeef",
+        accessToken: "deadbeef",
         user: UserFactory.user
       )
     )

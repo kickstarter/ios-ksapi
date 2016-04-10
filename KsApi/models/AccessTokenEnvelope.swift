@@ -5,11 +5,6 @@ import func Curry.curry
 public struct AccessTokenEnvelope {
   public let accessToken: String
   public let user: User
-
-  internal init(access_token: String, user: User) {
-    self.accessToken = access_token
-    self.user = user
-  }
 }
 
 extension AccessTokenEnvelope: Decodable {
