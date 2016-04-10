@@ -7,6 +7,7 @@ internal struct MockService: ServiceType {
   internal let serverConfig: ServerConfigType
   internal let oauthToken: OauthTokenAuthType?
   internal let language: String
+  internal let buildVersion: Int = 9999
 
   private let fetchActivitiesResponse: [Activity]?
   private let fetchActivitiesError: ErrorEnvelope?
@@ -27,12 +28,14 @@ internal struct MockService: ServiceType {
 
   internal init(serverConfig: ServerConfigType,
                 oauthToken: OauthTokenAuthType?,
-                language: String) {
+                language: String,
+                buildVersion: Int = 9999) {
 
     self.init(
       serverConfig: serverConfig,
       oauthToken: oauthToken,
       language: language,
+      buildVersion: buildVersion,
       fetchActivitiesResponse: nil
     )
   }
@@ -40,6 +43,7 @@ internal struct MockService: ServiceType {
   internal init(serverConfig: ServerConfigType = ServerConfig.production,
                 oauthToken: OauthTokenAuthType? = nil,
                 language: String = "en",
+                buildVersion: Int = 9999,
                 fetchActivitiesResponse: [Activity]? = nil,
                 fetchActivitiesError: ErrorEnvelope? = nil,
                 fetchCommentsResponse: [Comment]? = nil,
@@ -104,6 +108,7 @@ internal struct MockService: ServiceType {
       serverConfig: self.serverConfig,
       oauthToken: oauthToken,
       language: self.language,
+      buildVersion: self.buildVersion,
       fetchActivitiesResponse: self.fetchActivitiesResponse,
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,
@@ -124,6 +129,7 @@ internal struct MockService: ServiceType {
       serverConfig: self.serverConfig,
       oauthToken: nil,
       language: self.language,
+      buildVersion: self.buildVersion,
       fetchActivitiesResponse: self.fetchActivitiesResponse,
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,

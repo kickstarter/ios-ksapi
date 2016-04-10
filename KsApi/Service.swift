@@ -11,22 +11,32 @@ public struct Service: ServiceType {
   public let serverConfig: ServerConfigType
   public let oauthToken: OauthTokenAuthType?
   public let language: String
+  public let buildVersion: Int
 
   public init(serverConfig: ServerConfigType = ServerConfig.production,
               oauthToken: OauthTokenAuthType? = nil,
-              language: String = "en") {
+              language: String = "en",
+              // TODO: Update main app to inject this.
+              buildVersion: Int = 9999) {
 
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
     self.language = language
+    self.buildVersion = buildVersion
   }
 
   public func login(oauthToken: OauthTokenAuthType) -> Service {
-    return Service(serverConfig: self.serverConfig, oauthToken: oauthToken, language: self.language)
+    return Service(serverConfig: self.serverConfig,
+                   oauthToken: oauthToken,
+                   language: self.language,
+                   buildVersion: self.buildVersion)
   }
 
   public func logout() -> Service {
-    return Service(serverConfig: self.serverConfig, oauthToken: nil, language: self.language)
+    return Service(serverConfig: self.serverConfig,
+                   oauthToken: nil,
+                   language: self.language,
+                   buildVersion: self.buildVersion)
   }
 
   public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
@@ -163,7 +173,7 @@ public struct Service: ServiceType {
     var headers = request.allHTTPHeaderFields ?? [:]
     headers["Authorization"] = self.serverConfig.basicHTTPAuth?.authorizationHeader
     headers["Accept-Language"] = self.language
-    headers["Kickstarter-iOS-App"] = "9999" // TODO: make this a dependency
+    headers["Kickstarter-iOS-App"] = "\(self.buildVersion)"
     request.allHTTPHeaderFields = headers
 
     let (retRequest, _) = Alamofire.ParameterEncoding.URL.encode(request, parameters: query)
