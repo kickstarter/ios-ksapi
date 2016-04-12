@@ -30,8 +30,11 @@ public protocol ServiceType {
   /// Fetch comments for a project.
   func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope>
 
+  /// Fetch discovery envelope with a pagination url.
+  func fetchDiscovery(paginationUrl paginationUrl: String) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>
+
   /// Fetch the full discovery envelope with specified discovery params.
-  func fetchDiscovery(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>
+  func fetchDiscovery(params params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>
 
   /// Fetch a single project with the specified discovery params.
   func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope>

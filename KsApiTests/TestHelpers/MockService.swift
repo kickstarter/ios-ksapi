@@ -155,7 +155,7 @@ internal struct MockService: ServiceType {
           activities: activities,
           urls: ActivityEnvelope.UrlsEnvelope(
             api: ActivityEnvelope.UrlsEnvelope.ApiEnvelope(
-              moreActivities: ""
+              moreActivities: "http://***REMOVED***/gimme/more"
             )
           )
         )
@@ -164,16 +164,37 @@ internal struct MockService: ServiceType {
     return .empty
   }
 
-  internal func fetchDiscovery(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
+  internal func fetchDiscovery(paginationUrl paginationUrl: String)
+    -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
-    let projects = (1...10).map { ProjectFactory.live(id: $0 + params.hashValue) }
+    let projects = (1...4).map { ProjectFactory.live(id: $0 + paginationUrl.hashValue) }
 
     return SignalProducer(value:
       DiscoveryEnvelope(
         projects: projects,
         urls: DiscoveryEnvelope.UrlsEnvelope(
           api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
-            more_projects: ""
+            more_projects: paginationUrl + "+1"
+          )
+        ),
+        stats: DiscoveryEnvelope.StatsEnvelope(
+          count: 200
+        )
+      )
+    )
+  }
+
+  internal func fetchDiscovery(params params: DiscoveryParams)
+    -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
+
+    let projects = (1...4).map { ProjectFactory.live(id: $0 + params.hashValue) }
+
+    return SignalProducer(value:
+      DiscoveryEnvelope(
+        projects: projects,
+        urls: DiscoveryEnvelope.UrlsEnvelope(
+          api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
+            more_projects: "http://***REMOVED***/gimme/more"
           )
         ),
         stats: DiscoveryEnvelope.StatsEnvelope(
@@ -184,12 +205,12 @@ internal struct MockService: ServiceType {
   }
 
   internal func fetchProjects(params: DiscoveryParams) -> SignalProducer<[Project], ErrorEnvelope> {
-    return fetchDiscovery(params)
+    return fetchDiscovery(params: params)
       .map { $0.projects }
   }
 
   internal func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
-    return fetchDiscovery(params)
+    return fetchDiscovery(params: params)
       .map { $0.projects.first }
       .ignoreNil()
   }

@@ -1,3 +1,4 @@
+import Foundation
 import Alamofire
 import Models
 import ReactiveCocoa
@@ -58,13 +59,22 @@ public struct Service: ServiceType {
       .decodeModel(CommentsEnvelope.self)
   }
 
-  public func fetchDiscovery(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
+  public func fetchDiscovery(paginationUrl paginationUrl: String)
+    -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
+
+    return requestPagination(paginationUrl)
+      .decodeModel(DiscoveryEnvelope.self)
+  }
+
+  public func fetchDiscovery(params params: DiscoveryParams)
+    -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
+
     return request(.Discover(params))
       .decodeModel(DiscoveryEnvelope.self)
   }
 
   public func fetchProjects(params: DiscoveryParams) -> SignalProducer<[Project], ErrorEnvelope> {
-    return fetchDiscovery(params)
+    return fetchDiscovery(params: params)
       .map { env in env.projects }
   }
 
@@ -146,37 +156,58 @@ public struct Service: ServiceType {
       .decodeModel(AccessTokenEnvelope.self)
   }
 
-  // MARK: Private methods
-
-  private func request(route: Route) -> Alamofire.Request {
-    return Alamofire.request(self.requestFromRoute(route))
+  private func requestPagination(paginationUrl: String) -> Alamofire.Request {
+    return Alamofire.request(self.paginationRequest(paginationUrl))
       .validate(statusCode: 200..<300)
       .validate(contentType: ["application/json"])
   }
 
+  private func request(route: Route) -> Alamofire.Request {
+    return Alamofire.request(self.urlRequest(route))
+      .validate(statusCode: 200..<300)
+      .validate(contentType: ["application/json"])
+  }
+
+  private func paginationRequest(paginationUrl: String) -> URLRequestConvertible {
+
+    // swiftlint:disable force_cast
+    // NB: instead of force cast we could bubble up a custom ErrorEnvelope error.
+    return NSURL(string: paginationUrl)
+      .flatMap(NSMutableURLRequest.init(URL:))
+      .flatMap(preparedRequest) as! NSURLRequest
+    // swiftlint:enable force_cast
+  }
+
   // Converts a `Route` into a URL request that can be used with Alamofire.
-  private func requestFromRoute(route: Route) -> URLRequestConvertible {
+  private func urlRequest(route: Route) -> URLRequestConvertible {
     let properties = route.requestProperties
 
     let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
     let request = NSMutableURLRequest(URL: URL)
     request.HTTPMethod = properties.method.rawValue
 
-    // Add some query params for authentication et al
-    var query = properties.query
-    query["client_id"] = self.serverConfig.apiClientAuth.clientId
-    if let token = self.oauthToken?.token {
-      query["oauth_token"] = token
+    return preparedRequest(request)
+  }
+
+  private func preparedRequest(request: NSURLRequest) -> URLRequestConvertible {
+    guard let requestCopy = request.mutableCopy() as? NSMutableURLRequest else {
+      // NB: instead of fatal error we could bubble up a custom ErrorEnvelope error.
+      fatalError()
     }
 
+    // Add some query params for authentication et al
+    var query: [String:AnyObject] = [:]
+    query["client_id"] = self.serverConfig.apiClientAuth.clientId
+    query["oauth_token"] = self.oauthToken?.token
+
     // Add some headers
-    var headers = request.allHTTPHeaderFields ?? [:]
+    var headers = request.URLRequest.allHTTPHeaderFields ?? [:]
     headers["Authorization"] = self.serverConfig.basicHTTPAuth?.authorizationHeader
     headers["Accept-Language"] = self.language
     headers["Kickstarter-iOS-App"] = "\(self.buildVersion)"
-    request.allHTTPHeaderFields = headers
+    requestCopy.allHTTPHeaderFields = headers
 
-    let (retRequest, _) = Alamofire.ParameterEncoding.URL.encode(request, parameters: query)
+    let (retRequest, _) = Alamofire.ParameterEncoding.URL.encode(requestCopy, parameters: query)
 
     return retRequest
   }
