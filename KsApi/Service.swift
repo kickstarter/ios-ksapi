@@ -174,7 +174,7 @@ public struct Service: ServiceType {
     // NB: instead of force cast we could bubble up a custom ErrorEnvelope error.
     return NSURL(string: paginationUrl)
       .flatMap(NSMutableURLRequest.init(URL:))
-      .flatMap(preparedRequest) as! NSURLRequest
+      .flatMap { preparedRequest($0) } as! NSURLRequest
     // swiftlint:enable force_cast
   }
 
@@ -186,17 +186,18 @@ public struct Service: ServiceType {
     let request = NSMutableURLRequest(URL: URL)
     request.HTTPMethod = properties.method.rawValue
 
-    return preparedRequest(request)
+    return preparedRequest(request, query: properties.query)
   }
 
-  private func preparedRequest(request: NSURLRequest) -> URLRequestConvertible {
+  private func preparedRequest(request: NSURLRequest, query: [String:AnyObject] = [:])
+    -> URLRequestConvertible {
     guard let requestCopy = request.mutableCopy() as? NSMutableURLRequest else {
       // NB: instead of fatal error we could bubble up a custom ErrorEnvelope error.
       fatalError()
     }
 
     // Add some query params for authentication et al
-    var query: [String:AnyObject] = [:]
+    var query = query
     query["client_id"] = self.serverConfig.apiClientAuth.clientId
     query["oauth_token"] = self.oauthToken?.token
 
