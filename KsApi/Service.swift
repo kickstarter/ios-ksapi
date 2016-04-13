@@ -7,18 +7,15 @@ import ReactiveCocoa
  A `ServerType` that requests data from an API webservice.
 */
 public struct Service: ServiceType {
-  public static let shared = Service()
-
   public let serverConfig: ServerConfigType
   public let oauthToken: OauthTokenAuthType?
   public let language: String
-  public let buildVersion: Int
+  public let buildVersion: String
 
   public init(serverConfig: ServerConfigType = ServerConfig.production,
               oauthToken: OauthTokenAuthType? = nil,
               language: String = "en",
-              // TODO: Update main app to inject this.
-              buildVersion: Int = 9999) {
+              buildVersion: String = "1") {
 
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
@@ -205,7 +202,7 @@ public struct Service: ServiceType {
     var headers = request.URLRequest.allHTTPHeaderFields ?? [:]
     headers["Authorization"] = self.serverConfig.basicHTTPAuth?.authorizationHeader
     headers["Accept-Language"] = self.language
-    headers["Kickstarter-iOS-App"] = "\(self.buildVersion)"
+    headers["Kickstarter-iOS-App"] = self.buildVersion
     requestCopy.allHTTPHeaderFields = headers
 
     let (retRequest, _) = Alamofire.ParameterEncoding.URL.encode(requestCopy, parameters: query)

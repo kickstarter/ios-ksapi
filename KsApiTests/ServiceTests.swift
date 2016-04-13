@@ -4,9 +4,9 @@ import XCTest
 final class ServiceTests: XCTestCase {
 
   func testDefaults() {
-    XCTAssertTrue(Service.shared.serverConfig == ServerConfig.production)
-    XCTAssertNil(Service.shared.oauthToken)
-    XCTAssertEqual(Service.shared.language, "en")
+    XCTAssertTrue(Service().serverConfig == ServerConfig.production)
+    XCTAssertNil(Service().oauthToken)
+    XCTAssertEqual(Service().language, "en")
   }
 
   func testEquals() {

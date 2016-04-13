@@ -8,9 +8,12 @@ public protocol ServiceType {
   var serverConfig: ServerConfigType { get }
   var oauthToken: OauthTokenAuthType? { get }
   var language: String { get }
-  var buildVersion: Int { get }
+  var buildVersion: String { get }
 
-  init(serverConfig: ServerConfigType, oauthToken: OauthTokenAuthType?, language: String, buildVersion: Int)
+  init(serverConfig: ServerConfigType,
+       oauthToken: OauthTokenAuthType?,
+       language: String,
+       buildVersion: String)
 
   /// Returns a new service with the oauth token replaced.
   func login(oauthToken: OauthTokenAuthType) -> Self
