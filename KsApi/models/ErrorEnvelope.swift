@@ -10,9 +10,12 @@ public struct ErrorEnvelope {
   public enum KsrCode: String {
     // Codes defined by the server
     case AccessTokenInvalid = "access_token_invalid"
+    case ConfirmFacebookSignup = "confirm_facebook_signup"
+    case FacebookInvalidAccessToken = "facebook_invalid_access_token"
     case InvalidXauthLogin = "invalid_xauth_login"
-    case TfaRequired = "tfa_required"
+    case MissingFacebookEmail = "missing_facebook_email"
     case TfaFailed = "tfa_failed"
+    case TfaRequired = "tfa_required"
 
     // Catch all code for when server sends code we don't know about yet
     case UnknownCode = "__internal_unknown_code"

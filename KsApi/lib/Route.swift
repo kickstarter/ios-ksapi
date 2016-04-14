@@ -35,15 +35,16 @@ public enum Route {
       return (.GET, "/v1/discover", params.queryParams)
 
     case let .FacebookLogin(facebookAccessToken, code):
-      var params = ["access_token": facebookAccessToken]
+      var params = ["access_token": facebookAccessToken, "intent": "login"]
       params["code"] = code
-      return (.PUT, "/v1/facebook/access_token?intent=login", params)
+      return (.PUT, "/v1/facebook/access_token", params)
 
     case let .FacebookSignup(facebookAccessToken, sendNewsletters):
       let params: [String:AnyObject] = ["access_token": facebookAccessToken,
+                                        "intent": "register",
                                         "send_newsletters": sendNewsletters,
                                         "newsletter_opt_in": sendNewsletters]
-      return (.PUT, "/v1/facebook/access_token?intent=register", params)
+      return (.PUT, "/v1/facebook/access_token", params)
 
     case let .Login(email, password, code):
       var params = ["email": email, "password": password]
