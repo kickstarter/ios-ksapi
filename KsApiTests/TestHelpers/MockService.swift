@@ -243,8 +243,9 @@ internal struct MockService: ServiceType {
 
     return SignalProducer(value: [
       CategoryFactory.art,
-      CategoryFactory.comics,
-      CategoryFactory.illustration
+      CategoryFactory.filmAndVideo,
+      CategoryFactory.illustration,
+      CategoryFactory.documentary
       ]
     )
   }
