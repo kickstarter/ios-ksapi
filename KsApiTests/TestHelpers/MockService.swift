@@ -255,7 +255,11 @@ internal struct MockService: ServiceType {
   }
 
   internal func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return .init(value: project.isStarred == true ? ProjectFactory.notStarred: ProjectFactory.starred)
+    return .init(
+      value: project.personalization.isStarred == true ?
+        ProjectFactory.notStarred :
+        ProjectFactory.starred
+    )
   }
 
   internal func star(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
