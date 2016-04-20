@@ -85,7 +85,7 @@ class DiscoveryParamsTests: XCTestCase {
     let params = DiscoveryParams(
       staffPicks: true,
       hasVideo: true,
-      starred: false,
+      starred: nil,
       backed: false,
       social: true,
       recommended: true,
@@ -111,9 +111,8 @@ class DiscoveryParamsTests: XCTestCase {
     XCTAssertEqual(params.queryParams, [
       "staff_picks": "true",
       "has_video": "true",
-      "starred": "false",
-      "backed": "false",
-      "social": "true",
+      "backed": "-1",
+      "social": "1",
       "recommended": "true",
       "category_id": "1",
       "term": "wallet",

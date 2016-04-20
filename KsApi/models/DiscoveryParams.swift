@@ -111,9 +111,9 @@ public struct DiscoveryParams {
     return [
       "staff_picks": self.staffPicks?.description,
       "has_video": self.hasVideo?.description,
-      "starred": self.starred == true ? "1" : nil,
-      "backed": self.backed == true ? "1" : nil,
-      "social": self.social == true ? "1" : nil,
+      "starred": self.starred == true ? "1" : self.starred == false ? "-1" : nil,
+      "backed": self.backed == true ? "1" : self.backed == false ? "-1" : nil,
+      "social": self.social == true ? "1" : self.social == false ? "-1" : nil,
       "recommended": self.recommended?.description,
       "similar_to": self.similarTo?.id.description,
       "category_id": self.category?.id.description,
