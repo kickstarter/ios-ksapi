@@ -56,15 +56,15 @@ public struct ErrorEnvelope {
   }
 
   /**
-   A general error that some JSON could not be decoded into a model.
+   A general error that some JSON could not be decoded.
 
    - parameter decodeError: The Argo decoding error.
 
-   - returns: An error envelope.
+   - returns: An error envelope that describes why decoding failed.
    */
   internal static func couldNotDecodeJSON(decodeError: DecodeError) -> ErrorEnvelope {
     return ErrorEnvelope(
-      errorMessages: [decodeError.description],
+      errorMessages: ["Argo decoding error: \(decodeError.description)"],
       ksrCode: .DecodingJSONFailed,
       httpCode: 400,
       exception: nil

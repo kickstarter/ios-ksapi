@@ -24,7 +24,7 @@ internal extension Alamofire.Request {
         if let value = decoded.value {
           return SignalProducer(value: value)
         } else if let error = decoded.error {
-          return SignalProducer(error: ErrorEnvelope.couldNotDecodeJSON(error))
+          return SignalProducer(error: .couldNotDecodeJSON(error))
         }
         return .empty
       }
@@ -43,14 +43,19 @@ internal extension Alamofire.Request {
           observer.sendCompleted()
         case .Failure:
           print("[KsApi] Failure \(self)")
-          // Try parsing the failure JSON into an envelope that we understand
-          if let data = response.data,
-            json = parseJSONData(data),
-            envelope = decode(json) as ErrorEnvelope? {
+
+          if let json = response.data.flatMap(parseJSONData) {
+            switch decode(json) as Decoded<ErrorEnvelope> {
+            case let .Success(envelope):
+              // Got the error envelope
               observer.sendFailed(envelope)
+            case let .Failure(error):
+              // Couldn't decode the error envelope
+              observer.sendFailed(.couldNotDecodeJSON(error))
+            }
           } else {
-            // When that's not possible send a general error
-            observer.sendFailed(ErrorEnvelope.couldNotParseErrorEnvelopeJSON)
+            // Couldn't even parse the JSON
+            observer.sendFailed(.couldNotParseErrorEnvelopeJSON)
           }
         }
       }
