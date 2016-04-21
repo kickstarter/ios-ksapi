@@ -6,6 +6,16 @@ public struct ErrorEnvelope {
   public let ksrCode: KsrCode?
   public let httpCode: Int
   public let exception: Exception?
+  public let facebookUser: FacebookUser?
+
+  public init(errorMessages: [String], ksrCode: KsrCode?, httpCode: Int, exception: Exception?,
+              facebookUser: FacebookUser? = nil) {
+    self.errorMessages = errorMessages
+    self.ksrCode = ksrCode
+    self.httpCode = httpCode
+    self.exception = exception
+    self.facebookUser = facebookUser
+  }
 
   public enum KsrCode: String {
     // Codes defined by the server
@@ -31,6 +41,12 @@ public struct ErrorEnvelope {
     public let message: String?
   }
 
+  public struct FacebookUser {
+    public let id: Int64
+    public let name: String
+    public let email: String
+  }
+
   /**
    A general error that JSON could not be parsed.
   */
@@ -39,7 +55,8 @@ public struct ErrorEnvelope {
       errorMessages: [],
       ksrCode: .JSONParsingFailed,
       httpCode: 400,
-      exception: nil
+      exception: nil,
+      facebookUser: nil
     )
   }
 
@@ -51,7 +68,8 @@ public struct ErrorEnvelope {
       errorMessages: [],
       ksrCode: .ErrorEnvelopeJSONParsingFailed,
       httpCode: 400,
-      exception: nil
+      exception: nil,
+      facebookUser: nil
     )
   }
 
@@ -67,7 +85,8 @@ public struct ErrorEnvelope {
       errorMessages: ["Argo decoding error: \(decodeError.description)"],
       ksrCode: .DecodingJSONFailed,
       httpCode: 400,
-      exception: nil
+      exception: nil,
+      facebookUser: nil
     )
   }
 }
@@ -82,6 +101,7 @@ extension ErrorEnvelope: Decodable {
       <*> json <|? "ksr_code"
       <*> json <| "http_code"
       <*> json <|? "exception"
+      <*> json <|? "facebook_user"
   }
 }
 
@@ -101,5 +121,14 @@ extension ErrorEnvelope.KsrCode: Decodable {
     default:
       return .typeMismatch("ErrorEnvelope.KsrCode", actual: j)
     }
+  }
+}
+
+extension ErrorEnvelope.FacebookUser: Decodable {
+  public static func decode(json: JSON) -> Decoded<ErrorEnvelope.FacebookUser> {
+    return curry(ErrorEnvelope.FacebookUser.init)
+      <^> json <| "id"
+      <*> json <| "name"
+      <*> json <| "email"
   }
 }

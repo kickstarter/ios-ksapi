@@ -26,6 +26,9 @@ internal struct MockService: ServiceType {
   private let resetPasswordResponse: User?
   private let resetPasswordError: ErrorEnvelope?
 
+  private let signupResponse: AccessTokenEnvelope?
+  private let signupError: ErrorEnvelope?
+
   internal init(serverConfig: ServerConfigType,
                 oauthToken: OauthTokenAuthType?,
                 language: String,
@@ -55,7 +58,9 @@ internal struct MockService: ServiceType {
                 resendCodeResponse: ErrorEnvelope? = nil,
                 resendCodeError: ErrorEnvelope? = nil,
                 resetPasswordResponse: User? = nil,
-                resetPasswordError: ErrorEnvelope? = nil) {
+                resetPasswordError: ErrorEnvelope? = nil,
+                signupResponse: AccessTokenEnvelope? = nil,
+                signupError: ErrorEnvelope? = nil) {
 
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
@@ -92,6 +97,10 @@ internal struct MockService: ServiceType {
     self.resetPasswordResponse = resetPasswordResponse
 
     self.resetPasswordError = resetPasswordError
+
+    self.signupResponse = signupResponse
+
+    self.signupError = signupError
   }
 
   internal func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
@@ -121,7 +130,9 @@ internal struct MockService: ServiceType {
       resendCodeResponse: self.resendCodeResponse,
       resendCodeError: self.resendCodeError,
       resetPasswordResponse: self.resetPasswordResponse,
-      resetPasswordError: self.resetPasswordError
+      resetPasswordError: self.resetPasswordError,
+      signupResponse: self.signupResponse,
+      signupError: self.signupError
     )
   }
 
@@ -142,7 +153,9 @@ internal struct MockService: ServiceType {
       resendCodeResponse: self.resendCodeResponse,
       resendCodeError: self.resendCodeError,
       resetPasswordResponse: self.resetPasswordResponse,
-      resetPasswordError: self.resetPasswordError
+      resetPasswordError: self.resetPasswordError,
+      signupResponse: self.signupResponse,
+      signupError: self.signupError
     )
   }
 
@@ -331,6 +344,11 @@ internal struct MockService: ServiceType {
   func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
+    if let error = signupError {
+      return SignalProducer(error: error)
+    } else if let accessTokenEnvelope = signupResponse {
+      return SignalProducer(value: accessTokenEnvelope)
+    }
     return SignalProducer(value:
       AccessTokenEnvelope(
         accessToken: "deadbeef",
@@ -338,5 +356,4 @@ internal struct MockService: ServiceType {
       )
     )
   }
-
 }
