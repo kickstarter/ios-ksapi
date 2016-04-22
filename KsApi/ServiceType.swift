@@ -24,6 +24,9 @@ public protocol ServiceType {
   /// Fetch a page of activities.
   func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
 
+  /// Fetch activities from a pagination URL
+  func fetchActivities(paginationUrl paginationUrl: String) -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
+
   /// Fetch all categories.
   func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope>
 

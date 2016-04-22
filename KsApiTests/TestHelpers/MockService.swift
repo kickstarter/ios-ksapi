@@ -197,6 +197,11 @@ internal struct MockService: ServiceType {
     return .empty
   }
 
+  internal func fetchActivities(paginationUrl paginationUrl: String)
+    -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
+      return self.fetchActivities()
+  }
+
   internal func fetchDiscovery(paginationUrl paginationUrl: String)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
