@@ -56,6 +56,11 @@ public struct Service: ServiceType {
       .decodeModel(CommentsEnvelope.self)
   }
 
+  public func fetchConfig() -> SignalProducer<Config, ErrorEnvelope> {
+    return request(.Config)
+      .decodeModel(Config.self)
+  }
+
   public func fetchDiscovery(paginationUrl paginationUrl: String)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 

@@ -7,6 +7,7 @@ public enum Route {
   case Activities(categories: [Activity.Category])
   case Categories
   case Category(Models.Category)
+  case Config
   case Discover(DiscoveryParams)
   case FacebookLogin(facebookAccessToken: String, code: String?)
   case FacebookSignup(facebookAccessToken: String, sendNewsletters: Bool)
@@ -30,6 +31,9 @@ public enum Route {
 
     case let .Category(c):
       return (.GET, "/v1/categories/\(c.id)", [:])
+
+    case .Config:
+      return (.GET, "/v1/app/ios/config", [:])
 
     case let .Discover(params):
       return (.GET, "/v1/discover", params.queryParams)

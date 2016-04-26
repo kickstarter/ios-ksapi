@@ -23,6 +23,10 @@
 		A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		A75AB1991C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AB1981C8A3F6D002FC3E6 /* ActivityEnvelope.swift */; };
 		A75AB19A1C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AB1981C8A3F6D002FC3E6 /* ActivityEnvelope.swift */; };
+		A75EC8411CCBF0C3009BEC10 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75EC8401CCBF0C3009BEC10 /* Config.swift */; };
+		A75EC8421CCBF0C3009BEC10 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75EC8401CCBF0C3009BEC10 /* Config.swift */; };
+		A75EC8551CCBF0E7009BEC10 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75EC8541CCBF0E7009BEC10 /* ConfigTests.swift */; };
+		A75EC8561CCBF0E7009BEC10 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75EC8541CCBF0E7009BEC10 /* ConfigTests.swift */; };
 		A76077951CADBD95001B39D0 /* ErrorEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76077941CADBD95001B39D0 /* ErrorEnvelopeTests.swift */; };
 		A76077961CADBD95001B39D0 /* ErrorEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76077941CADBD95001B39D0 /* ErrorEnvelopeTests.swift */; };
 		A76077BF1CADC2CE001B39D0 /* KsApi_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DB1D871C9F5401008244DA /* KsApi_TestHelpers.framework */; };
@@ -394,6 +398,8 @@
 		A753B56B1C2EED9800FDB616 /* KsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsApiTests.swift; sourceTree = "<group>"; };
 		A753B56D1C2EED9800FDB616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A75AB1981C8A3F6D002FC3E6 /* ActivityEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityEnvelope.swift; sourceTree = "<group>"; };
+		A75EC8401CCBF0C3009BEC10 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		A75EC8541CCBF0E7009BEC10 /* ConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
 		A76077941CADBD95001B39D0 /* ErrorEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorEnvelopeTests.swift; sourceTree = "<group>"; };
 		A77967631C2B431C0002166F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A77967641C2B431C0002166F /* ServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
@@ -515,6 +521,7 @@
 		A745D05D1CA8B13900C12802 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				A75EC8541CCBF0E7009BEC10 /* ConfigTests.swift */,
 				A745D05E1CA8B13900C12802 /* DiscoveryParamsTests.swift */,
 				A76077941CADBD95001B39D0 /* ErrorEnvelopeTests.swift */,
 			);
@@ -561,6 +568,7 @@
 				A75AB1981C8A3F6D002FC3E6 /* ActivityEnvelope.swift */,
 				A779676E1C2B431C0002166F /* CategoriesEnvelope.swift */,
 				A71405071CAF49FF00A2795B /* CommentsEnvelope.swift */,
+				A75EC8401CCBF0C3009BEC10 /* Config.swift */,
 				A779676F1C2B431C0002166F /* DiscoveryEnvelope.swift */,
 				A77967701C2B431C0002166F /* DiscoveryParams.swift */,
 				A77967711C2B431C0002166F /* ErrorEnvelope.swift */,
@@ -1161,6 +1169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A745D0601CA8B13900C12802 /* DiscoveryParamsTests.swift in Sources */,
+				A75EC8561CCBF0E7009BEC10 /* ConfigTests.swift in Sources */,
 				A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */,
 				A753B56C1C2EED9800FDB616 /* KsApiTests.swift in Sources */,
 				A76077961CADBD95001B39D0 /* ErrorEnvelopeTests.swift in Sources */,
@@ -1205,6 +1214,7 @@
 				A7FD097C1C83E74F00332CCB /* BasicHTTPAuth.swift in Sources */,
 				A7FD097D1C83E74F00332CCB /* ServerConfig.swift in Sources */,
 				A75AB1991C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */,
+				A75EC8411CCBF0C3009BEC10 /* Config.swift in Sources */,
 				A7FD097F1C83E74F00332CCB /* ClientAuth.swift in Sources */,
 				A7FD09801C83E74F00332CCB /* DiscoveryParams.swift in Sources */,
 			);
@@ -1215,6 +1225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A745D05F1CA8B13900C12802 /* DiscoveryParamsTests.swift in Sources */,
+				A75EC8551CCBF0E7009BEC10 /* ConfigTests.swift in Sources */,
 				A7FD09C71C83E8E900332CCB /* ServiceTests.swift in Sources */,
 				A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */,
 				A76077951CADBD95001B39D0 /* ErrorEnvelopeTests.swift in Sources */,
@@ -1243,6 +1254,7 @@
 				A77967841C2B43950002166F /* BasicHTTPAuth.swift in Sources */,
 				A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */,
 				A75AB19A1C8A3F6D002FC3E6 /* ActivityEnvelope.swift in Sources */,
+				A75EC8421CCBF0C3009BEC10 /* Config.swift in Sources */,
 				A77967861C2B43EC0002166F /* ClientAuth.swift in Sources */,
 				A779677D1C2B431C0002166F /* DiscoveryParams.swift in Sources */,
 			);

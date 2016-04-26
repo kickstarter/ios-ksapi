@@ -15,6 +15,8 @@ internal struct MockService: ServiceType {
   private let fetchCommentsResponse: [Comment]?
   private let fetchCommentsError: ErrorEnvelope?
 
+  private let fetchConfigResponse: Config?
+
   private let postCommentResponse: Comment?
   private let postCommentError: ErrorEnvelope?
 
@@ -51,6 +53,7 @@ internal struct MockService: ServiceType {
                 fetchActivitiesError: ErrorEnvelope? = nil,
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
+                fetchConfigResponse: Config? = nil,
                 postCommentResponse: Comment? = nil,
                 postCommentError: ErrorEnvelope? = nil,
                 loginResponse: AccessTokenEnvelope? = nil,
@@ -82,6 +85,17 @@ internal struct MockService: ServiceType {
 
     self.fetchCommentsError = fetchCommentsError
 
+    self.fetchConfigResponse = fetchConfigResponse ?? Config(
+      abExperiments: [:],
+      appId: 123456789,
+      countryCode: "US",
+      features: [:],
+      iTunesLink: "http://www.itunes.com",
+      launchedCountries: [.US],
+      locale: "en",
+      stripePublishableKey: "pk"
+    )
+
     self.postCommentResponse = postCommentResponse ?? CommentFactory.comment()
 
     self.postCommentError = postCommentError
@@ -111,6 +125,11 @@ internal struct MockService: ServiceType {
       return SignalProducer(value: CommentsEnvelope(comments: comments))
     }
     return .empty
+  }
+
+  internal func fetchConfig() -> SignalProducer<Config, ErrorEnvelope> {
+    guard let config = self.fetchConfigResponse else { return .empty }
+    return SignalProducer(value: config)
   }
 
   internal func login(oauthToken: OauthTokenAuthType) -> MockService {
