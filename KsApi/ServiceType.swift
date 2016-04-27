@@ -96,7 +96,8 @@ public func == (lhs: ServiceType, rhs: ServiceType) -> Bool {
     lhs.dynamicType == rhs.dynamicType &&
       lhs.serverConfig == rhs.serverConfig &&
       lhs.oauthToken == rhs.oauthToken &&
-      lhs.language == rhs.language
+      lhs.language == rhs.language &&
+      lhs.buildVersion == rhs.buildVersion
 }
 
 public func != (lhs: ServiceType, rhs: ServiceType) -> Bool {
