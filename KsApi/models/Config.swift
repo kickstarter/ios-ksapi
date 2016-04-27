@@ -17,10 +17,10 @@ extension Config: Decodable {
   public static func decode(json: JSON) -> Decoded<Config> {
     let create = curry(Config.init)
     return create
-      <^> (json <| "ab_experiments" >>- [String:String].decode)
+      <^> decodeDictionary(json <| "ab_experiments")
       <*> json <| "app_id"
       <*> json <| "country_code"
-      <*> (json <| "features" >>- [String:Bool].decode)
+      <*> decodeDictionary(json <| "features")
       <*> json <| "itunes_link"
       <*> json <|| "launched_countries"
       <*> json <| "locale"
@@ -53,5 +53,16 @@ extension Config: EncodableType {
     result["locale"] = self.locale
     result["stripe"] = ["publishable_key": self.stripePublishableKey]
     return result
+  }
+}
+
+// Useful for getting around swift optimization bug: https://github.com/thoughtbot/Argo/issues/363
+// Turns out using `>>-` or `flatMap` on a `Decoded` fails to compile with optimizations on, so this
+// function does it manually.
+private func decodeDictionary<T: Decodable where T.DecodedType == T>(j: Decoded<JSON>)
+  -> Decoded<[String:T]> {
+  switch j {
+  case let .Success(json): return [String:T].decode(json)
+  case let .Failure(e): return .Failure(e)
   }
 }
