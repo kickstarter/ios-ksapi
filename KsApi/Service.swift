@@ -51,9 +51,20 @@ public struct Service: ServiceType {
       .decodeModel(ActivityEnvelope.self)
   }
 
+  public func fetchActivities(paginationUrl paginationUrl: String)
+    -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
+      return requestPagination(paginationUrl)
+        .decodeModel(ActivityEnvelope.self)
+  }
+
   public func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
     return request(.ProjectComments(project))
       .decodeModel(CommentsEnvelope.self)
+  }
+
+  public func fetchConfig() -> SignalProducer<Config, ErrorEnvelope> {
+    return request(.Config)
+      .decodeModel(Config.self)
   }
 
   public func fetchDiscovery(paginationUrl paginationUrl: String)

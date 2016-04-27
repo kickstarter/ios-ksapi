@@ -24,6 +24,9 @@ public protocol ServiceType {
   /// Fetch a page of activities.
   func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
 
+  /// Fetch activities from a pagination URL
+  func fetchActivities(paginationUrl paginationUrl: String) -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
+
   /// Fetch all categories.
   func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope>
 
@@ -32,6 +35,9 @@ public protocol ServiceType {
 
   /// Fetch comments for a project.
   func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope>
+
+  /// Fetch the config.
+  func fetchConfig() -> SignalProducer<Config, ErrorEnvelope>
 
   /// Fetch discovery envelope with a pagination url.
   func fetchDiscovery(paginationUrl paginationUrl: String) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>
@@ -90,7 +96,8 @@ public func == (lhs: ServiceType, rhs: ServiceType) -> Bool {
     lhs.dynamicType == rhs.dynamicType &&
       lhs.serverConfig == rhs.serverConfig &&
       lhs.oauthToken == rhs.oauthToken &&
-      lhs.language == rhs.language
+      lhs.language == rhs.language &&
+      lhs.buildVersion == rhs.buildVersion
 }
 
 public func != (lhs: ServiceType, rhs: ServiceType) -> Bool {

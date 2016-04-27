@@ -15,6 +15,8 @@ internal struct MockService: ServiceType {
   private let fetchCommentsResponse: [Comment]?
   private let fetchCommentsError: ErrorEnvelope?
 
+  private let fetchConfigResponse: Config?
+
   private let fetchDiscoveryResponseCount: Int
 
   private let fetchUserSelfResponse: User
@@ -55,6 +57,7 @@ internal struct MockService: ServiceType {
                 fetchActivitiesError: ErrorEnvelope? = nil,
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
+                fetchConfigResponse: Config? = nil,
                 fetchDiscoveryResponseCount: Int = 4,
                 fetchUserSelfResponse: User? = nil,
                 postCommentResponse: Comment? = nil,
@@ -87,6 +90,17 @@ internal struct MockService: ServiceType {
     ]
 
     self.fetchCommentsError = fetchCommentsError
+
+    self.fetchConfigResponse = fetchConfigResponse ?? Config(
+      abExperiments: [:],
+      appId: 123456789,
+      countryCode: "US",
+      features: [:],
+      iTunesLink: "http://www.itunes.com",
+      launchedCountries: [.US],
+      locale: "en",
+      stripePublishableKey: "pk"
+    )
 
     self.fetchDiscoveryResponseCount = fetchDiscoveryResponseCount
 
@@ -121,6 +135,11 @@ internal struct MockService: ServiceType {
       return SignalProducer(value: CommentsEnvelope(comments: comments))
     }
     return .empty
+  }
+
+  internal func fetchConfig() -> SignalProducer<Config, ErrorEnvelope> {
+    guard let config = self.fetchConfigResponse else { return .empty }
+    return SignalProducer(value: config)
   }
 
   internal func login(oauthToken: OauthTokenAuthType) -> MockService {
@@ -190,6 +209,11 @@ internal struct MockService: ServiceType {
       )
     }
     return .empty
+  }
+
+  internal func fetchActivities(paginationUrl paginationUrl: String)
+    -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
+      return self.fetchActivities()
   }
 
   internal func fetchDiscovery(paginationUrl paginationUrl: String)
