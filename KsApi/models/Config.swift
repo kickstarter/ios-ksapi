@@ -62,7 +62,7 @@ extension Config: EncodableType {
 private func decodeDictionary<T: Decodable where T.DecodedType == T>(j: Decoded<JSON>)
   -> Decoded<[String:T]> {
   switch j {
-  case let .Success(json): return [String:T].decode(json)
+  case let .Success(json): return [String: T].decode(json)
   case let .Failure(e): return .Failure(e)
   }
 }
