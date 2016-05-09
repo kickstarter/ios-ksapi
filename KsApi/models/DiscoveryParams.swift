@@ -108,7 +108,8 @@ public struct DiscoveryParams {
   }
 
   public var queryParams: [String:String] {
-    return [
+    let params: [String:String?]
+    params = [
       "staff_picks": self.staffPicks?.description,
       "has_video": self.hasVideo?.description,
       "starred": self.starred == true ? "1" : self.starred == false ? "-1" : nil,
@@ -124,7 +125,8 @@ public struct DiscoveryParams {
       "per_page": self.perPage?.description,
       "include_potd": self.includePOTD?.description,
       "seed": self.seed?.description,
-      ].compact()
+    ]
+    return params.compact()
   }
 }
 

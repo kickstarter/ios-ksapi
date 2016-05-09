@@ -96,10 +96,12 @@ extension ErrorEnvelope: ErrorType {
 
 extension ErrorEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<ErrorEnvelope> {
-    return curry(ErrorEnvelope.init)
+    let create = curry(ErrorEnvelope.init)
+    let tmp = create
       <^> json <|| "error_messages"
       <*> json <|? "ksr_code"
       <*> json <| "http_code"
+    return tmp
       <*> json <|? "exception"
       <*> json <|? "facebook_user"
   }
