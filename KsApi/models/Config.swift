@@ -16,11 +16,12 @@ public struct Config {
 extension Config: Decodable {
   public static func decode(json: JSON) -> Decoded<Config> {
     let create = curry(Config.init)
-    return create
+    let tmp = create
       <^> decodeDictionary(json <| "ab_experiments")
       <*> json <| "app_id"
       <*> json <| "country_code"
       <*> decodeDictionary(json <| "features")
+    return tmp
       <*> json <| "itunes_link"
       <*> json <|| "launched_countries"
       <*> json <| "locale"
@@ -62,7 +63,7 @@ extension Config: EncodableType {
 private func decodeDictionary<T: Decodable where T.DecodedType == T>(j: Decoded<JSON>)
   -> Decoded<[String:T]> {
   switch j {
-  case let .Success(json): return [String:T].decode(json)
+  case let .Success(json): return [String: T].decode(json)
   case let .Failure(e): return .Failure(e)
   }
 }

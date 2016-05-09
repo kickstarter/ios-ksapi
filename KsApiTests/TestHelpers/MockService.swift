@@ -334,7 +334,7 @@ internal struct MockService: ServiceType {
     return SignalProducer(value:
       AccessTokenEnvelope(
         accessToken: "deadbeef",
-        user: UserFactory.user
+        user: UserFactory.user()
       )
     )
   }
@@ -355,7 +355,7 @@ internal struct MockService: ServiceType {
     return SignalProducer(value:
       AccessTokenEnvelope(
         accessToken: "deadbeef",
-        user: UserFactory.user
+        user: UserFactory.user()
       )
     )
   }
@@ -377,7 +377,7 @@ internal struct MockService: ServiceType {
     } else if let error = resetPasswordError {
       return SignalProducer(error: error)
     }
-    return SignalProducer(value: UserFactory.user)
+    return SignalProducer(value: UserFactory.user())
   }
 
   func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->
@@ -391,7 +391,7 @@ internal struct MockService: ServiceType {
     return SignalProducer(value:
       AccessTokenEnvelope(
         accessToken: "deadbeef",
-        user: UserFactory.user
+        user: UserFactory.user()
       )
     )
   }
