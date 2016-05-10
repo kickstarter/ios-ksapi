@@ -20,6 +20,7 @@ public enum Route {
   case ToggleStar(Models.Project)
   case UserSelf
   case User(Models.User)
+  case UserNewsletters(weekly: Bool, promo: Bool, happening: Bool, games: Bool)
 
   internal var requestProperties: (method: KsApi.Method, path: String, query: [String:AnyObject]) {
     switch self {
@@ -78,6 +79,12 @@ public enum Route {
 
     case let .User(user):
       return (.GET, "/v1/users/\(user.id)", [:])
+
+    case let .UserNewsletters(weekly, promo, happening, games):
+      return (.PUT, "/v1/users/self", ["weekly_newsletter": weekly,
+                                       "promo_newsletter": promo,
+                                       "happening_newsletter": happening,
+                                       "games_newsletter": games])
     }
   }
 }

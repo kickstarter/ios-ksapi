@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0148EEBE1CDAAA24000DEFF8 /* ConfigFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148EEAA1CDAAA18000DEFF8 /* ConfigFactory.swift */; };
+		0148EEBF1CDAAA24000DEFF8 /* ConfigFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148EEAA1CDAAA18000DEFF8 /* ConfigFactory.swift */; };
 		807571BD1C88B53A00E7DA8A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807571941C88B4F800E7DA8A /* Alamofire.framework */; };
 		807571BE1C88B54500E7DA8A /* Models.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807571A51C88B4FD00E7DA8A /* Models.framework */; };
 		807571C21C88B56100E7DA8A /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8075718C1C88B4F800E7DA8A /* Alamofire.framework */; };
@@ -386,6 +388,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0148EEAA1CDAAA18000DEFF8 /* ConfigFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigFactory.swift; sourceTree = "<group>"; };
 		807571811C88B4F800E7DA8A /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Frameworks/Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		807571991C88B4FD00E7DA8A /* Models.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Models.xcodeproj; path = Frameworks/Models/Models.xcodeproj; sourceTree = "<group>"; };
 		A713EC9C1C2C51B600B6234E /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServerConfig.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -618,6 +621,7 @@
 		A7B694441C87AAAA00C49A4F /* TestHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				0148EEAA1CDAAA18000DEFF8 /* ConfigFactory.swift */,
 				A7DB1D8F1C9F540C008244DA /* MockService.swift */,
 			);
 			path = TestHelpers;
@@ -1181,6 +1185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0148EEBE1CDAAA24000DEFF8 /* ConfigFactory.swift in Sources */,
 				A7DB1D901C9F540C008244DA /* MockService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1189,6 +1194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0148EEBF1CDAAA24000DEFF8 /* ConfigFactory.swift in Sources */,
 				A7DB1D9D1C9F5848008244DA /* MockService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

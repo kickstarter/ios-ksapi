@@ -164,6 +164,19 @@ public struct Service: ServiceType {
       .decodeModel(AccessTokenEnvelope.self)
   }
 
+  public func updateNewsletters(weekly weekly: Bool?,
+                                promo: Bool?,
+                                happening: Bool?,
+                                games: Bool?) -> SignalProducer<User, ErrorEnvelope> {
+
+    return request(.UserNewsletters(weekly: weekly ?? false,
+                                    promo: promo ?? false,
+                                    happening: happening ?? false,
+                                    games: games ?? false)
+      )
+      .decodeModel(User.self)
+  }
+
   private func requestPagination(paginationUrl: String) -> Alamofire.Request {
     return Alamofire.request(self.paginationRequest(paginationUrl))
       .validate(statusCode: 200..<300)
