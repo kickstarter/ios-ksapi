@@ -104,7 +104,7 @@ internal struct MockService: ServiceType {
 
     self.fetchDiscoveryResponseCount = fetchDiscoveryResponseCount
 
-    self.fetchUserSelfResponse = fetchUserSelfResponse ?? UserFactory.user
+    self.fetchUserSelfResponse = fetchUserSelfResponse ?? UserFactory.user()
 
     self.postCommentResponse = postCommentResponse ?? CommentFactory.comment()
 
