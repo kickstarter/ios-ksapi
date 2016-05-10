@@ -1,3 +1,4 @@
+// swiftlint:disable file_length
 @testable import KsApi
 @testable import Models
 @testable import Models_TestHelpers
@@ -31,6 +32,9 @@ internal struct MockService: ServiceType {
   private let signupResponse: AccessTokenEnvelope?
   private let signupError: ErrorEnvelope?
 
+  private let updateNewslettersResponse: User?
+  private let updateNewslettersError: ErrorEnvelope?
+
   internal init(serverConfig: ServerConfigType,
                 oauthToken: OauthTokenAuthType?,
                 language: String,
@@ -63,7 +67,9 @@ internal struct MockService: ServiceType {
                 resetPasswordResponse: User? = nil,
                 resetPasswordError: ErrorEnvelope? = nil,
                 signupResponse: AccessTokenEnvelope? = nil,
-                signupError: ErrorEnvelope? = nil) {
+                signupError: ErrorEnvelope? = nil,
+                updateNewslettersResponse: User? = nil,
+                updateNewslettersError: ErrorEnvelope? = nil) {
 
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
@@ -115,6 +121,10 @@ internal struct MockService: ServiceType {
     self.signupResponse = signupResponse
 
     self.signupError = signupError
+
+    self.updateNewslettersResponse = updateNewslettersResponse
+
+    self.updateNewslettersError = updateNewslettersError
   }
 
   internal func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
@@ -151,7 +161,9 @@ internal struct MockService: ServiceType {
       resetPasswordResponse: self.resetPasswordResponse,
       resetPasswordError: self.resetPasswordError,
       signupResponse: self.signupResponse,
-      signupError: self.signupError
+      signupError: self.signupError,
+      updateNewslettersResponse: self.updateNewslettersResponse,
+      updateNewslettersError: self.updateNewslettersError
     )
   }
 
@@ -174,7 +186,9 @@ internal struct MockService: ServiceType {
       resetPasswordResponse: self.resetPasswordResponse,
       resetPasswordError: self.resetPasswordError,
       signupResponse: self.signupResponse,
-      signupError: self.signupError
+      signupError: self.signupError,
+      updateNewslettersResponse: self.updateNewslettersResponse,
+      updateNewslettersError: self.updateNewslettersError
     )
   }
 
@@ -378,6 +392,24 @@ internal struct MockService: ServiceType {
         accessToken: "deadbeef",
         user: UserFactory.user()
       )
+    )
+  }
+
+  func updateNewsletters(weekly weekly: Bool?,
+                              promo: Bool?,
+                              happening: Bool?,
+                              games: Bool?) -> SignalProducer<User, ErrorEnvelope> {
+
+    if let response = updateNewslettersResponse {
+      return SignalProducer(value: response)
+    } else if let error = updateNewslettersError {
+      return SignalProducer(error: error)
+    }
+
+    return SignalProducer(value: UserFactory.userWithNewsletters(weekly: weekly ?? false,
+                                                                 promo: promo ?? false,
+                                                                 happening: happening ?? false,
+                                                                 games: games ?? false)
     )
   }
 }

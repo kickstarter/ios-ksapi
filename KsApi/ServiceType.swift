@@ -82,6 +82,10 @@ public protocol ServiceType {
 
   /// Toggle the starred state on a project.
   func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope>
+
+  /// Update newsletter subscriptions for a User and return a new User.
+  func updateNewsletters(weekly weekly: Bool?, promo: Bool?, happening: Bool?, games: Bool?) ->
+    SignalProducer<User, ErrorEnvelope>
 }
 
 extension ServiceType {
