@@ -4,7 +4,7 @@
 @testable import Models_TestHelpers
 import ReactiveCocoa
 
-// swiftlint:disable file_length
+// swiftlint:disable type_body_length
 internal struct MockService: ServiceType {
   internal let serverConfig: ServerConfigType
   internal let oauthToken: OauthTokenAuthType?
@@ -488,3 +488,4 @@ internal struct MockService: ServiceType {
     )
   }
 }
+// swiftlint:enable type_body_length
