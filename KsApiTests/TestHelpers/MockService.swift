@@ -4,6 +4,7 @@
 @testable import Models_TestHelpers
 import ReactiveCocoa
 
+// swiftlint:disable file_length
 internal struct MockService: ServiceType {
   internal let serverConfig: ServerConfigType
   internal let oauthToken: OauthTokenAuthType?
@@ -17,6 +18,8 @@ internal struct MockService: ServiceType {
   private let fetchCommentsError: ErrorEnvelope?
 
   private let fetchConfigResponse: Config?
+
+  private let fetchProjectResponse: Project?
 
   private let postCommentResponse: Comment?
   private let postCommentError: ErrorEnvelope?
@@ -58,6 +61,7 @@ internal struct MockService: ServiceType {
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
                 fetchConfigResponse: Config? = nil,
+                fetchProjectResponse: Project? = nil,
                 postCommentResponse: Comment? = nil,
                 postCommentError: ErrorEnvelope? = nil,
                 loginResponse: AccessTokenEnvelope? = nil,
@@ -102,6 +106,8 @@ internal struct MockService: ServiceType {
       stripePublishableKey: "pk"
     )
 
+    self.fetchProjectResponse = fetchProjectResponse
+
     self.postCommentResponse = postCommentResponse ?? CommentFactory.comment()
 
     self.postCommentError = postCommentError
@@ -132,7 +138,53 @@ internal struct MockService: ServiceType {
     if let error = fetchCommentsError {
       return SignalProducer(error: error)
     } else if let comments = fetchCommentsResponse {
-      return SignalProducer(value: CommentsEnvelope(comments: comments))
+      return SignalProducer(
+        value: CommentsEnvelope(
+          comments: comments,
+          urls: CommentsEnvelope.UrlsEnvelope(
+            api: CommentsEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreComments: ""
+            )
+          )
+        )
+      )
+    }
+    return .empty
+  }
+
+  internal func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
+    if let error = fetchCommentsError {
+      return SignalProducer(error: error)
+    } else if let comments = fetchCommentsResponse {
+      return SignalProducer(
+        value: CommentsEnvelope(
+          comments: comments,
+          urls: CommentsEnvelope.UrlsEnvelope(
+            api: CommentsEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreComments: ""
+            )
+          )
+        )
+      )
+    }
+    return .empty
+  }
+
+  internal func fetchComments(update update: Update) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
+
+    if let error = fetchCommentsError {
+      return SignalProducer(error: error)
+    } else if let comments = fetchCommentsResponse {
+      return SignalProducer(
+        value: CommentsEnvelope(
+          comments: comments,
+          urls: CommentsEnvelope.UrlsEnvelope(
+            api: CommentsEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreComments: ""
+            )
+          )
+        )
+      )
     }
     return .empty
   }
@@ -152,6 +204,7 @@ internal struct MockService: ServiceType {
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
+      fetchProjectResponse: self.fetchProjectResponse,
       postCommentResponse: self.postCommentResponse,
       postCommentError: self.postCommentError,
       loginResponse: self.loginResponse,
@@ -177,6 +230,7 @@ internal struct MockService: ServiceType {
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
+      fetchProjectResponse: self.fetchProjectResponse,
       postCommentResponse: self.postCommentResponse,
       postCommentError: self.postCommentError,
       loginResponse: self.loginResponse,
@@ -261,13 +315,24 @@ internal struct MockService: ServiceType {
       .map { $0.projects }
   }
 
-  internal func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
-    return fetchDiscovery(params: params)
-      .map { $0.projects.first }
-      .ignoreNil()
+  internal func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
+    if let project = self.fetchProjectResponse {
+      return SignalProducer(value: project)
+    }
+    return SignalProducer(value: ProjectFactory.live(id: id))
   }
 
-  internal func fetchProject(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
+  internal func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
+    if let project = self.fetchProjectResponse {
+      return SignalProducer(value: project)
+    }
+    return SignalProducer(value: ProjectFactory.live(id: params.hashValue))
+  }
+
+  internal func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope> {
+    if let project = self.fetchProjectResponse {
+      return SignalProducer(value: project)
+    }
     return SignalProducer(value: project)
   }
 
@@ -362,9 +427,19 @@ internal struct MockService: ServiceType {
   internal func postComment(body: String, toProject project: Project) ->
     SignalProducer<Comment, ErrorEnvelope> {
 
-    if let error = postCommentError {
+    if let error = self.postCommentError {
       return SignalProducer(error: error)
-    } else if let comment = postCommentResponse {
+    } else if let comment = self.postCommentResponse {
+      return SignalProducer(value: comment)
+    }
+    return .empty
+  }
+
+  func postComment(body: String, toUpdate update: Update) -> SignalProducer<Comment, ErrorEnvelope> {
+
+    if let error = self.postCommentError {
+      return SignalProducer(error: error)
+    } else if let comment = self.postCommentResponse {
       return SignalProducer(value: comment)
     }
     return .empty

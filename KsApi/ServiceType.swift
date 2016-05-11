@@ -33,8 +33,14 @@ public protocol ServiceType {
   /// Fetch the newest data for a particular category.
   func fetchCategory(category: Models.Category) -> SignalProducer<Models.Category, ErrorEnvelope>
 
+  /// Fetch comments from a pagination url.
+  func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope>
+
   /// Fetch comments for a project.
   func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope>
+
+  /// Fetch comments for an update.
+  func fetchComments(update update: Update) -> SignalProducer<CommentsEnvelope, ErrorEnvelope>
 
   /// Fetch the config.
   func fetchConfig() -> SignalProducer<Config, ErrorEnvelope>
@@ -45,11 +51,14 @@ public protocol ServiceType {
   /// Fetch the full discovery envelope with specified discovery params.
   func fetchDiscovery(params params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>
 
+  /// Fetch the newest data for a particular project from its id.
+  func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope>
+
   /// Fetch a single project with the specified discovery params.
   func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope>
 
-  /// Fetch the newest data for a particular project.
-  func fetchProject(project: Project) -> SignalProducer<Project, ErrorEnvelope>
+  /// Fetch the newest data for a particular project from its project value.
+  func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope>
 
   /// Fetch a batch of projects with the specified discovery params.
   func fetchProjects(params: DiscoveryParams) -> SignalProducer<[Project], ErrorEnvelope>
@@ -68,7 +77,11 @@ public protocol ServiceType {
   func login(facebookAccessToken facebookAccessToken: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
 
+  /// Posts a comment to a project.
   func postComment(body: String, toProject project: Project) -> SignalProducer<Comment, ErrorEnvelope>
+
+  /// Posts a comment to an update.
+  func postComment(body: String, toUpdate update: Update) -> SignalProducer<Comment, ErrorEnvelope>
 
   /// Reset user password with email address.
   func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope>

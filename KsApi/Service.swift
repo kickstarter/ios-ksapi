@@ -57,8 +57,18 @@ public struct Service: ServiceType {
         .decodeModel(ActivityEnvelope.self)
   }
 
+  public func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
+    return requestPagination(url)
+      .decodeModel(CommentsEnvelope.self)
+  }
+
   public func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
     return request(.ProjectComments(project))
+      .decodeModel(CommentsEnvelope.self)
+  }
+
+  public func fetchComments(update update: Update) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
+    return request(.UpdateComments(update))
       .decodeModel(CommentsEnvelope.self)
   }
 
@@ -86,6 +96,11 @@ public struct Service: ServiceType {
       .map { env in env.projects }
   }
 
+  public func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
+    return request(.Project(id))
+      .decodeModel(Project.self)
+  }
+
   public func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
     return request(.Discover(params.with(perPage: 1)))
       .decodeModel(DiscoveryEnvelope.self)
@@ -93,8 +108,8 @@ public struct Service: ServiceType {
       .ignoreNil()
   }
 
-  public func fetchProject(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.Project(project))
+  public func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope> {
+    return request(.Project(project.id))
       .decodeModel(Project.self)
   }
 
@@ -148,8 +163,14 @@ public struct Service: ServiceType {
   public func postComment(body: String, toProject project: Project) ->
     SignalProducer<Comment, ErrorEnvelope> {
 
-    return request(.PostProjectComment(project, body: body))
-      .decodeModel(Comment.self)
+      return request(.PostProjectComment(project, body: body))
+        .decodeModel(Comment.self)
+  }
+
+  public func postComment(body: String, toUpdate update: Update) -> SignalProducer<Comment, ErrorEnvelope> {
+
+      return request(.PostUpdateComment(update, body: body))
+        .decodeModel(Comment.self)
   }
 
   public func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {
