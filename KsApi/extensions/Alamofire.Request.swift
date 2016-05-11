@@ -1,10 +1,7 @@
-import protocol Argo.Decodable
-import func Argo.decode
-import enum Argo.Decoded
-import class Alamofire.Request
-import class ReactiveCocoa.QueueScheduler
-import struct ReactiveCocoa.SignalProducer
-import enum ReactiveCocoa.FlattenStrategy
+import Alamofire
+import Argo
+import Foundation
+import ReactiveCocoa
 
 internal extension Alamofire.Request {
   static let queue = dispatch_queue_create("com.kickstarter.ksapi", nil)
@@ -24,6 +21,7 @@ internal extension Alamofire.Request {
         if let value = decoded.value {
           return SignalProducer(value: value)
         } else if let error = decoded.error {
+          print("Argo decoding model error: \(error)")
           return SignalProducer(error: .couldNotDecodeJSON(error))
         }
         return .empty
@@ -38,11 +36,11 @@ internal extension Alamofire.Request {
 
         switch response.result {
         case let .Success(value):
-          print("[KsApi] Success \(self)")
+          print("[KsApi] Success \(self.sanitizedRequest())")
           observer.sendNext(value)
           observer.sendCompleted()
         case .Failure:
-          print("[KsApi] Failure \(self)")
+          print("[KsApi] Failure \(self.sanitizedRequest())")
 
           if let json = response.data.flatMap(parseJSONData) {
             switch decode(json) as Decoded<ErrorEnvelope> {
@@ -50,11 +48,11 @@ internal extension Alamofire.Request {
               // Got the error envelope
               observer.sendFailed(envelope)
             case let .Failure(error):
-              // Couldn't decode the error envelope
+              print("Argo decoding error envelope error: \(error)")
               observer.sendFailed(.couldNotDecodeJSON(error))
             }
           } else {
-            // Couldn't even parse the JSON
+            print("Couldn't parse error envelope JSON.")
             observer.sendFailed(.couldNotParseErrorEnvelopeJSON)
           }
         }
@@ -74,5 +72,32 @@ internal extension Alamofire.Request {
         }
         return SignalProducer(error: ErrorEnvelope.couldNotParseJSON)
       }
+  }
+
+  // swiftlint:disable force_try
+  private static let sanitationRules = [
+    "oauth_token=[REDACTED]":
+      try! NSRegularExpression(pattern: "oauth_token=([a-zA-Z0-9]*)", options: .CaseInsensitive),
+    "client_id=[REDACTED]":
+      try! NSRegularExpression(pattern: "client_id=([a-zA-Z0-9]*)", options: .CaseInsensitive),
+    "access_token=[REDACTED]":
+      try! NSRegularExpression(pattern: "access_token=([a-zA-Z0-9]*)", options: .CaseInsensitive),
+    "password=[REDACTED]":
+      try! NSRegularExpression(pattern: "password=([a-zA-Z0-9]*)", options: .CaseInsensitive)
+    ]
+  // swiftlint:enable force_try
+
+  // Strips sensitive materials from the request, e.g. oauth token, client id, fb token, password, etc...
+  private func sanitizedRequest() -> String? {
+    guard let urlString = self.request?.URL?.absoluteString else { return nil }
+
+    return Alamofire.Request.sanitationRules.reduce(urlString) { accum, templateAndRule in
+      let (template, rule) = templateAndRule
+      let range = NSRange(location: 0, length: accum.characters.count)
+      return rule.stringByReplacingMatchesInString(accum,
+                                                   options: .WithTransparentBounds,
+                                                   range: range,
+                                                   withTemplate: template)
+    }
   }
 }

@@ -34,14 +34,14 @@ public struct ServerConfig: ServerConfigType {
     apiBaseUrl: NSURL(string: "https://***REMOVED***")!,
     webBaseUrl: NSURL(string: "https://***REMOVED***")!,
     apiClientAuth: ClientAuth.development,
-    basicHTTPAuth: nil
+    basicHTTPAuth: BasicHTTPAuth.development
   )
 
   public static let local: ServerConfigType = ServerConfig(
     apiBaseUrl: NSURL(string: "http://api.ksr.dev")!,
     webBaseUrl: NSURL(string: "http://ksr.dev")!,
     apiClientAuth: ClientAuth.development,
-    basicHTTPAuth: nil
+    basicHTTPAuth: BasicHTTPAuth.development
   )
 
   public init(apiBaseUrl: NSURL,
