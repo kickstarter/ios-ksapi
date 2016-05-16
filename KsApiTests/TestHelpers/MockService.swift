@@ -19,7 +19,11 @@ internal struct MockService: ServiceType {
 
   private let fetchConfigResponse: Config?
 
+  private let fetchDiscoveryResponseCount: Int
+
   private let fetchProjectResponse: Project?
+
+  private let fetchUserSelfResponse: User
 
   private let postCommentResponse: Comment?
   private let postCommentError: ErrorEnvelope?
@@ -61,7 +65,9 @@ internal struct MockService: ServiceType {
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
                 fetchConfigResponse: Config? = nil,
+                fetchDiscoveryResponseCount: Int = 4,
                 fetchProjectResponse: Project? = nil,
+                fetchUserSelfResponse: User? = nil,
                 postCommentResponse: Comment? = nil,
                 postCommentError: ErrorEnvelope? = nil,
                 loginResponse: AccessTokenEnvelope? = nil,
@@ -106,7 +112,11 @@ internal struct MockService: ServiceType {
       stripePublishableKey: "pk"
     )
 
+    self.fetchDiscoveryResponseCount = fetchDiscoveryResponseCount
+
     self.fetchProjectResponse = fetchProjectResponse
+
+    self.fetchUserSelfResponse = fetchUserSelfResponse ?? UserFactory.user()
 
     self.postCommentResponse = postCommentResponse ?? CommentFactory.comment()
 
@@ -204,7 +214,9 @@ internal struct MockService: ServiceType {
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
+      fetchDiscoveryResponseCount: self.fetchDiscoveryResponseCount,
       fetchProjectResponse: self.fetchProjectResponse,
+      fetchUserSelfResponse: self.fetchUserSelfResponse,
       postCommentResponse: self.postCommentResponse,
       postCommentError: self.postCommentError,
       loginResponse: self.loginResponse,
@@ -230,7 +242,9 @@ internal struct MockService: ServiceType {
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
+      fetchDiscoveryResponseCount: self.fetchDiscoveryResponseCount,
       fetchProjectResponse: self.fetchProjectResponse,
+      fetchUserSelfResponse: self.fetchUserSelfResponse,
       postCommentResponse: self.postCommentResponse,
       postCommentError: self.postCommentError,
       loginResponse: self.loginResponse,
@@ -273,7 +287,8 @@ internal struct MockService: ServiceType {
   internal func fetchDiscovery(paginationUrl paginationUrl: String)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
-    let projects = (1...4).map { ProjectFactory.live(id: $0 + paginationUrl.hashValue) }
+    let projects = (0..<fetchDiscoveryResponseCount)
+      .map { ProjectFactory.live(id: $0 + paginationUrl.hashValue) }
 
     return SignalProducer(value:
       DiscoveryEnvelope(
@@ -293,7 +308,7 @@ internal struct MockService: ServiceType {
   internal func fetchDiscovery(params params: DiscoveryParams)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
-    let projects = (1...4).map { ProjectFactory.live(id: $0 + params.hashValue) }
+    let projects = (0..<fetchDiscoveryResponseCount).map { ProjectFactory.live(id: $0 + params.hashValue) }
 
     return SignalProducer(value:
       DiscoveryEnvelope(
@@ -348,7 +363,7 @@ internal struct MockService: ServiceType {
       )
     }
 
-    return SignalProducer(value: UserFactory.user())
+    return SignalProducer(value: fetchUserSelfResponse)
   }
 
   internal func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope> {
