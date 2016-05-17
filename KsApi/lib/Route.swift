@@ -6,7 +6,7 @@ import Models
 public enum Route {
   case Activities(categories: [Activity.Category])
   case Categories
-  case Category(Models.Category)
+  case Category(Int)
   case Config
   case Discover(DiscoveryParams)
   case FacebookLogin(facebookAccessToken: String, code: String?)
@@ -32,8 +32,8 @@ public enum Route {
     case .Categories:
       return (.GET, "/v1/categories", [:])
 
-    case let .Category(c):
-      return (.GET, "/v1/categories/\(c.id)", [:])
+    case let .Category(id):
+      return (.GET, "/v1/categories/\(id)", [:])
 
     case .Config:
       return (.GET, "/v1/app/ios/config", [:])

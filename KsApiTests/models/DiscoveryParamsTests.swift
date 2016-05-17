@@ -95,6 +95,7 @@ class DiscoveryParamsTests: XCTestCase {
         name: "Art",
         slug: "art",
         position: 1,
+        projectsCount: 420,
         parentId: nil,
         parent: nil,
         color: nil

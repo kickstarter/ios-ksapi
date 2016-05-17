@@ -91,11 +91,6 @@ public struct Service: ServiceType {
       .decodeModel(DiscoveryEnvelope.self)
   }
 
-  public func fetchProjects(params: DiscoveryParams) -> SignalProducer<[Project], ErrorEnvelope> {
-    return fetchDiscovery(params: params)
-      .map { env in env.projects }
-  }
-
   public func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
     return request(.Project(id))
       .decodeModel(Project.self)
@@ -129,8 +124,8 @@ public struct Service: ServiceType {
       .map { envelope in envelope.categories }
   }
 
-  public func fetchCategory(category: Models.Category) -> SignalProducer<Models.Category, ErrorEnvelope> {
-    return request(.Category(category))
+  public func fetchCategory(id id: Int) -> SignalProducer<Models.Category, ErrorEnvelope> {
+    return request(.Category(id))
       .decodeModel(Models.Category.self)
   }
 

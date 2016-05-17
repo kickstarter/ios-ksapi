@@ -19,7 +19,8 @@ internal struct MockService: ServiceType {
 
   private let fetchConfigResponse: Config?
 
-  private let fetchDiscoveryResponseCount: Int
+  private let fetchDiscoveryResponse: [Project]?
+  private let fetchDiscoveryError: ErrorEnvelope?
 
   private let fetchProjectResponse: Project?
 
@@ -65,7 +66,8 @@ internal struct MockService: ServiceType {
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
                 fetchConfigResponse: Config? = nil,
-                fetchDiscoveryResponseCount: Int = 4,
+                fetchDiscoveryResponse: [Project]? = nil,
+                fetchDiscoveryError: ErrorEnvelope? = nil,
                 fetchProjectResponse: Project? = nil,
                 fetchUserSelfResponse: User? = nil,
                 postCommentResponse: Comment? = nil,
@@ -112,7 +114,8 @@ internal struct MockService: ServiceType {
       stripePublishableKey: "pk"
     )
 
-    self.fetchDiscoveryResponseCount = fetchDiscoveryResponseCount
+    self.fetchDiscoveryResponse = fetchDiscoveryResponse
+    self.fetchDiscoveryError = fetchDiscoveryError
 
     self.fetchProjectResponse = fetchProjectResponse
 
@@ -214,7 +217,8 @@ internal struct MockService: ServiceType {
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
-      fetchDiscoveryResponseCount: self.fetchDiscoveryResponseCount,
+      fetchDiscoveryResponse: self.fetchDiscoveryResponse,
+      fetchDiscoveryError: self.fetchDiscoveryError,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       postCommentResponse: self.postCommentResponse,
@@ -242,7 +246,8 @@ internal struct MockService: ServiceType {
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
-      fetchDiscoveryResponseCount: self.fetchDiscoveryResponseCount,
+      fetchDiscoveryResponse: self.fetchDiscoveryResponse,
+      fetchDiscoveryError: self.fetchDiscoveryError,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       postCommentResponse: self.postCommentResponse,
@@ -287,12 +292,29 @@ internal struct MockService: ServiceType {
   internal func fetchDiscovery(paginationUrl paginationUrl: String)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
-    let projects = (0..<fetchDiscoveryResponseCount)
-      .map { ProjectFactory.live(id: $0 + paginationUrl.hashValue) }
+    if let projects = fetchDiscoveryResponse {
+      return SignalProducer(value:
+        DiscoveryEnvelope(
+          projects: projects,
+          urls: DiscoveryEnvelope.UrlsEnvelope(
+            api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
+              more_projects: "http://***REMOVED***/gimme/more"
+            )
+          ),
+          stats: DiscoveryEnvelope.StatsEnvelope(
+            count: 200
+          )
+        )
+      )
+    } else if let error = fetchDiscoveryError {
+      return SignalProducer(error: error)
+    }
+
+    let projectsDefault = (0...4).map { ProjectFactory.live(id: $0 + paginationUrl.hashValue) }
 
     return SignalProducer(value:
       DiscoveryEnvelope(
-        projects: projects,
+        projects: projectsDefault,
         urls: DiscoveryEnvelope.UrlsEnvelope(
           api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
             more_projects: paginationUrl + "+1"
@@ -308,11 +330,29 @@ internal struct MockService: ServiceType {
   internal func fetchDiscovery(params params: DiscoveryParams)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
-    let projects = (0..<fetchDiscoveryResponseCount).map { ProjectFactory.live(id: $0 + params.hashValue) }
+    if let projects = fetchDiscoveryResponse {
+      return SignalProducer(value:
+        DiscoveryEnvelope(
+          projects: projects,
+          urls: DiscoveryEnvelope.UrlsEnvelope(
+            api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
+              more_projects: "http://***REMOVED***/gimme/more"
+            )
+          ),
+          stats: DiscoveryEnvelope.StatsEnvelope(
+            count: 200
+          )
+        )
+      )
+    } else if let error = fetchDiscoveryError {
+      return SignalProducer(error: error)
+    }
+
+    let projectsDefault = (0...4).map { ProjectFactory.live(id: $0 + params.hashValue) }
 
     return SignalProducer(value:
       DiscoveryEnvelope(
-        projects: projects,
+        projects: projectsDefault,
         urls: DiscoveryEnvelope.UrlsEnvelope(
           api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
             more_projects: "http://***REMOVED***/gimme/more"
@@ -323,11 +363,6 @@ internal struct MockService: ServiceType {
         )
       )
     )
-  }
-
-  internal func fetchProjects(params: DiscoveryParams) -> SignalProducer<[Project], ErrorEnvelope> {
-    return fetchDiscovery(params: params)
-      .map { $0.projects }
   }
 
   internal func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
@@ -381,8 +416,8 @@ internal struct MockService: ServiceType {
     )
   }
 
-  internal func fetchCategory(category: Models.Category) -> SignalProducer<Models.Category, ErrorEnvelope> {
-    return SignalProducer(value: category)
+  internal func fetchCategory(id id: Int) -> SignalProducer<Models.Category, ErrorEnvelope> {
+    return SignalProducer(value: CategoryFactory.category(id: id))
   }
 
   internal func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope> {

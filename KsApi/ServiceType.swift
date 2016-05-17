@@ -31,7 +31,7 @@ public protocol ServiceType {
   func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope>
 
   /// Fetch the newest data for a particular category.
-  func fetchCategory(category: Models.Category) -> SignalProducer<Models.Category, ErrorEnvelope>
+  func fetchCategory(id id: Int) -> SignalProducer<Models.Category, ErrorEnvelope>
 
   /// Fetch comments from a pagination url.
   func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope>
@@ -59,9 +59,6 @@ public protocol ServiceType {
 
   /// Fetch the newest data for a particular project from its project value.
   func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope>
-
-  /// Fetch a batch of projects with the specified discovery params.
-  func fetchProjects(params: DiscoveryParams) -> SignalProducer<[Project], ErrorEnvelope>
 
   /// Fetch the newest data for a particular user.
   func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope>
