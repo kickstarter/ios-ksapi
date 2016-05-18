@@ -88,8 +88,8 @@ internal extension Alamofire.Request {
   // swiftlint:enable force_try
 
   // Strips sensitive materials from the request, e.g. oauth token, client id, fb token, password, etc...
-  private func sanitizedRequest() -> String? {
-    guard let urlString = self.request?.URL?.absoluteString else { return nil }
+  private func sanitizedRequest() -> String {
+    guard let urlString = self.request?.URL?.absoluteString else { return "" }
 
     return Alamofire.Request.sanitationRules.reduce(urlString) { accum, templateAndRule in
       let (template, rule) = templateAndRule
@@ -98,6 +98,6 @@ internal extension Alamofire.Request {
                                                    options: .WithTransparentBounds,
                                                    range: range,
                                                    withTemplate: template)
-    }
+    } ?? ""
   }
 }

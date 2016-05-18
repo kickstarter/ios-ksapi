@@ -1,6 +1,13 @@
 import Models
 import ReactiveCocoa
 
+// swiftlint:disable type_name
+public enum Mailbox: String {
+  case inbox
+  case sent
+}
+// swiftlint:enable type_name
+
 /**
  A type that knows how to perform requests for Kickstarter data.
  */
@@ -27,6 +34,10 @@ public protocol ServiceType {
   /// Fetch activities from a pagination URL
   func fetchActivities(paginationUrl paginationUrl: String) -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
 
+  /// Fetches the current user's backing for the project, if it exists.
+  func fetchBacking(forProject project: Project, forUser user: User)
+    -> SignalProducer<Backing, ErrorEnvelope>
+
   /// Fetch all categories.
   func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope>
 
@@ -51,6 +62,21 @@ public protocol ServiceType {
   /// Fetch the full discovery envelope with specified discovery params.
   func fetchDiscovery(params params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>
 
+  /// Fetches all of the messages in a particular message thread.
+  func fetchMessageThread(messageThread messageThread: MessageThread)
+    -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope>
+
+  /// Fetches all of the messages related to a particular backing.
+  func fetchMessageThread(backing backing: Backing) -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope>
+
+  /// Fetches all of the messages in a particular mailbox and specific to a particular project.
+  func fetchMessageThreads(mailbox mailbox: Mailbox, project: Project?)
+    -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope>
+
+  /// Fetches more messages threads from a pagination URL.
+  func fetchMessageThreads(paginationUrl paginationUrl: String)
+    -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope>
+
   /// Fetch the newest data for a particular project from its id.
   func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope>
 
@@ -74,6 +100,9 @@ public protocol ServiceType {
   func login(facebookAccessToken facebookAccessToken: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
 
+  /// Marks all the messages in a particular thread as read.
+  func markAsRead(messageThread messageThread: MessageThread) -> SignalProducer<MessageThread, ErrorEnvelope>
+
   /// Posts a comment to a project.
   func postComment(body: String, toProject project: Project) -> SignalProducer<Comment, ErrorEnvelope>
 
@@ -82,6 +111,14 @@ public protocol ServiceType {
 
   /// Reset user password with email address.
   func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope>
+
+  /// Searches all of the messages, (optionally) bucketed to a specific project.
+  func searchMessages(query query: String, project: Project?)
+    -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope>
+
+  /// Sends a message to a particular thread.
+  func sendMessage(body body: String, toThread messageThread: MessageThread)
+    -> SignalProducer<Message, ErrorEnvelope>
 
   /// Signup with Facebook access token and newsletter bool.
   func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->

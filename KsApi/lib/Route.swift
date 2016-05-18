@@ -5,6 +5,7 @@ import Models
  */
 public enum Route {
   case Activities(categories: [Activity.Category])
+  case Backing(projectId: Int, backerId: Int)
   case Categories
   case Category(Int)
   case Config
@@ -12,11 +13,17 @@ public enum Route {
   case FacebookLogin(facebookAccessToken: String, code: String?)
   case FacebookSignup(facebookAccessToken: String, sendNewsletters: Bool)
   case Login(email: String, password: String, code: String?)
+  case MarkAsRead(MessageThread)
+  case MessagesForThread(Models.MessageThread)
+  case MessagesForBacking(Models.Backing)
+  case MessageThreads(mailbox: Mailbox, project: Models.Project?)
   case Project(Int)
   case ProjectComments(Models.Project)
   case PostProjectComment(Models.Project, body: String)
   case PostUpdateComment(Update, body: String)
   case ResetPassword(email: String)
+  case SearchMessages(query: String, project: Models.Project?)
+  case SendMessage(body: String, messageThread: MessageThread)
   case Star(Models.Project)
   case ToggleStar(Models.Project)
   case UpdateComments(Update)
@@ -28,6 +35,9 @@ public enum Route {
     switch self {
     case let .Activities(categories):
       return (.GET, "/v1/activities", ["categories": categories.map { $0.rawValue }])
+
+    case let Backing(projectId, backerId):
+      return (.GET, "/v1/projects/\(projectId)/backers/\(backerId)", [:])
 
     case .Categories:
       return (.GET, "/v1/categories", [:])
@@ -58,6 +68,21 @@ public enum Route {
       params["code"] = code
       return (.POST, "/xauth/access_token", params)
 
+    case let .MarkAsRead(messageThread):
+      return (.PUT, "/v1/message_threads/\(messageThread.id)/read", [:])
+
+    case let .MessagesForThread(messageThread):
+      return (.GET, "/v1/message_threads/\(messageThread.id)/messages", [:])
+
+    case let .MessagesForBacking(backing):
+      return (.GET, "/v1/projects/\(backing.projectId)/backers/\(backing.backerId)/messages", [:])
+
+    case let .MessageThreads(mailbox, project):
+      if let project = project {
+        return (.GET, "/v1/projects/\(project.id)/message_threads/\(mailbox.rawValue)", [:])
+      }
+      return (.GET, "/v1/message_threads/\(mailbox.rawValue)", [:])
+
     case let .Project(id):
       return (.GET, "/v1/projects/\(id)", [:])
 
@@ -72,6 +97,15 @@ public enum Route {
 
     case let .ResetPassword(email):
       return (.POST, "/v1/users/reset", ["email": email])
+
+    case let .SearchMessages(query, project):
+      if let project = project {
+        return (.GET, "/v1/projects/\(project.id)/message_threads/search", ["q": query])
+      }
+      return (.GET, "/v1/message_threads/search", ["q": query])
+
+    case let .SendMessage(body, messageThread):
+      return (.POST, "/v1/message_threads/\(messageThread.id)/messages", ["body": body])
 
     case let .Star(p):
       return (.PUT, "/v1/projects/\(p.id)/star", [:])

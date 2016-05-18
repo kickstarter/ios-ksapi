@@ -57,6 +57,12 @@ public struct Service: ServiceType {
         .decodeModel(ActivityEnvelope.self)
   }
 
+  public func fetchBacking(forProject project: Project, forUser user: User)
+    -> SignalProducer<Backing, ErrorEnvelope> {
+      return request(.Backing(projectId: project.id, backerId: user.id))
+        .decodeModel(Backing.self)
+  }
+
   public func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
     return requestPagination(url)
       .decodeModel(CommentsEnvelope.self)
@@ -89,6 +95,33 @@ public struct Service: ServiceType {
 
     return request(.Discover(params))
       .decodeModel(DiscoveryEnvelope.self)
+  }
+
+  public func fetchMessageThread(messageThread messageThread: MessageThread)
+    -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope> {
+
+      return request(.MessagesForThread(messageThread))
+        .decodeModel(MessageThreadEnvelope.self)
+  }
+
+  public func fetchMessageThread(backing backing: Backing)
+    -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope> {
+    return request(.MessagesForBacking(backing))
+      .decodeModel(MessageThreadEnvelope.self)
+  }
+
+  public func fetchMessageThreads(mailbox mailbox: Mailbox, project: Project?)
+    -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
+
+      return request(.MessageThreads(mailbox: mailbox, project: project))
+        .decodeModel(MessageThreadsEnvelope.self)
+  }
+
+  public func fetchMessageThreads(paginationUrl paginationUrl: String)
+    -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
+
+      return requestPagination(paginationUrl)
+        .decodeModel(MessageThreadsEnvelope.self)
   }
 
   public func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
@@ -155,6 +188,13 @@ public struct Service: ServiceType {
       .decodeModel(AccessTokenEnvelope.self)
   }
 
+  public func markAsRead(messageThread messageThread: MessageThread)
+    -> SignalProducer<MessageThread, ErrorEnvelope> {
+
+      return request(.MarkAsRead(messageThread))
+        .decodeModel(MessageThread.self)
+  }
+
   public func postComment(body: String, toProject project: Project) ->
     SignalProducer<Comment, ErrorEnvelope> {
 
@@ -171,6 +211,20 @@ public struct Service: ServiceType {
   public func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {
     return request(.ResetPassword(email: email))
       .decodeModel(User.self)
+  }
+
+  public func searchMessages(query query: String, project: Project?)
+    -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
+
+      return request(.SearchMessages(query: query, project: project))
+        .decodeModel(MessageThreadsEnvelope.self)
+  }
+
+  public func sendMessage(body body: String, toThread messageThread: MessageThread)
+    -> SignalProducer<Message, ErrorEnvelope> {
+
+      return request(.SendMessage(body: body, messageThread: messageThread))
+        .decodeModel(Message.self)
   }
 
   public func signup(facebookAccessToken token: String, sendNewsletters: Bool) ->

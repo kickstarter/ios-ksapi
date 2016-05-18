@@ -1,10 +1,12 @@
 // swiftlint:disable file_length
+// swiftlint:disable type_body_length
+// swiftlint:disable function_body_length
+
 @testable import KsApi
 @testable import Models
 @testable import Models_TestHelpers
 import ReactiveCocoa
 
-// swiftlint:disable type_body_length
 internal struct MockService: ServiceType {
   internal let serverConfig: ServerConfigType
   internal let oauthToken: OauthTokenAuthType?
@@ -21,6 +23,9 @@ internal struct MockService: ServiceType {
 
   private let fetchDiscoveryResponse: [Project]?
   private let fetchDiscoveryError: ErrorEnvelope?
+
+  private let fetchMessageThreadResponse: MessageThread
+  private let fetchMessageThreadsResponse: [MessageThread]
 
   private let fetchProjectResponse: Project?
 
@@ -68,6 +73,8 @@ internal struct MockService: ServiceType {
                 fetchConfigResponse: Config? = nil,
                 fetchDiscoveryResponse: [Project]? = nil,
                 fetchDiscoveryError: ErrorEnvelope? = nil,
+                fetchMessageThreadResponse: MessageThread? = nil,
+                fetchMessageThreadsResponse: [MessageThread]? = nil,
                 fetchProjectResponse: Project? = nil,
                 fetchUserSelfResponse: User? = nil,
                 postCommentResponse: Comment? = nil,
@@ -116,6 +123,14 @@ internal struct MockService: ServiceType {
 
     self.fetchDiscoveryResponse = fetchDiscoveryResponse
     self.fetchDiscoveryError = fetchDiscoveryError
+
+    self.fetchMessageThreadResponse = fetchMessageThreadResponse ??  MessageThreadFactory.messageThread()
+
+    self.fetchMessageThreadsResponse = fetchMessageThreadsResponse ?? [
+      MessageThreadFactory.messageThread(id: 1),
+      MessageThreadFactory.messageThread(id: 2),
+      MessageThreadFactory.messageThread(id: 3),
+    ]
 
     self.fetchProjectResponse = fetchProjectResponse
 
@@ -219,6 +234,7 @@ internal struct MockService: ServiceType {
       fetchCommentsError: self.fetchCommentsError,
       fetchDiscoveryResponse: self.fetchDiscoveryResponse,
       fetchDiscoveryError: self.fetchDiscoveryError,
+      fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       postCommentResponse: self.postCommentResponse,
@@ -248,6 +264,7 @@ internal struct MockService: ServiceType {
       fetchCommentsError: self.fetchCommentsError,
       fetchDiscoveryResponse: self.fetchDiscoveryResponse,
       fetchDiscoveryError: self.fetchDiscoveryError,
+      fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       postCommentResponse: self.postCommentResponse,
@@ -287,6 +304,27 @@ internal struct MockService: ServiceType {
   internal func fetchActivities(paginationUrl paginationUrl: String)
     -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
       return self.fetchActivities()
+  }
+
+  func fetchBacking(forProject project: Project, forUser user: User)
+    -> SignalProducer<Backing, ErrorEnvelope> {
+
+    return SignalProducer(
+      value: Backing(
+        amount: 10,
+        backerId: 1,
+        id: 1,
+        locationId: 1,
+        pledgedAt: 123456789.0,
+        projectCountry: "US",
+        projectId: 1,
+        reward: RewardFactory.reward(),
+        rewardId: 1,
+        sequence: 10,
+        shippingAmount: 2,
+        status: .pledged
+      )
+    )
   }
 
   internal func fetchDiscovery(paginationUrl paginationUrl: String)
@@ -363,6 +401,73 @@ internal struct MockService: ServiceType {
         )
       )
     )
+  }
+
+  internal func fetchMessageThread(messageThread messageThread: MessageThread)
+    -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope> {
+
+      return SignalProducer(
+        value: MessageThreadEnvelope(
+          participants: [UserFactory.user(id: 1), UserFactory.user(id: 2)],
+          messages: [
+            MessageFactory.message(id: 1),
+            MessageFactory.message(id: 2),
+            MessageFactory.message(id: 3)
+          ],
+          messageThread: self.fetchMessageThreadResponse
+        )
+      )
+  }
+
+  internal func fetchMessageThread(backing backing: Backing)
+    -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope> {
+
+      return SignalProducer(
+        value: MessageThreadEnvelope(
+          participants: [UserFactory.user(id: 1), UserFactory.user(id: 2)],
+          messages: [
+            MessageFactory.message(id: 1),
+            MessageFactory.message(id: 2),
+            MessageFactory.message(id: 3)
+          ],
+          messageThread: self.fetchMessageThreadResponse
+        )
+      )
+  }
+
+  internal func fetchMessageThreads(mailbox mailbox: Mailbox, project: Project?)
+    -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
+
+      return SignalProducer(value:
+        MessageThreadsEnvelope(
+          messageThreads: self.fetchMessageThreadsResponse,
+          urls: MessageThreadsEnvelope.UrlsEnvelope(
+            api: MessageThreadsEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreMessageThreads: ""
+            )
+          )
+        )
+      )
+  }
+
+  internal func fetchMessageThreads(paginationUrl paginationUrl: String)
+    -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
+
+      return SignalProducer(value:
+        MessageThreadsEnvelope(
+          messageThreads: self.fetchMessageThreadsResponse,
+          urls: MessageThreadsEnvelope.UrlsEnvelope(
+            api: MessageThreadsEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreMessageThreads: ""
+            )
+          )
+        )
+      )
+  }
+
+  internal func fetchProjects(params: DiscoveryParams) -> SignalProducer<[Project], ErrorEnvelope> {
+    return fetchDiscovery(params: params)
+      .map { $0.projects }
   }
 
   internal func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
@@ -474,6 +579,11 @@ internal struct MockService: ServiceType {
     )
   }
 
+  internal func markAsRead(messageThread messageThread: MessageThread)
+    -> SignalProducer<MessageThread, ErrorEnvelope> {
+      return SignalProducer(value: messageThread)
+  }
+
   internal func postComment(body: String, toProject project: Project) ->
     SignalProducer<Comment, ErrorEnvelope> {
 
@@ -504,7 +614,27 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: UserFactory.user())
   }
 
-  func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->
+  internal func searchMessages(query query: String, project: Project?)
+    -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
+      return SignalProducer(value:
+        MessageThreadsEnvelope(
+          messageThreads: self.fetchMessageThreadsResponse,
+          urls: MessageThreadsEnvelope.UrlsEnvelope(
+            api: MessageThreadsEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreMessageThreads: ""
+            )
+          )
+        )
+      )
+  }
+
+  internal func sendMessage(body body: String, toThread messageThread: MessageThread)
+    -> SignalProducer<Message, ErrorEnvelope> {
+
+      return SignalProducer(value: MessageFactory.message(id: body.hashValue))
+  }
+
+  internal func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
     if let error = signupError {
@@ -538,4 +668,3 @@ internal struct MockService: ServiceType {
     )
   }
 }
-// swiftlint:enable type_body_length
