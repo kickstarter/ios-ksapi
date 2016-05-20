@@ -1,22 +1,22 @@
-import struct Models.Project
-import struct Models.Category
+import Models
+import Prelude
 
 public struct DiscoveryParams {
-  public let staffPicks: Bool?
-  public let hasVideo: Bool?
-  public let starred: Bool?
   public let backed: Bool?
-  public let social: Bool?
-  public let recommended: Bool?
-  public let similarTo: Project?
   public let category: Models.Category?
-  public let query: String?
-  public let state: State?
-  public let sort: Sort?
+  public let hasVideo: Bool?
+  public let includePOTD: Bool?
   public let page: Int?
   public let perPage: Int?
-  public let includePOTD: Bool?
+  public let query: String?
+  public let recommended: Bool?
   public let seed: Int?
+  public let similarTo: Project?
+  public let social: Bool?
+  public let sort: Sort?
+  public let staffPicks: Bool?
+  public let starred: Bool?
+  public let state: State?
 
   public enum State: String {
     case All = "all"
@@ -25,87 +25,17 @@ public struct DiscoveryParams {
   }
 
   public enum Sort: String {
-    case Magic = "magic"
-    case Popular = "popularity"
     case EndingSoon = "end_date"
-    case Newest = "newest"
+    case Magic = "magic"
     case MostFunded = "most_funded"
+    case Newest = "newest"
+    case Popular = "popularity"
   }
 
-  static let defaultPage = 1
-  static let defaultPerPage = 15
-
-  public init(
-    staffPicks: Bool? = nil,
-    hasVideo: Bool? = nil,
-    starred: Bool? = nil,
-    backed: Bool? = nil,
-    social: Bool? = nil,
-    recommended: Bool? = nil,
-    similarTo: Project? = nil,
-    category: Models.Category? = nil,
-    query: String? = nil,
-    state: State? = nil,
-    sort: Sort? = nil,
-    page: Int? = defaultPage,
-    perPage: Int? = defaultPerPage,
-    includePOTD: Bool? = nil,
-    seed: Int? = nil) {
-      self.staffPicks = staffPicks
-      self.hasVideo = hasVideo
-      self.starred = starred
-      self.backed = backed
-      self.social = social
-      self.recommended = recommended
-      self.similarTo = similarTo
-      self.category = category
-      self.query = query
-      self.state = state
-      self.sort = sort
-      self.page = page
-      self.perPage = perPage
-      self.includePOTD = includePOTD
-      self.seed = seed
-  }
-
-  public func with(
-    staffPicks staffPicks: Bool? = nil,
-    hasVideo: Bool? = nil,
-    starred: Bool? = nil,
-    backed: Bool? = nil,
-    social: Bool? = nil,
-    recommended: Bool? = nil,
-    similarTo: Project? = nil,
-    category: Models.Category? = nil,
-    query: String? = nil,
-    state: State? = nil,
-    sort: Sort? = nil,
-    page: Int? = nil,
-    perPage: Int? = nil,
-    includePOTD: Bool? = nil,
-    seed: Int? = nil) -> DiscoveryParams {
-
-    return DiscoveryParams(
-      staffPicks: staffPicks ?? self.staffPicks,
-      hasVideo: hasVideo ?? self.hasVideo,
-      starred: starred ?? self.starred,
-      backed: backed ?? self.backed,
-      social: social ?? self.social,
-      recommended: recommended ?? self.recommended,
-      similarTo: similarTo ?? self.similarTo,
-      category: category ?? self.category,
-      query: query ?? self.query,
-      state: state ?? self.state,
-      sort: sort ?? self.sort,
-      page: page ?? self.page,
-      perPage: perPage ?? self.perPage,
-      includePOTD: includePOTD ?? self.includePOTD,
-      seed: seed ?? self.seed)
-  }
-
-  public func nextPage() -> DiscoveryParams {
-    return self.with(page: (page ?? 1) + 1)
-  }
+  public static let defaults = DiscoveryParams(backed: nil, category: nil, hasVideo: nil,
+                                               includePOTD: nil, page: nil, perPage: nil, query: nil,
+                                               recommended: nil, seed: nil, similarTo: nil, social: nil,
+                                               sort: nil, staffPicks: nil, starred: nil, state: nil)
 
   public var queryParams: [String:String] {
     let params: [String:String?]

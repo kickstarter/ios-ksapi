@@ -1,6 +1,6 @@
-import Foundation
 import Alamofire
 import Models
+import Prelude
 import ReactiveCocoa
 
 /**
@@ -130,7 +130,7 @@ public struct Service: ServiceType {
   }
 
   public func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.Discover(params.with(perPage: 1)))
+    return request(.Discover(params |> DiscoveryParams.lens.perPage *~ 1))
       .decodeModel(DiscoveryEnvelope.self)
       .map { envelope in envelope.projects.first }
       .ignoreNil()
@@ -234,15 +234,15 @@ public struct Service: ServiceType {
       .decodeModel(AccessTokenEnvelope.self)
   }
 
-  public func updateNewsletters(weekly weekly: Bool?,
-                                promo: Bool?,
-                                happening: Bool?,
-                                games: Bool?) -> SignalProducer<User, ErrorEnvelope> {
+  public func updateNewsletters(games games: Bool?,
+                                      happening: Bool?,
+                                      promo: Bool?,
+                                      weekly: Bool?) -> SignalProducer<User, ErrorEnvelope> {
 
-    return request(.UserNewsletters(weekly: weekly ?? false,
-                                    promo: promo ?? false,
+    return request(.UserNewsletters(games: games ?? false,
                                     happening: happening ?? false,
-                                    games: games ?? false)
+                                    promo: promo ?? false,
+                                    weekly: weekly ?? false)
       )
       .decodeModel(User.self)
   }

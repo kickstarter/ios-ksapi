@@ -131,7 +131,7 @@ public protocol ServiceType {
   func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope>
 
   /// Update newsletter subscriptions for a User and return a new User.
-  func updateNewsletters(weekly weekly: Bool?, promo: Bool?, happening: Bool?, games: Bool?) ->
+  func updateNewsletters(games games: Bool?, happening: Bool?, promo: Bool?, weekly: Bool?) ->
     SignalProducer<User, ErrorEnvelope>
 }
 

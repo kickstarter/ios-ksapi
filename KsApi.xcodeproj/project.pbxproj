@@ -62,8 +62,8 @@
 		A7DB1D931C9F541F008244DA /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7FD099D1C83E74F00332CCB /* KsApi.framework */; };
 		A7DB1D961C9F5473008244DA /* Models_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DB1D751C9F53D1008244DA /* Models_TestHelpers.framework */; };
 		A7DB1D9D1C9F5848008244DA /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB1D8F1C9F540C008244DA /* MockService.swift */; };
-		A7E315A41C8891E2000DD85A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E315A31C8891E2000DD85A /* Dictionary.swift */; };
-		A7E315A51C8891E2000DD85A /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E315A31C8891E2000DD85A /* Dictionary.swift */; };
+		A7ECEED61CEF55F900CF0DFC /* DiscoveryParamsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ECEED51CEF55F900CF0DFC /* DiscoveryParamsLenses.swift */; };
+		A7ECEED71CEF55F900CF0DFC /* DiscoveryParamsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ECEED51CEF55F900CF0DFC /* DiscoveryParamsLenses.swift */; };
 		A7FD09701C83E74F00332CCB /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
 		A7FD09711C83E74F00332CCB /* Alamofire.Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967661C2B431C0002166F /* Alamofire.Request.swift */; };
 		A7FD09721C83E74F00332CCB /* OauthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967871C2B44440002166F /* OauthToken.swift */; };
@@ -430,7 +430,7 @@
 		A7DB1D871C9F5401008244DA /* KsApi_TestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi_TestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7DB1D8F1C9F540C008244DA /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MockService.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A7DB1DA71C9F5848008244DA /* KsApi_TestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi_TestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7E315A31C8891E2000DD85A /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		A7ECEED51CEF55F900CF0DFC /* DiscoveryParamsLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryParamsLenses.swift; sourceTree = "<group>"; };
 		A7FD099D1C83E74F00332CCB /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FD09D21C83E8E900332CCB /* KsApi-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA43C5F91BB358F200C180DA /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -554,7 +554,6 @@
 			isa = PBXGroup;
 			children = (
 				A77967661C2B431C0002166F /* Alamofire.Request.swift */,
-				A7E315A31C8891E2000DD85A /* Dictionary.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -584,6 +583,7 @@
 				A7376B351CE3D549003B50E3 /* MessageThreadEnvelope.swift */,
 				A7A1CA941CDCCED30037AB20 /* MessageThreadsEnvelope.swift */,
 				A77967721C2B431C0002166F /* StarEnvelope.swift */,
+				A7ECEEC31CEF55A700CF0DFC /* lenses */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -633,6 +633,14 @@
 				A7DB1D8F1C9F540C008244DA /* MockService.swift */,
 			);
 			path = TestHelpers;
+			sourceTree = "<group>";
+		};
+		A7ECEEC31CEF55A700CF0DFC /* lenses */ = {
+			isa = PBXGroup;
+			children = (
+				A7ECEED51CEF55F900CF0DFC /* DiscoveryParamsLenses.swift */,
+			);
+			path = lenses;
 			sourceTree = "<group>";
 		};
 		A7FD099F1C83E77B00332CCB /* Frameworks */ = {
@@ -1213,7 +1221,6 @@
 			files = (
 				A7FD09701C83E74F00332CCB /* ServiceType.swift in Sources */,
 				A7FD09711C83E74F00332CCB /* Alamofire.Request.swift in Sources */,
-				A7E315A41C8891E2000DD85A /* Dictionary.swift in Sources */,
 				A7FD09721C83E74F00332CCB /* OauthToken.swift in Sources */,
 				A7FD09731C83E74F00332CCB /* StarEnvelope.swift in Sources */,
 				A7FD09741C83E74F00332CCB /* Route.swift in Sources */,
@@ -1224,6 +1231,7 @@
 				A7FD09771C83E74F00332CCB /* Method.swift in Sources */,
 				A7FD09781C83E74F00332CCB /* ErrorEnvelope.swift in Sources */,
 				A7FD09791C83E74F00332CCB /* DiscoveryEnvelope.swift in Sources */,
+				A7ECEED61CEF55F900CF0DFC /* DiscoveryParamsLenses.swift in Sources */,
 				A7FD097A1C83E74F00332CCB /* AccessTokenEnvelope.swift in Sources */,
 				A7FD097B1C83E74F00332CCB /* JSONObjectWithData.swift in Sources */,
 				A7FD097C1C83E74F00332CCB /* BasicHTTPAuth.swift in Sources */,
@@ -1255,7 +1263,6 @@
 			files = (
 				A77967741C2B431C0002166F /* ServiceType.swift in Sources */,
 				A77967751C2B431C0002166F /* Alamofire.Request.swift in Sources */,
-				A7E315A51C8891E2000DD85A /* Dictionary.swift in Sources */,
 				A77967881C2B44440002166F /* OauthToken.swift in Sources */,
 				A779677F1C2B431C0002166F /* StarEnvelope.swift in Sources */,
 				A77967791C2B431C0002166F /* Route.swift in Sources */,
@@ -1266,6 +1273,7 @@
 				A713ECB81C2C59D400B6234E /* Method.swift in Sources */,
 				A779677E1C2B431C0002166F /* ErrorEnvelope.swift in Sources */,
 				A779677C1C2B431C0002166F /* DiscoveryEnvelope.swift in Sources */,
+				A7ECEED71CEF55F900CF0DFC /* DiscoveryParamsLenses.swift in Sources */,
 				A779677A1C2B431C0002166F /* AccessTokenEnvelope.swift in Sources */,
 				A77967771C2B431C0002166F /* JSONObjectWithData.swift in Sources */,
 				A77967841C2B43950002166F /* BasicHTTPAuth.swift in Sources */,

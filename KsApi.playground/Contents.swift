@@ -1,7 +1,8 @@
 import XCPlayground
 import KsApi
-import ReactiveCocoa
 import Models
+import Prelude
+import ReactiveCocoa
 import Result
 
 XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
@@ -25,7 +26,12 @@ categories
 
 // Get the most popular project in each category above.
 categories
-  .map { c in DiscoveryParams(category: c, sort: .Popular, perPage: 1) }
+  .map {
+    DiscoveryParams.defaults
+      |> DiscoveryParams.lens.category *~ $0
+      <> DiscoveryParams.lens.sort *~ .Popular
+      <> DiscoveryParams.lens.perPage *~ 1
+  }
   .flatMap(.Merge, transform: service.fetchProject)
   .map { p in p.name }
   .startWithNext { name in

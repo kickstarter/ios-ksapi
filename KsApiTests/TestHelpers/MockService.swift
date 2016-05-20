@@ -6,6 +6,7 @@
 @testable import Models
 @testable import Models_TestHelpers
 import ReactiveCocoa
+import Prelude
 
 internal struct MockService: ServiceType {
   internal let serverConfig: ServerConfigType
@@ -96,16 +97,16 @@ internal struct MockService: ServiceType {
     self.buildVersion = buildVersion
 
     self.fetchActivitiesResponse = fetchActivitiesResponse ?? [
-      ActivityFactory.updateActivity,
-      ActivityFactory.backingActivity,
-      ActivityFactory.successActivity
+      Activity.template,
+      Activity.template |> Activity.lens.category *~ .Backing,
+      Activity.template |> Activity.lens.category *~ .Success
     ]
 
     self.fetchActivitiesError = fetchActivitiesError
 
     self.fetchCommentsResponse = fetchCommentsResponse ?? [
-      CommentFactory.comment(id: 2),
-      CommentFactory.comment(id: 1)
+      Comment.template |> Comment.lens.id *~ 2,
+      Comment.template |> Comment.lens.id *~ 1
     ]
 
     self.fetchCommentsError = fetchCommentsError
@@ -124,19 +125,19 @@ internal struct MockService: ServiceType {
     self.fetchDiscoveryResponse = fetchDiscoveryResponse
     self.fetchDiscoveryError = fetchDiscoveryError
 
-    self.fetchMessageThreadResponse = fetchMessageThreadResponse ??  MessageThreadFactory.messageThread()
+    self.fetchMessageThreadResponse = fetchMessageThreadResponse ??  MessageThread.template
 
     self.fetchMessageThreadsResponse = fetchMessageThreadsResponse ?? [
-      MessageThreadFactory.messageThread(id: 1),
-      MessageThreadFactory.messageThread(id: 2),
-      MessageThreadFactory.messageThread(id: 3),
+      MessageThread.template |> MessageThread.lens.id *~ 1,
+      MessageThread.template |> MessageThread.lens.id *~ 2,
+      MessageThread.template |> MessageThread.lens.id *~ 3
     ]
 
     self.fetchProjectResponse = fetchProjectResponse
 
-    self.fetchUserSelfResponse = fetchUserSelfResponse ?? UserFactory.user()
+    self.fetchUserSelfResponse = fetchUserSelfResponse ?? User.template
 
-    self.postCommentResponse = postCommentResponse ?? CommentFactory.comment()
+    self.postCommentResponse = postCommentResponse ?? Comment.template
 
     self.postCommentError = postCommentError
 
@@ -318,7 +319,7 @@ internal struct MockService: ServiceType {
         pledgedAt: 123456789.0,
         projectCountry: "US",
         projectId: 1,
-        reward: RewardFactory.reward(),
+        reward: Reward.template,
         rewardId: 1,
         sequence: 10,
         shippingAmount: 2,
@@ -330,13 +331,20 @@ internal struct MockService: ServiceType {
   internal func fetchDiscovery(paginationUrl paginationUrl: String)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
-    if let projects = fetchDiscoveryResponse {
+      if let error = fetchDiscoveryError {
+        return SignalProducer(error: error)
+      }
+
+      let projectsDefault = self.fetchDiscoveryResponse ?? (1...4).map {
+        Project.template |> Project.lens.id %~ const($0 + paginationUrl.hashValue)
+      }
+
       return SignalProducer(value:
         DiscoveryEnvelope(
-          projects: projects,
+          projects: projectsDefault,
           urls: DiscoveryEnvelope.UrlsEnvelope(
             api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
-              more_projects: "http://***REMOVED***/gimme/more"
+              more_projects: paginationUrl + "+1"
             )
           ),
           stats: DiscoveryEnvelope.StatsEnvelope(
@@ -344,34 +352,22 @@ internal struct MockService: ServiceType {
           )
         )
       )
-    } else if let error = fetchDiscoveryError {
-      return SignalProducer(error: error)
-    }
-
-    let projectsDefault = (0...4).map { ProjectFactory.live(id: $0 + paginationUrl.hashValue) }
-
-    return SignalProducer(value:
-      DiscoveryEnvelope(
-        projects: projectsDefault,
-        urls: DiscoveryEnvelope.UrlsEnvelope(
-          api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
-            more_projects: paginationUrl + "+1"
-          )
-        ),
-        stats: DiscoveryEnvelope.StatsEnvelope(
-          count: 200
-        )
-      )
-    )
   }
 
   internal func fetchDiscovery(params params: DiscoveryParams)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
-    if let projects = fetchDiscoveryResponse {
+      if let error = fetchDiscoveryError {
+        return SignalProducer(error: error)
+      }
+
+      let projectsDefault = self.fetchDiscoveryResponse ?? (1...4).map {
+        Project.template |> Project.lens.id %~ const($0 + params.hashValue)
+      }
+
       return SignalProducer(value:
         DiscoveryEnvelope(
-          projects: projects,
+          projects: projectsDefault,
           urls: DiscoveryEnvelope.UrlsEnvelope(
             api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
               more_projects: "http://***REMOVED***/gimme/more"
@@ -382,25 +378,6 @@ internal struct MockService: ServiceType {
           )
         )
       )
-    } else if let error = fetchDiscoveryError {
-      return SignalProducer(error: error)
-    }
-
-    let projectsDefault = (0...4).map { ProjectFactory.live(id: $0 + params.hashValue) }
-
-    return SignalProducer(value:
-      DiscoveryEnvelope(
-        projects: projectsDefault,
-        urls: DiscoveryEnvelope.UrlsEnvelope(
-          api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
-            more_projects: "http://***REMOVED***/gimme/more"
-          )
-        ),
-        stats: DiscoveryEnvelope.StatsEnvelope(
-          count: 200
-        )
-      )
-    )
   }
 
   internal func fetchMessageThread(messageThread messageThread: MessageThread)
@@ -408,11 +385,11 @@ internal struct MockService: ServiceType {
 
       return SignalProducer(
         value: MessageThreadEnvelope(
-          participants: [UserFactory.user(id: 1), UserFactory.user(id: 2)],
+          participants: [User.template, User.template |> User.lens.id *~ 2],
           messages: [
-            MessageFactory.message(id: 1),
-            MessageFactory.message(id: 2),
-            MessageFactory.message(id: 3)
+            Message.template |> Message.lens.id *~ 1,
+            Message.template |> Message.lens.id *~ 2,
+            Message.template |> Message.lens.id *~ 3
           ],
           messageThread: self.fetchMessageThreadResponse
         )
@@ -424,11 +401,11 @@ internal struct MockService: ServiceType {
 
       return SignalProducer(
         value: MessageThreadEnvelope(
-          participants: [UserFactory.user(id: 1), UserFactory.user(id: 2)],
+          participants: [User.template, User.template |> User.lens.id *~ 2],
           messages: [
-            MessageFactory.message(id: 1),
-            MessageFactory.message(id: 2),
-            MessageFactory.message(id: 3)
+            Message.template |> Message.lens.id *~ 1,
+            Message.template |> Message.lens.id *~ 2,
+            Message.template |> Message.lens.id *~ 3
           ],
           messageThread: self.fetchMessageThreadResponse
         )
@@ -474,14 +451,14 @@ internal struct MockService: ServiceType {
     if let project = self.fetchProjectResponse {
       return SignalProducer(value: project)
     }
-    return SignalProducer(value: ProjectFactory.live(id: id))
+    return SignalProducer(value: Project.template |> Project.lens.id *~ id)
   }
 
   internal func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
     if let project = self.fetchProjectResponse {
       return SignalProducer(value: project)
     }
-    return SignalProducer(value: ProjectFactory.live(id: params.hashValue))
+    return SignalProducer(value: Project.template |> Project.lens.id *~ params.hashValue)
   }
 
   internal func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope> {
@@ -513,28 +490,26 @@ internal struct MockService: ServiceType {
   internal func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope> {
 
     return SignalProducer(value: [
-      CategoryFactory.art,
-      CategoryFactory.filmAndVideo,
-      CategoryFactory.illustration,
-      CategoryFactory.documentary
+      Category.art,
+      Category.filmAndVideo,
+      Category.illustration,
+      Category.documentary
       ]
     )
   }
 
   internal func fetchCategory(id id: Int) -> SignalProducer<Models.Category, ErrorEnvelope> {
-    return SignalProducer(value: CategoryFactory.category(id: id))
+    return SignalProducer(value: Category.template |> Category.lens.id *~ id)
   }
 
   internal func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
     return .init(
-      value: project.personalization.isStarred == true ?
-        ProjectFactory.notStarred :
-        ProjectFactory.starred
+      value: project |> Project.lens.personalization.isStarred %~ { !($0 ?? false) }
     )
   }
 
   internal func star(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return .init(value: ProjectFactory.starred)
+    return .init(value: project |> Project.lens.personalization.isStarred *~ true)
   }
 
   internal func login(email email: String, password: String, code: String?) ->
@@ -550,12 +525,7 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: resendCodeError)
     }
 
-    return SignalProducer(value:
-      AccessTokenEnvelope(
-        accessToken: "deadbeef",
-        user: UserFactory.user()
-      )
-    )
+    return SignalProducer(value: AccessTokenEnvelope(accessToken: "deadbeef", user: User.template))
   }
 
   internal func login(facebookAccessToken facebookAccessToken: String, code: String?) ->
@@ -571,12 +541,7 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: resendCodeError)
     }
 
-    return SignalProducer(value:
-      AccessTokenEnvelope(
-        accessToken: "deadbeef",
-        user: UserFactory.user()
-      )
-    )
+    return SignalProducer(value: AccessTokenEnvelope(accessToken: "deadbeef", user: User.template))
   }
 
   internal func markAsRead(messageThread messageThread: MessageThread)
@@ -611,7 +576,7 @@ internal struct MockService: ServiceType {
     } else if let error = resetPasswordError {
       return SignalProducer(error: error)
     }
-    return SignalProducer(value: UserFactory.user())
+    return SignalProducer(value: User.template)
   }
 
   internal func searchMessages(query query: String, project: Project?)
@@ -631,7 +596,7 @@ internal struct MockService: ServiceType {
   internal func sendMessage(body body: String, toThread messageThread: MessageThread)
     -> SignalProducer<Message, ErrorEnvelope> {
 
-      return SignalProducer(value: MessageFactory.message(id: body.hashValue))
+      return SignalProducer(value: Message.template |> Message.lens.id *~ body.hashValue)
   }
 
   internal func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->
@@ -645,15 +610,15 @@ internal struct MockService: ServiceType {
     return SignalProducer(value:
       AccessTokenEnvelope(
         accessToken: "deadbeef",
-        user: UserFactory.user()
+        user: User.template
       )
     )
   }
 
-  func updateNewsletters(weekly weekly: Bool?,
-                              promo: Bool?,
-                              happening: Bool?,
-                              games: Bool?) -> SignalProducer<User, ErrorEnvelope> {
+  func updateNewsletters(games games: Bool?,
+                               happening: Bool?,
+                               promo: Bool?,
+                               weekly: Bool?) -> SignalProducer<User, ErrorEnvelope> {
 
     if let response = updateNewslettersResponse {
       return SignalProducer(value: response)
@@ -661,10 +626,12 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: error)
     }
 
-    return SignalProducer(value: UserFactory.userWithNewsletters(weekly: weekly ?? false,
-                                                                 promo: promo ?? false,
-                                                                 happening: happening ?? false,
-                                                                 games: games ?? false)
-    )
+    let newsletters = User.NewsletterSubscriptions.template
+      |> User.NewsletterSubscriptions.lens.games *~ games ?? false
+      <> User.NewsletterSubscriptions.lens.happening *~ happening ?? false
+      <> User.NewsletterSubscriptions.lens.promo *~ promo ?? false
+      <> User.NewsletterSubscriptions.lens.weekly *~ weekly ?? false
+
+    return SignalProducer(value: User.template |> User.lens.newsletters *~ newsletters)
   }
 }
