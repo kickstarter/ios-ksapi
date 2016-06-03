@@ -11,4 +11,15 @@ internal struct ConfigFactory {
     locale: "en",
     stripePublishableKey: "pk"
   )
+
+  internal static let deConfig = Config(
+    abExperiments: [:],
+    appId: 987654321,
+    countryCode: "DE",
+    features: [:],
+    iTunesLink: "http://www.itunes.com",
+    launchedCountries: [.US],
+    locale: "de",
+    stripePublishableKey: "pk"
+  )
 }

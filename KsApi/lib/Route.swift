@@ -1,4 +1,5 @@
 import Models
+import Prelude
 
 /**
  A list of possible requests that can be made for Kickstarter data.
@@ -29,7 +30,7 @@ public enum Route {
   case UpdateComments(Update)
   case UserSelf
   case User(Models.User)
-  case UserNewsletters(games: Bool, happening: Bool, promo: Bool, weekly: Bool)
+  case UpdateUserSelf(Models.User)
 
   internal var requestProperties: (method: KsApi.Method, path: String, query: [String:AnyObject]) {
     switch self {
@@ -122,11 +123,9 @@ public enum Route {
     case let .User(user):
       return (.GET, "/v1/users/\(user.id)", [:])
 
-    case let .UserNewsletters(games, happening, promo, weekly):
-      return (.PUT, "/v1/users/self", [ "games_newsletter": games,
-                                        "happening_newsletter": happening,
-                                        "promo_newsletter": promo,
-                                        "weekly_newsletter": weekly ])
+    case let .UpdateUserSelf(user):
+      let params = user.notifications.encode().withAllValuesFrom(user.newsletters.encode())
+      return (.PUT, "v1/users/self", params)
     }
   }
 }

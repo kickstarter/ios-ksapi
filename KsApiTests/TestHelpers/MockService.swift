@@ -30,7 +30,8 @@ internal struct MockService: ServiceType {
 
   private let fetchProjectResponse: Project?
 
-  private let fetchUserSelfResponse: User
+  private let fetchUserSelfResponse: User?
+  private let fetchUserSelfError: ErrorEnvelope?
 
   private let postCommentResponse: Comment?
   private let postCommentError: ErrorEnvelope?
@@ -46,8 +47,7 @@ internal struct MockService: ServiceType {
   private let signupResponse: AccessTokenEnvelope?
   private let signupError: ErrorEnvelope?
 
-  private let updateNewslettersResponse: User?
-  private let updateNewslettersError: ErrorEnvelope?
+  private let updateUserSelfError: ErrorEnvelope?
 
   internal init(serverConfig: ServerConfigType,
                 oauthToken: OauthTokenAuthType?,
@@ -78,6 +78,7 @@ internal struct MockService: ServiceType {
                 fetchMessageThreadsResponse: [MessageThread]? = nil,
                 fetchProjectResponse: Project? = nil,
                 fetchUserSelfResponse: User? = nil,
+                fetchUserSelfError: ErrorEnvelope? = nil,
                 postCommentResponse: Comment? = nil,
                 postCommentError: ErrorEnvelope? = nil,
                 loginResponse: AccessTokenEnvelope? = nil,
@@ -88,8 +89,7 @@ internal struct MockService: ServiceType {
                 resetPasswordError: ErrorEnvelope? = nil,
                 signupResponse: AccessTokenEnvelope? = nil,
                 signupError: ErrorEnvelope? = nil,
-                updateNewslettersResponse: User? = nil,
-                updateNewslettersError: ErrorEnvelope? = nil) {
+                updateUserSelfError: ErrorEnvelope? = nil) {
 
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
@@ -137,6 +137,8 @@ internal struct MockService: ServiceType {
 
     self.fetchUserSelfResponse = fetchUserSelfResponse ?? User.template
 
+    self.fetchUserSelfError = fetchUserSelfError
+
     self.postCommentResponse = postCommentResponse ?? Comment.template
 
     self.postCommentError = postCommentError
@@ -157,9 +159,7 @@ internal struct MockService: ServiceType {
 
     self.signupError = signupError
 
-    self.updateNewslettersResponse = updateNewslettersResponse
-
-    self.updateNewslettersError = updateNewslettersError
+    self.updateUserSelfError = updateUserSelfError
   }
 
   internal func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
@@ -238,6 +238,7 @@ internal struct MockService: ServiceType {
       fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
+      fetchUserSelfError: self.fetchUserSelfError,
       postCommentResponse: self.postCommentResponse,
       postCommentError: self.postCommentError,
       loginResponse: self.loginResponse,
@@ -248,8 +249,7 @@ internal struct MockService: ServiceType {
       resetPasswordError: self.resetPasswordError,
       signupResponse: self.signupResponse,
       signupError: self.signupError,
-      updateNewslettersResponse: self.updateNewslettersResponse,
-      updateNewslettersError: self.updateNewslettersError
+      updateUserSelfError: self.updateUserSelfError
     )
   }
 
@@ -268,6 +268,7 @@ internal struct MockService: ServiceType {
       fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
+      fetchUserSelfError: self.fetchUserSelfError,
       postCommentResponse: self.postCommentResponse,
       postCommentError: self.postCommentError,
       loginResponse: self.loginResponse,
@@ -278,8 +279,7 @@ internal struct MockService: ServiceType {
       resetPasswordError: self.resetPasswordError,
       signupResponse: self.signupResponse,
       signupError: self.signupError,
-      updateNewslettersResponse: self.updateNewslettersResponse,
-      updateNewslettersError: self.updateNewslettersError
+      updateUserSelfError: self.updateUserSelfError
     )
   }
 
@@ -480,7 +480,7 @@ internal struct MockService: ServiceType {
       )
     }
 
-    return SignalProducer(value: fetchUserSelfResponse)
+    return SignalProducer(value: self.fetchUserSelfResponse ?? User.template)
   }
 
   internal func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope> {
@@ -615,23 +615,10 @@ internal struct MockService: ServiceType {
     )
   }
 
-  func updateNewsletters(games games: Bool?,
-                               happening: Bool?,
-                               promo: Bool?,
-                               weekly: Bool?) -> SignalProducer<User, ErrorEnvelope> {
-
-    if let response = updateNewslettersResponse {
-      return SignalProducer(value: response)
-    } else if let error = updateNewslettersError {
+  internal func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope> {
+    if let error = updateUserSelfError {
       return SignalProducer(error: error)
     }
-
-    let newsletters = User.NewsletterSubscriptions.template
-      |> User.NewsletterSubscriptions.lens.games *~ games ?? false
-      <> User.NewsletterSubscriptions.lens.happening *~ happening ?? false
-      <> User.NewsletterSubscriptions.lens.promo *~ promo ?? false
-      <> User.NewsletterSubscriptions.lens.weekly *~ weekly ?? false
-
-    return SignalProducer(value: User.template |> User.lens.newsletters *~ newsletters)
+    return SignalProducer(value: user)
   }
 }

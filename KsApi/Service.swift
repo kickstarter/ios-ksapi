@@ -234,16 +234,8 @@ public struct Service: ServiceType {
       .decodeModel(AccessTokenEnvelope.self)
   }
 
-  public func updateNewsletters(games games: Bool?,
-                                      happening: Bool?,
-                                      promo: Bool?,
-                                      weekly: Bool?) -> SignalProducer<User, ErrorEnvelope> {
-
-    return request(.UserNewsletters(games: games ?? false,
-                                    happening: happening ?? false,
-                                    promo: promo ?? false,
-                                    weekly: weekly ?? false)
-      )
+  public func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope> {
+    return request(.UpdateUserSelf(user))
       .decodeModel(User.self)
   }
 
