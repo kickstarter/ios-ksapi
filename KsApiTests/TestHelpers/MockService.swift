@@ -98,15 +98,15 @@ internal struct MockService: ServiceType {
 
     self.fetchActivitiesResponse = fetchActivitiesResponse ?? [
       Activity.template,
-      Activity.template |> Activity.lens.category *~ .Backing,
-      Activity.template |> Activity.lens.category *~ .Success
+      Activity.template |> Activity.lens.category .~ .Backing,
+      Activity.template |> Activity.lens.category .~ .Success
     ]
 
     self.fetchActivitiesError = fetchActivitiesError
 
     self.fetchCommentsResponse = fetchCommentsResponse ?? [
-      Comment.template |> Comment.lens.id *~ 2,
-      Comment.template |> Comment.lens.id *~ 1
+      Comment.template |> Comment.lens.id .~ 2,
+      Comment.template |> Comment.lens.id .~ 1
     ]
 
     self.fetchCommentsError = fetchCommentsError
@@ -128,9 +128,9 @@ internal struct MockService: ServiceType {
     self.fetchMessageThreadResponse = fetchMessageThreadResponse ??  MessageThread.template
 
     self.fetchMessageThreadsResponse = fetchMessageThreadsResponse ?? [
-      MessageThread.template |> MessageThread.lens.id *~ 1,
-      MessageThread.template |> MessageThread.lens.id *~ 2,
-      MessageThread.template |> MessageThread.lens.id *~ 3
+      MessageThread.template |> MessageThread.lens.id .~ 1,
+      MessageThread.template |> MessageThread.lens.id .~ 2,
+      MessageThread.template |> MessageThread.lens.id .~ 3
     ]
 
     self.fetchProjectResponse = fetchProjectResponse
@@ -385,11 +385,11 @@ internal struct MockService: ServiceType {
 
       return SignalProducer(
         value: MessageThreadEnvelope(
-          participants: [User.template, User.template |> User.lens.id *~ 2],
+          participants: [User.template, User.template |> User.lens.id .~ 2],
           messages: [
-            Message.template |> Message.lens.id *~ 1,
-            Message.template |> Message.lens.id *~ 2,
-            Message.template |> Message.lens.id *~ 3
+            Message.template |> Message.lens.id .~ 1,
+            Message.template |> Message.lens.id .~ 2,
+            Message.template |> Message.lens.id .~ 3
           ],
           messageThread: self.fetchMessageThreadResponse
         )
@@ -401,11 +401,11 @@ internal struct MockService: ServiceType {
 
       return SignalProducer(
         value: MessageThreadEnvelope(
-          participants: [User.template, User.template |> User.lens.id *~ 2],
+          participants: [User.template, User.template |> User.lens.id .~ 2],
           messages: [
-            Message.template |> Message.lens.id *~ 1,
-            Message.template |> Message.lens.id *~ 2,
-            Message.template |> Message.lens.id *~ 3
+            Message.template |> Message.lens.id .~ 1,
+            Message.template |> Message.lens.id .~ 2,
+            Message.template |> Message.lens.id .~ 3
           ],
           messageThread: self.fetchMessageThreadResponse
         )
@@ -451,14 +451,14 @@ internal struct MockService: ServiceType {
     if let project = self.fetchProjectResponse {
       return SignalProducer(value: project)
     }
-    return SignalProducer(value: Project.template |> Project.lens.id *~ id)
+    return SignalProducer(value: Project.template |> Project.lens.id .~ id)
   }
 
   internal func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
     if let project = self.fetchProjectResponse {
       return SignalProducer(value: project)
     }
-    return SignalProducer(value: Project.template |> Project.lens.id *~ params.hashValue)
+    return SignalProducer(value: Project.template |> Project.lens.id .~ params.hashValue)
   }
 
   internal func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope> {
@@ -499,7 +499,7 @@ internal struct MockService: ServiceType {
   }
 
   internal func fetchCategory(id id: Int) -> SignalProducer<Models.Category, ErrorEnvelope> {
-    return SignalProducer(value: Category.template |> Category.lens.id *~ id)
+    return SignalProducer(value: Category.template |> Category.lens.id .~ id)
   }
 
   internal func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
@@ -509,7 +509,7 @@ internal struct MockService: ServiceType {
   }
 
   internal func star(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return .init(value: project |> Project.lens.personalization.isStarred *~ true)
+    return .init(value: project |> Project.lens.personalization.isStarred .~ true)
   }
 
   internal func login(email email: String, password: String, code: String?) ->
@@ -596,7 +596,7 @@ internal struct MockService: ServiceType {
   internal func sendMessage(body body: String, toThread messageThread: MessageThread)
     -> SignalProducer<Message, ErrorEnvelope> {
 
-      return SignalProducer(value: Message.template |> Message.lens.id *~ body.hashValue)
+      return SignalProducer(value: Message.template |> Message.lens.id .~ body.hashValue)
   }
 
   internal func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->

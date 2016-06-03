@@ -130,7 +130,7 @@ public struct Service: ServiceType {
   }
 
   public func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.Discover(params |> DiscoveryParams.lens.perPage *~ 1))
+    return request(.Discover(params |> DiscoveryParams.lens.perPage .~ 1))
       .decodeModel(DiscoveryEnvelope.self)
       .map { envelope in envelope.projects.first }
       .ignoreNil()

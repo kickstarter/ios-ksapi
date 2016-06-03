@@ -28,9 +28,9 @@ categories
 categories
   .map {
     DiscoveryParams.defaults
-      |> DiscoveryParams.lens.category *~ $0
-      <> DiscoveryParams.lens.sort *~ .Popular
-      <> DiscoveryParams.lens.perPage *~ 1
+      |> DiscoveryParams.lens.category .~ $0
+      <> DiscoveryParams.lens.sort .~ .Popular
+      <> DiscoveryParams.lens.perPage .~ 1
   }
   .flatMap(.Merge, transform: service.fetchProject)
   .map { p in p.name }

@@ -15,21 +15,21 @@ class DiscoveryParamsTests: XCTestCase {
     XCTAssertEqual([:], DiscoveryParams.defaults.queryParams)
 
     let params = DiscoveryParams.defaults
-      |> DiscoveryParams.lens.staffPicks *~ true
-      <> DiscoveryParams.lens.hasVideo *~ true
-      <> DiscoveryParams.lens.starred *~ true
-      <> DiscoveryParams.lens.backed *~ false
-      <> DiscoveryParams.lens.social *~ true
-      <> DiscoveryParams.lens.recommended *~ true
-      <> DiscoveryParams.lens.similarTo *~ Project.template
-      <> DiscoveryParams.lens.category *~ Category.art
-      <> DiscoveryParams.lens.query *~ "wallet"
-      <> DiscoveryParams.lens.state *~ .Live
-      <> DiscoveryParams.lens.sort *~ .Popular
-      <> DiscoveryParams.lens.page *~ 1
-      <> DiscoveryParams.lens.perPage *~ 20
-      <> DiscoveryParams.lens.includePOTD *~ true
-      <> DiscoveryParams.lens.seed *~ 123
+      |> DiscoveryParams.lens.staffPicks .~ true
+      <> DiscoveryParams.lens.hasVideo .~ true
+      <> DiscoveryParams.lens.starred .~ true
+      <> DiscoveryParams.lens.backed .~ false
+      <> DiscoveryParams.lens.social .~ true
+      <> DiscoveryParams.lens.recommended .~ true
+      <> DiscoveryParams.lens.similarTo .~ Project.template
+      <> DiscoveryParams.lens.category .~ Category.art
+      <> DiscoveryParams.lens.query .~ "wallet"
+      <> DiscoveryParams.lens.state .~ .Live
+      <> DiscoveryParams.lens.sort .~ .Popular
+      <> DiscoveryParams.lens.page .~ 1
+      <> DiscoveryParams.lens.perPage .~ 20
+      <> DiscoveryParams.lens.includePOTD .~ true
+      <> DiscoveryParams.lens.seed .~ 123
 
     XCTAssertEqual([
       "staff_picks": "true",
