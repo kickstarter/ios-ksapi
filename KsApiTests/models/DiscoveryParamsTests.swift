@@ -28,7 +28,6 @@ class DiscoveryParamsTests: XCTestCase {
       <> DiscoveryParams.lens.sort .~ .Popular
       <> DiscoveryParams.lens.page .~ 1
       <> DiscoveryParams.lens.perPage .~ 20
-      <> DiscoveryParams.lens.includePOTD .~ true
       <> DiscoveryParams.lens.seed .~ 123
 
     XCTAssertEqual([
@@ -44,7 +43,6 @@ class DiscoveryParamsTests: XCTestCase {
       "sort": "popularity",
       "page": "1",
       "per_page": "20",
-      "include_potd": "true",
       "seed": "123",
       "similar_to": Project.template.id.description
     ], params.queryParams)
@@ -59,5 +57,27 @@ class DiscoveryParamsTests: XCTestCase {
     let params = DiscoveryParams.defaults
     XCTAssertNotNil(params.description)
     XCTAssertNotNil(params.debugDescription)
+  }
+
+  func testPOTD() {
+    let p1 = DiscoveryParams.defaults
+      |> DiscoveryParams.lens.includePOTD .~ true
+    XCTAssertEqual([:], p1.queryParams,
+                   "POTD flag is not included when not staff picks + default sort.")
+
+    let p2 = DiscoveryParams.defaults
+      |> DiscoveryParams.lens.includePOTD .~ true
+      |> DiscoveryParams.lens.staffPicks .~ true
+    XCTAssertEqual(["staff_picks": "true", "include_potd": "true"],
+                   p2.queryParams,
+                   "POTD flag is included when staff picks + default sort.")
+
+    let p3 = DiscoveryParams.defaults
+      |> DiscoveryParams.lens.includePOTD .~ true
+      |> DiscoveryParams.lens.staffPicks .~ true
+      |> DiscoveryParams.lens.sort .~ .Magic
+    XCTAssertEqual(["staff_picks": "true", "include_potd": "true", "sort": "magic"],
+                   p3.queryParams,
+                   "POTD flag is included when staff picks + magic sort.")
   }
 }

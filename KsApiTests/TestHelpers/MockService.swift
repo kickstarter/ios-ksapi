@@ -17,6 +17,8 @@ internal struct MockService: ServiceType {
   private let fetchActivitiesResponse: [Activity]?
   private let fetchActivitiesError: ErrorEnvelope?
 
+  private let fetchCategoriesResponse: [Models.Category]
+
   private let fetchCommentsResponse: [Comment]?
   private let fetchCommentsError: ErrorEnvelope?
 
@@ -69,6 +71,7 @@ internal struct MockService: ServiceType {
                 buildVersion: String = "1",
                 fetchActivitiesResponse: [Activity]? = nil,
                 fetchActivitiesError: ErrorEnvelope? = nil,
+                fetchCategoriesResponse: [Models.Category]? = nil,
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
                 fetchConfigResponse: Config? = nil,
@@ -103,6 +106,13 @@ internal struct MockService: ServiceType {
     ]
 
     self.fetchActivitiesError = fetchActivitiesError
+
+    self.fetchCategoriesResponse = fetchCategoriesResponse ?? [
+      Category.art,
+      Category.filmAndVideo,
+      Category.illustration,
+      Category.documentary
+    ]
 
     self.fetchCommentsResponse = fetchCommentsResponse ?? [
       Comment.template |> Comment.lens.id .~ 2,
@@ -336,7 +346,7 @@ internal struct MockService: ServiceType {
       }
 
       let projectsDefault = self.fetchDiscoveryResponse ?? (1...4).map {
-        Project.template |> Project.lens.id %~ const($0 + paginationUrl.hashValue)
+        Project.template |> Project.lens.id .~ ($0 + paginationUrl.hashValue)
       }
 
       return SignalProducer(value:
@@ -489,13 +499,7 @@ internal struct MockService: ServiceType {
 
   internal func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope> {
 
-    return SignalProducer(value: [
-      Category.art,
-      Category.filmAndVideo,
-      Category.illustration,
-      Category.documentary
-      ]
-    )
+    return SignalProducer(value: self.fetchCategoriesResponse)
   }
 
   internal func fetchCategory(id id: Int) -> SignalProducer<Models.Category, ErrorEnvelope> {

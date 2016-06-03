@@ -38,8 +38,7 @@ public struct DiscoveryParams {
                                                sort: nil, staffPicks: nil, starred: nil, state: nil)
 
   public var queryParams: [String:String] {
-    let params: [String:String?]
-    params = [
+    var params: [String:String] = [
       "staff_picks": self.staffPicks?.description,
       "has_video": self.hasVideo?.description,
       "starred": self.starred == true ? "1" : self.starred == false ? "-1" : nil,
@@ -53,10 +52,17 @@ public struct DiscoveryParams {
       "sort": self.sort?.rawValue,
       "page": self.page?.description,
       "per_page": self.perPage?.description,
-      "include_potd": self.includePOTD?.description,
       "seed": self.seed?.description,
-    ]
-    return params.compact()
+    ].compact()
+
+    // Include the POTD only when searching for staff picks sorted by magic / no sort
+    if params == ["staff_picks": "true"] ||
+       params == ["staff_picks": "true", "sort": DiscoveryParams.Sort.Magic.rawValue] {
+
+      params["include_potd"] = self.includePOTD?.description
+    }
+
+    return params
   }
 }
 
