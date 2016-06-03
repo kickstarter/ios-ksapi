@@ -227,6 +227,19 @@ public struct Service: ServiceType {
         .decodeModel(Message.self)
   }
 
+  public func signup(name name: String,
+                          email: String,
+                          password: String,
+                          passwordConfirmation: String,
+                          sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+    return request(.Signup(name: name,
+                           email: email,
+                           password: password,
+                           passwordConfirmation: passwordConfirmation,
+                           sendNewsletters: sendNewsletters))
+      .decodeModel(AccessTokenEnvelope.self)
+  }
+
   public func signup(facebookAccessToken token: String, sendNewsletters: Bool) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 

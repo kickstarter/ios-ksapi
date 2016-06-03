@@ -120,6 +120,10 @@ public protocol ServiceType {
   func sendMessage(body body: String, toThread messageThread: MessageThread)
     -> SignalProducer<Message, ErrorEnvelope>
 
+  /// Signup with email.
+  func signup(name name: String, email: String, password: String, passwordConfirmation: String,
+                   sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+
   /// Signup with Facebook access token and newsletter bool.
   func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope>

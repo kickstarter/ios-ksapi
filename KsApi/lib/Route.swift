@@ -25,6 +25,8 @@ public enum Route {
   case ResetPassword(email: String)
   case SearchMessages(query: String, project: Models.Project?)
   case SendMessage(body: String, messageThread: MessageThread)
+  case Signup(name: String, email: String, password: String, passwordConfirmation: String,
+    sendNewsletters: Bool)
   case Star(Models.Project)
   case ToggleStar(Models.Project)
   case UpdateComments(Update)
@@ -107,6 +109,15 @@ public enum Route {
 
     case let .SendMessage(body, messageThread):
       return (.POST, "/v1/message_threads/\(messageThread.id)/messages", ["body": body])
+
+    case let .Signup(name, email, password, passwordConfirmation, sendNewsletters):
+      let params: [String:AnyObject] = ["name": name,
+                                        "email": email,
+                                        "newsletter_opt_in": sendNewsletters,
+                                        "password": password,
+                                        "password_confirmation": passwordConfirmation,
+                                        "send_newsletters": sendNewsletters]
+      return (.POST, "/v1/users", params)
 
     case let .Star(p):
       return (.PUT, "/v1/projects/\(p.id)/star", [:])

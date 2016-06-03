@@ -599,6 +599,26 @@ internal struct MockService: ServiceType {
       return SignalProducer(value: Message.template |> Message.lens.id .~ body.hashValue)
   }
 
+  internal func signup(name name: String,
+                          email: String,
+                          password: String,
+                          passwordConfirmation: String,
+                          sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+    if let error = signupError {
+      return SignalProducer(error: error)
+    } else if let accessTokenEnvelope = signupResponse {
+      return SignalProducer(value: accessTokenEnvelope)
+    }
+    return SignalProducer(value:
+      AccessTokenEnvelope(
+        accessToken: "deadbeef",
+        user: User.template
+          |> User.lens.name .~ name
+          |> User.lens.newsletters.weekly .~ sendNewsletters
+      )
+    )
+  }
+
   internal func signup(facebookAccessToken facebookAccessToken: String, sendNewsletters: Bool) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
