@@ -3,8 +3,6 @@
 // swiftlint:disable function_body_length
 
 @testable import KsApi
-@testable import Models
-@testable import Models_TestHelpers
 import ReactiveCocoa
 import Prelude
 
@@ -17,7 +15,7 @@ internal struct MockService: ServiceType {
   private let fetchActivitiesResponse: [Activity]?
   private let fetchActivitiesError: ErrorEnvelope?
 
-  private let fetchCategoriesResponse: [Models.Category]
+  private let fetchCategoriesResponse: [KsApi.Category]
 
   private let fetchCommentsResponse: [Comment]?
   private let fetchCommentsError: ErrorEnvelope?
@@ -71,7 +69,7 @@ internal struct MockService: ServiceType {
                 buildVersion: String = "1",
                 fetchActivitiesResponse: [Activity]? = nil,
                 fetchActivitiesError: ErrorEnvelope? = nil,
-                fetchCategoriesResponse: [Models.Category]? = nil,
+                fetchCategoriesResponse: [KsApi.Category]? = nil,
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
                 fetchConfigResponse: Config? = nil,
@@ -497,12 +495,12 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: user)
   }
 
-  internal func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope> {
+  internal func fetchCategories() -> SignalProducer<[KsApi.Category], ErrorEnvelope> {
 
     return SignalProducer(value: self.fetchCategoriesResponse)
   }
 
-  internal func fetchCategory(id id: Int) -> SignalProducer<Models.Category, ErrorEnvelope> {
+  internal func fetchCategory(id id: Int) -> SignalProducer<KsApi.Category, ErrorEnvelope> {
     return SignalProducer(value: Category.template |> Category.lens.id .~ id)
   }
 

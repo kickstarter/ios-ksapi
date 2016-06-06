@@ -1,5 +1,4 @@
 import Alamofire
-import Models
 import Prelude
 import ReactiveCocoa
 
@@ -151,15 +150,15 @@ public struct Service: ServiceType {
       .decodeModel(User.self)
   }
 
-  public func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope> {
+  public func fetchCategories() -> SignalProducer<[Category], ErrorEnvelope> {
     return request(.Categories)
       .decodeModel(CategoriesEnvelope.self)
       .map { envelope in envelope.categories }
   }
 
-  public func fetchCategory(id id: Int) -> SignalProducer<Models.Category, ErrorEnvelope> {
+  public func fetchCategory(id id: Int) -> SignalProducer<Category, ErrorEnvelope> {
     return request(.Category(id))
-      .decodeModel(Models.Category.self)
+      .decodeModel(Category.self)
   }
 
   public func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope> {

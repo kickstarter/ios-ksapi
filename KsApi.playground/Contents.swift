@@ -1,6 +1,5 @@
 import XCPlayground
 import KsApi
-import Models
 import Prelude
 import ReactiveCocoa
 import Result

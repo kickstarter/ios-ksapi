@@ -1,9 +1,15 @@
-[submodule "Frameworks/Models"]
-	path = Frameworks/Models
-	url = git@github.com:kickstarter/Kickstarter-Models.git
 [submodule "Frameworks/ReactiveExtensions"]
 	path = Frameworks/ReactiveExtensions
 	url = git@github.com:kickstarter/Kickstarter-ReactiveExtensions.git
 [submodule "Frameworks/AlamofireImage"]
 	path = Frameworks/AlamofireImage
 	url = https://github.com/Alamofire/AlamofireImage.git
+[submodule "Frameworks/Argo"]
+	path = Frameworks/Argo
+	url = git://github.com/thoughtbot/Argo.git
+[submodule "Frameworks/Curry"]
+	path = Frameworks/Curry
+	url = https://github.com/thoughtbot/Curry.git
+[submodule "Frameworks/Prelude"]
+	path = Frameworks/Prelude
+	url = git@github.com:kickstarter/Kickstarter-Prelude.git

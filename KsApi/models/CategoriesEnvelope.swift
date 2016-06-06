@@ -1,9 +1,8 @@
 import Argo
-import struct Models.Category
-import func Curry.curry
+import Curry
 
 public struct CategoriesEnvelope {
-  public let categories: [Models.Category]
+  public let categories: [Category]
 }
 
 extension CategoriesEnvelope: Decodable {

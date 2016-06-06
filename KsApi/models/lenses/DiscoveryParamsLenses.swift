@@ -1,5 +1,4 @@
 // swiftlint:disable type_name
-import Models
 import Prelude
 
 extension DiscoveryParams {
@@ -11,7 +10,7 @@ extension DiscoveryParams {
         recommended: $1.recommended, seed: $1.seed, similarTo: $1.similarTo, social: $1.social, sort: $1.sort,
         staffPicks: $1.staffPicks, starred: $1.starred, state: $1.state) }
     )
-    public static let category = Lens<DiscoveryParams, Models.Category?>(
+    public static let category = Lens<DiscoveryParams, Category?>(
       view: { $0.category },
       set: { DiscoveryParams(backed: $1.backed, category: $0, hasVideo: $1.hasVideo,
         includePOTD: $1.includePOTD, page: $1.page, perPage: $1.perPage, query: $1.query,

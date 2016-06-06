@@ -1,9 +1,8 @@
-import Models
 import Prelude
 
 public struct DiscoveryParams {
   public let backed: Bool?
-  public let category: Models.Category?
+  public let category: Category?
   public let hasVideo: Bool?
   public let includePOTD: Bool?
   public let page: Int?

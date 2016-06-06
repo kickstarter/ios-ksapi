@@ -1,6 +1,5 @@
 import Argo
 import Curry
-import Models
 
 public struct Config {
   public let abExperiments: [String:String]

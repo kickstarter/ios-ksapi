@@ -1,7 +1,6 @@
 import XCTest
 @testable import KsApi
-@testable import Models
-@testable import Models_TestHelpers
+@testable import KsApi_TestHelpers
 import Prelude
 
 class DiscoveryParamsTests: XCTestCase {

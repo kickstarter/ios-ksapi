@@ -1,6 +1,5 @@
 import Argo
-import struct Models.Project
-import func Curry.curry
+import Curry
 
 public struct DiscoveryEnvelope {
   public let projects: [Project]

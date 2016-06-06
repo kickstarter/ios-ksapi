@@ -1,7 +1,5 @@
 import Argo
-import struct Models.Project
-import struct Models.User
-import func Curry.curry
+import Curry
 
 public struct StarEnvelope {
   public let user: User

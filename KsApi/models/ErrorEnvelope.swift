@@ -1,5 +1,5 @@
 import Argo
-import func Curry.curry
+import Curry
 
 public struct ErrorEnvelope {
   public let errorMessages: [String]

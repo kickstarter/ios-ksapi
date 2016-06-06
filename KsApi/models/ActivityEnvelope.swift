@@ -1,6 +1,5 @@
-import struct Models.Activity
 import Argo
-import func Curry.curry
+import Curry
 
 public struct ActivityEnvelope {
   public let activities: [Activity]

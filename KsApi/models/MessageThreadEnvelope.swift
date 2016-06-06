@@ -1,6 +1,5 @@
 import Argo
 import Curry
-import Models
 
 public struct MessageThreadEnvelope {
   public let participants: [User]

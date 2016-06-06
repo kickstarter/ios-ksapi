@@ -1,4 +1,3 @@
-import Models
 import Prelude
 
 /**
@@ -15,24 +14,24 @@ public enum Route {
   case FacebookSignup(facebookAccessToken: String, sendNewsletters: Bool)
   case Login(email: String, password: String, code: String?)
   case MarkAsRead(MessageThread)
-  case MessagesForThread(Models.MessageThread)
-  case MessagesForBacking(Models.Backing)
-  case MessageThreads(mailbox: Mailbox, project: Models.Project?)
+  case MessagesForThread(MessageThread)
+  case MessagesForBacking(KsApi.Backing)
+  case MessageThreads(mailbox: Mailbox, project: KsApi.Project?)
   case Project(Int)
-  case ProjectComments(Models.Project)
-  case PostProjectComment(Models.Project, body: String)
+  case ProjectComments(KsApi.Project)
+  case PostProjectComment(KsApi.Project, body: String)
   case PostUpdateComment(Update, body: String)
   case ResetPassword(email: String)
-  case SearchMessages(query: String, project: Models.Project?)
+  case SearchMessages(query: String, project: KsApi.Project?)
   case SendMessage(body: String, messageThread: MessageThread)
   case Signup(name: String, email: String, password: String, passwordConfirmation: String,
     sendNewsletters: Bool)
-  case Star(Models.Project)
-  case ToggleStar(Models.Project)
+  case Star(KsApi.Project)
+  case ToggleStar(KsApi.Project)
   case UpdateComments(Update)
   case UserSelf
-  case User(Models.User)
-  case UpdateUserSelf(Models.User)
+  case User(KsApi.User)
+  case UpdateUserSelf(KsApi.User)
 
   internal var requestProperties: (method: KsApi.Method, path: String, query: [String:AnyObject]) {
     switch self {

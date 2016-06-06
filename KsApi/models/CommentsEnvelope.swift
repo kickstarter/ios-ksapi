@@ -1,5 +1,4 @@
 import Argo
-import Models
 import Curry
 
 public struct CommentsEnvelope {

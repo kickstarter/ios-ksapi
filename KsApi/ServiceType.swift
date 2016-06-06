@@ -1,4 +1,3 @@
-import Models
 import ReactiveCocoa
 
 // swiftlint:disable type_name
@@ -39,10 +38,10 @@ public protocol ServiceType {
     -> SignalProducer<Backing, ErrorEnvelope>
 
   /// Fetch all categories.
-  func fetchCategories() -> SignalProducer<[Models.Category], ErrorEnvelope>
+  func fetchCategories() -> SignalProducer<[Category], ErrorEnvelope>
 
   /// Fetch the newest data for a particular category.
-  func fetchCategory(id id: Int) -> SignalProducer<Models.Category, ErrorEnvelope>
+  func fetchCategory(id id: Int) -> SignalProducer<Category, ErrorEnvelope>
 
   /// Fetch comments from a pagination url.
   func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope>

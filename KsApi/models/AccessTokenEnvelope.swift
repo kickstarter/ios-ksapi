@@ -1,6 +1,5 @@
 import Argo
-import struct Models.User
-import func Curry.curry
+import Curry
 
 public struct AccessTokenEnvelope {
   public let accessToken: String
