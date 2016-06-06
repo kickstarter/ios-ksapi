@@ -13,7 +13,7 @@ let service = Service.init(
 )
 
 let categories = service.fetchCategories()
-  .flatMap(.Concat) { SignalProducer<Models.Category, ErrorEnvelope>(values: $0) }
+  .flatMap(.Concat) { SignalProducer<KsApi.Category, ErrorEnvelope>(values: $0) }
   .filter { c in c.isRoot }
   .replayLazily(1)
 
