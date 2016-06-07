@@ -2,7 +2,7 @@
 
 extension Comment {
   internal static let template = Comment(
-    author: User.template,
+    author: .template,
     body: "Exciting!",
     createdAt: 123456789.0,
     deletedAt: nil,

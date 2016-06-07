@@ -21,7 +21,7 @@ final class NotificationsTests: XCTestCase {
     let notification = User.Notifications.decodeJSONDictionary(json)
 
     XCTAssertNil(notification.error)
-    XCTAssertEqual(notification.value?.encode(), json as? NSDictionary)
+    XCTAssertEqual(notification.value?.encode(), json as NSDictionary)
 
     XCTAssertEqual(false, notification.value?.backings)
     XCTAssertEqual(false, notification.value?.comments)
@@ -56,7 +56,7 @@ final class NotificationsTests: XCTestCase {
     let notification = User.Notifications.decodeJSONDictionary(json)
 
     XCTAssertNil(notification.error)
-    XCTAssertEqual(notification.value?.encode(), json as? NSDictionary)
+    XCTAssertEqual(notification.value?.encode(), json as NSDictionary)
 
     XCTAssertEqual(true, notification.value?.backings)
     XCTAssertEqual(true, notification.value?.comments)

@@ -9,7 +9,7 @@ extension Backing {
     pledgedAt: 123456789.0,
     projectCountry: "US",
     projectId: 1,
-    reward: Reward.template,
+    reward: .template,
     rewardId: 1,
     sequence: 10,
     shippingAmount: 2,

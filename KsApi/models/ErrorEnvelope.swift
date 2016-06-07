@@ -34,6 +34,7 @@ public struct ErrorEnvelope {
     case JSONParsingFailed = "json_parsing_failed"
     case ErrorEnvelopeJSONParsingFailed = "error_json_parsing_failed"
     case DecodingJSONFailed = "decoding_json_failed"
+    case InvalidPaginationUrl = "invalid_pagination_url"
   }
 
   public struct Exception {
@@ -50,28 +51,24 @@ public struct ErrorEnvelope {
   /**
    A general error that JSON could not be parsed.
   */
-  internal static var couldNotParseJSON: ErrorEnvelope {
-    return ErrorEnvelope(
-      errorMessages: [],
-      ksrCode: .JSONParsingFailed,
-      httpCode: 400,
-      exception: nil,
-      facebookUser: nil
-    )
-  }
+  internal static let couldNotParseJSON = ErrorEnvelope(
+    errorMessages: [],
+    ksrCode: .JSONParsingFailed,
+    httpCode: 400,
+    exception: nil,
+    facebookUser: nil
+  )
 
   /**
    A general error that the error envelope JSON could not be parsed.
   */
-  internal static var couldNotParseErrorEnvelopeJSON: ErrorEnvelope {
-    return ErrorEnvelope(
-      errorMessages: [],
-      ksrCode: .ErrorEnvelopeJSONParsingFailed,
-      httpCode: 400,
-      exception: nil,
-      facebookUser: nil
-    )
-  }
+  internal static let couldNotParseErrorEnvelopeJSON = ErrorEnvelope(
+    errorMessages: [],
+    ksrCode: .ErrorEnvelopeJSONParsingFailed,
+    httpCode: 400,
+    exception: nil,
+    facebookUser: nil
+  )
 
   /**
    A general error that some JSON could not be decoded.
@@ -89,6 +86,21 @@ public struct ErrorEnvelope {
       facebookUser: nil
     )
   }
+
+  /**
+   A error that the pagination URL is invalid.
+
+   - parameter decodeError: The Argo decoding error.
+
+   - returns: An error envelope that describes why decoding failed.
+   */
+  internal static let invalidPaginationUrl = ErrorEnvelope(
+    errorMessages: [],
+    ksrCode: .InvalidPaginationUrl,
+    httpCode: 400,
+    exception: nil,
+    facebookUser: nil
+  )
 }
 
 extension ErrorEnvelope: ErrorType {

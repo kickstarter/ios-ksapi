@@ -4,112 +4,114 @@ import Prelude
  A list of possible requests that can be made for Kickstarter data.
  */
 public enum Route {
-  case Activities(categories: [Activity.Category])
-  case Backing(projectId: Int, backerId: Int)
-  case Categories
-  case Category(Int)
-  case Config
-  case Discover(DiscoveryParams)
-  case FacebookLogin(facebookAccessToken: String, code: String?)
-  case FacebookSignup(facebookAccessToken: String, sendNewsletters: Bool)
-  case Login(email: String, password: String, code: String?)
-  case MarkAsRead(MessageThread)
-  case MessagesForThread(MessageThread)
-  case MessagesForBacking(KsApi.Backing)
-  case MessageThreads(mailbox: Mailbox, project: KsApi.Project?)
-  case Project(Int)
-  case ProjectComments(KsApi.Project)
-  case PostProjectComment(KsApi.Project, body: String)
-  case PostUpdateComment(Update, body: String)
-  case ResetPassword(email: String)
-  case SearchMessages(query: String, project: KsApi.Project?)
-  case SendMessage(body: String, messageThread: MessageThread)
-  case Signup(name: String, email: String, password: String, passwordConfirmation: String,
+  // swiftlint:disable type_name
+  case activities(categories: [Activity.Category])
+  case backing(projectId: Int, backerId: Int)
+  case categories
+  case category(Int)
+  case config
+  case discover(DiscoveryParams)
+  case facebookLogin(facebookAccessToken: String, code: String?)
+  case facebookSignup(facebookAccessToken: String, sendNewsletters: Bool)
+  case login(email: String, password: String, code: String?)
+  case markAsRead(MessageThread)
+  case messagesForThread(MessageThread)
+  case messagesForBacking(Backing)
+  case messageThreads(mailbox: Mailbox, project: Project?)
+  case project(Int)
+  case projectComments(Project)
+  case postProjectComment(Project, body: String)
+  case postUpdateComment(Update, body: String)
+  case resetPassword(email: String)
+  case searchMessages(query: String, project: Project?)
+  case sendMessage(body: String, messageThread: MessageThread)
+  case signup(name: String, email: String, password: String, passwordConfirmation: String,
     sendNewsletters: Bool)
-  case Star(KsApi.Project)
-  case ToggleStar(KsApi.Project)
-  case UpdateComments(Update)
-  case UserSelf
-  case User(KsApi.User)
-  case UpdateUserSelf(KsApi.User)
+  case star(Project)
+  case toggleStar(Project)
+  case updateComments(Update)
+  case userSelf
+  case user(User)
+  case updateUserSelf(User)
+  // swiftlint:enable type_name
 
-  internal var requestProperties: (method: KsApi.Method, path: String, query: [String:AnyObject]) {
+  internal var requestProperties: (method: Method, path: String, query: [String:AnyObject]) {
     switch self {
-    case let .Activities(categories):
+    case let .activities(categories):
       return (.GET, "/v1/activities", ["categories": categories.map { $0.rawValue }])
 
-    case let Backing(projectId, backerId):
+    case let .backing(projectId, backerId):
       return (.GET, "/v1/projects/\(projectId)/backers/\(backerId)", [:])
 
-    case .Categories:
+    case .categories:
       return (.GET, "/v1/categories", [:])
 
-    case let .Category(id):
+    case let .category(id):
       return (.GET, "/v1/categories/\(id)", [:])
 
-    case .Config:
+    case .config:
       return (.GET, "/v1/app/ios/config", [:])
 
-    case let .Discover(params):
+    case let .discover(params):
       return (.GET, "/v1/discover", params.queryParams)
 
-    case let .FacebookLogin(facebookAccessToken, code):
+    case let .facebookLogin(facebookAccessToken, code):
       var params = ["access_token": facebookAccessToken, "intent": "login"]
       params["code"] = code
       return (.PUT, "/v1/facebook/access_token", params)
 
-    case let .FacebookSignup(facebookAccessToken, sendNewsletters):
+    case let .facebookSignup(facebookAccessToken, sendNewsletters):
       let params: [String:AnyObject] = ["access_token": facebookAccessToken,
                                         "intent": "register",
                                         "send_newsletters": sendNewsletters,
                                         "newsletter_opt_in": sendNewsletters]
       return (.PUT, "/v1/facebook/access_token", params)
 
-    case let .Login(email, password, code):
+    case let .login(email, password, code):
       var params = ["email": email, "password": password]
       params["code"] = code
       return (.POST, "/xauth/access_token", params)
 
-    case let .MarkAsRead(messageThread):
+    case let .markAsRead(messageThread):
       return (.PUT, "/v1/message_threads/\(messageThread.id)/read", [:])
 
-    case let .MessagesForThread(messageThread):
+    case let .messagesForThread(messageThread):
       return (.GET, "/v1/message_threads/\(messageThread.id)/messages", [:])
 
-    case let .MessagesForBacking(backing):
+    case let .messagesForBacking(backing):
       return (.GET, "/v1/projects/\(backing.projectId)/backers/\(backing.backerId)/messages", [:])
 
-    case let .MessageThreads(mailbox, project):
+    case let .messageThreads(mailbox, project):
       if let project = project {
         return (.GET, "/v1/projects/\(project.id)/message_threads/\(mailbox.rawValue)", [:])
       }
       return (.GET, "/v1/message_threads/\(mailbox.rawValue)", [:])
 
-    case let .Project(id):
+    case let .project(id):
       return (.GET, "/v1/projects/\(id)", [:])
 
-    case let .ProjectComments(p):
+    case let .projectComments(p):
       return (.GET, "/v1/projects/\(p.id)/comments", [:])
 
-    case let .PostProjectComment(p, body):
+    case let .postProjectComment(p, body):
       return (.POST, "/v1/projects/\(p.id)/comments", ["body": body])
 
-    case let .PostUpdateComment(u, body):
+    case let .postUpdateComment(u, body):
       return (.POST, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", ["body": body])
 
-    case let .ResetPassword(email):
+    case let .resetPassword(email):
       return (.POST, "/v1/users/reset", ["email": email])
 
-    case let .SearchMessages(query, project):
+    case let .searchMessages(query, project):
       if let project = project {
         return (.GET, "/v1/projects/\(project.id)/message_threads/search", ["q": query])
       }
       return (.GET, "/v1/message_threads/search", ["q": query])
 
-    case let .SendMessage(body, messageThread):
+    case let .sendMessage(body, messageThread):
       return (.POST, "/v1/message_threads/\(messageThread.id)/messages", ["body": body])
 
-    case let .Signup(name, email, password, passwordConfirmation, sendNewsletters):
+    case let .signup(name, email, password, passwordConfirmation, sendNewsletters):
       let params: [String:AnyObject] = ["name": name,
                                         "email": email,
                                         "newsletter_opt_in": sendNewsletters,
@@ -118,22 +120,22 @@ public enum Route {
                                         "send_newsletters": sendNewsletters]
       return (.POST, "/v1/users", params)
 
-    case let .Star(p):
+    case let .star(p):
       return (.PUT, "/v1/projects/\(p.id)/star", [:])
 
-    case let .ToggleStar(p):
+    case let .toggleStar(p):
       return (.POST, "/v1/projects/\(p.id)/star/toggle", [:])
 
-    case let UpdateComments(u):
+    case let .updateComments(u):
       return (.GET, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", [:])
 
-    case .UserSelf:
+    case .userSelf:
       return (.GET, "/v1/users/self", [:])
 
-    case let .User(user):
+    case let .user(user):
       return (.GET, "/v1/users/\(user.id)", [:])
 
-    case let .UpdateUserSelf(user):
+    case let .updateUserSelf(user):
       let params = user.notifications.encode().withAllValuesFrom(user.newsletters.encode())
       return (.PUT, "v1/users/self", params)
     }

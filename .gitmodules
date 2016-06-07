@@ -1,9 +1,6 @@
 [submodule "Frameworks/ReactiveExtensions"]
 	path = Frameworks/ReactiveExtensions
 	url = git@github.com:kickstarter/Kickstarter-ReactiveExtensions.git
-[submodule "Frameworks/AlamofireImage"]
-	path = Frameworks/AlamofireImage
-	url = https://github.com/Alamofire/AlamofireImage.git
 [submodule "Frameworks/Argo"]
 	path = Frameworks/Argo
 	url = git://github.com/thoughtbot/Argo.git

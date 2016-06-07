@@ -38,7 +38,7 @@ public protocol ServiceType {
     -> SignalProducer<Backing, ErrorEnvelope>
 
   /// Fetch all categories.
-  func fetchCategories() -> SignalProducer<[Category], ErrorEnvelope>
+  func fetchCategories() -> SignalProducer<CategoriesEnvelope, ErrorEnvelope>
 
   /// Fetch the newest data for a particular category.
   func fetchCategory(id id: Int) -> SignalProducer<Category, ErrorEnvelope>
@@ -80,7 +80,7 @@ public protocol ServiceType {
   func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope>
 
   /// Fetch a single project with the specified discovery params.
-  func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope>
+  func fetchProject(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>
 
   /// Fetch the newest data for a particular project from its project value.
   func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope>
@@ -128,10 +128,10 @@ public protocol ServiceType {
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
 
   /// Star a project.
-  func star(project: Project) -> SignalProducer<Project, ErrorEnvelope>
+  func star(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope>
 
   /// Toggle the starred state on a project.
-  func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope>
+  func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope>
 
   /// Update the current user with settings attributes.
   func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope>

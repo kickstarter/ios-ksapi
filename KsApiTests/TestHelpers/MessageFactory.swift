@@ -9,7 +9,7 @@ extension Message {
     "Nulla lacinia erat a ullamcorper sollicitudin.",
     createdAt: 123456789.0,
     id: 1,
-    recipient: User.template,
+    recipient: .template,
     sender: User.template |> User.lens.id %~ { $0 + 1 }
   )
 }

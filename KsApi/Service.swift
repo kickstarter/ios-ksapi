@@ -1,6 +1,7 @@
-import Alamofire
+import Argo
 import Prelude
 import ReactiveCocoa
+import ReactiveExtensions
 
 /**
  A `ServerType` that requests data from an API webservice.
@@ -38,192 +39,157 @@ public struct Service: ServiceType {
 
   public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
     let categories: [Activity.Category] = [
-      .Backing,
-      .Cancellation,
-      .Failure,
-      .Follow,
-      .Launch,
-      .Success,
-      .Update,
+      .backing,
+      .cancellation,
+      .failure,
+      .follow,
+      .launch,
+      .success,
+      .update,
     ]
-    return request(.Activities(categories: categories))
-      .decodeModel(ActivityEnvelope.self)
+    return request(.activities(categories: categories))
   }
 
   public func fetchActivities(paginationUrl paginationUrl: String)
     -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
       return requestPagination(paginationUrl)
-        .decodeModel(ActivityEnvelope.self)
   }
 
   public func fetchBacking(forProject project: Project, forUser user: User)
     -> SignalProducer<Backing, ErrorEnvelope> {
-      return request(.Backing(projectId: project.id, backerId: user.id))
-        .decodeModel(Backing.self)
+      return request(.backing(projectId: project.id, backerId: user.id))
   }
 
   public func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
     return requestPagination(url)
-      .decodeModel(CommentsEnvelope.self)
   }
 
   public func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
-    return request(.ProjectComments(project))
-      .decodeModel(CommentsEnvelope.self)
+    return request(.projectComments(project))
   }
 
   public func fetchComments(update update: Update) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
-    return request(.UpdateComments(update))
-      .decodeModel(CommentsEnvelope.self)
+    return request(.updateComments(update))
   }
 
   public func fetchConfig() -> SignalProducer<Config, ErrorEnvelope> {
-    return request(.Config)
-      .decodeModel(Config.self)
+    return request(.config)
   }
 
   public func fetchDiscovery(paginationUrl paginationUrl: String)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
     return requestPagination(paginationUrl)
-      .decodeModel(DiscoveryEnvelope.self)
   }
 
   public func fetchDiscovery(params params: DiscoveryParams)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
-    return request(.Discover(params))
-      .decodeModel(DiscoveryEnvelope.self)
+    return request(.discover(params))
   }
 
   public func fetchMessageThread(messageThread messageThread: MessageThread)
     -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope> {
 
-      return request(.MessagesForThread(messageThread))
-        .decodeModel(MessageThreadEnvelope.self)
+      return request(.messagesForThread(messageThread))
   }
 
   public func fetchMessageThread(backing backing: Backing)
     -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope> {
-    return request(.MessagesForBacking(backing))
-      .decodeModel(MessageThreadEnvelope.self)
+    return request(.messagesForBacking(backing))
   }
 
   public func fetchMessageThreads(mailbox mailbox: Mailbox, project: Project?)
     -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
 
-      return request(.MessageThreads(mailbox: mailbox, project: project))
-        .decodeModel(MessageThreadsEnvelope.self)
+      return request(.messageThreads(mailbox: mailbox, project: project))
   }
 
   public func fetchMessageThreads(paginationUrl paginationUrl: String)
     -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
 
       return requestPagination(paginationUrl)
-        .decodeModel(MessageThreadsEnvelope.self)
   }
 
   public func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.Project(id))
-      .decodeModel(Project.self)
+    return request(.project(id))
   }
 
-  public func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.Discover(params |> DiscoveryParams.lens.perPage .~ 1))
-      .decodeModel(DiscoveryEnvelope.self)
-      .map { envelope in envelope.projects.first }
-      .ignoreNil()
+  public func fetchProject(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
+    return request(.discover(params |> DiscoveryParams.lens.perPage .~ 1))
   }
 
   public func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.Project(project.id))
-      .decodeModel(Project.self)
+    return request(.project(project.id))
   }
 
   public func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
-    return request(.UserSelf)
-      .decodeModel(User.self)
+    return request(.userSelf)
   }
 
   public func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope> {
-    return request(.User(user))
-      .decodeModel(User.self)
+    return request(.user(user))
   }
 
-  public func fetchCategories() -> SignalProducer<[Category], ErrorEnvelope> {
-    return request(.Categories)
-      .decodeModel(CategoriesEnvelope.self)
-      .map { envelope in envelope.categories }
+  public func fetchCategories() -> SignalProducer<CategoriesEnvelope, ErrorEnvelope> {
+    return request(.categories)
   }
 
   public func fetchCategory(id id: Int) -> SignalProducer<Category, ErrorEnvelope> {
-    return request(.Category(id))
-      .decodeModel(Category.self)
+    return request(.category(id))
   }
 
-  public func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.ToggleStar(project))
-      .decodeModel(StarEnvelope.self)
-      .map { envelope in envelope.project }
+  public func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
+    return request(.toggleStar(project))
   }
 
-  public func star(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.Star(project))
-      .decodeModel(StarEnvelope.self)
-      .map { envelope in envelope.project }
+  public func star(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
+    return request(.star(project))
   }
 
   public func login(email email: String, password: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
-    return request(.Login(email: email, password: password, code: code))
-      .decodeModel(AccessTokenEnvelope.self)
+    return request(.login(email: email, password: password, code: code))
   }
 
   public func login(facebookAccessToken facebookAccessToken: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
-    return request(.FacebookLogin(facebookAccessToken: facebookAccessToken, code: code))
-      .decodeModel(AccessTokenEnvelope.self)
+    return request(.facebookLogin(facebookAccessToken: facebookAccessToken, code: code))
   }
 
   public func markAsRead(messageThread messageThread: MessageThread)
     -> SignalProducer<MessageThread, ErrorEnvelope> {
 
-      return request(.MarkAsRead(messageThread))
-        .decodeModel(MessageThread.self)
+      return request(.markAsRead(messageThread))
   }
 
   public func postComment(body: String, toProject project: Project) ->
     SignalProducer<Comment, ErrorEnvelope> {
 
-      return request(.PostProjectComment(project, body: body))
-        .decodeModel(Comment.self)
+      return request(.postProjectComment(project, body: body))
   }
 
   public func postComment(body: String, toUpdate update: Update) -> SignalProducer<Comment, ErrorEnvelope> {
 
-      return request(.PostUpdateComment(update, body: body))
-        .decodeModel(Comment.self)
+      return request(.postUpdateComment(update, body: body))
   }
 
   public func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {
-    return request(.ResetPassword(email: email))
-      .decodeModel(User.self)
+    return request(.resetPassword(email: email))
   }
 
   public func searchMessages(query query: String, project: Project?)
     -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
 
-      return request(.SearchMessages(query: query, project: project))
-        .decodeModel(MessageThreadsEnvelope.self)
+      return request(.searchMessages(query: query, project: project))
   }
 
   public func sendMessage(body body: String, toThread messageThread: MessageThread)
     -> SignalProducer<Message, ErrorEnvelope> {
 
-      return request(.SendMessage(body: body, messageThread: messageThread))
-        .decodeModel(Message.self)
+      return request(.sendMessage(body: body, messageThread: messageThread))
   }
 
   public func signup(name name: String,
@@ -231,80 +197,116 @@ public struct Service: ServiceType {
                           password: String,
                           passwordConfirmation: String,
                           sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
-    return request(.Signup(name: name,
+    return request(.signup(name: name,
                            email: email,
                            password: password,
                            passwordConfirmation: passwordConfirmation,
                            sendNewsletters: sendNewsletters))
-      .decodeModel(AccessTokenEnvelope.self)
   }
 
   public func signup(facebookAccessToken token: String, sendNewsletters: Bool) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
-    return request(.FacebookSignup(facebookAccessToken: token, sendNewsletters: sendNewsletters))
-      .decodeModel(AccessTokenEnvelope.self)
+    return request(.facebookSignup(facebookAccessToken: token, sendNewsletters: sendNewsletters))
   }
 
   public func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope> {
-    return request(.UpdateUserSelf(user))
-      .decodeModel(User.self)
+    return request(.updateUserSelf(user))
   }
 
-  private func requestPagination(paginationUrl: String) -> Alamofire.Request {
-    return Alamofire.request(self.paginationRequest(paginationUrl))
-      .validate(statusCode: 200..<300)
-      .validate(contentType: ["application/json"])
+  private func decodeModel<M: Decodable where M == M.DecodedType>(json: AnyObject) ->
+    SignalProducer<M, ErrorEnvelope> {
+
+      return SignalProducer(value: json)
+        .map { json in decode(json) as Decoded<M> }
+        .flatMap(.Concat) { (decoded: Decoded<M>) -> SignalProducer<M, ErrorEnvelope> in
+          switch decoded {
+          case let .Success(value):
+            return .init(value: value)
+          case let .Failure(error):
+            print("Argo decoding model error: \(error)")
+            return .init(error: .couldNotDecodeJSON(error))
+          }
+      }
   }
 
-  private func request(route: Route) -> Alamofire.Request {
-    return Alamofire.request(self.urlRequest(route))
-      .validate(statusCode: 200..<300)
-      .validate(contentType: ["application/json"])
-  }
+  private static let session = NSURLSession(configuration: .defaultSessionConfiguration())
 
-  private func paginationRequest(paginationUrl: String) -> URLRequestConvertible {
+  private func requestPagination<M: Decodable where M == M.DecodedType>(paginationUrl: String)
+    -> SignalProducer<M, ErrorEnvelope> {
 
-    // swiftlint:disable force_cast
-    // NB: instead of force cast we could bubble up a custom ErrorEnvelope error.
-    return NSURL(string: paginationUrl)
-      .flatMap(NSMutableURLRequest.init(URL:))
-      .flatMap { preparedRequest($0) } as! NSURLRequest
-    // swiftlint:enable force_cast
+      guard let paginationUrl = NSURL(string: paginationUrl) else {
+        return .init(error: .invalidPaginationUrl)
+      }
+      return self.preparedRequest(paginationUrl)
+        .flatMap(decodeModel)
   }
 
   // Converts a `Route` into a URL request that can be used with Alamofire.
-  private func urlRequest(route: Route) -> URLRequestConvertible {
-    let properties = route.requestProperties
+  private func request<M: Decodable where M == M.DecodedType>(route: Route)
+    -> SignalProducer<M, ErrorEnvelope> {
 
-    let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
-    let request = NSMutableURLRequest(URL: URL)
-    request.HTTPMethod = properties.method.rawValue
+      let properties = route.requestProperties
 
-    return preparedRequest(request, query: properties.query)
+      let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
+
+      return preparedRequest(URL, method: properties.method, query: properties.query)
+        .flatMap(decodeModel)
   }
 
-  private func preparedRequest(request: NSURLRequest, query: [String:AnyObject] = [:])
-    -> URLRequestConvertible {
-    guard let requestCopy = request.mutableCopy() as? NSMutableURLRequest else {
-      // NB: instead of fatal error we could bubble up a custom ErrorEnvelope error.
-      fatalError()
-    }
+  private func preparedRequest(URL: NSURL, method: Method = .GET, query: [String:AnyObject] = [:])
+    -> SignalProducer<AnyObject, ErrorEnvelope> {
+    let request = NSMutableURLRequest(URL: URL)
+
+    // Add some headers
+    var headers = [
+      "Accept-Language": self.language,
+      "Kickstarter-iOS-App": self.buildVersion
+      ]
+    headers["Authorization"] = self.serverConfig.basicHTTPAuth?.authorizationHeader
 
     // Add some query params for authentication et al
     var query = query
     query["client_id"] = self.serverConfig.apiClientAuth.clientId
     query["oauth_token"] = self.oauthToken?.token
 
-    // Add some headers
-    var headers = request.URLRequest.allHTTPHeaderFields ?? [:]
-    headers["Authorization"] = self.serverConfig.basicHTTPAuth?.authorizationHeader
-    headers["Accept-Language"] = self.language
-    headers["Kickstarter-iOS-App"] = self.buildVersion
-    requestCopy.allHTTPHeaderFields = headers
+    // swiftlint:disable force_cast
+    // NB: instead of force cast we could bubble up a custom ErrorEnvelope error.
+    let components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: false)!
+    // swiftlint:enable force_cast
 
-    let (retRequest, _) = Alamofire.ParameterEncoding.URL.encode(requestCopy, parameters: query)
+    components.queryItems = query
+      .flatMap(queryComponents)
+      .map(NSURLQueryItem.init(name:value:))
+      .sort { $0.name < $1.name && $0.value < $0.value }
 
-    return retRequest
+    if method == .GET || method == .DELETE {
+      request.URL = components.URL
+    } else if let query = components.query {
+      headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+      request.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+    }
+
+    request.allHTTPHeaderFields = headers
+
+    return Service.session.rac_JSONResponse(request)
+  }
+
+  private func queryComponents(key: String, _ value: AnyObject) -> [(String, String)] {
+    var components: [(String, String)] = []
+
+    if let dictionary = value as? [String: AnyObject] {
+      for (nestedKey, value) in dictionary {
+        components += queryComponents("\(key)[\(nestedKey)]", value)
+      }
+    } else if let array = value as? [AnyObject] {
+      for value in array {
+        components += queryComponents("\(key)[]", value)
+      }
+    } else {
+      components.append((key, String(value)))
+    }
+
+    return components
   }
 }

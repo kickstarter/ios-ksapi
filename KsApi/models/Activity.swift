@@ -11,23 +11,25 @@ public struct Activity {
   public let user: User?
 
   public enum Category: String {
-    case Backing          = "backing"
-    case BackingAmount    = "backing_amount"
-    case BackingCanceled  = "backing_canceled"
-    case BackingDropped   = "backing_dropped"
-    case BackingProposal  = "backing_proposal"
-    case BackingReward    = "backing_reward"
-    case Cancellation     = "cancellation"
-    case CommentPost      = "comment_post"
-    case CommentProject   = "comment_project"
-    case Failure          = "failure"
-    case Follow           = "follow"
-    case Funding          = "funding"
-    case Launch           = "launch"
-    case Success          = "success"
-    case Suspension       = "suspension"
-    case Update           = "update"
-    case Watch            = "watch"
+    // swiftlint:disable type_name
+    case backing          = "backing"
+    case backingAmount    = "backing_amount"
+    case backingCanceled  = "backing_canceled"
+    case backingDropped   = "backing_dropped"
+    case backingProposal  = "backing_proposal"
+    case backingReward    = "backing_reward"
+    case cancellation     = "cancellation"
+    case commentPost      = "comment_post"
+    case commentProject   = "comment_project"
+    case failure          = "failure"
+    case follow           = "follow"
+    case funding          = "funding"
+    case launch           = "launch"
+    case success          = "success"
+    case suspension       = "suspension"
+    case update           = "update"
+    case watch            = "watch"
+    // swiftlint:enable type_name
   }
 }
 

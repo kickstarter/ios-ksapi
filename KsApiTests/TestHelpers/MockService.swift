@@ -15,14 +15,14 @@ internal struct MockService: ServiceType {
   private let fetchActivitiesResponse: [Activity]?
   private let fetchActivitiesError: ErrorEnvelope?
 
-  private let fetchCategoriesResponse: [KsApi.Category]
+  private let fetchCategoriesResponse: CategoriesEnvelope?
 
   private let fetchCommentsResponse: [Comment]?
   private let fetchCommentsError: ErrorEnvelope?
 
   private let fetchConfigResponse: Config?
 
-  private let fetchDiscoveryResponse: [Project]?
+  private let fetchDiscoveryResponse: DiscoveryEnvelope?
   private let fetchDiscoveryError: ErrorEnvelope?
 
   private let fetchMessageThreadResponse: MessageThread
@@ -69,11 +69,11 @@ internal struct MockService: ServiceType {
                 buildVersion: String = "1",
                 fetchActivitiesResponse: [Activity]? = nil,
                 fetchActivitiesError: ErrorEnvelope? = nil,
-                fetchCategoriesResponse: [KsApi.Category]? = nil,
+                fetchCategoriesResponse: CategoriesEnvelope? = nil,
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
                 fetchConfigResponse: Config? = nil,
-                fetchDiscoveryResponse: [Project]? = nil,
+                fetchDiscoveryResponse: DiscoveryEnvelope? = nil,
                 fetchDiscoveryError: ErrorEnvelope? = nil,
                 fetchMessageThreadResponse: MessageThread? = nil,
                 fetchMessageThreadsResponse: [MessageThread]? = nil,
@@ -99,18 +99,20 @@ internal struct MockService: ServiceType {
 
     self.fetchActivitiesResponse = fetchActivitiesResponse ?? [
       Activity.template,
-      Activity.template |> Activity.lens.category .~ .Backing,
-      Activity.template |> Activity.lens.category .~ .Success
+      Activity.template |> Activity.lens.category .~ .backing,
+      Activity.template |> Activity.lens.category .~ .success
     ]
 
     self.fetchActivitiesError = fetchActivitiesError
 
-    self.fetchCategoriesResponse = fetchCategoriesResponse ?? [
-      Category.art,
-      Category.filmAndVideo,
-      Category.illustration,
-      Category.documentary
-    ]
+    self.fetchCategoriesResponse = fetchCategoriesResponse ?? (.template
+      |> CategoriesEnvelope.lens.categories .~ [
+        .art,
+        .filmAndVideo,
+        .illustration,
+        .documentary
+      ]
+    )
 
     self.fetchCommentsResponse = fetchCommentsResponse ?? [
       Comment.template |> Comment.lens.id .~ 2,
@@ -343,23 +345,15 @@ internal struct MockService: ServiceType {
         return SignalProducer(error: error)
       }
 
-      let projectsDefault = self.fetchDiscoveryResponse ?? (1...4).map {
-        Project.template |> Project.lens.id .~ ($0 + paginationUrl.hashValue)
+      let project: Int -> Project = {
+        .template |> Project.lens.id .~ ($0 + paginationUrl.hashValue)
       }
-
-      return SignalProducer(value:
-        DiscoveryEnvelope(
-          projects: projectsDefault,
-          urls: DiscoveryEnvelope.UrlsEnvelope(
-            api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
-              more_projects: paginationUrl + "+1"
-            )
-          ),
-          stats: DiscoveryEnvelope.StatsEnvelope(
-            count: 200
-          )
-        )
+      let envelope = self.fetchDiscoveryResponse ?? (.template
+        |> DiscoveryEnvelope.lens.projects .~ (1...4).map(project)
+        |> DiscoveryEnvelope.lens.urls.api.moreProjects .~ paginationUrl + "+1"
       )
+
+      return SignalProducer(value: envelope)
   }
 
   internal func fetchDiscovery(params params: DiscoveryParams)
@@ -369,23 +363,14 @@ internal struct MockService: ServiceType {
         return SignalProducer(error: error)
       }
 
-      let projectsDefault = self.fetchDiscoveryResponse ?? (1...4).map {
-        Project.template |> Project.lens.id %~ const($0 + params.hashValue)
+      let project: Int -> Project = {
+        .template |> Project.lens.id %~ const($0 + params.hashValue)
       }
-
-      return SignalProducer(value:
-        DiscoveryEnvelope(
-          projects: projectsDefault,
-          urls: DiscoveryEnvelope.UrlsEnvelope(
-            api: DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
-              more_projects: "http://***REMOVED***/gimme/more"
-            )
-          ),
-          stats: DiscoveryEnvelope.StatsEnvelope(
-            count: 200
-          )
-        )
+      let envelope = self.fetchDiscoveryResponse ?? (.template
+        |> DiscoveryEnvelope.lens.projects .~ (1...4).map(project)
       )
+
+      return SignalProducer(value: envelope)
   }
 
   internal func fetchMessageThread(messageThread messageThread: MessageThread)
@@ -409,11 +394,11 @@ internal struct MockService: ServiceType {
 
       return SignalProducer(
         value: MessageThreadEnvelope(
-          participants: [User.template, User.template |> User.lens.id .~ 2],
+          participants: [.template, .template |> User.lens.id .~ 2],
           messages: [
-            Message.template |> Message.lens.id .~ 1,
-            Message.template |> Message.lens.id .~ 2,
-            Message.template |> Message.lens.id .~ 3
+            .template |> Message.lens.id .~ 1,
+            .template |> Message.lens.id .~ 2,
+            .template |> Message.lens.id .~ 3
           ],
           messageThread: self.fetchMessageThreadResponse
         )
@@ -462,11 +447,15 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: Project.template |> Project.lens.id .~ id)
   }
 
-  internal func fetchProject(params: DiscoveryParams) -> SignalProducer<Project, ErrorEnvelope> {
-    if let project = self.fetchProjectResponse {
-      return SignalProducer(value: project)
+  internal func fetchProject(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
+    if let envelope = self.fetchDiscoveryResponse {
+      return SignalProducer(value: envelope)
     }
-    return SignalProducer(value: Project.template |> Project.lens.id .~ params.hashValue)
+    let envelope = .template
+      |> DiscoveryEnvelope.lens.projects .~ [
+        .template |> Project.lens.id .~ params.hashValue
+    ]
+    return SignalProducer(value: envelope)
   }
 
   internal func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope> {
@@ -495,23 +484,25 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: user)
   }
 
-  internal func fetchCategories() -> SignalProducer<[KsApi.Category], ErrorEnvelope> {
+  internal func fetchCategories() -> SignalProducer<CategoriesEnvelope, ErrorEnvelope> {
 
-    return SignalProducer(value: self.fetchCategoriesResponse)
+    return SignalProducer(value: self.fetchCategoriesResponse ?? .template)
   }
 
   internal func fetchCategory(id id: Int) -> SignalProducer<KsApi.Category, ErrorEnvelope> {
-    return SignalProducer(value: Category.template |> Category.lens.id .~ id)
+    return SignalProducer(value: .template |> Category.lens.id .~ id)
   }
 
-  internal func toggleStar(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
+  internal func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
+    let project = project |> Project.lens.personalization.isStarred %~ { !($0 ?? false) }
     return .init(
-      value: project |> Project.lens.personalization.isStarred %~ { !($0 ?? false) }
+      value: .template |> StarEnvelope.lens.project .~ project
     )
   }
 
-  internal func star(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return .init(value: project |> Project.lens.personalization.isStarred .~ true)
+  internal func star(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
+    let project = project |> Project.lens.personalization.isStarred .~ true
+    return .init(value: .template |> StarEnvelope.lens.project .~ project)
   }
 
   internal func login(email email: String, password: String, code: String?) ->

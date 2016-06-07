@@ -3,10 +3,10 @@
 extension Activity {
 
   internal static let template = Activity(
-    category: .Update,
+    category: .update,
     createdAt: NSDate().timeIntervalSince1970,
     id: 1,
-    project: Project.template,
+    project: .template,
     update: nil,
     user: User.template
   )
