@@ -258,6 +258,8 @@ public struct Service: ServiceType {
     -> SignalProducer<AnyObject, ErrorEnvelope> {
     let request = NSMutableURLRequest(URL: URL)
 
+    request.HTTPMethod = method.rawValue
+
     // Add some headers
     var headers = [
       "Accept-Language": self.language,
