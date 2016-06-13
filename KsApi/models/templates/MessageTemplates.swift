@@ -1,4 +1,3 @@
-@testable import KsApi
 import Prelude
 
 extension Message {
@@ -7,9 +6,9 @@ extension Message {
       "accumsan nec aliquam a, porttitor sed dui. Integer iaculis ipsum fringilla metus " +
       "porttitor euismod. Donec in libero vitae lectus ultrices vehicula id eget dolor. " +
     "Nulla lacinia erat a ullamcorper sollicitudin.",
-    createdAt: 123456789.0,
+    createdAt: NSDate().timeIntervalSince1970,
     id: 1,
     recipient: .template,
-    sender: User.template |> User.lens.id %~ { $0 + 1 }
+    sender: .template |> User.lens.id %~ { $0 + 1 }
   )
 }

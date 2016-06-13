@@ -1,13 +1,11 @@
-@testable import KsApi
-
 extension MessageThread {
   internal static let template = MessageThread(
     backing: nil,
     closed: false,
     id: 1,
-    lastMessage: Message.template,
-    participant: User.template,
-    project: Project.template,
+    lastMessage: .template,
+    participant: .template,
+    project: .template,
     unreadMessagesCount: 1
   )
 }

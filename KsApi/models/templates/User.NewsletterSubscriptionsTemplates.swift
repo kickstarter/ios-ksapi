@@ -1,5 +1,3 @@
-@testable import KsApi
-
 extension User.NewsletterSubscriptions {
   internal static let template = User.NewsletterSubscriptions(
     games: false,

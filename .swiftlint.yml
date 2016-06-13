@@ -1,12 +1,3 @@
-disabled_rules:
-  - variable_name
-  - function_parameter_count
-  - nesting
-line_length: 110
-type_body_length:
-  warning: 300
-  error: 400
 excluded:
   - Frameworks/
   - KsApi.playground/
-reporter: "xcode"

@@ -1,5 +1,3 @@
-@testable import KsApi
-
 extension Update {
   internal static let template = Update(
     body: "Hello world",

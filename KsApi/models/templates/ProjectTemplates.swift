@@ -1,4 +1,3 @@
-@testable import KsApi
 import Prelude
 
 // swiftlint:disable type_body_length
@@ -7,9 +6,9 @@ extension Project {
   internal static let template = Project(
     backing: nil,
     blurb: "A fun project.",
-    category: Category.template,
+    category: .template,
     country: .US,
-    creator: User.template |> User.lens.stats.createdProjectsCount .~ 1,
+    creator: .template |> User.lens.stats.createdProjectsCount .~ 1,
     dates: Project.Dates(
       deadline: NSDate().timeIntervalSince1970 + 60.0 * 60.0 * 24.0 * 15.0,
       launchedAt: NSDate().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0,
@@ -17,14 +16,14 @@ extension Project {
       stateChangedAt: NSDate().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0
     ),
     id: 1,
-    location: Location.template,
+    location: .template,
     name: "The Project",
     personalization: Project.Personalization(
       backing: nil,
       isBacking: nil,
       isStarred: nil
     ),
-    photo: Project.Photo.template,
+    photo: .template,
     rewards: nil,
     state: .live,
     stats: Project.Stats(
@@ -39,6 +38,6 @@ extension Project {
         project: "https://www.kickstarter.com/projects/my-cool-projects"
       )
     ),
-    video: Project.Video.template
+    video: .template
   )
 }

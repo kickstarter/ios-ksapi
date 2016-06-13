@@ -1,5 +1,3 @@
-@testable import KsApi
-
 extension Project.Photo {
   internal static let template = Project.Photo(
     full: "http://www.kickstarter.com/full.jpg",

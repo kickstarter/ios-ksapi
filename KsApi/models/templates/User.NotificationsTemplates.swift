@@ -1,5 +1,3 @@
-@testable import KsApi
-
 extension User.Notifications {
   internal static let template = User.Notifications(
     backings: false,

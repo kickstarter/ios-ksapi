@@ -1,5 +1,3 @@
-@testable import KsApi
-
 extension User.Stats {
   internal static let template = User.Stats(
     backedProjectsCount: nil,
