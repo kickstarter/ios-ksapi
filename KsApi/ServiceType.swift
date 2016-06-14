@@ -1,11 +1,9 @@
 import ReactiveCocoa
 
-// swiftlint:disable type_name
 public enum Mailbox: String {
   case inbox
   case sent
 }
-// swiftlint:enable type_name
 
 /**
  A type that knows how to perform requests for Kickstarter data.

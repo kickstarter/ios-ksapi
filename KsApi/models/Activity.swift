@@ -11,7 +11,6 @@ public struct Activity {
   public let user: User?
 
   public enum Category: String {
-    // swiftlint:disable type_name
     case backing          = "backing"
     case backingAmount    = "backing_amount"
     case backingCanceled  = "backing_canceled"
@@ -29,7 +28,6 @@ public struct Activity {
     case suspension       = "suspension"
     case update           = "update"
     case watch            = "watch"
-    // swiftlint:enable type_name
   }
 }
 

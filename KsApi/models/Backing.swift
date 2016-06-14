@@ -15,7 +15,6 @@ public struct Backing {
   public let shippingAmount: Int?
   public let status: Status
 
-  // swiftlint:disable type_name
   public enum Status: String {
     case canceled
     case collected
@@ -24,7 +23,6 @@ public struct Backing {
     case pledged
     case preauth
   }
-  // swiftlint:enable type_name
 }
 
 extension Backing: Equatable {

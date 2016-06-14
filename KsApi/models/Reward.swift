@@ -21,13 +21,11 @@ public struct Reward {
     public let preference: Preference?
     public let summary: String?
 
-    // swiftlint:disable type_name
     public enum Preference: String {
       case none
       case restricted
       case unrestricted
     }
-    // swiftlint:enable type_name
   }
 }
 

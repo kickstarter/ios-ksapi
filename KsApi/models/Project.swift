@@ -27,7 +27,6 @@ public struct Project {
     }
   }
 
-  // swiftlint:disable type_name
   public enum State: String, Decodable {
     case canceled
     case failed
@@ -38,7 +37,6 @@ public struct Project {
     case successful
     case suspended
   }
-  // swiftlint:enable type_name
 
   public struct Stats {
     public let backersCount: Int

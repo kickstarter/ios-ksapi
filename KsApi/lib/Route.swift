@@ -4,7 +4,6 @@ import Prelude
  A list of possible requests that can be made for Kickstarter data.
  */
 public enum Route {
-  // swiftlint:disable type_name
   case activities(categories: [Activity.Category])
   case backing(projectId: Int, backerId: Int)
   case categories
@@ -33,7 +32,6 @@ public enum Route {
   case userSelf
   case user(User)
   case updateUserSelf(User)
-  // swiftlint:enable type_name
 
   internal var requestProperties: (method: Method, path: String, query: [String:AnyObject]) {
     switch self {
