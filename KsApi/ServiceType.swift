@@ -83,6 +83,9 @@ public protocol ServiceType {
   /// Fetch the newest data for a particular project from its project value.
   func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope>
 
+  /// Fetch the user's project notifications.
+  func fetchProjectNotifications() -> SignalProducer<[ProjectNotification], ErrorEnvelope>
+
   /// Fetch the newest data for a particular user.
   func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope>
 
@@ -130,6 +133,10 @@ public protocol ServiceType {
 
   /// Toggle the starred state on a project.
   func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope>
+
+  /// Update the project notification setting.
+  func updateProjectNotification(notification: ProjectNotification) ->
+    SignalProducer<ProjectNotification, ErrorEnvelope>
 
   /// Update the current user with settings attributes.
   func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope>

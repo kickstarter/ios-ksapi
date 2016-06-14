@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59B0DF241D0F13570081D2DC /* ProjectNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF231D0F13570081D2DC /* ProjectNotification.swift */; };
+		59B0DF251D0F13570081D2DC /* ProjectNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF231D0F13570081D2DC /* ProjectNotification.swift */; };
+		59B0DF331D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF311D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift */; };
+		59B0DF341D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF311D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift */; };
+		59B0DF351D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */; };
+		59B0DF361D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */; };
+		59B0DF381D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */; };
+		59B0DF391D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */; };
 		804394FC1D06305E002E12C5 /* NSURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804394FB1D06305E002E12C5 /* NSURLSession.swift */; };
 		804394FD1D06305E002E12C5 /* NSURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804394FB1D06305E002E12C5 /* NSURLSession.swift */; };
 		80762DD51D0700680074189D /* DiscoveryEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80762DD41D0700680074189D /* DiscoveryEnvelopeLenses.swift */; };
@@ -500,6 +508,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		59B0DF231D0F13570081D2DC /* ProjectNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotification.swift; sourceTree = "<group>"; };
+		59B0DF311D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotification.ProjectLenses.swift; sourceTree = "<group>"; };
+		59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotificationLenses.swift; sourceTree = "<group>"; };
+		59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotificationTemplates.swift; sourceTree = "<group>"; };
 		804394FB1D06305E002E12C5 /* NSURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURLSession.swift; sourceTree = "<group>"; };
 		80762DD41D0700680074189D /* DiscoveryEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryEnvelopeLenses.swift; sourceTree = "<group>"; };
 		80762DD91D0709D30074189D /* CategoriesEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesEnvelopeLenses.swift; sourceTree = "<group>"; };
@@ -705,6 +717,7 @@
 				A72661E51D07671D0087D883 /* MessageThreadTemplates.swift */,
 				A72661E61D07671D0087D883 /* Project.PhotoTemplates.swift */,
 				A72661E71D07671D0087D883 /* Project.VideoTemplates.swift */,
+				59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */,
 				A72661E81D07671D0087D883 /* ProjectTemplates.swift */,
 				A72661E91D07671D0087D883 /* RewardTemplates.swift */,
 				A72661EA1D07671D0087D883 /* StarEnvelopeTemplates.swift */,
@@ -813,6 +826,7 @@
 				A73639BD1D03565400445B24 /* Project.Photo.swift */,
 				A73639BE1D03565400445B24 /* Project.swift */,
 				A73639BF1D03565400445B24 /* Project.Video.swift */,
+				59B0DF231D0F13570081D2DC /* ProjectNotification.swift */,
 				A73639C01D03565400445B24 /* Reward.swift */,
 				A73639C11D03565400445B24 /* StarEnvelope.swift */,
 				A73639C21D03565400445B24 /* Update.swift */,
@@ -842,6 +856,8 @@
 				A73639AE1D03565400445B24 /* Project.PersonalizationLenses.swift */,
 				A73639AF1D03565400445B24 /* Project.StatsLenses.swift */,
 				A73639B01D03565400445B24 /* ProjectLenses.swift */,
+				59B0DF311D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift */,
+				59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */,
 				A73639B11D03565400445B24 /* RewardLenses.swift */,
 				80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */,
 				A73639B21D03565400445B24 /* UpdateLenses.swift */,
@@ -1470,6 +1486,7 @@
 				A73639F81D03565400445B24 /* DiscoveryParamsLenses.swift in Sources */,
 				A7363A241D03565400445B24 /* Project.Video.swift in Sources */,
 				A72661F11D07671D0087D883 /* ActivityTemplates.swift in Sources */,
+				59B0DF241D0F13570081D2DC /* ProjectNotification.swift in Sources */,
 				A73639DA1D03565400445B24 /* Activity.swift in Sources */,
 				A726620B1D07671D0087D883 /* RewardTemplates.swift in Sources */,
 				A726621C1D0767DB0087D883 /* ConfigLenses.swift in Sources */,
@@ -1480,6 +1497,7 @@
 				A72661FD1D07671D0087D883 /* DiscoveryEnvelopeTemplates.swift in Sources */,
 				A726620F1D07671D0087D883 /* UpdateTemplates.swift in Sources */,
 				A7363A2A1D03565400445B24 /* Update.swift in Sources */,
+				59B0DF381D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A73639E21D03565400445B24 /* Category.swift in Sources */,
 				A72662071D07671D0087D883 /* Project.VideoTemplates.swift in Sources */,
 				A73639DE1D03565400445B24 /* Backing.swift in Sources */,
@@ -1508,6 +1526,7 @@
 				A73639FA1D03565400445B24 /* LocationLenses.swift in Sources */,
 				A72661F31D07671D0087D883 /* BackingTemplates.swift in Sources */,
 				A72661F91D07671D0087D883 /* CommentTemplates.swift in Sources */,
+				59B0DF351D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */,
 				A7363A0E1D03565400445B24 /* User.NotificationsLenses.swift in Sources */,
 				A72662151D07671D0087D883 /* User.NotificationsTemplates.swift in Sources */,
 				A7363A0C1D03565400445B24 /* User.NewsletterSubscriptionsLenses.swift in Sources */,
@@ -1529,6 +1548,7 @@
 				A73639FE1D03565400445B24 /* MessageThreadLenses.swift in Sources */,
 				A72662011D07671D0087D883 /* MessageTemplates.swift in Sources */,
 				A7363A281D03565400445B24 /* StarEnvelope.swift in Sources */,
+				59B0DF331D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift in Sources */,
 				A72661F71D07671D0087D883 /* CategoryTemplates.swift in Sources */,
 				A7363A1A1D03565400445B24 /* MessageThreadEnvelope.swift in Sources */,
 				A72662051D07671D0087D883 /* Project.PhotoTemplates.swift in Sources */,
@@ -1588,6 +1608,7 @@
 				A73639F91D03565400445B24 /* DiscoveryParamsLenses.swift in Sources */,
 				A7363A251D03565400445B24 /* Project.Video.swift in Sources */,
 				A72661F21D07671D0087D883 /* ActivityTemplates.swift in Sources */,
+				59B0DF251D0F13570081D2DC /* ProjectNotification.swift in Sources */,
 				A73639DB1D03565400445B24 /* Activity.swift in Sources */,
 				A726620C1D07671D0087D883 /* RewardTemplates.swift in Sources */,
 				A726621D1D0767DB0087D883 /* ConfigLenses.swift in Sources */,
@@ -1598,6 +1619,7 @@
 				A72661FE1D07671D0087D883 /* DiscoveryEnvelopeTemplates.swift in Sources */,
 				A72662101D07671D0087D883 /* UpdateTemplates.swift in Sources */,
 				A7363A2B1D03565400445B24 /* Update.swift in Sources */,
+				59B0DF391D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A73639E31D03565400445B24 /* Category.swift in Sources */,
 				A72662081D07671D0087D883 /* Project.VideoTemplates.swift in Sources */,
 				A73639DF1D03565400445B24 /* Backing.swift in Sources */,
@@ -1626,6 +1648,7 @@
 				A73639FB1D03565400445B24 /* LocationLenses.swift in Sources */,
 				A72661F41D07671D0087D883 /* BackingTemplates.swift in Sources */,
 				A72661FA1D07671D0087D883 /* CommentTemplates.swift in Sources */,
+				59B0DF361D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */,
 				A7363A0F1D03565400445B24 /* User.NotificationsLenses.swift in Sources */,
 				A72662161D07671D0087D883 /* User.NotificationsTemplates.swift in Sources */,
 				A7363A0D1D03565400445B24 /* User.NewsletterSubscriptionsLenses.swift in Sources */,
@@ -1647,6 +1670,7 @@
 				A73639FF1D03565400445B24 /* MessageThreadLenses.swift in Sources */,
 				A72662021D07671D0087D883 /* MessageTemplates.swift in Sources */,
 				A7363A291D03565400445B24 /* StarEnvelope.swift in Sources */,
+				59B0DF341D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift in Sources */,
 				A72661F81D07671D0087D883 /* CategoryTemplates.swift in Sources */,
 				A7363A1B1D03565400445B24 /* MessageThreadEnvelope.swift in Sources */,
 				A72662061D07671D0087D883 /* Project.PhotoTemplates.swift in Sources */,

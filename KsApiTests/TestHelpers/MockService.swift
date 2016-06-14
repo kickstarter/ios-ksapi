@@ -30,6 +30,8 @@ internal struct MockService: ServiceType {
 
   private let fetchProjectResponse: Project?
 
+  private let fetchProjectNotificationsResponse: [ProjectNotification]
+
   private let fetchUserSelfResponse: User?
   private let fetchUserSelfError: ErrorEnvelope?
 
@@ -46,6 +48,9 @@ internal struct MockService: ServiceType {
 
   private let signupResponse: AccessTokenEnvelope?
   private let signupError: ErrorEnvelope?
+
+  private let updateProjectNotificationResponse: ProjectNotification?
+  private let updateProjectNotificationError: ErrorEnvelope?
 
   private let updateUserSelfError: ErrorEnvelope?
 
@@ -78,6 +83,7 @@ internal struct MockService: ServiceType {
                 fetchMessageThreadResponse: MessageThread? = nil,
                 fetchMessageThreadsResponse: [MessageThread]? = nil,
                 fetchProjectResponse: Project? = nil,
+                fetchProjectNotificationsResponse: [ProjectNotification]? = nil,
                 fetchUserSelfResponse: User? = nil,
                 fetchUserSelfError: ErrorEnvelope? = nil,
                 postCommentResponse: Comment? = nil,
@@ -90,6 +96,8 @@ internal struct MockService: ServiceType {
                 resetPasswordError: ErrorEnvelope? = nil,
                 signupResponse: AccessTokenEnvelope? = nil,
                 signupError: ErrorEnvelope? = nil,
+                updateProjectNotificationResponse: ProjectNotification? = nil,
+                updateProjectNotificationError: ErrorEnvelope? = nil,
                 updateUserSelfError: ErrorEnvelope? = nil) {
 
     self.serverConfig = serverConfig
@@ -145,6 +153,12 @@ internal struct MockService: ServiceType {
 
     self.fetchProjectResponse = fetchProjectResponse
 
+    self.fetchProjectNotificationsResponse = fetchProjectNotificationsResponse ?? [
+      ProjectNotification.template |> ProjectNotification.lens.id .~ 1,
+      ProjectNotification.template |> ProjectNotification.lens.id .~ 2,
+      ProjectNotification.template |> ProjectNotification.lens.id .~ 3
+    ]
+
     self.fetchUserSelfResponse = fetchUserSelfResponse ?? User.template
 
     self.fetchUserSelfError = fetchUserSelfError
@@ -168,6 +182,10 @@ internal struct MockService: ServiceType {
     self.signupResponse = signupResponse
 
     self.signupError = signupError
+
+    self.updateProjectNotificationResponse = updateProjectNotificationResponse
+
+    self.updateProjectNotificationError = updateProjectNotificationError
 
     self.updateUserSelfError = updateUserSelfError
   }
@@ -247,6 +265,7 @@ internal struct MockService: ServiceType {
       fetchDiscoveryError: self.fetchDiscoveryError,
       fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
       fetchProjectResponse: self.fetchProjectResponse,
+      fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       fetchUserSelfError: self.fetchUserSelfError,
       postCommentResponse: self.postCommentResponse,
@@ -259,6 +278,8 @@ internal struct MockService: ServiceType {
       resetPasswordError: self.resetPasswordError,
       signupResponse: self.signupResponse,
       signupError: self.signupError,
+      updateProjectNotificationResponse: self.updateProjectNotificationResponse,
+      updateProjectNotificationError: self.updateProjectNotificationError,
       updateUserSelfError: self.updateUserSelfError
     )
   }
@@ -277,6 +298,7 @@ internal struct MockService: ServiceType {
       fetchDiscoveryError: self.fetchDiscoveryError,
       fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
       fetchProjectResponse: self.fetchProjectResponse,
+      fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       fetchUserSelfError: self.fetchUserSelfError,
       postCommentResponse: self.postCommentResponse,
@@ -289,6 +311,8 @@ internal struct MockService: ServiceType {
       resetPasswordError: self.resetPasswordError,
       signupResponse: self.signupResponse,
       signupError: self.signupError,
+      updateProjectNotificationResponse: self.updateProjectNotificationResponse,
+      updateProjectNotificationError: self.updateProjectNotificationError,
       updateUserSelfError: self.updateUserSelfError
     )
   }
@@ -438,6 +462,10 @@ internal struct MockService: ServiceType {
   internal func fetchProjects(params: DiscoveryParams) -> SignalProducer<[Project], ErrorEnvelope> {
     return fetchDiscovery(params: params)
       .map { $0.projects }
+  }
+
+  internal func fetchProjectNotifications() -> SignalProducer<[ProjectNotification], ErrorEnvelope> {
+    return SignalProducer(value: self.fetchProjectNotificationsResponse)
   }
 
   internal func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
@@ -626,6 +654,14 @@ internal struct MockService: ServiceType {
         user: User.template
       )
     )
+  }
+
+  internal func updateProjectNotification(notification: ProjectNotification)
+    -> SignalProducer<ProjectNotification, ErrorEnvelope> {
+      if let error = updateProjectNotificationError {
+        return SignalProducer(error: error)
+      }
+      return SignalProducer(value: notification)
   }
 
   internal func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope> {

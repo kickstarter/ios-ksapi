@@ -19,6 +19,7 @@ public enum Route {
   case messageThreads(mailbox: Mailbox, project: Project?)
   case project(Int)
   case projectComments(Project)
+  case projectNotifications
   case postProjectComment(Project, body: String)
   case postUpdateComment(Update, body: String)
   case resetPassword(email: String)
@@ -31,6 +32,7 @@ public enum Route {
   case updateComments(Update)
   case userSelf
   case user(User)
+  case updateProjectNotification(notification: ProjectNotification)
   case updateUserSelf(User)
 
   internal var requestProperties: (method: Method, path: String, query: [String:AnyObject]) {
@@ -91,6 +93,9 @@ public enum Route {
     case let .projectComments(p):
       return (.GET, "/v1/projects/\(p.id)/comments", [:])
 
+    case .projectNotifications:
+      return (.GET, "/v1/users/self/notifications", [:])
+
     case let .postProjectComment(p, body):
       return (.POST, "/v1/projects/\(p.id)/comments", ["body": body])
 
@@ -132,6 +137,10 @@ public enum Route {
 
     case let .user(user):
       return (.GET, "/v1/users/\(user.id)", [:])
+
+    case let .updateProjectNotification(notification):
+      let params = ["email": notification.email, "mobile": notification.mobile]
+      return (.PUT, "/v1/users/self/notifications/\(notification.id)", params)
 
     case let .updateUserSelf(user):
       let params = user.notifications.encode().withAllValuesFrom(user.newsletters.encode())

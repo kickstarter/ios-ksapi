@@ -123,6 +123,10 @@ public struct Service: ServiceType {
     return request(.project(project.id))
   }
 
+  public func fetchProjectNotifications() -> SignalProducer<[ProjectNotification], ErrorEnvelope> {
+    return request(.projectNotifications)
+  }
+
   public func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
     return request(.userSelf)
   }
@@ -210,6 +214,12 @@ public struct Service: ServiceType {
     return request(.facebookSignup(facebookAccessToken: token, sendNewsletters: sendNewsletters))
   }
 
+  public func updateProjectNotification(notification: ProjectNotification)
+    -> SignalProducer<ProjectNotification, ErrorEnvelope> {
+
+    return request(.updateProjectNotification(notification: notification))
+  }
+
   public func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope> {
     return request(.updateUserSelf(user))
   }
@@ -220,6 +230,22 @@ public struct Service: ServiceType {
       return SignalProducer(value: json)
         .map { json in decode(json) as Decoded<M> }
         .flatMap(.Concat) { (decoded: Decoded<M>) -> SignalProducer<M, ErrorEnvelope> in
+          switch decoded {
+          case let .Success(value):
+            return .init(value: value)
+          case let .Failure(error):
+            print("Argo decoding model error: \(error)")
+            return .init(error: .couldNotDecodeJSON(error))
+          }
+      }
+  }
+
+  private func decodeModels<M: Decodable where M == M.DecodedType>(json: AnyObject) ->
+    SignalProducer<[M], ErrorEnvelope> {
+
+      return SignalProducer(value: json)
+        .map { json in decode(json) as Decoded<[M]> }
+        .flatMap(.Concat) { (decoded: Decoded<[M]>) -> SignalProducer<[M], ErrorEnvelope> in
           switch decoded {
           case let .Success(value):
             return .init(value: value)
@@ -242,7 +268,6 @@ public struct Service: ServiceType {
         .flatMap(decodeModel)
   }
 
-  // Converts a `Route` into a URL request that can be used with Alamofire.
   private func request<M: Decodable where M == M.DecodedType>(route: Route)
     -> SignalProducer<M, ErrorEnvelope> {
 
@@ -252,6 +277,17 @@ public struct Service: ServiceType {
 
       return preparedRequest(URL, method: properties.method, query: properties.query)
         .flatMap(decodeModel)
+  }
+
+  private func request<M: Decodable where M == M.DecodedType>(route: Route)
+    -> SignalProducer<[M], ErrorEnvelope> {
+
+      let properties = route.requestProperties
+
+      let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
+
+      return preparedRequest(URL, method: properties.method, query: properties.query)
+        .flatMap(decodeModels)
   }
 
   private func preparedRequest(URL: NSURL, method: Method = .GET, query: [String:AnyObject] = [:])
