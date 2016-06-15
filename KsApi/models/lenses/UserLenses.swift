@@ -5,39 +5,81 @@ extension User {
   public enum lens {
     public static let avatar = Lens<User, User.Avatar>(
       view: { $0.avatar },
-      set: { User(avatar: $0, id: $1.id, name: $1.name, newsletters: $1.newsletters,
-        notifications: $1.notifications, stats: $1.stats) }
+      set: { User(avatar: $0, facebookConnected: $1.facebookConnected, id: $1.id, isFriend: $1.isFriend,
+        location: $1.location, name: $1.name, newsletters: $1.newsletters, notifications: $1.notifications,
+        stats: $1.stats) }
+    )
+
+    public static let facebookConnected = Lens<User, Bool?>(
+      view: { $0.facebookConnected },
+      set: { User(avatar: $1.avatar, facebookConnected: $0, id: $1.id, isFriend: $1.isFriend,
+        location: $1.location, name: $1.name, newsletters: $1.newsletters, notifications: $1.notifications,
+        stats: $1.stats) }
     )
 
     public static let id = Lens<User, Int>(
       view: { $0.id },
-      set: { User(avatar: $1.avatar, id: $0, name: $1.name, newsletters: $1.newsletters,
-        notifications: $1.notifications, stats: $1.stats) }
+      set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $0, isFriend: $1.isFriend,
+        location: $1.location, name: $1.name, newsletters: $1.newsletters, notifications: $1.notifications,
+        stats: $1.stats) }
+    )
+
+    public static let isFriend = Lens<User, Bool?>(
+      view: { $0.isFriend },
+      set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id, isFriend: $0,
+        location: $1.location, name: $1.name, newsletters: $1.newsletters, notifications: $1.notifications,
+        stats: $1.stats) }
+    )
+
+    public static let location = Lens<User, Location?>(
+      view: { $0.location },
+      set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
+        isFriend: $1.isFriend, location: $0, name: $1.name, newsletters: $1.newsletters,
+        notifications: $1.notifications,
+        stats: $1.stats) }
     )
 
     public static let name = Lens<User, String>(
       view: { $0.name },
-      set: { User(avatar: $1.avatar, id: $1.id, name: $0, newsletters: $1.newsletters,
+      set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
+        isFriend: $1.isFriend, location: $1.location, name: $0, newsletters: $1.newsletters,
         notifications: $1.notifications, stats: $1.stats) }
     )
 
     public static let newsletters = Lens<User, User.NewsletterSubscriptions>(
       view: { $0.newsletters },
-      set: { User(avatar: $1.avatar, id: $1.id, name: $1.name, newsletters: $0,
+      set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
+        isFriend: $1.isFriend, location: $1.location, name: $1.name, newsletters: $0,
         notifications: $1.notifications, stats: $1.stats) }
     )
 
     public static let notifications = Lens<User, User.Notifications>(
       view: { $0.notifications },
-      set: { User(avatar: $1.avatar, id: $1.id, name: $1.name, newsletters: $1.newsletters,
+      set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
+        isFriend: $1.isFriend, location: $1.location, name: $1.name, newsletters: $1.newsletters,
         notifications: $0, stats: $1.stats) }
     )
 
     public static let stats = Lens<User, User.Stats>(
       view: { $0.stats },
-      set: { User(avatar: $1.avatar, id: $1.id, name: $1.name, newsletters: $1.newsletters,
+      set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
+        isFriend: $1.isFriend, location: $1.location, name: $1.name, newsletters: $1.newsletters,
         notifications: $1.notifications, stats: $0) }
     )
+  }
+}
+
+extension LensType where Whole == User, Part == User.Avatar {
+  public var large: Lens<User, String?> {
+    return User.lens.avatar • User.Avatar.lens.large
+  }
+
+  public var medium: Lens<User, String> {
+    return User.lens.avatar • User.Avatar.lens.medium
+  }
+
+  public var small: Lens<User, String> {
+    return User.lens.avatar • User.Avatar.lens.small
   }
 }
 

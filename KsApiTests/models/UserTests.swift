@@ -27,7 +27,14 @@ final class UserTests: XCTestCase {
       "weekly_newsletter": false,
       "promo_newsletter": false,
       "happening_newsletter": false,
-      "games_newsletter": false
+      "games_newsletter": false,
+      "facebook_connected": false,
+      "location": [
+        "id": 12,
+        "displayable_name": "Brooklyn, NY",
+        "name": "Brooklyn"
+      ],
+      "is_friend": false
     ]
     let decoded = User.decodeJSONDictionary(json)
     let user = decoded.value
@@ -40,6 +47,9 @@ final class UserTests: XCTestCase {
     XCTAssertEqual(false, user?.newsletters.promo)
     XCTAssertEqual(false, user?.newsletters.happening)
     XCTAssertEqual(false, user?.newsletters.games)
+    XCTAssertEqual(false, user?.facebookConnected)
+    XCTAssertEqual(false, user?.isFriend)
+    XCTAssertNotNil(user?.location)
     XCTAssertEqual(json, user?.encode() as! [String:NSObject])
   }
 
@@ -56,10 +66,17 @@ final class UserTests: XCTestCase {
       "games_newsletter": false,
       "happening_newsletter": false,
       "promo_newsletter": false,
-      "weekly_newsletter": false
+      "weekly_newsletter": false,
+      "facebook_connected": false,
+      "location": [
+        "id": 12,
+        "displayable_name": "Brooklyn, NY",
+        "name": "Brooklyn"
+      ],
+      "is_friend": false
     ]
     let user = User.decodeJSONDictionary(json)
 
-    XCTAssertEqual(user.value?.encode().description, json.description)
+    XCTAssertEqual(user.value?.encode(), json as NSDictionary)
   }
 }

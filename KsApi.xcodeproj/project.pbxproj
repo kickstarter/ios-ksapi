@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0156B1FF1D075F84000C4252 /* FindFriendsEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */; };
+		0156B2001D075F84000C4252 /* FindFriendsEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */; };
+		0156B2121D076028000C4252 /* FriendStatsEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B2111D076028000C4252 /* FriendStatsEnvelopeTests.swift */; };
+		0156B2131D076028000C4252 /* FriendStatsEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B2111D076028000C4252 /* FriendStatsEnvelopeTests.swift */; };
+		0156B24A1D07B996000C4252 /* FindFriendsEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B2471D07B98D000C4252 /* FindFriendsEnvelopeLenses.swift */; };
+		0156B24B1D07B997000C4252 /* FindFriendsEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B2471D07B98D000C4252 /* FindFriendsEnvelopeLenses.swift */; };
+		0156B3821D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B3811D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift */; };
+		0156B3831D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B3811D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift */; };
+		0156B41C1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B41B1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift */; };
+		0156B4281D10D502000C4252 /* FriendStatsEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B41B1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift */; };
+		0156B42A1D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B4291D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift */; };
+		0156B42B1D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B4291D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift */; };
+		0156B42D1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B42C1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift */; };
+		0156B42E1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B42C1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift */; };
 		59B0DF241D0F13570081D2DC /* ProjectNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF231D0F13570081D2DC /* ProjectNotification.swift */; };
 		59B0DF251D0F13570081D2DC /* ProjectNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF231D0F13570081D2DC /* ProjectNotification.swift */; };
 		59B0DF331D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF311D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift */; };
@@ -170,8 +184,6 @@
 		A7363A291D03565400445B24 /* StarEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73639C11D03565400445B24 /* StarEnvelope.swift */; };
 		A7363A2A1D03565400445B24 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73639C21D03565400445B24 /* Update.swift */; };
 		A7363A2B1D03565400445B24 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73639C21D03565400445B24 /* Update.swift */; };
-		A7363A2C1D03565400445B24 /* User.Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73639C31D03565400445B24 /* User.Avatar.swift */; };
-		A7363A2D1D03565400445B24 /* User.Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73639C31D03565400445B24 /* User.Avatar.swift */; };
 		A7363A301D03565400445B24 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73639C51D03565400445B24 /* User.swift */; };
 		A7363A311D03565400445B24 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73639C51D03565400445B24 /* User.swift */; };
 		A7363A491D03588600445B24 /* EncodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7363A331D03588600445B24 /* EncodableTests.swift */; };
@@ -228,6 +240,14 @@
 		A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		A76077BF1CADC2CE001B39D0 /* KsApi_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DB1D871C9F5401008244DA /* KsApi_TestHelpers.framework */; };
 		A76077C21CADC2DD001B39D0 /* KsApi_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DB1DA71C9F5848008244DA /* KsApi_TestHelpers.framework */; };
+		A777A5961D05F55A00823FB1 /* FindFriendsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */; };
+		A777A5971D05F55A00823FB1 /* FindFriendsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */; };
+		A777A5981D05F55A00823FB1 /* FriendStatsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */; };
+		A777A5991D05F55A00823FB1 /* FriendStatsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */; };
+		A777A59A1D05F55A00823FB1 /* VoidEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */; };
+		A777A59B1D05F55A00823FB1 /* VoidEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */; };
+		A777A5AD1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */; };
+		A777A5AE1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */; };
 		A77967731C2B431C0002166F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
 		A77967741C2B431C0002166F /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
 		A782BAEA1C9F60D8007B13C8 /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
@@ -246,6 +266,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0156B4B51D11FA9E000C4252 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A73639411D03550C00445B24 /* Prelude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A727E0221D0796D600D8FE43;
+			remoteInfo = "Prelude-UIKit-iOS";
+		};
+		0156B4B71D11FA9E000C4252 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A73639411D03550C00445B24 /* Prelude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A727E02B1D0796D600D8FE43;
+			remoteInfo = "Prelude-UIKit-iOSTests";
+		};
 		A73639241D03550300445B24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A736391A1D03550300445B24 /* Argo.xcodeproj */;
@@ -508,6 +542,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsEnvelopeTests.swift; sourceTree = "<group>"; };
+		0156B2111D076028000C4252 /* FriendStatsEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendStatsEnvelopeTests.swift; sourceTree = "<group>"; };
+		0156B2471D07B98D000C4252 /* FindFriendsEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsEnvelopeLenses.swift; sourceTree = "<group>"; };
+		0156B3811D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsEnvelopeTemplates.swift; sourceTree = "<group>"; };
+		0156B41B1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendStatsEnvelopeTemplates.swift; sourceTree = "<group>"; };
+		0156B4291D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendStatsEnvelope.StatsLenses.swift; sourceTree = "<group>"; };
+		0156B42C1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendStatsEnvelopeLenses.swift; sourceTree = "<group>"; };
 		59B0DF231D0F13570081D2DC /* ProjectNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotification.swift; sourceTree = "<group>"; };
 		59B0DF311D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotification.ProjectLenses.swift; sourceTree = "<group>"; };
 		59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotificationLenses.swift; sourceTree = "<group>"; };
@@ -592,7 +633,6 @@
 		A73639C01D03565400445B24 /* Reward.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward.swift; sourceTree = "<group>"; };
 		A73639C11D03565400445B24 /* StarEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarEnvelope.swift; sourceTree = "<group>"; };
 		A73639C21D03565400445B24 /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
-		A73639C31D03565400445B24 /* User.Avatar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.Avatar.swift; sourceTree = "<group>"; };
 		A73639C51D03565400445B24 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A7363A331D03588600445B24 /* EncodableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodableTests.swift; sourceTree = "<group>"; };
 		A7363A351D03588600445B24 /* ActivityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTests.swift; sourceTree = "<group>"; };
@@ -620,6 +660,10 @@
 		A745D0611CA8B5D500C12802 /* ServiceTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTypeTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A753B5691C2EED9800FDB616 /* KsApi-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A753B56B1C2EED9800FDB616 /* KsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsApiTests.swift; sourceTree = "<group>"; };
+		A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsEnvelope.swift; sourceTree = "<group>"; };
+		A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendStatsEnvelope.swift; sourceTree = "<group>"; };
+		A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidEnvelope.swift; sourceTree = "<group>"; };
+		A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.AvatarLenses.swift; sourceTree = "<group>"; };
 		A77967631C2B431C0002166F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A77967641C2B431C0002166F /* ServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -712,6 +756,8 @@
 				A72661E01D07671D0087D883 /* CommentTemplates.swift */,
 				A72661E11D07671D0087D883 /* ConfigTemplates.swift */,
 				A72661E21D07671D0087D883 /* DiscoveryEnvelopeTemplates.swift */,
+				0156B3811D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift */,
+				0156B41B1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift */,
 				A72661E31D07671D0087D883 /* LocationTemplates.swift */,
 				A72661E41D07671D0087D883 /* MessageTemplates.swift */,
 				A72661E51D07671D0087D883 /* MessageThreadTemplates.swift */,
@@ -763,6 +809,8 @@
 				A736394B1D03550C00445B24 /* Prelude-iOSTests.xctest */,
 				A736394D1D03550C00445B24 /* Prelude.framework */,
 				A736394F1D03550C00445B24 /* Prelude-tvOSTests.xctest */,
+				0156B4B61D11FA9E000C4252 /* Prelude_UIKit.framework */,
+				0156B4B81D11FA9E000C4252 /* Prelude-UIKit-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -817,6 +865,8 @@
 				A73639A11D03565400445B24 /* DiscoveryEnvelope.swift */,
 				A73639A21D03565400445B24 /* DiscoveryParams.swift */,
 				A73639A31D03565400445B24 /* ErrorEnvelope.swift */,
+				A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */,
+				A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */,
 				A73639B71D03565400445B24 /* Location.swift */,
 				A73639B81D03565400445B24 /* Message.swift */,
 				A73639B91D03565400445B24 /* MessageThread.swift */,
@@ -830,8 +880,8 @@
 				A73639C01D03565400445B24 /* Reward.swift */,
 				A73639C11D03565400445B24 /* StarEnvelope.swift */,
 				A73639C21D03565400445B24 /* Update.swift */,
-				A73639C31D03565400445B24 /* User.Avatar.swift */,
 				A73639C51D03565400445B24 /* User.swift */,
+				A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */,
 				A73639A41D03565400445B24 /* lenses */,
 				A72661DB1D07671D0087D883 /* templates */,
 			);
@@ -848,6 +898,9 @@
 				A73639A81D03565400445B24 /* CommentLenses.swift */,
 				A726621B1D0767DB0087D883 /* ConfigLenses.swift */,
 				80762DD41D0700680074189D /* DiscoveryEnvelopeLenses.swift */,
+				0156B2471D07B98D000C4252 /* FindFriendsEnvelopeLenses.swift */,
+				0156B42C1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift */,
+				0156B4291D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift */,
 				A73639A91D03565400445B24 /* DiscoveryParamsLenses.swift */,
 				A73639AA1D03565400445B24 /* LocationLenses.swift */,
 				A73639AB1D03565400445B24 /* MessageLenses.swift */,
@@ -861,6 +914,7 @@
 				A73639B11D03565400445B24 /* RewardLenses.swift */,
 				80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */,
 				A73639B21D03565400445B24 /* UpdateLenses.swift */,
+				A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */,
 				A73639B31D03565400445B24 /* User.NewsletterSubscriptionsLenses.swift */,
 				A73639B41D03565400445B24 /* User.NotificationsLenses.swift */,
 				A73639B51D03565400445B24 /* User.StatsLenses.swift */,
@@ -887,6 +941,8 @@
 				A7363A391D03588600445B24 /* ConfigTests.swift */,
 				A7363A3A1D03588600445B24 /* DiscoveryParamsTests.swift */,
 				A7363A3B1D03588600445B24 /* ErrorEnvelopeTests.swift */,
+				0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */,
+				0156B2111D076028000C4252 /* FriendStatsEnvelopeTests.swift */,
 				A7363A3C1D03588600445B24 /* LocationTests.swift */,
 				A7363A3D1D03588600445B24 /* MessageTests.swift */,
 				A7363A3E1D03588600445B24 /* MessageThreadTests.swift */,
@@ -1198,6 +1254,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0156B4B61D11FA9E000C4252 /* Prelude_UIKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prelude_UIKit.framework;
+			remoteRef = 0156B4B51D11FA9E000C4252 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0156B4B81D11FA9E000C4252 /* Prelude-UIKit-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Prelude-UIKit-iOSTests.xctest";
+			remoteRef = 0156B4B71D11FA9E000C4252 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		A73639251D03550300445B24 /* Argo.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1429,6 +1499,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */,
+				0156B2131D076028000C4252 /* FriendStatsEnvelopeTests.swift in Sources */,
 				A7363A501D03588600445B24 /* CategoryTests.swift in Sources */,
 				A7363A681D03588600445B24 /* RewardTests.swift in Sources */,
 				A7363A701D03588600445B24 /* User.NotificationsTests.swift in Sources */,
@@ -1448,6 +1519,7 @@
 				A7363A641D03588600445B24 /* Project.VideoTests.swift in Sources */,
 				A7363A6A1D03588600445B24 /* UpdateTests.swift in Sources */,
 				A745D0631CA8B5D500C12802 /* ServiceTypeTests.swift in Sources */,
+				0156B2001D075F84000C4252 /* FindFriendsEnvelopeTests.swift in Sources */,
 				A7363A5E1D03588600445B24 /* MessageThreadTests.swift in Sources */,
 				A7363A5A1D03588600445B24 /* LocationTests.swift in Sources */,
 				A7363A4A1D03588600445B24 /* EncodableTests.swift in Sources */,
@@ -1516,7 +1588,6 @@
 				A7363A201D03565400445B24 /* Project.Photo.swift in Sources */,
 				A73639F61D03565400445B24 /* CommentLenses.swift in Sources */,
 				A73639FC1D03565400445B24 /* MessageLenses.swift in Sources */,
-				A7363A2C1D03565400445B24 /* User.Avatar.swift in Sources */,
 				A7363A1E1D03565400445B24 /* Project.Country.swift in Sources */,
 				A7363A001D03565400445B24 /* Project.DatesLenses.swift in Sources */,
 				A73639CE1D03565400445B24 /* Decodable.swift in Sources */,
@@ -1528,6 +1599,7 @@
 				A72661F91D07671D0087D883 /* CommentTemplates.swift in Sources */,
 				59B0DF351D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */,
 				A7363A0E1D03565400445B24 /* User.NotificationsLenses.swift in Sources */,
+				0156B24A1D07B996000C4252 /* FindFriendsEnvelopeLenses.swift in Sources */,
 				A72662151D07671D0087D883 /* User.NotificationsTemplates.swift in Sources */,
 				A7363A0C1D03565400445B24 /* User.NewsletterSubscriptionsLenses.swift in Sources */,
 				A7363A0A1D03565400445B24 /* UpdateLenses.swift in Sources */,
@@ -1535,19 +1607,26 @@
 				A72662191D07671D0087D883 /* UserTemplates.swift in Sources */,
 				80762DD51D0700680074189D /* DiscoveryEnvelopeLenses.swift in Sources */,
 				A7363A041D03565400445B24 /* Project.StatsLenses.swift in Sources */,
+				0156B41C1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift in Sources */,
 				A726620D1D07671D0087D883 /* StarEnvelopeTemplates.swift in Sources */,
 				A7363A121D03565400445B24 /* UserLenses.swift in Sources */,
+				A777A59A1D05F55A00823FB1 /* VoidEnvelope.swift in Sources */,
+				A777A5AD1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */,
+				A777A5981D05F55A00823FB1 /* FriendStatsEnvelope.swift in Sources */,
 				A73639D61D03565400445B24 /* Route.swift in Sources */,
 				A7FD097D1C83E74F00332CCB /* ServerConfig.swift in Sources */,
 				A73639E81D03565400445B24 /* Config.swift in Sources */,
+				0156B42D1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift in Sources */,
 				A7363A181D03565400445B24 /* MessageThread.swift in Sources */,
 				A72662171D07671D0087D883 /* User.StatsTemplates.swift in Sources */,
 				A72661FF1D07671D0087D883 /* LocationTemplates.swift in Sources */,
+				0156B3821D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift in Sources */,
 				A72661FB1D07671D0087D883 /* ConfigTemplates.swift in Sources */,
 				A73639E41D03565400445B24 /* Comment.swift in Sources */,
 				A73639FE1D03565400445B24 /* MessageThreadLenses.swift in Sources */,
 				A72662011D07671D0087D883 /* MessageTemplates.swift in Sources */,
 				A7363A281D03565400445B24 /* StarEnvelope.swift in Sources */,
+				A777A5961D05F55A00823FB1 /* FindFriendsEnvelope.swift in Sources */,
 				59B0DF331D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift in Sources */,
 				A72661F71D07671D0087D883 /* CategoryTemplates.swift in Sources */,
 				A7363A1A1D03565400445B24 /* MessageThreadEnvelope.swift in Sources */,
@@ -1557,6 +1636,7 @@
 				A72662131D07671D0087D883 /* User.NewsletterSubscriptionsTemplates.swift in Sources */,
 				A72662111D07671D0087D883 /* User.AvatarTemplates.swift in Sources */,
 				A73639EA1D03565400445B24 /* DiscoveryEnvelope.swift in Sources */,
+				0156B42A1D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift in Sources */,
 				A73639E01D03565400445B24 /* CategoriesEnvelope.swift in Sources */,
 				A7363A301D03565400445B24 /* User.swift in Sources */,
 			);
@@ -1567,6 +1647,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7FD09C71C83E8E900332CCB /* ServiceTests.swift in Sources */,
+				0156B2121D076028000C4252 /* FriendStatsEnvelopeTests.swift in Sources */,
 				A7363A4F1D03588600445B24 /* CategoryTests.swift in Sources */,
 				A7363A671D03588600445B24 /* RewardTests.swift in Sources */,
 				A7363A6F1D03588600445B24 /* User.NotificationsTests.swift in Sources */,
@@ -1586,6 +1667,7 @@
 				A7363A631D03588600445B24 /* Project.VideoTests.swift in Sources */,
 				A7363A691D03588600445B24 /* UpdateTests.swift in Sources */,
 				A745D0621CA8B5D500C12802 /* ServiceTypeTests.swift in Sources */,
+				0156B1FF1D075F84000C4252 /* FindFriendsEnvelopeTests.swift in Sources */,
 				A7363A5D1D03588600445B24 /* MessageThreadTests.swift in Sources */,
 				A7363A591D03588600445B24 /* LocationTests.swift in Sources */,
 				A7363A491D03588600445B24 /* EncodableTests.swift in Sources */,
@@ -1638,7 +1720,6 @@
 				A7363A211D03565400445B24 /* Project.Photo.swift in Sources */,
 				A73639F71D03565400445B24 /* CommentLenses.swift in Sources */,
 				A73639FD1D03565400445B24 /* MessageLenses.swift in Sources */,
-				A7363A2D1D03565400445B24 /* User.Avatar.swift in Sources */,
 				A7363A1F1D03565400445B24 /* Project.Country.swift in Sources */,
 				A7363A011D03565400445B24 /* Project.DatesLenses.swift in Sources */,
 				A73639CF1D03565400445B24 /* Decodable.swift in Sources */,
@@ -1650,6 +1731,7 @@
 				A72661FA1D07671D0087D883 /* CommentTemplates.swift in Sources */,
 				59B0DF361D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */,
 				A7363A0F1D03565400445B24 /* User.NotificationsLenses.swift in Sources */,
+				0156B24B1D07B997000C4252 /* FindFriendsEnvelopeLenses.swift in Sources */,
 				A72662161D07671D0087D883 /* User.NotificationsTemplates.swift in Sources */,
 				A7363A0D1D03565400445B24 /* User.NewsletterSubscriptionsLenses.swift in Sources */,
 				A7363A0B1D03565400445B24 /* UpdateLenses.swift in Sources */,
@@ -1657,19 +1739,26 @@
 				A726621A1D07671D0087D883 /* UserTemplates.swift in Sources */,
 				80762DD61D0700680074189D /* DiscoveryEnvelopeLenses.swift in Sources */,
 				A7363A051D03565400445B24 /* Project.StatsLenses.swift in Sources */,
+				0156B4281D10D502000C4252 /* FriendStatsEnvelopeTemplates.swift in Sources */,
 				A726620E1D07671D0087D883 /* StarEnvelopeTemplates.swift in Sources */,
 				A7363A131D03565400445B24 /* UserLenses.swift in Sources */,
+				A777A59B1D05F55A00823FB1 /* VoidEnvelope.swift in Sources */,
+				A777A5AE1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */,
+				A777A5991D05F55A00823FB1 /* FriendStatsEnvelope.swift in Sources */,
 				A73639D71D03565400445B24 /* Route.swift in Sources */,
 				A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */,
 				A73639E91D03565400445B24 /* Config.swift in Sources */,
+				0156B42E1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift in Sources */,
 				A7363A191D03565400445B24 /* MessageThread.swift in Sources */,
 				A72662181D07671D0087D883 /* User.StatsTemplates.swift in Sources */,
 				A72662001D07671D0087D883 /* LocationTemplates.swift in Sources */,
+				0156B3831D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift in Sources */,
 				A72661FC1D07671D0087D883 /* ConfigTemplates.swift in Sources */,
 				A73639E51D03565400445B24 /* Comment.swift in Sources */,
 				A73639FF1D03565400445B24 /* MessageThreadLenses.swift in Sources */,
 				A72662021D07671D0087D883 /* MessageTemplates.swift in Sources */,
 				A7363A291D03565400445B24 /* StarEnvelope.swift in Sources */,
+				A777A5971D05F55A00823FB1 /* FindFriendsEnvelope.swift in Sources */,
 				59B0DF341D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift in Sources */,
 				A72661F81D07671D0087D883 /* CategoryTemplates.swift in Sources */,
 				A7363A1B1D03565400445B24 /* MessageThreadEnvelope.swift in Sources */,
@@ -1679,6 +1768,7 @@
 				A72662141D07671D0087D883 /* User.NewsletterSubscriptionsTemplates.swift in Sources */,
 				A72662121D07671D0087D883 /* User.AvatarTemplates.swift in Sources */,
 				A73639EB1D03565400445B24 /* DiscoveryEnvelope.swift in Sources */,
+				0156B42B1D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift in Sources */,
 				A73639E11D03565400445B24 /* CategoriesEnvelope.swift in Sources */,
 				A7363A311D03565400445B24 /* User.swift in Sources */,
 			);

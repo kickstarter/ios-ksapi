@@ -2,12 +2,21 @@ import Argo
 import Curry
 
 public struct User {
-  public let avatar: User.Avatar
+  public let avatar: Avatar
+  public let facebookConnected: Bool?
   public let id: Int
+  public let isFriend: Bool?
+  public let location: Location?
   public let name: String
   public let newsletters: NewsletterSubscriptions
   public let notifications: Notifications
   public let stats: Stats
+
+  public struct Avatar {
+    public let large: String?
+    public let medium: String
+    public let small: String
+  }
 
   public struct NewsletterSubscriptions {
     public let games: Bool?
@@ -60,7 +69,10 @@ extension User: Decodable {
     let create = curry(User.init)
     return create
       <^> json <| "avatar"
+      <*> json <|? "facebook_connected"
       <*> json <| "id"
+      <*> json <|? "is_friend"
+      <*> json <|? "location"
       <*> json <| "name"
       <*> User.NewsletterSubscriptions.decode(json)
       <*> User.Notifications.decode(json)
@@ -71,19 +83,39 @@ extension User: Decodable {
 extension User: EncodableType {
   public func encode() -> [String:AnyObject] {
     var result: [String:AnyObject] = [:]
-    result["id"] = self.id
-    result["name"] = self.name
     result["avatar"] = self.avatar.encode()
-    for (key, value) in self.stats.encode() {
-      result[key] = value
-    }
-    for (key, value) in self.newsletters.encode() {
-      result[key] = value
-    }
-    for (key, value) in self.notifications.encode() {
-      result[key] = value
-    }
+    result["facebook_connected"] = self.facebookConnected ?? false
+    result["id"] = self.id
+    result["is_friend"] = self.isFriend ?? false
+    result["location"] = self.location?.encode()
+    result["name"] = self.name
+    result = result.withAllValuesFrom(self.newsletters.encode())
+    result = result.withAllValuesFrom(self.notifications.encode())
+    result = result.withAllValuesFrom(self.stats.encode())
+
     return result
+  }
+}
+
+extension User.Avatar: Decodable {
+  public static func decode(json: JSON) -> Decoded<User.Avatar> {
+    return curry(User.Avatar.init)
+      <^> json <|? "large"
+      <*> json <| "medium"
+      <*> json <| "small"
+  }
+}
+
+extension User.Avatar: EncodableType {
+  public func encode() -> [String:AnyObject] {
+    var ret = [
+      "medium": self.medium,
+      "small": self.small
+    ]
+
+    ret["large"] = self.large
+
+    return ret
   }
 }
 
@@ -188,9 +220,9 @@ extension User.Stats: EncodableType {
   public func encode() -> [String: AnyObject] {
     var result: [String: AnyObject] = [:]
     result["backed_projects_count"] =  self.backedProjectsCount
-    result["created_projects_count"] =  self.createdProjectsCount
-    result["starred_projects_count"] =  self.starredProjectsCount
-    result["unanswered_surveys_count"] =  self.unansweredSurveysCount
+    result["created_projects_count"] = self.createdProjectsCount
+    result["starred_projects_count"] = self.starredProjectsCount
+    result["unanswered_surveys_count"] = self.unansweredSurveysCount
     result["unread_messages_count"] =  self.unreadMessagesCount
     return result
   }

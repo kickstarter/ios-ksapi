@@ -37,6 +37,11 @@ public struct Service: ServiceType {
                    buildVersion: self.buildVersion)
   }
 
+  public func facebookConnect(facebookAccessToken token: String)
+    -> SignalProducer<User, ErrorEnvelope> {
+      return request(.facebookConnect(facebookAccessToken: token))
+  }
+
   public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
     let categories: [Activity.Category] = [
       .backing,
@@ -143,6 +148,27 @@ public struct Service: ServiceType {
     return request(.category(id))
   }
 
+  public func fetchFriends() -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope> {
+    return request(.friends)
+  }
+
+  public func fetchFriends(paginationUrl paginationUrl: String)
+    -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope> {
+    return requestPagination(paginationUrl)
+  }
+
+  public func fetchFriendStats() -> SignalProducer<FriendStatsEnvelope, ErrorEnvelope> {
+    return request(.friendStats)
+  }
+
+  public func followAllFriends() -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
+    return request(.followAllFriends)
+  }
+
+  public func followFriend(userId id: Int) -> SignalProducer<User, ErrorEnvelope> {
+    return request(.followFriend(userId: id))
+  }
+
   public func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
     return request(.toggleStar(project))
   }
@@ -212,6 +238,10 @@ public struct Service: ServiceType {
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
     return request(.facebookSignup(facebookAccessToken: token, sendNewsletters: sendNewsletters))
+  }
+
+  public func unfollowFriend(userId id: Int) -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
+    return request(.unfollowFriend(userId: id))
   }
 
   public func updateProjectNotification(notification: ProjectNotification)

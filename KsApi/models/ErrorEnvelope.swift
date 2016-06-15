@@ -21,6 +21,8 @@ public struct ErrorEnvelope {
     // Codes defined by the server
     case AccessTokenInvalid = "access_token_invalid"
     case ConfirmFacebookSignup = "confirm_facebook_signup"
+    case FacebookConnectAccountTaken = "facebook_connect_account_taken"
+    case FacebookConnectEmailTaken = "facebook_connect_email_taken"
     case FacebookInvalidAccessToken = "facebook_invalid_access_token"
     case InvalidXauthLogin = "invalid_xauth_login"
     case MissingFacebookEmail = "missing_facebook_email"

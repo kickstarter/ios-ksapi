@@ -25,6 +25,10 @@ public protocol ServiceType {
   /// Returns a new service with the oauth token set to `nil`.
   func logout() -> Self
 
+  /// Request to connect user to Facebook with access token.
+  func facebookConnect(facebookAccessToken token: String)
+    -> SignalProducer<User, ErrorEnvelope>
+
   /// Fetch a page of activities.
   func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
 
@@ -59,6 +63,15 @@ public protocol ServiceType {
   /// Fetch the full discovery envelope with specified discovery params.
   func fetchDiscovery(params params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>
 
+  /// Fetch friends for a user.
+  func fetchFriends() -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope>
+
+  /// Fetch friends from a pagination url.
+  func fetchFriends(paginationUrl paginationUrl: String) -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope>
+
+  /// Fetch friend stats.
+  func fetchFriendStats() -> SignalProducer<FriendStatsEnvelope, ErrorEnvelope>
+
   /// Fetches all of the messages in a particular message thread.
   func fetchMessageThread(messageThread messageThread: MessageThread)
     -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope>
@@ -91,6 +104,12 @@ public protocol ServiceType {
 
   /// Fetch the logged-in user's data.
   func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope>
+
+  /// Follow all friends of current user.
+  func followAllFriends() -> SignalProducer<VoidEnvelope, ErrorEnvelope>
+
+  /// Follow a user with their id.
+  func followFriend(userId id: Int) -> SignalProducer<User, ErrorEnvelope>
 
   /// Attempt a login with an email, password and optional code.
   func login(email email: String, password: String, code: String?) ->
@@ -133,6 +152,9 @@ public protocol ServiceType {
 
   /// Toggle the starred state on a project.
   func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope>
+
+  /// Unfollow a user with their id.
+  func unfollowFriend(userId id: Int) -> SignalProducer<VoidEnvelope, ErrorEnvelope>
 
   /// Update the project notification setting.
   func updateProjectNotification(notification: ProjectNotification) ->

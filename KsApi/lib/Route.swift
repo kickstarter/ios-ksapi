@@ -10,8 +10,13 @@ public enum Route {
   case category(Int)
   case config
   case discover(DiscoveryParams)
+  case facebookConnect(facebookAccessToken: String)
   case facebookLogin(facebookAccessToken: String, code: String?)
   case facebookSignup(facebookAccessToken: String, sendNewsletters: Bool)
+  case friends
+  case friendStats
+  case followAllFriends
+  case followFriend(userId: Int)
   case login(email: String, password: String, code: String?)
   case markAsRead(MessageThread)
   case messagesForThread(MessageThread)
@@ -29,6 +34,7 @@ public enum Route {
     sendNewsletters: Bool)
   case star(Project)
   case toggleStar(Project)
+  case unfollowFriend(userId: Int)
   case updateComments(Update)
   case userSelf
   case user(User)
@@ -55,6 +61,9 @@ public enum Route {
     case let .discover(params):
       return (.GET, "/v1/discover", params.queryParams)
 
+    case let .facebookConnect(token):
+      return (.PUT, "v1/facebook/connect", ["access_token": token])
+
     case let .facebookLogin(facebookAccessToken, code):
       var params = ["access_token": facebookAccessToken, "intent": "login"]
       params["code"] = code
@@ -66,6 +75,18 @@ public enum Route {
                                         "send_newsletters": sendNewsletters,
                                         "newsletter_opt_in": sendNewsletters]
       return (.PUT, "/v1/facebook/access_token", params)
+
+    case .friends:
+      return (.GET, "v1/users/self/friends/find", [:])
+
+    case .friendStats:
+      return (.GET, "v1/users/self/friends/find", ["count": 0])
+
+    case .followAllFriends:
+      return (.PUT, "v1/users/self/friends/follow_all", [:])
+
+    case let .followFriend(userId):
+      return (.POST, "v1/users/self/friends", ["followed_id": userId])
 
     case let .login(email, password, code):
       var params = ["email": email, "password": password]
@@ -128,6 +149,9 @@ public enum Route {
 
     case let .toggleStar(p):
       return (.POST, "/v1/projects/\(p.id)/star/toggle", [:])
+
+    case let .unfollowFriend(userId):
+      return (.DELETE, "v1/users/self/friends/\(userId)", [:])
 
     case let .updateComments(u):
       return (.GET, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", [:])

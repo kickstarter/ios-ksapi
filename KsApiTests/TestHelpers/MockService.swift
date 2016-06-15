@@ -12,6 +12,9 @@ internal struct MockService: ServiceType {
   internal let language: String
   internal let buildVersion: String
 
+  private let facebookConnectResponse: User?
+  private let facebookConnectError: ErrorEnvelope?
+
   private let fetchActivitiesResponse: [Activity]?
   private let fetchActivitiesError: ErrorEnvelope?
 
@@ -25,6 +28,12 @@ internal struct MockService: ServiceType {
   private let fetchDiscoveryResponse: DiscoveryEnvelope?
   private let fetchDiscoveryError: ErrorEnvelope?
 
+  private let fetchFriendsResponse: FindFriendsEnvelope?
+  private let fetchFriendsError: ErrorEnvelope?
+
+  private let fetchFriendStatsResponse: FriendStatsEnvelope?
+  private let fetchFriendStatsError: ErrorEnvelope?
+
   private let fetchMessageThreadResponse: MessageThread
   private let fetchMessageThreadsResponse: [MessageThread]
 
@@ -34,6 +43,8 @@ internal struct MockService: ServiceType {
 
   private let fetchUserSelfResponse: User?
   private let fetchUserSelfError: ErrorEnvelope?
+
+  private let followFriendError: ErrorEnvelope?
 
   private let postCommentResponse: Comment?
   private let postCommentError: ErrorEnvelope?
@@ -48,6 +59,8 @@ internal struct MockService: ServiceType {
 
   private let signupResponse: AccessTokenEnvelope?
   private let signupError: ErrorEnvelope?
+
+  private let unfollowFriendError: ErrorEnvelope?
 
   private let updateProjectNotificationResponse: ProjectNotification?
   private let updateProjectNotificationError: ErrorEnvelope?
@@ -72,6 +85,8 @@ internal struct MockService: ServiceType {
                 oauthToken: OauthTokenAuthType? = nil,
                 language: String = "en",
                 buildVersion: String = "1",
+                facebookConnectResponse: User? = nil,
+                facebookConnectError: ErrorEnvelope? = nil,
                 fetchActivitiesResponse: [Activity]? = nil,
                 fetchActivitiesError: ErrorEnvelope? = nil,
                 fetchCategoriesResponse: CategoriesEnvelope? = nil,
@@ -80,11 +95,16 @@ internal struct MockService: ServiceType {
                 fetchConfigResponse: Config? = nil,
                 fetchDiscoveryResponse: DiscoveryEnvelope? = nil,
                 fetchDiscoveryError: ErrorEnvelope? = nil,
+                fetchFriendsResponse: FindFriendsEnvelope? = nil,
+                fetchFriendsError: ErrorEnvelope? = nil,
+                fetchFriendStatsResponse: FriendStatsEnvelope? = nil,
+                fetchFriendStatsError: ErrorEnvelope? = nil,
                 fetchMessageThreadResponse: MessageThread? = nil,
                 fetchMessageThreadsResponse: [MessageThread]? = nil,
                 fetchProjectResponse: Project? = nil,
                 fetchProjectNotificationsResponse: [ProjectNotification]? = nil,
                 fetchUserSelfResponse: User? = nil,
+                followFriendError: ErrorEnvelope? = nil,
                 fetchUserSelfError: ErrorEnvelope? = nil,
                 postCommentResponse: Comment? = nil,
                 postCommentError: ErrorEnvelope? = nil,
@@ -96,6 +116,7 @@ internal struct MockService: ServiceType {
                 resetPasswordError: ErrorEnvelope? = nil,
                 signupResponse: AccessTokenEnvelope? = nil,
                 signupError: ErrorEnvelope? = nil,
+                unfollowFriendError: ErrorEnvelope? = nil,
                 updateProjectNotificationResponse: ProjectNotification? = nil,
                 updateProjectNotificationError: ErrorEnvelope? = nil,
                 updateUserSelfError: ErrorEnvelope? = nil) {
@@ -104,6 +125,9 @@ internal struct MockService: ServiceType {
     self.oauthToken = oauthToken
     self.language = language
     self.buildVersion = buildVersion
+
+    self.facebookConnectResponse = facebookConnectResponse
+    self.facebookConnectError = facebookConnectError
 
     self.fetchActivitiesResponse = fetchActivitiesResponse ?? [
       Activity.template,
@@ -143,6 +167,12 @@ internal struct MockService: ServiceType {
     self.fetchDiscoveryResponse = fetchDiscoveryResponse
     self.fetchDiscoveryError = fetchDiscoveryError
 
+    self.fetchFriendsResponse = fetchFriendsResponse
+    self.fetchFriendsError = fetchFriendsError
+
+    self.fetchFriendStatsResponse = fetchFriendStatsResponse
+    self.fetchFriendStatsError = fetchFriendStatsError
+
     self.fetchMessageThreadResponse = fetchMessageThreadResponse ??  MessageThread.template
 
     self.fetchMessageThreadsResponse = fetchMessageThreadsResponse ?? [
@@ -160,8 +190,9 @@ internal struct MockService: ServiceType {
     ]
 
     self.fetchUserSelfResponse = fetchUserSelfResponse ?? User.template
-
     self.fetchUserSelfError = fetchUserSelfError
+
+    self.followFriendError = followFriendError
 
     self.postCommentResponse = postCommentResponse ?? Comment.template
 
@@ -183,11 +214,29 @@ internal struct MockService: ServiceType {
 
     self.signupError = signupError
 
+    self.unfollowFriendError = unfollowFriendError
+
     self.updateProjectNotificationResponse = updateProjectNotificationResponse
 
     self.updateProjectNotificationError = updateProjectNotificationError
 
     self.updateUserSelfError = updateUserSelfError
+  }
+
+  internal func facebookConnect(facebookAccessToken token: String)
+    -> SignalProducer<User, ErrorEnvelope> {
+
+      if let response = facebookConnectResponse {
+        return SignalProducer(value: response)
+      } else if let error = facebookConnectError {
+        return SignalProducer(error: error)
+      }
+
+      return SignalProducer(value:
+        User.template
+          |> User.lens.id .~ 1
+          |> User.lens.facebookConnected .~ true
+      )
   }
 
   internal func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
@@ -251,22 +300,77 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: config)
   }
 
+  internal func fetchFriends() -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope> {
+    if let response = fetchFriendsResponse {
+      return SignalProducer(value: response)
+    } else if let error = fetchFriendsError {
+      return SignalProducer(error: error)
+    }
+
+    return SignalProducer(value: FindFriendsEnvelope.template)
+  }
+
+  internal func fetchFriends(paginationUrl paginationUrl: String)
+    -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope> {
+    return self.fetchFriends()
+  }
+
+  internal func fetchFriendStats() -> SignalProducer<FriendStatsEnvelope, ErrorEnvelope> {
+    if let response = fetchFriendStatsResponse {
+      return SignalProducer(value: response)
+    } else if let error = fetchFriendStatsError {
+      return SignalProducer(error: error)
+    }
+    return SignalProducer(value: FriendStatsEnvelope.template)
+  }
+
+  internal func followAllFriends() -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
+    return SignalProducer(value: VoidEnvelope())
+  }
+
+  internal func followFriend(userId id: Int) -> SignalProducer<User, ErrorEnvelope> {
+    if let error = followFriendError {
+      return SignalProducer(error: error)
+    }
+
+    return SignalProducer(value:
+      User.template
+        |> User.lens.id .~ id
+        |> User.lens.isFriend .~ true
+    )
+  }
+
+  internal func unfollowFriend(userId id: Int) -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
+    if let error = unfollowFriendError {
+      return SignalProducer(error: error)
+    }
+
+    return SignalProducer(value: VoidEnvelope())
+  }
+
   internal func login(oauthToken: OauthTokenAuthType) -> MockService {
     return MockService(
       serverConfig: self.serverConfig,
       oauthToken: oauthToken,
       language: self.language,
       buildVersion: self.buildVersion,
+      facebookConnectResponse: self.facebookConnectResponse,
+      facebookConnectError: self.facebookConnectError,
       fetchActivitiesResponse: self.fetchActivitiesResponse,
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
       fetchDiscoveryResponse: self.fetchDiscoveryResponse,
       fetchDiscoveryError: self.fetchDiscoveryError,
+      fetchFriendsResponse: self.fetchFriendsResponse,
+      fetchFriendsError: self.fetchFriendsError,
+      fetchFriendStatsResponse: self.fetchFriendStatsResponse,
+      fetchFriendStatsError: self.fetchFriendStatsError,
       fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
+      followFriendError: self.followFriendError,
       fetchUserSelfError: self.fetchUserSelfError,
       postCommentResponse: self.postCommentResponse,
       postCommentError: self.postCommentError,
@@ -278,6 +382,7 @@ internal struct MockService: ServiceType {
       resetPasswordError: self.resetPasswordError,
       signupResponse: self.signupResponse,
       signupError: self.signupError,
+      unfollowFriendError: self.unfollowFriendError,
       updateProjectNotificationResponse: self.updateProjectNotificationResponse,
       updateProjectNotificationError: self.updateProjectNotificationError,
       updateUserSelfError: self.updateUserSelfError
@@ -290,16 +395,23 @@ internal struct MockService: ServiceType {
       oauthToken: nil,
       language: self.language,
       buildVersion: self.buildVersion,
+      facebookConnectResponse: self.facebookConnectResponse,
+      facebookConnectError: self.facebookConnectError,
       fetchActivitiesResponse: self.fetchActivitiesResponse,
       fetchActivitiesError: self.fetchActivitiesError,
       fetchCommentsResponse: self.fetchCommentsResponse,
       fetchCommentsError: self.fetchCommentsError,
       fetchDiscoveryResponse: self.fetchDiscoveryResponse,
       fetchDiscoveryError: self.fetchDiscoveryError,
+      fetchFriendsResponse: self.fetchFriendsResponse,
+      fetchFriendsError: self.fetchFriendsError,
+      fetchFriendStatsResponse: self.fetchFriendStatsResponse,
+      fetchFriendStatsError: self.fetchFriendStatsError,
       fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
+      followFriendError: self.followFriendError,
       fetchUserSelfError: self.fetchUserSelfError,
       postCommentResponse: self.postCommentResponse,
       postCommentError: self.postCommentError,
@@ -311,6 +423,7 @@ internal struct MockService: ServiceType {
       resetPasswordError: self.resetPasswordError,
       signupResponse: self.signupResponse,
       signupError: self.signupError,
+      unfollowFriendError: self.unfollowFriendError,
       updateProjectNotificationResponse: self.updateProjectNotificationResponse,
       updateProjectNotificationError: self.updateProjectNotificationError,
       updateUserSelfError: self.updateUserSelfError

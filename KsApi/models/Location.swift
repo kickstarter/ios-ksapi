@@ -20,3 +20,13 @@ extension Location: Decodable {
       <*> json <| "name"
   }
 }
+
+extension Location: EncodableType {
+  public func encode() -> [String: AnyObject] {
+    var result: [String: AnyObject] = [:]
+    result["id"] = self.id
+    result["displayable_name"] = self.displayableName
+    result["name"] = self.name
+    return result
+  }
+}

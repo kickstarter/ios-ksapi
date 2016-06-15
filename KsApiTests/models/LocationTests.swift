@@ -32,4 +32,17 @@ final class LocationTests: XCTestCase {
     XCTAssertEqual(location.value?.displayableName, "Brooklyn, NY")
     XCTAssertEqual(location.value?.name, "Brooklyn")
   }
+
+  func testEncodeDecode() {
+    let location = [
+      "id": 44,
+      "displayable_name": "New Amsterdam, NY",
+      "name": "New Amsterdam"
+    ]
+
+    let decodedLocation = Location.decodeJSONDictionary(location).value
+
+    XCTAssertEqual(decodedLocation, Location.decodeJSONDictionary(decodedLocation?.encode() ?? [:]).value)
+    XCTAssertEqual(decodedLocation?.encode() ?? [:], location as NSDictionary)
+  }
 }

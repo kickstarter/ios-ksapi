@@ -14,5 +14,11 @@ extension Activity {
       set: { Activity(category: $1.category, createdAt: $1.createdAt, id: $0, project: $1.project,
         update: $1.update, user: $1.user) }
     )
+
+    public static let user = Lens<Activity, User?>(
+      view: { $0.user },
+      set: { Activity(category: $1.category, createdAt: $1.createdAt, id: $1.id, project: $1.project,
+        update: $1.update, user: $0) }
+    )
   }
 }
