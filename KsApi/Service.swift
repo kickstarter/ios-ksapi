@@ -315,7 +315,7 @@ public struct Service: ServiceType {
 
     components.queryItems =
       (
-        components.queryItems ?? [] + queryComponents(query)
+        components.queryItems ?? [] + query
           .flatMap(queryComponents)
           .map(NSURLQueryItem.init(name:value:))
       )
