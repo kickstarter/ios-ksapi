@@ -313,9 +313,12 @@ public struct Service: ServiceType {
     let components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: false)!
     // swiftlint:enable force_cast
 
-    components.queryItems = query
-      .flatMap(queryComponents)
-      .map(NSURLQueryItem.init(name:value:))
+    components.queryItems =
+      (
+        components.queryItems ?? [] + queryComponents(query)
+          .flatMap(queryComponents)
+          .map(NSURLQueryItem.init(name:value:))
+      )
       .sort { $0.name < $1.name && $0.value < $0.value }
 
     if method == .GET || method == .DELETE {
