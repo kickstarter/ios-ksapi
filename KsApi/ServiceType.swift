@@ -96,6 +96,14 @@ public protocol ServiceType {
   /// Fetch the newest data for a particular project from its project value.
   func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope>
 
+  /// Fetch a page of activities for a project.
+  func fetchProjectActivities(forProject project: Project) ->
+    SignalProducer<ProjectActivityEnvelope, ErrorEnvelope>
+
+  /// Fetch a page of activities for a project from a pagination url.
+  func fetchProjectActivities(paginationUrl paginationUrl: String) ->
+    SignalProducer<ProjectActivityEnvelope, ErrorEnvelope>
+
   /// Fetch the user's project notifications.
   func fetchProjectNotifications() -> SignalProducer<[ProjectNotification], ErrorEnvelope>
 

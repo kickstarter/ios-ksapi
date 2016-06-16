@@ -23,6 +23,7 @@ public enum Route {
   case messagesForBacking(Backing)
   case messageThreads(mailbox: Mailbox, project: Project?)
   case project(Int)
+  case projectActivities(Project)
   case projectComments(Project)
   case projectNotifications
   case projects(member: Bool)
@@ -111,6 +112,9 @@ public enum Route {
 
     case let .project(id):
       return (.GET, "/v1/projects/\(id)", [:])
+
+    case let .projectActivities(project):
+      return (.GET, "/v1/projects/\(project.id)/activities", [:])
 
     case let .projectComments(p):
       return (.GET, "/v1/projects/\(p.id)/comments", [:])

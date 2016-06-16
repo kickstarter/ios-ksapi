@@ -1,3 +1,5 @@
+// swiftlint:disable file_length
+
 import Argo
 import Prelude
 import ReactiveCocoa
@@ -130,6 +132,16 @@ public struct Service: ServiceType {
 
   public func fetchProjectNotifications() -> SignalProducer<[ProjectNotification], ErrorEnvelope> {
     return request(.projectNotifications)
+  }
+
+  public func fetchProjectActivities(forProject project: Project) ->
+    SignalProducer<ProjectActivityEnvelope, ErrorEnvelope> {
+      return request(.projectActivities(project))
+  }
+
+  public func fetchProjectActivities(paginationUrl paginationUrl: String)
+    -> SignalProducer<ProjectActivityEnvelope, ErrorEnvelope> {
+      return requestPagination(paginationUrl)
   }
 
   public func fetchProjects(member member: Bool) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {

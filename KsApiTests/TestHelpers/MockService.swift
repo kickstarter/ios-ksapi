@@ -52,6 +52,9 @@ internal struct MockService: ServiceType {
   private let postCommentResponse: Comment?
   private let postCommentError: ErrorEnvelope?
 
+  private let fetchProjectActivitiesResponse: [Activity]?
+  private let fetchProjectActivitiesError: ErrorEnvelope?
+
   private let loginResponse: AccessTokenEnvelope?
   private let loginError: ErrorEnvelope?
   private let resendCodeResponse: ErrorEnvelope?
@@ -104,6 +107,8 @@ internal struct MockService: ServiceType {
                 fetchFriendStatsError: ErrorEnvelope? = nil,
                 fetchMessageThreadResponse: MessageThread? = nil,
                 fetchMessageThreadsResponse: [MessageThread]? = nil,
+                fetchProjectActivitiesResponse: [Activity]? = nil,
+                fetchProjectActivitiesError: ErrorEnvelope? = nil,
                 fetchProjectResponse: Project? = nil,
                 fetchProjectNotificationsResponse: [ProjectNotification]? = nil,
                 fetchProjectsResponse: [Project]? = nil,
@@ -135,9 +140,9 @@ internal struct MockService: ServiceType {
     self.facebookConnectError = facebookConnectError
 
     self.fetchActivitiesResponse = fetchActivitiesResponse ?? [
-      Activity.template,
-      Activity.template |> Activity.lens.category .~ .backing,
-      Activity.template |> Activity.lens.category .~ .success
+      .template,
+      .template |> Activity.lens.category .~ .backing,
+      .template |> Activity.lens.category .~ .success
     ]
 
     self.fetchActivitiesError = fetchActivitiesError
@@ -152,8 +157,8 @@ internal struct MockService: ServiceType {
     )
 
     self.fetchCommentsResponse = fetchCommentsResponse ?? [
-      Comment.template |> Comment.lens.id .~ 2,
-      Comment.template |> Comment.lens.id .~ 1
+      .template |> Comment.lens.id .~ 2,
+      .template |> Comment.lens.id .~ 1
     ]
 
     self.fetchCommentsError = fetchCommentsError
@@ -178,38 +183,48 @@ internal struct MockService: ServiceType {
     self.fetchFriendStatsResponse = fetchFriendStatsResponse
     self.fetchFriendStatsError = fetchFriendStatsError
 
-    self.fetchMessageThreadResponse = fetchMessageThreadResponse ??  MessageThread.template
+    self.fetchMessageThreadResponse = fetchMessageThreadResponse ??  .template
 
     self.fetchMessageThreadsResponse = fetchMessageThreadsResponse ?? [
-      MessageThread.template |> MessageThread.lens.id .~ 1,
-      MessageThread.template |> MessageThread.lens.id .~ 2,
-      MessageThread.template |> MessageThread.lens.id .~ 3
+      .template |> MessageThread.lens.id .~ 1,
+      .template |> MessageThread.lens.id .~ 2,
+      .template |> MessageThread.lens.id .~ 3
     ]
+
+    self.fetchProjectActivitiesResponse = fetchProjectActivitiesResponse ?? [
+      .template,
+      .template |> Activity.lens.category .~ .backing,
+      .template |> Activity.lens.category .~ .commentProject
+      ]
+      .enumerate()
+      .map(Activity.lens.id.set)
+
+    self.fetchProjectActivitiesError = fetchProjectActivitiesError
 
     self.fetchProjectResponse = fetchProjectResponse
 
     self.fetchProjectNotificationsResponse = fetchProjectNotificationsResponse ?? [
-      ProjectNotification.template |> ProjectNotification.lens.id .~ 1,
-      ProjectNotification.template |> ProjectNotification.lens.id .~ 2,
-      ProjectNotification.template |> ProjectNotification.lens.id .~ 3
+      .template |> ProjectNotification.lens.id .~ 1,
+      .template |> ProjectNotification.lens.id .~ 2,
+      .template |> ProjectNotification.lens.id .~ 3
     ]
 
     self.fetchProjectsResponse = fetchProjectsResponse ?? [
-      Project.template |> Project.lens.state .~ .successful,
-      Project.template |> Project.lens.state .~ .live,
-      Project.template |> Project.lens.state .~ .live
+      .template |> Project.lens.state .~ .successful,
+      .template |> Project.lens.state .~ .live,
+      .template |> Project.lens.state .~ .live
       ]
       .enumerate()
       .map(Project.lens.id.set)
 
     self.fetchProjectsError = fetchProjectsError
 
-    self.fetchUserSelfResponse = fetchUserSelfResponse ?? User.template
+    self.fetchUserSelfResponse = fetchUserSelfResponse ?? .template
     self.fetchUserSelfError = fetchUserSelfError
 
     self.followFriendError = followFriendError
 
-    self.postCommentResponse = postCommentResponse ?? Comment.template
+    self.postCommentResponse = postCommentResponse ?? .template
 
     self.postCommentError = postCommentError
 
@@ -248,7 +263,7 @@ internal struct MockService: ServiceType {
       }
 
       return SignalProducer(value:
-        User.template
+        .template
           |> User.lens.id .~ 1
           |> User.lens.facebookConnected .~ true
       )
@@ -322,7 +337,7 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: error)
     }
 
-    return SignalProducer(value: FindFriendsEnvelope.template)
+    return SignalProducer(value: .template)
   }
 
   internal func fetchFriends(paginationUrl paginationUrl: String)
@@ -336,7 +351,7 @@ internal struct MockService: ServiceType {
     } else if let error = fetchFriendStatsError {
       return SignalProducer(error: error)
     }
-    return SignalProducer(value: FriendStatsEnvelope.template)
+    return SignalProducer(value: .template)
   }
 
   internal func followAllFriends() -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
@@ -349,7 +364,7 @@ internal struct MockService: ServiceType {
     }
 
     return SignalProducer(value:
-      User.template
+      .template
         |> User.lens.id .~ id
         |> User.lens.isFriend .~ true
     )
@@ -382,6 +397,8 @@ internal struct MockService: ServiceType {
       fetchFriendStatsResponse: self.fetchFriendStatsResponse,
       fetchFriendStatsError: self.fetchFriendStatsError,
       fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
+      fetchProjectActivitiesResponse: self.fetchProjectActivitiesResponse,
+      fetchProjectActivitiesError: self.fetchProjectActivitiesError,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
       fetchProjectsResponse: self.fetchProjectsResponse,
@@ -425,6 +442,8 @@ internal struct MockService: ServiceType {
       fetchFriendStatsResponse: self.fetchFriendStatsResponse,
       fetchFriendStatsError: self.fetchFriendStatsError,
       fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
+      fetchProjectActivitiesResponse: self.fetchProjectActivitiesResponse,
+      fetchProjectActivitiesError: self.fetchProjectActivitiesError,
       fetchProjectResponse: self.fetchProjectResponse,
       fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
       fetchProjectsResponse: self.fetchProjectsResponse,
@@ -485,7 +504,7 @@ internal struct MockService: ServiceType {
         pledgedAt: 123456789.0,
         projectCountry: "US",
         projectId: 1,
-        reward: Reward.template,
+        reward: .template,
         rewardId: 1,
         sequence: 10,
         shippingAmount: 2,
@@ -534,11 +553,11 @@ internal struct MockService: ServiceType {
 
       return SignalProducer(
         value: MessageThreadEnvelope(
-          participants: [User.template, User.template |> User.lens.id .~ 2],
+          participants: [.template, .template |> User.lens.id .~ 2],
           messages: [
-            Message.template |> Message.lens.id .~ 1,
-            Message.template |> Message.lens.id .~ 2,
-            Message.template |> Message.lens.id .~ 3
+            .template |> Message.lens.id .~ 1,
+            .template |> Message.lens.id .~ 2,
+            .template |> Message.lens.id .~ 3
           ],
           messageThread: self.fetchMessageThreadResponse
         )
@@ -599,7 +618,7 @@ internal struct MockService: ServiceType {
     if let project = self.fetchProjectResponse {
       return SignalProducer(value: project)
     }
-    return SignalProducer(value: Project.template |> Project.lens.id .~ id)
+    return SignalProducer(value: .template |> Project.lens.id .~ id)
   }
 
   internal func fetchProject(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
@@ -618,6 +637,46 @@ internal struct MockService: ServiceType {
       return SignalProducer(value: project)
     }
     return SignalProducer(value: project)
+  }
+
+  internal func fetchProjectActivities(forProject project: Project) ->
+    SignalProducer<ProjectActivityEnvelope, ErrorEnvelope> {
+
+    if let error = fetchProjectActivitiesError {
+      return SignalProducer(error: error)
+    } else if let activities = fetchProjectActivitiesResponse {
+      return SignalProducer(
+        value: ProjectActivityEnvelope(
+          activities: activities,
+          urls: ProjectActivityEnvelope.UrlsEnvelope(
+            api: ProjectActivityEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreActivities: "http://***REMOVED***/gimme/more"
+            )
+          )
+        )
+      )
+    }
+    return .empty
+  }
+
+  internal func fetchProjectActivities(paginationUrl paginationUrl: String)
+    -> SignalProducer<ProjectActivityEnvelope, ErrorEnvelope> {
+
+    if let error = fetchProjectActivitiesError {
+      return SignalProducer(error: error)
+    } else if let activities = fetchProjectActivitiesResponse {
+      return SignalProducer(
+        value: ProjectActivityEnvelope(
+          activities: activities,
+          urls: ProjectActivityEnvelope.UrlsEnvelope(
+            api: ProjectActivityEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreActivities: ""
+            )
+          )
+        )
+      )
+    }
+    return .empty
   }
 
   internal func fetchProjects(member member: Bool) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
@@ -656,7 +715,7 @@ internal struct MockService: ServiceType {
       )
     }
 
-    return SignalProducer(value: self.fetchUserSelfResponse ?? User.template)
+    return SignalProducer(value: self.fetchUserSelfResponse ?? .template)
   }
 
   internal func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope> {
@@ -697,7 +756,7 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: resendCodeError)
     }
 
-    return SignalProducer(value: AccessTokenEnvelope(accessToken: "deadbeef", user: User.template))
+    return SignalProducer(value: AccessTokenEnvelope(accessToken: "deadbeef", user: .template))
   }
 
   internal func login(facebookAccessToken facebookAccessToken: String, code: String?) ->
@@ -713,7 +772,7 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: resendCodeError)
     }
 
-    return SignalProducer(value: AccessTokenEnvelope(accessToken: "deadbeef", user: User.template))
+    return SignalProducer(value: AccessTokenEnvelope(accessToken: "deadbeef", user: .template))
   }
 
   internal func markAsRead(messageThread messageThread: MessageThread)
@@ -748,7 +807,7 @@ internal struct MockService: ServiceType {
     } else if let error = resetPasswordError {
       return SignalProducer(error: error)
     }
-    return SignalProducer(value: User.template)
+    return SignalProducer(value: .template)
   }
 
   internal func searchMessages(query query: String, project: Project?)
@@ -768,7 +827,7 @@ internal struct MockService: ServiceType {
   internal func sendMessage(body body: String, toThread messageThread: MessageThread)
     -> SignalProducer<Message, ErrorEnvelope> {
 
-      return SignalProducer(value: Message.template |> Message.lens.id .~ body.hashValue)
+      return SignalProducer(value: .template |> Message.lens.id .~ body.hashValue)
   }
 
   internal func signup(name name: String,
@@ -784,7 +843,7 @@ internal struct MockService: ServiceType {
     return SignalProducer(value:
       AccessTokenEnvelope(
         accessToken: "deadbeef",
-        user: User.template
+        user: .template
           |> User.lens.name .~ name
           |> User.lens.newsletters.weekly .~ sendNewsletters
       )
@@ -802,7 +861,7 @@ internal struct MockService: ServiceType {
     return SignalProducer(value:
       AccessTokenEnvelope(
         accessToken: "deadbeef",
-        user: User.template
+        user: .template
       )
     )
   }

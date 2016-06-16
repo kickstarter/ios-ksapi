@@ -39,6 +39,7 @@
 		80762DE61D0710F00074189D /* StarEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */; };
 		9D7ED0C11D11F4BE00811156 /* ProjectsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */; };
 		9D7ED0C21D11F4BE00811156 /* ProjectsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */; };
+		9D9F582E1D1327E300CE81DE /* ProjectActivityEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */; };
 		A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713EC9C1C2C51B600B6234E /* ServerConfig.swift */; };
 		A72661F11D07671D0087D883 /* ActivityTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72661DC1D07671D0087D883 /* ActivityTemplates.swift */; };
 		A72661F21D07671D0087D883 /* ActivityTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72661DC1D07671D0087D883 /* ActivityTemplates.swift */; };
@@ -560,6 +561,7 @@
 		80762DD91D0709D30074189D /* CategoriesEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesEnvelopeLenses.swift; sourceTree = "<group>"; };
 		80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarEnvelopeLenses.swift; sourceTree = "<group>"; };
 		9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsEnvelope.swift; sourceTree = "<group>"; };
+		9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectActivityEnvelope.swift; sourceTree = "<group>"; };
 		A713EC9C1C2C51B600B6234E /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServerConfig.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A72661DC1D07671D0087D883 /* ActivityTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTemplates.swift; sourceTree = "<group>"; };
 		A72661DD1D07671D0087D883 /* BackingTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackingTemplates.swift; sourceTree = "<group>"; };
@@ -879,8 +881,9 @@
 				A73639BD1D03565400445B24 /* Project.Photo.swift */,
 				A73639BE1D03565400445B24 /* Project.swift */,
 				A73639BF1D03565400445B24 /* Project.Video.swift */,
-				9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */,
+				9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */,
 				59B0DF231D0F13570081D2DC /* ProjectNotification.swift */,
+				9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */,
 				A73639C01D03565400445B24 /* Reward.swift */,
 				A73639C11D03565400445B24 /* StarEnvelope.swift */,
 				A73639C21D03565400445B24 /* Update.swift */,
@@ -1615,6 +1618,7 @@
 				0156B41C1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift in Sources */,
 				A726620D1D07671D0087D883 /* StarEnvelopeTemplates.swift in Sources */,
 				A7363A121D03565400445B24 /* UserLenses.swift in Sources */,
+				9D9F582E1D1327E300CE81DE /* ProjectActivityEnvelope.swift in Sources */,
 				A777A59A1D05F55A00823FB1 /* VoidEnvelope.swift in Sources */,
 				A777A5AD1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */,
 				A777A5981D05F55A00823FB1 /* FriendStatsEnvelope.swift in Sources */,
