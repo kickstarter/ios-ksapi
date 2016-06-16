@@ -99,6 +99,12 @@ public protocol ServiceType {
   /// Fetch the user's project notifications.
   func fetchProjectNotifications() -> SignalProducer<[ProjectNotification], ErrorEnvelope>
 
+  /// Fetches the projects that the current user is a member of.
+  func fetchProjects(member member: Bool) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope>
+
+  /// Fetches more projects from a pagination URL.
+  func fetchProjects(paginationUrl paginationUrl: String) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope>
+
   /// Fetch the newest data for a particular user.
   func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope>
 

@@ -25,6 +25,7 @@ public enum Route {
   case project(Int)
   case projectComments(Project)
   case projectNotifications
+  case projects(member: Bool)
   case postProjectComment(Project, body: String)
   case postUpdateComment(Update, body: String)
   case resetPassword(email: String)
@@ -116,6 +117,9 @@ public enum Route {
 
     case .projectNotifications:
       return (.GET, "/v1/users/self/notifications", [:])
+
+    case let .projects(member):
+      return (.GET, "/v1/users/self/projects", ["member": member])
 
     case let .postProjectComment(p, body):
       return (.POST, "/v1/projects/\(p.id)/comments", ["body": body])

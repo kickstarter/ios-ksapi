@@ -132,6 +132,14 @@ public struct Service: ServiceType {
     return request(.projectNotifications)
   }
 
+  public func fetchProjects(member member: Bool) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
+    return request(.projects(member: member))
+  }
+
+  public func fetchProjects(paginationUrl url: String) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
+    return requestPagination(url)
+  }
+
   public func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
     return request(.userSelf)
   }
