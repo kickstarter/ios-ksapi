@@ -1,6 +1,6 @@
 extension Activity {
   internal static let template = Activity(
-    category: .update,
+    category: .launch,
     createdAt: NSDate().timeIntervalSince1970,
     id: 1,
     project: .template,
