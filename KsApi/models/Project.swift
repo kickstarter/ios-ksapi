@@ -7,6 +7,7 @@ public struct Project {
   public let category: Category
   public let country: Country
   public let creator: User
+  public let creatorData: CreatorData
   public let dates: Dates
   public let id: Int
   public let location: Location
@@ -55,6 +56,12 @@ public struct Project {
     public var percentFunded: Int {
       return Int(floor(self.fundingProgress * 100.0))
     }
+  }
+
+  public struct CreatorData {
+    public let lastUpdatePublishedAt: NSTimeInterval?
+    public let unreadMessagesCount: Int?
+    public let unseenActivityCount: Int?
   }
 
   public struct Dates {
@@ -109,6 +116,7 @@ extension Project: Decodable {
       <*> Project.Country.decode(json)
       <*> json <| "creator"
     let tmp2 = tmp1
+      <*> Project.CreatorData.decode(json)
       <*> Project.Dates.decode(json)
       <*> json <| "id"
       <*> json <| "location"
@@ -146,6 +154,15 @@ extension Project.Stats: Decodable {
       <*> json <| "goal"
       <*> json <| "pledged"
       <*> json <|? "updates_count"
+  }
+}
+
+extension Project.CreatorData: Decodable {
+  public static func decode(json: JSON) -> Decoded<Project.CreatorData> {
+    return curry(Project.CreatorData.init)
+      <^> json <|? "last_update_published_at"
+      <*> json <|? "unread_messages_count"
+      <*> json <|? "unseen_activity_count"
   }
 }
 

@@ -29,6 +29,8 @@
 		59B0DF361D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */; };
 		59B0DF381D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */; };
 		59B0DF391D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */; };
+		59B0E0581D1356850081D2DC /* Project.CreatorDataLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0E0571D1356850081D2DC /* Project.CreatorDataLenses.swift */; };
+		59B0E0591D1356850081D2DC /* Project.CreatorDataLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0E0571D1356850081D2DC /* Project.CreatorDataLenses.swift */; };
 		804394FC1D06305E002E12C5 /* NSURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804394FB1D06305E002E12C5 /* NSURLSession.swift */; };
 		804394FD1D06305E002E12C5 /* NSURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804394FB1D06305E002E12C5 /* NSURLSession.swift */; };
 		80762DD51D0700680074189D /* DiscoveryEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80762DD41D0700680074189D /* DiscoveryEnvelopeLenses.swift */; };
@@ -525,6 +527,7 @@
 		59B0DF311D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotification.ProjectLenses.swift; sourceTree = "<group>"; };
 		59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotificationLenses.swift; sourceTree = "<group>"; };
 		59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotificationTemplates.swift; sourceTree = "<group>"; };
+		59B0E0571D1356850081D2DC /* Project.CreatorDataLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.CreatorDataLenses.swift; sourceTree = "<group>"; };
 		804394FB1D06305E002E12C5 /* NSURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURLSession.swift; sourceTree = "<group>"; };
 		80762DD41D0700680074189D /* DiscoveryEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryEnvelopeLenses.swift; sourceTree = "<group>"; };
 		80762DD91D0709D30074189D /* CategoriesEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesEnvelopeLenses.swift; sourceTree = "<group>"; };
@@ -862,6 +865,7 @@
 				A73639AC1D03565400445B24 /* MessageThreadLenses.swift */,
 				A73639AD1D03565400445B24 /* Project.DatesLenses.swift */,
 				A73639AE1D03565400445B24 /* Project.PersonalizationLenses.swift */,
+				59B0E0571D1356850081D2DC /* Project.CreatorDataLenses.swift */,
 				A75CAC421D137E2D00EBF323 /* Project.PhotoLenses.swift */,
 				A73639AF1D03565400445B24 /* Project.StatsLenses.swift */,
 				A73639B01D03565400445B24 /* ProjectLenses.swift */,
@@ -1431,6 +1435,7 @@
 				A75CAC431D137E2D00EBF323 /* Project.PhotoLenses.swift in Sources */,
 				59B0DF381D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A73639E21D03565400445B24 /* Category.swift in Sources */,
+				59B0E0581D1356850081D2DC /* Project.CreatorDataLenses.swift in Sources */,
 				A72662071D07671D0087D883 /* Project.VideoTemplates.swift in Sources */,
 				A73639DE1D03565400445B24 /* Backing.swift in Sources */,
 				A7363A081D03565400445B24 /* RewardLenses.swift in Sources */,
@@ -1567,6 +1572,7 @@
 				59B0DF391D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A70968B41D14357100DB39D3 /* ProjectActivityEnvelope.swift in Sources */,
 				A73639E31D03565400445B24 /* Category.swift in Sources */,
+				59B0E0591D1356850081D2DC /* Project.CreatorDataLenses.swift in Sources */,
 				A72662081D07671D0087D883 /* Project.VideoTemplates.swift in Sources */,
 				A73639DF1D03565400445B24 /* Backing.swift in Sources */,
 				A7363A091D03565400445B24 /* RewardLenses.swift in Sources */,

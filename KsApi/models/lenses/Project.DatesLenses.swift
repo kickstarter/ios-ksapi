@@ -10,7 +10,7 @@ extension Project.Dates {
     )
 
     public static let launchedAt = Lens<Project.Dates, NSTimeInterval>(
-      view: { $0.deadline },
+      view: { $0.launchedAt },
       set: { Project.Dates(deadline: $1.deadline, launchedAt: $0, potdAt: $1.potdAt,
         stateChangedAt: $1.stateChangedAt) }
     )

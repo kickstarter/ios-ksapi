@@ -8,6 +8,11 @@ extension Project {
     category: .template,
     country: .US,
     creator: .template |> User.lens.stats.createdProjectsCount .~ 1,
+    creatorData: Project.CreatorData(
+      lastUpdatePublishedAt: nil,
+      unreadMessagesCount: nil,
+      unseenActivityCount: nil
+    ),
     dates: Project.Dates(
       deadline: NSDate().timeIntervalSince1970 + 60.0 * 60.0 * 24.0 * 15.0,
       launchedAt: NSDate().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0,
