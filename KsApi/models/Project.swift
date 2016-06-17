@@ -70,6 +70,13 @@ public struct Project {
     public let isStarred: Bool?
   }
 
+  public struct Photo {
+    public let full: String
+    public let med: String
+    public let size1024x768: String
+    public let small: String
+  }
+
   public var endsIn48Hours: Bool {
     return self.dates.deadline - NSDate().timeIntervalSince1970 <= 60.0 * 60.0 * 48.0
   }
@@ -158,5 +165,16 @@ extension Project.Personalization: Decodable {
       <^> json <|? "backing"
       <*> json <|? "is_backing"
       <*> json <|? "is_starred"
+  }
+}
+
+extension Project.Photo: Decodable {
+  static public func decode(json: JSON) -> Decoded<Project.Photo> {
+    let create = curry(Project.Photo.init)
+    return create
+      <^> json <| "full"
+      <*> json <| "med"
+      <*> (json <| "1024x768") <|> (json <| "1024x576")
+      <*> json <| "small"
   }
 }

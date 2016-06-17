@@ -1,6 +1,5 @@
 import XCTest
 @testable import KsApi
-@testable import KsApi_TestHelpers
 import Argo
 
 internal final class MessageTests: XCTestCase {

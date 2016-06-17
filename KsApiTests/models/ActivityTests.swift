@@ -1,6 +1,5 @@
 import XCTest
 @testable import KsApi
-@testable import KsApi_TestHelpers
 import Argo
 
 final internal class ActivityTests: XCTestCase {

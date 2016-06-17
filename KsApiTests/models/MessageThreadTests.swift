@@ -1,6 +1,5 @@
 import XCTest
 @testable import KsApi
-@testable import KsApi_TestHelpers
 import Argo
 
 // swiftlint:disable function_body_length

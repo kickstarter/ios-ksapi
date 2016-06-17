@@ -11,9 +11,25 @@ extension Project {
         stats: $1.stats, urls: $1.urls, video: $1.video) }
     )
 
+    public static let blurb = Lens<Project, String>(
+      view: { $0.blurb },
+      set: { Project(backing: $1.backing, blurb: $0, category: $1.category, country: $1.country,
+        creator: $1.creator, dates: $1.dates, id: $1.id, location: $1.location, name: $1.name,
+        personalization: $1.personalization, photo: $1.photo, rewards: $1.rewards, state: $1.state,
+        stats: $1.stats, urls: $1.urls, video: $1.video) }
+    )
+
     public static let category = Lens<Project, Category>(
       view: { $0.category },
       set: { Project(backing: $1.backing, blurb: $1.blurb, category: $0, country: $1.country,
+        creator: $1.creator, dates: $1.dates, id: $1.id, location: $1.location, name: $1.name,
+        personalization: $1.personalization, photo: $1.photo, rewards: $1.rewards, state: $1.state,
+        stats: $1.stats, urls: $1.urls, video: $1.video) }
+    )
+
+    public static let country = Lens<Project, Country>(
+      view: { $0.country },
+      set: { Project(backing: $1.backing, blurb: $1.blurb, category: $1.category, country: $0,
         creator: $1.creator, dates: $1.dates, id: $1.id, location: $1.location, name: $1.name,
         personalization: $1.personalization, photo: $1.photo, rewards: $1.rewards, state: $1.state,
         stats: $1.stats, urls: $1.urls, video: $1.video) }
@@ -43,11 +59,35 @@ extension Project {
         stats: $1.stats, urls: $1.urls, video: $1.video) }
     )
 
+    public static let location = Lens<Project, Location>(
+      view: { $0.location },
+      set: { Project(backing: $1.backing, blurb: $1.blurb, category: $1.category, country: $1.country,
+        creator: $1.creator, dates: $1.dates, id: $1.id, location: $0, name: $1.name,
+        personalization: $1.personalization, photo: $1.photo, rewards: $1.rewards, state: $1.state,
+        stats: $1.stats, urls: $1.urls, video: $1.video) }
+    )
+
+    public static let name = Lens<Project, String>(
+      view: { $0.name },
+      set: { Project(backing: $1.backing, blurb: $1.blurb, category: $1.category, country: $1.country,
+        creator: $1.creator, dates: $1.dates, id: $1.id, location: $1.location, name: $0,
+        personalization: $1.personalization, photo: $1.photo, rewards: $1.rewards, state: $1.state,
+        stats: $1.stats, urls: $1.urls, video: $1.video) }
+    )
+
     public static let personalization = Lens<Project, Project.Personalization>(
       view: { $0.personalization },
       set: { Project(backing: $1.backing, blurb: $1.blurb, category: $1.category, country: $1.country,
         creator: $1.creator, dates: $1.dates, id: $1.id, location: $1.location, name: $1.name,
         personalization: $0, photo: $1.photo, rewards: $1.rewards, state: $1.state,
+        stats: $1.stats, urls: $1.urls, video: $1.video) }
+    )
+
+    public static let photo = Lens<Project, Project.Photo>(
+      view: { $0.photo },
+      set: { Project(backing: $1.backing, blurb: $1.blurb, category: $1.category, country: $1.country,
+        creator: $1.creator, dates: $1.dates, id: $1.id, location: $1.location, name: $1.name,
+        personalization: $1.personalization, photo: $0, rewards: $1.rewards, state: $1.state,
         stats: $1.stats, urls: $1.urls, video: $1.video) }
     )
 
@@ -86,6 +126,10 @@ extension LensType where Whole == Project, Part == User {
 extension LensType where Whole == Project, Part == Category {
   public var id: Lens<Project, Int> {
     return Project.lens.category • Category.lens.id
+  }
+
+  public var name: Lens<Project, String> {
+    return Project.lens.category • Category.lens.name
   }
 
   public var parent: Lens<Project, Category?> {
@@ -144,5 +188,23 @@ extension LensType where Whole == Project, Part == Project.Personalization {
 
   public var isStarred: Lens<Project, Bool?> {
     return Project.lens.personalization • Project.Personalization.lens.isStarred
+  }
+}
+
+extension LensType where Whole == Project, Part == Project.Photo {
+  public var full: Lens<Project, String> {
+    return Project.lens.photo • Project.Photo.lens.full
+  }
+
+  public var med: Lens<Project, String> {
+    return Project.lens.photo • Project.Photo.lens.med
+  }
+
+  public var size1024x768: Lens<Project, String> {
+    return Project.lens.photo • Project.Photo.lens.size1024x768
+  }
+
+  public var small: Lens<Project, String> {
+    return Project.lens.photo • Project.Photo.lens.small
   }
 }

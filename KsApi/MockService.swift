@@ -1,8 +1,6 @@
 // swiftlint:disable file_length
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
-
-@testable import KsApi
 import ReactiveCocoa
 import Prelude
 
