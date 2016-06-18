@@ -952,7 +952,10 @@
 				A753B56A1C2EED9800FDB616 /* KsApiTests */,
 				CA43C5FA1BB358F200C180DA /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
 		};
 		CA43C5FA1BB358F200C180DA /* Products */ = {
 			isa = PBXGroup;
