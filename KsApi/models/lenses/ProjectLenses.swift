@@ -230,3 +230,9 @@ extension LensType where Whole == Project, Part == Project.Photo {
     return Project.lens.photo • Project.Photo.lens.small
   }
 }
+
+extension LensType where Whole == Project, Part == Project.CreatorData {
+  public var permissions: Lens<Whole, [Project.CreatorData.Permission]> {
+    return Whole.lens.creatorData • Part.lens.permissions
+  }
+}
