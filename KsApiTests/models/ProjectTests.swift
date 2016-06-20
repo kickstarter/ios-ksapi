@@ -123,6 +123,31 @@ final class ProjectTests: XCTestCase {
     XCTAssertEqual("US", project.value?.country.countryCode)
   }
 
+  func testJSONParsing_WithCreatorData() {
+    let creatorData = Project.CreatorData.decodeJSONDictionary([
+      "last_update_published_at": 123456789,
+      "permissions": [
+        "edit_project",
+        "bad_data",
+        "edit_faq",
+        "post",
+        "comment",
+        "bad_data",
+        "view_pledges",
+        "fulfillment"
+      ],
+      "unread_messages_count": 1,
+      "unseen_activity_count": 2
+      ])
+
+    XCTAssertNil(creatorData.error)
+    XCTAssertEqual(123456789, creatorData.value?.lastUpdatePublishedAt)
+    XCTAssertEqual(1, creatorData.value?.unreadMessagesCount)
+    XCTAssertEqual(2, creatorData.value?.unseenActivityCount)
+    XCTAssertEqual([.editProject, .editFaq, .post, .comment, .viewPledges, .fulfillment],
+                   creatorData.value?.permissions ?? [])
+  }
+
   func testJSONParsing_WithPesonalizationData() {
     let project = Project.decodeJSONDictionary([
       "id": 1,

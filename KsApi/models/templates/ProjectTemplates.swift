@@ -10,6 +10,7 @@ extension Project {
     creator: .template |> User.lens.stats.createdProjectsCount .~ 1,
     creatorData: Project.CreatorData(
       lastUpdatePublishedAt: nil,
+      permissions: [],
       unreadMessagesCount: nil,
       unseenActivityCount: nil
     ),

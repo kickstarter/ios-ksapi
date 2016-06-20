@@ -60,8 +60,19 @@ public struct Project {
 
   public struct CreatorData {
     public let lastUpdatePublishedAt: NSTimeInterval?
+    public let permissions: [Permission]
     public let unreadMessagesCount: Int?
     public let unseenActivityCount: Int?
+
+    public enum Permission: String {
+      case editProject = "edit_project"
+      case editFaq = "edit_faq"
+      case post = "post"
+      case comment = "comment"
+      case viewPledges = "view_pledges"
+      case fulfillment = "fulfillment"
+      case unknown = "unknown"
+    }
   }
 
   public struct Dates {
@@ -161,6 +172,7 @@ extension Project.CreatorData: Decodable {
   public static func decode(json: JSON) -> Decoded<Project.CreatorData> {
     return curry(Project.CreatorData.init)
       <^> json <|? "last_update_published_at"
+      <*> (removeUnknowns <^> (json <|| "permissions") <|> .Success([]))
       <*> json <|? "unread_messages_count"
       <*> json <|? "unseen_activity_count"
   }
@@ -194,4 +206,17 @@ extension Project.Photo: Decodable {
       <*> (json <| "1024x768") <|> (json <| "1024x576")
       <*> json <| "small"
   }
+}
+
+extension Project.CreatorData.Permission: Decodable {
+  public static func decode(json: JSON) -> Decoded<Project.CreatorData.Permission> {
+    if case .String(let permission) = json {
+      return self.init(rawValue: permission).map(pure) ?? .Success(.unknown)
+    }
+    return .Success(.unknown)
+  }
+}
+
+private func removeUnknowns(xs: [Project.CreatorData.Permission]) -> [Project.CreatorData.Permission] {
+  return xs.filter { $0 != .unknown }
 }
