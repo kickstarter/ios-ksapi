@@ -21,6 +21,7 @@ final class LocationTests: XCTestCase {
   func testJSONParsing_WithFullData() {
 
     let location = Location.decodeJSONDictionary([
+      "country": "US",
       "id": 1,
       "displayable_name": "Brooklyn, NY",
       "name": "Brooklyn"
@@ -34,6 +35,7 @@ final class LocationTests: XCTestCase {
 
   func testEncodeDecode() {
     let location = [
+      "country": "US",
       "id": 44,
       "displayable_name": "New Amsterdam, NY",
       "name": "New Amsterdam"

@@ -95,6 +95,7 @@ final class ProjectTests: XCTestCase {
         "1024x768": "http://www.kickstarter.com/1024x768.jpg",
       ],
       "location": [
+        "country": "US",
         "id": 1,
         "displayable_name": "Brooklyn, NY",
         "name": "Brooklyn"
@@ -176,6 +177,7 @@ final class ProjectTests: XCTestCase {
         "1024x768": "http://www.kickstarter.com/1024x768.jpg",
       ],
       "location": [
+        "country": "US",
         "id": 1,
         "displayable_name": "Brooklyn, NY",
         "name": "Brooklyn"

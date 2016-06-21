@@ -29,6 +29,7 @@ final class UserTests: XCTestCase {
       "games_newsletter": false,
       "facebook_connected": false,
       "location": [
+        "country": "US",
         "id": 12,
         "displayable_name": "Brooklyn, NY",
         "name": "Brooklyn"
@@ -68,6 +69,7 @@ final class UserTests: XCTestCase {
       "weekly_newsletter": false,
       "facebook_connected": false,
       "location": [
+        "country": "US",
         "id": 12,
         "displayable_name": "Brooklyn, NY",
         "name": "Brooklyn"
