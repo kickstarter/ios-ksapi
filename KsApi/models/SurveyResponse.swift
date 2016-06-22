@@ -16,6 +16,11 @@ public struct SurveyResponse {
   }
 }
 
+extension SurveyResponse: Equatable {}
+public func == (lhs: SurveyResponse, rhs: SurveyResponse) -> Bool {
+  return lhs.id == rhs.id
+}
+
 extension SurveyResponse: Decodable {
   public static func decode(json: JSON) -> Decoded<SurveyResponse> {
     return curry(SurveyResponse.init)
