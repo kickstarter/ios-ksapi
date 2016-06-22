@@ -126,8 +126,16 @@ extension Project {
 }
 
 extension LensType where Whole == Project, Part == User {
+  public var avatar: Lens<Project, User.Avatar> {
+    return Project.lens.creator • User.lens.avatar
+  }
+
   public var id: Lens<Project, Int> {
     return Project.lens.creator • User.lens.id
+  }
+
+  public var name: Lens<Project, String> {
+    return Project.lens.creator • User.lens.name
   }
 }
 

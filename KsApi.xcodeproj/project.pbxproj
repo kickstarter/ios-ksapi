@@ -240,6 +240,14 @@
 		A745D0631CA8B5D500C12802 /* ServiceTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A745D0611CA8B5D500C12802 /* ServiceTypeTests.swift */; };
 		A753B56C1C2EED9800FDB616 /* KsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B56B1C2EED9800FDB616 /* KsApiTests.swift */; };
 		A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
+		A757E99F1D19903400A5C978 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757E99E1D19903400A5C978 /* SurveyResponse.swift */; };
+		A757E9A01D19903400A5C978 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757E99E1D19903400A5C978 /* SurveyResponse.swift */; };
+		A757E9B51D19B2ED00A5C978 /* SurveyResponseLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757E9B41D19B2ED00A5C978 /* SurveyResponseLenses.swift */; };
+		A757E9B61D19B2ED00A5C978 /* SurveyResponseLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757E9B41D19B2ED00A5C978 /* SurveyResponseLenses.swift */; };
+		A757E9B81D19B37B00A5C978 /* SurveyResponseTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757E9B71D19B37B00A5C978 /* SurveyResponseTemplates.swift */; };
+		A757E9B91D19B37B00A5C978 /* SurveyResponseTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757E9B71D19B37B00A5C978 /* SurveyResponseTemplates.swift */; };
+		A757E9BB1D19B8D200A5C978 /* SurveyResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757E9BA1D19B8D200A5C978 /* SurveyResponseTests.swift */; };
+		A757E9BC1D19B8D200A5C978 /* SurveyResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757E9BA1D19B8D200A5C978 /* SurveyResponseTests.swift */; };
 		A75CAC431D137E2D00EBF323 /* Project.PhotoLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75CAC421D137E2D00EBF323 /* Project.PhotoLenses.swift */; };
 		A75CAC441D137E2D00EBF323 /* Project.PhotoLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75CAC421D137E2D00EBF323 /* Project.PhotoLenses.swift */; };
 		A75CAC541D138CBC00EBF323 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75CAC531D138CBC00EBF323 /* MockService.swift */; };
@@ -492,6 +500,20 @@
 			remoteGlobalIDString = CA43C5F81BB358F200C180DA;
 			remoteInfo = "KsApi-tvOS";
 		};
+		A757E9AE1D19903500A5C978 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A73639411D03550C00445B24 /* Prelude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A70969081D14373400DB39D3;
+			remoteInfo = "Prelude-UIKit-tvOS";
+		};
+		A757E9B01D19903500A5C978 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A73639411D03550C00445B24 /* Prelude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A70969111D14373400DB39D3;
+			remoteInfo = "Prelude-UIKit-tvOSTests";
+		};
 		A75CAC561D138D5E00EBF323 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A73639501D03551000445B24 /* ReactiveExtensions.xcodeproj */;
@@ -635,6 +657,10 @@
 		A745D0611CA8B5D500C12802 /* ServiceTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTypeTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A753B5691C2EED9800FDB616 /* KsApi-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A753B56B1C2EED9800FDB616 /* KsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsApiTests.swift; sourceTree = "<group>"; };
+		A757E99E1D19903400A5C978 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
+		A757E9B41D19B2ED00A5C978 /* SurveyResponseLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponseLenses.swift; sourceTree = "<group>"; };
+		A757E9B71D19B37B00A5C978 /* SurveyResponseTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponseTemplates.swift; sourceTree = "<group>"; };
+		A757E9BA1D19B8D200A5C978 /* SurveyResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponseTests.swift; sourceTree = "<group>"; };
 		A75CAC421D137E2D00EBF323 /* Project.PhotoLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.PhotoLenses.swift; sourceTree = "<group>"; };
 		A75CAC531D138CBC00EBF323 /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsEnvelope.swift; sourceTree = "<group>"; };
@@ -724,6 +750,7 @@
 				A72661E81D07671D0087D883 /* ProjectTemplates.swift */,
 				A72661E91D07671D0087D883 /* RewardTemplates.swift */,
 				A72661EA1D07671D0087D883 /* StarEnvelopeTemplates.swift */,
+				A757E9B71D19B37B00A5C978 /* SurveyResponseTemplates.swift */,
 				A72661EB1D07671D0087D883 /* UpdateTemplates.swift */,
 				A72661EC1D07671D0087D883 /* User.AvatarTemplates.swift */,
 				A72661ED1D07671D0087D883 /* User.NewsletterSubscriptionsTemplates.swift */,
@@ -768,6 +795,8 @@
 				A736394F1D03550C00445B24 /* Prelude-tvOSTests.xctest */,
 				0156B4B61D11FA9E000C4252 /* Prelude_UIKit.framework */,
 				0156B4B81D11FA9E000C4252 /* Prelude-UIKit-iOSTests.xctest */,
+				A757E9AF1D19903500A5C978 /* Prelude_UIKit.framework */,
+				A757E9B11D19903500A5C978 /* Prelude-UIKit-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -837,6 +866,7 @@
 				9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */,
 				A73639C01D03565400445B24 /* Reward.swift */,
 				A73639C11D03565400445B24 /* StarEnvelope.swift */,
+				A757E99E1D19903400A5C978 /* SurveyResponse.swift */,
 				A73639C21D03565400445B24 /* Update.swift */,
 				A73639C51D03565400445B24 /* User.swift */,
 				A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */,
@@ -863,9 +893,9 @@
 				A73639AA1D03565400445B24 /* LocationLenses.swift */,
 				A73639AB1D03565400445B24 /* MessageLenses.swift */,
 				A73639AC1D03565400445B24 /* MessageThreadLenses.swift */,
+				59B0E0571D1356850081D2DC /* Project.CreatorDataLenses.swift */,
 				A73639AD1D03565400445B24 /* Project.DatesLenses.swift */,
 				A73639AE1D03565400445B24 /* Project.PersonalizationLenses.swift */,
-				59B0E0571D1356850081D2DC /* Project.CreatorDataLenses.swift */,
 				A75CAC421D137E2D00EBF323 /* Project.PhotoLenses.swift */,
 				A73639AF1D03565400445B24 /* Project.StatsLenses.swift */,
 				A73639B01D03565400445B24 /* ProjectLenses.swift */,
@@ -873,6 +903,7 @@
 				59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */,
 				A73639B11D03565400445B24 /* RewardLenses.swift */,
 				80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */,
+				A757E9B41D19B2ED00A5C978 /* SurveyResponseLenses.swift */,
 				A73639B21D03565400445B24 /* UpdateLenses.swift */,
 				A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */,
 				A73639B31D03565400445B24 /* User.NewsletterSubscriptionsLenses.swift */,
@@ -911,6 +942,7 @@
 				A7363A411D03588600445B24 /* Project.VideoTests.swift */,
 				A7363A421D03588600445B24 /* ProjectTests.swift */,
 				A7363A431D03588600445B24 /* RewardTests.swift */,
+				A757E9BA1D19B8D200A5C978 /* SurveyResponseTests.swift */,
 				A7363A441D03588600445B24 /* UpdateTests.swift */,
 				A7363A451D03588600445B24 /* User.AvatarTests.swift */,
 				A7363A461D03588600445B24 /* User.NewsletterSubscriptionsTests.swift */,
@@ -1309,6 +1341,20 @@
 			remoteRef = A73639631D03551000445B24 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		A757E9AF1D19903500A5C978 /* Prelude_UIKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prelude_UIKit.framework;
+			remoteRef = A757E9AE1D19903500A5C978 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A757E9B11D19903500A5C978 /* Prelude-UIKit-tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Prelude-UIKit-tvOSTests.xctest";
+			remoteRef = A757E9B01D19903500A5C978 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1382,6 +1428,7 @@
 				0156B2131D076028000C4252 /* FriendStatsEnvelopeTests.swift in Sources */,
 				A7363A501D03588600445B24 /* CategoryTests.swift in Sources */,
 				A7363A681D03588600445B24 /* RewardTests.swift in Sources */,
+				A757E9BC1D19B8D200A5C978 /* SurveyResponseTests.swift in Sources */,
 				A7363A701D03588600445B24 /* User.NotificationsTests.swift in Sources */,
 				A7363A4C1D03588600445B24 /* ActivityTests.swift in Sources */,
 				A7363A521D03588600445B24 /* CommentTests.swift in Sources */,
@@ -1411,6 +1458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A757E9B51D19B2ED00A5C978 /* SurveyResponseLenses.swift in Sources */,
 				9D7ED0C11D11F4BE00811156 /* ProjectsEnvelope.swift in Sources */,
 				A73639CA1D03565400445B24 /* ClientAuth.swift in Sources */,
 				A7FD09701C83E74F00332CCB /* ServiceType.swift in Sources */,
@@ -1436,6 +1484,7 @@
 				A726620F1D07671D0087D883 /* UpdateTemplates.swift in Sources */,
 				A7363A2A1D03565400445B24 /* Update.swift in Sources */,
 				A75CAC431D137E2D00EBF323 /* Project.PhotoLenses.swift in Sources */,
+				A757E9B81D19B37B00A5C978 /* SurveyResponseTemplates.swift in Sources */,
 				59B0DF381D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A73639E21D03565400445B24 /* Category.swift in Sources */,
 				59B0E0581D1356850081D2DC /* Project.CreatorDataLenses.swift in Sources */,
@@ -1457,6 +1506,7 @@
 				A73639FC1D03565400445B24 /* MessageLenses.swift in Sources */,
 				A7363A1E1D03565400445B24 /* Project.Country.swift in Sources */,
 				A7363A001D03565400445B24 /* Project.DatesLenses.swift in Sources */,
+				A757E99F1D19903400A5C978 /* SurveyResponse.swift in Sources */,
 				A73639CE1D03565400445B24 /* Decodable.swift in Sources */,
 				A73639C81D03565400445B24 /* BasicHTTPAuth.swift in Sources */,
 				A7363A261D03565400445B24 /* Reward.swift in Sources */,
@@ -1518,6 +1568,7 @@
 				0156B2121D076028000C4252 /* FriendStatsEnvelopeTests.swift in Sources */,
 				A7363A4F1D03588600445B24 /* CategoryTests.swift in Sources */,
 				A7363A671D03588600445B24 /* RewardTests.swift in Sources */,
+				A757E9BB1D19B8D200A5C978 /* SurveyResponseTests.swift in Sources */,
 				A7363A6F1D03588600445B24 /* User.NotificationsTests.swift in Sources */,
 				A7363A4B1D03588600445B24 /* ActivityTests.swift in Sources */,
 				A7363A511D03588600445B24 /* CommentTests.swift in Sources */,
@@ -1547,6 +1598,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A757E9B61D19B2ED00A5C978 /* SurveyResponseLenses.swift in Sources */,
 				9D7ED0C21D11F4BE00811156 /* ProjectsEnvelope.swift in Sources */,
 				A73639CB1D03565400445B24 /* ClientAuth.swift in Sources */,
 				A77967741C2B431C0002166F /* ServiceType.swift in Sources */,
@@ -1572,6 +1624,7 @@
 				A72662101D07671D0087D883 /* UpdateTemplates.swift in Sources */,
 				A7363A2B1D03565400445B24 /* Update.swift in Sources */,
 				A75CAC441D137E2D00EBF323 /* Project.PhotoLenses.swift in Sources */,
+				A757E9B91D19B37B00A5C978 /* SurveyResponseTemplates.swift in Sources */,
 				59B0DF391D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A70968B41D14357100DB39D3 /* ProjectActivityEnvelope.swift in Sources */,
 				A73639E31D03565400445B24 /* Category.swift in Sources */,
@@ -1593,6 +1646,7 @@
 				A73639F71D03565400445B24 /* CommentLenses.swift in Sources */,
 				A73639FD1D03565400445B24 /* MessageLenses.swift in Sources */,
 				A7363A1F1D03565400445B24 /* Project.Country.swift in Sources */,
+				A757E9A01D19903400A5C978 /* SurveyResponse.swift in Sources */,
 				A7363A011D03565400445B24 /* Project.DatesLenses.swift in Sources */,
 				A73639CF1D03565400445B24 /* Decodable.swift in Sources */,
 				A73639C91D03565400445B24 /* BasicHTTPAuth.swift in Sources */,

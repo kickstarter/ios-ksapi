@@ -181,6 +181,10 @@ public struct Service: ServiceType {
     return request(.friendStats)
   }
 
+  public func fetchUnansweredSurveyResponses() -> SignalProducer<[SurveyResponse], ErrorEnvelope> {
+    return request(.unansweredSurveyResponses)
+  }
+
   public func followAllFriends() -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
     return request(.followAllFriends)
   }

@@ -36,6 +36,7 @@ public enum Route {
     sendNewsletters: Bool)
   case star(Project)
   case toggleStar(Project)
+  case unansweredSurveyResponses
   case unfollowFriend(userId: Int)
   case updateComments(Update)
   case userSelf
@@ -157,6 +158,9 @@ public enum Route {
 
     case let .toggleStar(p):
       return (.POST, "/v1/projects/\(p.id)/star/toggle", [:])
+
+    case .unansweredSurveyResponses:
+      return (.GET, "/v1/users/self/surveys/unanswered", [:])
 
     case let .unfollowFriend(userId):
       return (.DELETE, "v1/users/self/friends/\(userId)", [:])

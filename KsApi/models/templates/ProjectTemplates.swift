@@ -57,6 +57,8 @@ extension Project {
 
   internal static let cosmicSurgery = .template
     |> Project.lens.photo.full .~ "https://ksr-ugc.imgix.net/assets/012/347/230/2eddca8c4a06ecb69b8787b985201b92_original.jpg?w=460&fit=max&v=1463756137&auto=format&q=92&s=98a6df348751e8b325e48eb8f802fa7e"
+    |> Project.lens.photo.med .~ "https://ksr-ugc.imgix.net/assets/012/347/230/2eddca8c4a06ecb69b8787b985201b92_original.jpg?w=460&fit=max&v=1463756137&auto=format&q=92&s=98a6df348751e8b325e48eb8f802fa7e"
+    |> Project.lens.photo.small .~ "https://ksr-ugc.imgix.net/assets/012/347/230/2eddca8c4a06ecb69b8787b985201b92_original.jpg?w=460&fit=max&v=1463756137&auto=format&q=92&s=98a6df348751e8b325e48eb8f802fa7e"
     |> Project.lens.name .~ "Cosmic Surgery"
     |> Project.lens.blurb .~ "Cosmic Surgery is a photo book, set in the not too distant future where the world of cosmetic surgery is about to be transformed."
     |> Project.lens.category.name .~ "Photo Books"
@@ -65,6 +67,13 @@ extension Project {
     |> Project.lens.stats.goal .~ 22_000
     |> (Project.lens.location • Location.lens.displayableName) .~ "Hastings, UK"
     |> Project.lens.country .~ .GB
+    |> Project.lens.creator .~ (
+      .template
+        |> User.lens.name .~ "Alma Haser"
+        |> User.lens.avatar.large .~ "https://ksr-ugc.imgix.net/assets/006/286/957/203502774070f5c0bf5ddcbb58e13000_original.jpg?w=80&h=80&fit=crop&v=1461378633&auto=format&q=92&s=68edc5b8d1b110634b59589253801ea1"
+        |> User.lens.avatar.medium .~ "https://ksr-ugc.imgix.net/assets/006/286/957/203502774070f5c0bf5ddcbb58e13000_original.jpg?w=80&h=80&fit=crop&v=1461378633&auto=format&q=92&s=68edc5b8d1b110634b59589253801ea1"
+        |> User.lens.avatar.small .~ "https://ksr-ugc.imgix.net/assets/006/286/957/203502774070f5c0bf5ddcbb58e13000_original.jpg?w=80&h=80&fit=crop&v=1461378633&auto=format&q=92&s=68edc5b8d1b110634b59589253801ea1"
+  )
 
   internal static let anomalisa = .template
     |> Project.lens.photo.full .~ "https://ksr-ugc.imgix.net/assets/011/388/954/25e113da402393de9de995619428d10d_original.png?w=1024&h=576&fit=fill&bg=000000&v=1463681956&auto=format&q=92&s=2a9b6a90e1f52b96d7cbdcad28319f9d"
