@@ -26,8 +26,23 @@ public protocol ServiceType {
   func logout() -> Self
 
   /// Request to connect user to Facebook with access token.
-  func facebookConnect(facebookAccessToken token: String)
-    -> SignalProducer<User, ErrorEnvelope>
+  func facebookConnect(facebookAccessToken token: String) -> SignalProducer<User, ErrorEnvelope>
+
+  /// Uploads and attaches an image to the draft of a project update.
+  func addImage(file fileURL: NSURL, toDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Image, ErrorEnvelope>
+
+  /// Uploads and attaches a video to the draft of a project update.
+  func addVideo(file fileURL: NSURL, toDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Video, ErrorEnvelope>
+
+  /// Removes an image from a project update draft.
+  func delete(image image: UpdateDraft.Image, fromDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Image, ErrorEnvelope>
+
+  /// Removes a video from a project update draft.
+  func delete(video video: UpdateDraft.Video, fromDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Video, ErrorEnvelope>
 
   /// Fetch a page of activities.
   func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
@@ -116,6 +131,9 @@ public protocol ServiceType {
   /// Fetches all of the user's unanswered surveys.
   func fetchUnansweredSurveyResponses() -> SignalProducer<[SurveyResponse], ErrorEnvelope>
 
+  /// Fetches a project update draft.
+  func fetchUpdateDraft(forProject project: Project) -> SignalProducer<UpdateDraft, ErrorEnvelope>
+
   /// Fetch the newest data for a particular user.
   func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope>
 
@@ -144,6 +162,12 @@ public protocol ServiceType {
 
   /// Posts a comment to an update.
   func postComment(body: String, toUpdate update: Update) -> SignalProducer<Comment, ErrorEnvelope>
+
+  /// Returns a project update preview URL.
+  func previewUrl(forDraft draft: UpdateDraft) -> NSURL
+
+  /// Publishes a project update draft.
+  func publish(draft draft: UpdateDraft) -> SignalProducer<UpdateDraft, ErrorEnvelope>
 
   /// Reset user password with email address.
   func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope>
@@ -179,6 +203,10 @@ public protocol ServiceType {
 
   /// Update the current user with settings attributes.
   func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope>
+
+  /// Updates the draft of a project update.
+  func update(draft draft: UpdateDraft, title: String, body: String, isPublic: Bool)
+    -> SignalProducer<Update, ErrorEnvelope>
 }
 
 extension ServiceType {

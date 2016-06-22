@@ -50,5 +50,13 @@ extension Update {
         publishedAt: $1.publishedAt, sequence: $1.sequence, title: $1.title, urls: $1.urls, user: $0,
         visible: $1.visible) }
     )
+
+    public static let isPublic = Lens<Update, Bool>(
+      view: { $0.isPublic },
+      set: { Update(body: $1.body, commentsCount: $1.commentsCount, hasLiked: $1.hasLiked, id: $1.id,
+        isPublic: $0, likesCount: $1.likesCount, projectId: $1.projectId,
+        publishedAt: $1.publishedAt, sequence: $1.sequence, title: $1.title, urls: $1.urls, user: $1.user,
+        visible: $1.visible) }
+    )
   }
 }

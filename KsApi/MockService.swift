@@ -32,6 +32,8 @@ internal struct MockService: ServiceType {
   private let fetchFriendStatsResponse: FriendStatsEnvelope?
   private let fetchFriendStatsError: ErrorEnvelope?
 
+  private let fetchDraftResponse: UpdateDraft?
+
   private let fetchMessageThreadResponse: MessageThread
   private let fetchMessageThreadsResponse: [MessageThread]
 
@@ -105,6 +107,7 @@ internal struct MockService: ServiceType {
                 fetchFriendsError: ErrorEnvelope? = nil,
                 fetchFriendStatsResponse: FriendStatsEnvelope? = nil,
                 fetchFriendStatsError: ErrorEnvelope? = nil,
+                fetchDraftResponse: UpdateDraft? = nil,
                 fetchMessageThreadResponse: MessageThread? = nil,
                 fetchMessageThreadsResponse: [MessageThread]? = nil,
                 fetchProjectActivitiesResponse: [Activity]? = nil,
@@ -184,7 +187,9 @@ internal struct MockService: ServiceType {
     self.fetchFriendStatsResponse = fetchFriendStatsResponse
     self.fetchFriendStatsError = fetchFriendStatsError
 
-    self.fetchMessageThreadResponse = fetchMessageThreadResponse ??  .template
+    self.fetchDraftResponse = fetchDraftResponse ?? .empty
+
+    self.fetchMessageThreadResponse = fetchMessageThreadResponse ?? .template
 
     self.fetchMessageThreadsResponse = fetchMessageThreadsResponse ?? [
       .template |> MessageThread.lens.id .~ 1,
@@ -889,4 +894,50 @@ internal struct MockService: ServiceType {
     }
     return SignalProducer(value: user)
   }
+
+  internal func fetchUpdateDraft(forProject project: Project) -> SignalProducer<UpdateDraft, ErrorEnvelope> {
+    guard let fetchDraftResponse = self.fetchDraftResponse else {
+      return .empty
+    }
+    return SignalProducer(value: fetchDraftResponse)
+  }
+
+  internal func update(draft draft: UpdateDraft, title: String, body: String, isPublic: Bool)
+    -> SignalProducer<Update, ErrorEnvelope> {
+
+      return SignalProducer(value: .template)
+  }
+
+  internal func addImage(file fileURL: NSURL, toDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
+
+      return .empty
+  }
+
+  internal func delete(image image: UpdateDraft.Image, fromDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
+
+      return .empty
+  }
+
+  internal func addVideo(file fileURL: NSURL, toDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Video, ErrorEnvelope> {
+
+      return .empty
+  }
+
+  internal func delete(video video: UpdateDraft.Video, fromDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Video, ErrorEnvelope> {
+
+      return .empty
+  }
+
+  internal func publish(draft draft: UpdateDraft) -> SignalProducer<UpdateDraft, ErrorEnvelope> {
+    return .empty
+  }
+
+  internal func previewUrl(forDraft draft: UpdateDraft) -> NSURL {
+    return NSURL(string: "***REMOVED***/v1/projects/\(draft.update.projectId)/draft/preview")!
+  }
+
 }

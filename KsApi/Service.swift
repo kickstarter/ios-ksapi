@@ -39,9 +39,38 @@ public struct Service: ServiceType {
                    buildVersion: self.buildVersion)
   }
 
-  public func facebookConnect(facebookAccessToken token: String)
-    -> SignalProducer<User, ErrorEnvelope> {
-      return request(.facebookConnect(facebookAccessToken: token))
+  public func facebookConnect(facebookAccessToken token: String) -> SignalProducer<User, ErrorEnvelope> {
+    return request(.facebookConnect(facebookAccessToken: token))
+  }
+
+  public func addImage(file fileURL: NSURL, toDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
+
+      return request(Route.addImage(fileUrl: fileURL, toDraft: draft))
+  }
+
+  public func addVideo(file fileURL: NSURL, toDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Video, ErrorEnvelope> {
+
+      return request(Route.addVideo(fileUrl: fileURL, toDraft: draft))
+  }
+
+  public func delete(image image: UpdateDraft.Image, fromDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
+
+      return request(.deleteImage(image, fromDraft: draft))
+  }
+
+  public func delete(video video: UpdateDraft.Video, fromDraft draft: UpdateDraft)
+    -> SignalProducer<UpdateDraft.Video, ErrorEnvelope> {
+
+      return request(.deleteVideo(video, fromDraft: draft))
+  }
+
+  public func previewUrl(forDraft draft: UpdateDraft) -> NSURL {
+    let previewUrl = self.serverConfig.apiBaseUrl
+      .URLByAppendingPathComponent("/v1/projects/\(draft.update.projectId)/updates/draft/preview")
+    return preparedRequest(previewUrl).URL!
   }
 
   public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
@@ -65,6 +94,14 @@ public struct Service: ServiceType {
   public func fetchBacking(forProject project: Project, forUser user: User)
     -> SignalProducer<Backing, ErrorEnvelope> {
       return request(.backing(projectId: project.id, backerId: user.id))
+  }
+
+  public func fetchCategories() -> SignalProducer<CategoriesEnvelope, ErrorEnvelope> {
+    return request(.categories)
+  }
+
+  public func fetchCategory(id id: Int) -> SignalProducer<Category, ErrorEnvelope> {
+    return request(.category(id))
   }
 
   public func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
@@ -93,6 +130,20 @@ public struct Service: ServiceType {
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
     return request(.discover(params))
+  }
+
+  public func fetchFriends() -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope> {
+    return request(.friends)
+  }
+
+  public func fetchFriends(paginationUrl paginationUrl: String)
+    -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope> {
+
+      return requestPagination(paginationUrl)
+  }
+
+  public func fetchFriendStats() -> SignalProducer<FriendStatsEnvelope, ErrorEnvelope> {
+    return request(.friendStats)
   }
 
   public func fetchMessageThread(messageThread messageThread: MessageThread)
@@ -160,25 +211,8 @@ public struct Service: ServiceType {
     return request(.user(user))
   }
 
-  public func fetchCategories() -> SignalProducer<CategoriesEnvelope, ErrorEnvelope> {
-    return request(.categories)
-  }
-
-  public func fetchCategory(id id: Int) -> SignalProducer<Category, ErrorEnvelope> {
-    return request(.category(id))
-  }
-
-  public func fetchFriends() -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope> {
-    return request(.friends)
-  }
-
-  public func fetchFriends(paginationUrl paginationUrl: String)
-    -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope> {
-    return requestPagination(paginationUrl)
-  }
-
-  public func fetchFriendStats() -> SignalProducer<FriendStatsEnvelope, ErrorEnvelope> {
-    return request(.friendStats)
+  public func fetchUpdateDraft(forProject project: Project) -> SignalProducer<UpdateDraft, ErrorEnvelope> {
+    return request(.fetchUpdateDraft(forProject: project))
   }
 
   public func fetchUnansweredSurveyResponses() -> SignalProducer<[SurveyResponse], ErrorEnvelope> {
@@ -191,14 +225,6 @@ public struct Service: ServiceType {
 
   public func followFriend(userId id: Int) -> SignalProducer<User, ErrorEnvelope> {
     return request(.followFriend(userId: id))
-  }
-
-  public func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
-    return request(.toggleStar(project))
-  }
-
-  public func star(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
-    return request(.star(project))
   }
 
   public func login(email email: String, password: String, code: String?) ->
@@ -228,6 +254,10 @@ public struct Service: ServiceType {
   public func postComment(body: String, toUpdate update: Update) -> SignalProducer<Comment, ErrorEnvelope> {
 
       return request(.postUpdateComment(update, body: body))
+  }
+
+  public func publish(draft draft: UpdateDraft) -> SignalProducer<UpdateDraft, ErrorEnvelope> {
+    return request(.publishUpdateDraft(draft))
   }
 
   public func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {
@@ -264,8 +294,21 @@ public struct Service: ServiceType {
     return request(.facebookSignup(facebookAccessToken: token, sendNewsletters: sendNewsletters))
   }
 
+  public func star(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
+    return request(.star(project))
+  }
+
+  public func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
+    return request(.toggleStar(project))
+  }
+
   public func unfollowFriend(userId id: Int) -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
     return request(.unfollowFriend(userId: id))
+  }
+  public func update(draft draft: UpdateDraft, title: String, body: String, isPublic: Bool)
+    -> SignalProducer<Update, ErrorEnvelope> {
+
+      return request(.updateUpdateDraft(draft, title: title, body: body, isPublic: isPublic))
   }
 
   public func updateProjectNotification(notification: ProjectNotification)
@@ -277,6 +320,8 @@ public struct Service: ServiceType {
   public func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope> {
     return request(.updateUserSelf(user))
   }
+
+  // MARK: -
 
   private func decodeModel<M: Decodable where M == M.DecodedType>(json: AnyObject) ->
     SignalProducer<M, ErrorEnvelope> {
@@ -318,7 +363,8 @@ public struct Service: ServiceType {
       guard let paginationUrl = NSURL(string: paginationUrl) else {
         return .init(error: .invalidPaginationUrl)
       }
-      return self.preparedRequest(paginationUrl)
+
+      return Service.session.rac_JSONResponse(preparedRequest(paginationUrl))
         .flatMap(decodeModel)
   }
 
@@ -329,7 +375,10 @@ public struct Service: ServiceType {
 
       let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
 
-      return preparedRequest(URL, method: properties.method, query: properties.query)
+      return Service.session.rac_JSONResponse(
+        preparedRequest(URL, method: properties.method, query: properties.query),
+        uploading: properties.fileUrl
+        )
         .flatMap(decodeModel)
   }
 
@@ -340,12 +389,16 @@ public struct Service: ServiceType {
 
       let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
 
-      return preparedRequest(URL, method: properties.method, query: properties.query)
+      return Service.session.rac_JSONResponse(
+        preparedRequest(URL, method: properties.method, query: properties.query),
+        uploading: properties.fileUrl
+        )
         .flatMap(decodeModels)
   }
 
   private func preparedRequest(URL: NSURL, method: Method = .GET, query: [String:AnyObject] = [:])
-    -> SignalProducer<AnyObject, ErrorEnvelope> {
+    -> NSURLRequest {
+
     let request = NSMutableURLRequest(URL: URL)
 
     request.HTTPMethod = method.rawValue
@@ -384,7 +437,7 @@ public struct Service: ServiceType {
 
     request.allHTTPHeaderFields = headers
 
-    return Service.session.rac_JSONResponse(request)
+    return request
   }
 
   private func queryComponents(key: String, _ value: AnyObject) -> [(String, String)] {

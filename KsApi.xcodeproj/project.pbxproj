@@ -33,12 +33,20 @@
 		59B0E0591D1356850081D2DC /* Project.CreatorDataLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B0E0571D1356850081D2DC /* Project.CreatorDataLenses.swift */; };
 		804394FC1D06305E002E12C5 /* NSURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804394FB1D06305E002E12C5 /* NSURLSession.swift */; };
 		804394FD1D06305E002E12C5 /* NSURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804394FB1D06305E002E12C5 /* NSURLSession.swift */; };
+		8062BBFE1D0F16BD00702C68 /* UpdateDraftLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8062BBFD1D0F16BD00702C68 /* UpdateDraftLenses.swift */; };
+		8062BBFF1D0F16BD00702C68 /* UpdateDraftLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8062BBFD1D0F16BD00702C68 /* UpdateDraftLenses.swift */; };
 		80762DD51D0700680074189D /* DiscoveryEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80762DD41D0700680074189D /* DiscoveryEnvelopeLenses.swift */; };
 		80762DD61D0700680074189D /* DiscoveryEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80762DD41D0700680074189D /* DiscoveryEnvelopeLenses.swift */; };
 		80762DDA1D0709D30074189D /* CategoriesEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80762DD91D0709D30074189D /* CategoriesEnvelopeLenses.swift */; };
 		80762DDB1D0709D30074189D /* CategoriesEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80762DD91D0709D30074189D /* CategoriesEnvelopeLenses.swift */; };
 		80762DE51D0710F00074189D /* StarEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */; };
 		80762DE61D0710F00074189D /* StarEnvelopeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */; };
+		809F8B551D089DA5005BADD9 /* UpdateDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F8B541D089DA5005BADD9 /* UpdateDraft.swift */; };
+		809F8B561D089DA5005BADD9 /* UpdateDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F8B541D089DA5005BADD9 /* UpdateDraft.swift */; };
+		809F8B631D08A26B005BADD9 /* UpdateDraftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F8B621D08A26B005BADD9 /* UpdateDraftTests.swift */; };
+		809F8B641D08A26B005BADD9 /* UpdateDraftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809F8B621D08A26B005BADD9 /* UpdateDraftTests.swift */; };
+		80FB0AFD1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FB0AFC1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift */; };
+		80FB0AFE1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FB0AFC1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift */; };
 		9D7ED0C11D11F4BE00811156 /* ProjectsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */; };
 		9D7ED0C21D11F4BE00811156 /* ProjectsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */; };
 		9D9F582E1D1327E300CE81DE /* ProjectActivityEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */; };
@@ -289,6 +297,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = A727E02B1D0796D600D8FE43;
 			remoteInfo = "Prelude-UIKit-iOSTests";
+		};
+		8037B2041D19DFB900FC28C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A73639411D03550C00445B24 /* Prelude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A70969081D14373400DB39D3;
+			remoteInfo = "Prelude-UIKit-tvOS";
+		};
+		8037B2061D19DFB900FC28C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A73639411D03550C00445B24 /* Prelude.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A70969111D14373400DB39D3;
+			remoteInfo = "Prelude-UIKit-tvOSTests";
 		};
 		A73639241D03550300445B24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -551,9 +573,13 @@
 		59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectNotificationTemplates.swift; sourceTree = "<group>"; };
 		59B0E0571D1356850081D2DC /* Project.CreatorDataLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.CreatorDataLenses.swift; sourceTree = "<group>"; };
 		804394FB1D06305E002E12C5 /* NSURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURLSession.swift; sourceTree = "<group>"; };
+		8062BBFD1D0F16BD00702C68 /* UpdateDraftLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDraftLenses.swift; sourceTree = "<group>"; };
 		80762DD41D0700680074189D /* DiscoveryEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveryEnvelopeLenses.swift; sourceTree = "<group>"; };
 		80762DD91D0709D30074189D /* CategoriesEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesEnvelopeLenses.swift; sourceTree = "<group>"; };
 		80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarEnvelopeLenses.swift; sourceTree = "<group>"; };
+		809F8B541D089DA5005BADD9 /* UpdateDraft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDraft.swift; sourceTree = "<group>"; };
+		809F8B621D08A26B005BADD9 /* UpdateDraftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDraftTests.swift; sourceTree = "<group>"; };
+		80FB0AFC1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDraftTemplates.swift; sourceTree = "<group>"; };
 		9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsEnvelope.swift; sourceTree = "<group>"; };
 		9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectActivityEnvelope.swift; sourceTree = "<group>"; };
 		A713EC9C1C2C51B600B6234E /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServerConfig.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -751,6 +777,7 @@
 				A72661E91D07671D0087D883 /* RewardTemplates.swift */,
 				A72661EA1D07671D0087D883 /* StarEnvelopeTemplates.swift */,
 				A757E9B71D19B37B00A5C978 /* SurveyResponseTemplates.swift */,
+				80FB0AFC1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift */,
 				A72661EB1D07671D0087D883 /* UpdateTemplates.swift */,
 				A72661EC1D07671D0087D883 /* User.AvatarTemplates.swift */,
 				A72661ED1D07671D0087D883 /* User.NewsletterSubscriptionsTemplates.swift */,
@@ -868,6 +895,7 @@
 				A73639C11D03565400445B24 /* StarEnvelope.swift */,
 				A757E99E1D19903400A5C978 /* SurveyResponse.swift */,
 				A73639C21D03565400445B24 /* Update.swift */,
+				809F8B541D089DA5005BADD9 /* UpdateDraft.swift */,
 				A73639C51D03565400445B24 /* User.swift */,
 				A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */,
 				A73639A41D03565400445B24 /* lenses */,
@@ -904,6 +932,7 @@
 				A73639B11D03565400445B24 /* RewardLenses.swift */,
 				80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */,
 				A757E9B41D19B2ED00A5C978 /* SurveyResponseLenses.swift */,
+				8062BBFD1D0F16BD00702C68 /* UpdateDraftLenses.swift */,
 				A73639B21D03565400445B24 /* UpdateLenses.swift */,
 				A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */,
 				A73639B31D03565400445B24 /* User.NewsletterSubscriptionsLenses.swift */,
@@ -943,6 +972,7 @@
 				A7363A421D03588600445B24 /* ProjectTests.swift */,
 				A7363A431D03588600445B24 /* RewardTests.swift */,
 				A757E9BA1D19B8D200A5C978 /* SurveyResponseTests.swift */,
+				809F8B621D08A26B005BADD9 /* UpdateDraftTests.swift */,
 				A7363A441D03588600445B24 /* UpdateTests.swift */,
 				A7363A451D03588600445B24 /* User.AvatarTests.swift */,
 				A7363A461D03588600445B24 /* User.NewsletterSubscriptionsTests.swift */,
@@ -1194,6 +1224,20 @@
 			remoteRef = 0156B4B71D11FA9E000C4252 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		8037B2051D19DFB900FC28C6 /* Prelude_UIKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Prelude_UIKit.framework;
+			remoteRef = 8037B2041D19DFB900FC28C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8037B2071D19DFB900FC28C6 /* Prelude-UIKit-tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Prelude-UIKit-tvOSTests.xctest";
+			remoteRef = 8037B2061D19DFB900FC28C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		A73639251D03550300445B24 /* Argo.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1427,6 +1471,7 @@
 				A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */,
 				0156B2131D076028000C4252 /* FriendStatsEnvelopeTests.swift in Sources */,
 				A7363A501D03588600445B24 /* CategoryTests.swift in Sources */,
+				809F8B641D08A26B005BADD9 /* UpdateDraftTests.swift in Sources */,
 				A7363A681D03588600445B24 /* RewardTests.swift in Sources */,
 				A757E9BC1D19B8D200A5C978 /* SurveyResponseTests.swift in Sources */,
 				A7363A701D03588600445B24 /* User.NotificationsTests.swift in Sources */,
@@ -1490,6 +1535,7 @@
 				59B0E0581D1356850081D2DC /* Project.CreatorDataLenses.swift in Sources */,
 				A72662071D07671D0087D883 /* Project.VideoTemplates.swift in Sources */,
 				A73639DE1D03565400445B24 /* Backing.swift in Sources */,
+				809F8B551D089DA5005BADD9 /* UpdateDraft.swift in Sources */,
 				A7363A081D03565400445B24 /* RewardLenses.swift in Sources */,
 				A73639E61D03565400445B24 /* CommentsEnvelope.swift in Sources */,
 				A73639F21D03565400445B24 /* BackingLenses.swift in Sources */,
@@ -1502,12 +1548,14 @@
 				A7363A021D03565400445B24 /* Project.PersonalizationLenses.swift in Sources */,
 				A7363A141D03565400445B24 /* Location.swift in Sources */,
 				A7FD09751C83E74F00332CCB /* Service.swift in Sources */,
+				80FB0AFD1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift in Sources */,
 				A73639F61D03565400445B24 /* CommentLenses.swift in Sources */,
 				A73639FC1D03565400445B24 /* MessageLenses.swift in Sources */,
 				A7363A1E1D03565400445B24 /* Project.Country.swift in Sources */,
 				A7363A001D03565400445B24 /* Project.DatesLenses.swift in Sources */,
 				A757E99F1D19903400A5C978 /* SurveyResponse.swift in Sources */,
 				A73639CE1D03565400445B24 /* Decodable.swift in Sources */,
+				8062BBFE1D0F16BD00702C68 /* UpdateDraftLenses.swift in Sources */,
 				A73639C81D03565400445B24 /* BasicHTTPAuth.swift in Sources */,
 				A7363A261D03565400445B24 /* Reward.swift in Sources */,
 				A73639D81D03565400445B24 /* AccessTokenEnvelope.swift in Sources */,
@@ -1567,6 +1615,7 @@
 				A7FD09C71C83E8E900332CCB /* ServiceTests.swift in Sources */,
 				0156B2121D076028000C4252 /* FriendStatsEnvelopeTests.swift in Sources */,
 				A7363A4F1D03588600445B24 /* CategoryTests.swift in Sources */,
+				809F8B631D08A26B005BADD9 /* UpdateDraftTests.swift in Sources */,
 				A7363A671D03588600445B24 /* RewardTests.swift in Sources */,
 				A757E9BB1D19B8D200A5C978 /* SurveyResponseTests.swift in Sources */,
 				A7363A6F1D03588600445B24 /* User.NotificationsTests.swift in Sources */,
@@ -1631,6 +1680,7 @@
 				59B0E0591D1356850081D2DC /* Project.CreatorDataLenses.swift in Sources */,
 				A72662081D07671D0087D883 /* Project.VideoTemplates.swift in Sources */,
 				A73639DF1D03565400445B24 /* Backing.swift in Sources */,
+				809F8B561D089DA5005BADD9 /* UpdateDraft.swift in Sources */,
 				A7363A091D03565400445B24 /* RewardLenses.swift in Sources */,
 				A73639E71D03565400445B24 /* CommentsEnvelope.swift in Sources */,
 				A73639F31D03565400445B24 /* BackingLenses.swift in Sources */,
@@ -1643,12 +1693,14 @@
 				A7363A031D03565400445B24 /* Project.PersonalizationLenses.swift in Sources */,
 				A7363A151D03565400445B24 /* Location.swift in Sources */,
 				A77967731C2B431C0002166F /* Service.swift in Sources */,
+				80FB0AFE1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift in Sources */,
 				A73639F71D03565400445B24 /* CommentLenses.swift in Sources */,
 				A73639FD1D03565400445B24 /* MessageLenses.swift in Sources */,
 				A7363A1F1D03565400445B24 /* Project.Country.swift in Sources */,
 				A757E9A01D19903400A5C978 /* SurveyResponse.swift in Sources */,
 				A7363A011D03565400445B24 /* Project.DatesLenses.swift in Sources */,
 				A73639CF1D03565400445B24 /* Decodable.swift in Sources */,
+				8062BBFF1D0F16BD00702C68 /* UpdateDraftLenses.swift in Sources */,
 				A73639C91D03565400445B24 /* BasicHTTPAuth.swift in Sources */,
 				A7363A271D03565400445B24 /* Reward.swift in Sources */,
 				A73639D91D03565400445B24 /* AccessTokenEnvelope.swift in Sources */,
