@@ -9,7 +9,7 @@ extension Project {
 }
 
 extension Project.Video: Decodable {
-  static public func decode(json: JSON) -> Decoded<Project.Video> {
+  public static func decode(json: JSON) -> Decoded<Project.Video> {
     return curry(Project.Video.init)
       <^> json <| "id"
       <*> json <| "high"

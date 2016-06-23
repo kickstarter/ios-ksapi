@@ -44,6 +44,9 @@ internal struct MockService: ServiceType {
   private let fetchProjectsResponse: [Project]?
   private let fetchProjectsError: ErrorEnvelope?
 
+  private let fetchProjectStatsResponse: ProjectStatsEnvelope?
+  private let fetchProjectStatsError: ErrorEnvelope?
+
   private let fetchUnansweredSurveyResponsesResponse: [SurveyResponse]
 
   private let fetchUserSelfResponse: User?
@@ -116,6 +119,8 @@ internal struct MockService: ServiceType {
                 fetchProjectNotificationsResponse: [ProjectNotification]? = nil,
                 fetchProjectsResponse: [Project]? = nil,
                 fetchProjectsError: ErrorEnvelope? = nil,
+                fetchProjectStatsResponse: ProjectStatsEnvelope? = nil,
+                fetchProjectStatsError: ErrorEnvelope? = nil,
                 fetchUserSelfResponse: User? = nil,
                 followFriendError: ErrorEnvelope? = nil,
                 fetchUnansweredSurveyResponsesResponse: [SurveyResponse] = [],
@@ -224,6 +229,9 @@ internal struct MockService: ServiceType {
       .map(Project.lens.id.set)
 
     self.fetchProjectsError = fetchProjectsError
+
+    self.fetchProjectStatsResponse = fetchProjectStatsResponse
+    self.fetchProjectStatsError = fetchProjectStatsError
 
     self.fetchUnansweredSurveyResponsesResponse = fetchUnansweredSurveyResponsesResponse
 
@@ -411,6 +419,8 @@ internal struct MockService: ServiceType {
       fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
       fetchProjectsResponse: self.fetchProjectsResponse,
       fetchProjectsError: self.fetchProjectsError,
+      fetchProjectStatsResponse: self.fetchProjectStatsResponse,
+      fetchProjectStatsError: self.fetchProjectStatsError,
       fetchUnansweredSurveyResponsesResponse: self.fetchUnansweredSurveyResponsesResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       followFriendError: self.followFriendError,
@@ -457,6 +467,8 @@ internal struct MockService: ServiceType {
       fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
       fetchProjectsResponse: self.fetchProjectsResponse,
       fetchProjectsError: self.fetchProjectsError,
+      fetchProjectStatsResponse: self.fetchProjectStatsResponse,
+      fetchProjectStatsError: self.fetchProjectStatsError,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       followFriendError: self.followFriendError,
       fetchUnansweredSurveyResponsesResponse: self.fetchUnansweredSurveyResponsesResponse,
@@ -711,6 +723,17 @@ internal struct MockService: ServiceType {
   internal func fetchProjects(paginationUrl paginationUrl: String) ->
     SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
       return fetchProjects(member: true)
+  }
+
+  internal func fetchProjectStats(projectId projectId: Int) ->
+    SignalProducer<ProjectStatsEnvelope, ErrorEnvelope> {
+      if let error = fetchProjectStatsError {
+        return SignalProducer(error: error)
+      } else if let response = fetchProjectStatsResponse {
+        return SignalProducer(value: response)
+      }
+
+      return SignalProducer(value: .template)
   }
 
   internal func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {

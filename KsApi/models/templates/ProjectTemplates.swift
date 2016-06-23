@@ -8,7 +8,7 @@ extension Project {
     category: .template,
     country: .US,
     creator: .template |> User.lens.stats.createdProjectsCount .~ 1,
-    creatorData: Project.CreatorData(
+    memberData: Project.MemberData(
       lastUpdatePublishedAt: nil,
       permissions: [],
       unreadMessagesCount: nil,

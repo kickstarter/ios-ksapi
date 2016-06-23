@@ -203,6 +203,11 @@ public struct Service: ServiceType {
     return requestPagination(url)
   }
 
+  public func fetchProjectStats(projectId projectId: Int) ->
+    SignalProducer<ProjectStatsEnvelope, ErrorEnvelope> {
+      return request(.projectStats(projectId: projectId))
+  }
+
   public func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
     return request(.userSelf)
   }

@@ -128,6 +128,9 @@ public protocol ServiceType {
   /// Fetches more projects from a pagination URL.
   func fetchProjects(paginationUrl paginationUrl: String) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope>
 
+  /// Fetches the stats for a particular project.
+  func fetchProjectStats(projectId projectId: Int) -> SignalProducer<ProjectStatsEnvelope, ErrorEnvelope>
+
   /// Fetches all of the user's unanswered surveys.
   func fetchUnansweredSurveyResponses() -> SignalProducer<[SurveyResponse], ErrorEnvelope>
 

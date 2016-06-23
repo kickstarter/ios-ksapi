@@ -34,6 +34,7 @@ internal enum Route {
   case projectComments(Project)
   case projectNotifications
   case projects(member: Bool)
+  case projectStats(projectId: Int)
   case publishUpdateDraft(UpdateDraft)
   case resetPassword(email: String)
   case searchMessages(query: String, project: Project?)
@@ -133,6 +134,12 @@ internal enum Route {
       }
       return (.GET, "/v1/message_threads/\(mailbox.rawValue)", [:], nil)
 
+    case let .postProjectComment(p, body):
+      return (.POST, "/v1/projects/\(p.id)/comments", ["body": body], nil)
+
+    case let .postUpdateComment(u, body):
+      return (.POST, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", ["body": body], nil)
+
     case let .project(id):
       return (.GET, "/v1/projects/\(id)", [:], nil)
 
@@ -148,11 +155,8 @@ internal enum Route {
     case let .projects(member):
       return (.GET, "/v1/users/self/projects", ["member": member], nil)
 
-    case let .postProjectComment(p, body):
-      return (.POST, "/v1/projects/\(p.id)/comments", ["body": body], nil)
-
-    case let .postUpdateComment(u, body):
-      return (.POST, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", ["body": body], nil)
+    case let .projectStats(projectId):
+      return (.GET, "/v1/projects/\(projectId)/stats", [:], nil)
 
     case let .publishUpdateDraft(d):
       return (.POST, "/v1/projects/\(d.update.projectId)/updates/publish", [:], nil)

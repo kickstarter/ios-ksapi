@@ -7,7 +7,7 @@ public struct Project {
   public let category: Category
   public let country: Country
   public let creator: User
-  public let creatorData: CreatorData
+  public let memberData: MemberData
   public let dates: Dates
   public let id: Int
   public let location: Location
@@ -58,7 +58,7 @@ public struct Project {
     }
   }
 
-  public struct CreatorData {
+  public struct MemberData {
     public let lastUpdatePublishedAt: NSTimeInterval?
     public let permissions: [Permission]
     public let unreadMessagesCount: Int?
@@ -127,7 +127,7 @@ extension Project: Decodable {
       <*> Project.Country.decode(json)
       <*> json <| "creator"
     let tmp2 = tmp1
-      <*> Project.CreatorData.decode(json)
+      <*> Project.MemberData.decode(json)
       <*> Project.Dates.decode(json)
       <*> json <| "id"
       <*> json <| "location"
@@ -168,9 +168,9 @@ extension Project.Stats: Decodable {
   }
 }
 
-extension Project.CreatorData: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.CreatorData> {
-    return curry(Project.CreatorData.init)
+extension Project.MemberData: Decodable {
+  public static func decode(json: JSON) -> Decoded<Project.MemberData> {
+    return curry(Project.MemberData.init)
       <^> json <|? "last_update_published_at"
       <*> (removeUnknowns <^> (json <|| "permissions") <|> .Success([]))
       <*> json <|? "unread_messages_count"
@@ -208,8 +208,8 @@ extension Project.Photo: Decodable {
   }
 }
 
-extension Project.CreatorData.Permission: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.CreatorData.Permission> {
+extension Project.MemberData.Permission: Decodable {
+  public static func decode(json: JSON) -> Decoded<Project.MemberData.Permission> {
     if case .String(let permission) = json {
       return self.init(rawValue: permission).map(pure) ?? .Success(.unknown)
     }
@@ -217,6 +217,6 @@ extension Project.CreatorData.Permission: Decodable {
   }
 }
 
-private func removeUnknowns(xs: [Project.CreatorData.Permission]) -> [Project.CreatorData.Permission] {
+private func removeUnknowns(xs: [Project.MemberData.Permission]) -> [Project.MemberData.Permission] {
   return xs.filter { $0 != .unknown }
 }
