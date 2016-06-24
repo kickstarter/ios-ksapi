@@ -64,9 +64,9 @@ extension ProjectStatsEnvelope.Cumulative: Decodable {
     return curry(ProjectStatsEnvelope.Cumulative.init)
       <^> json <| "average_pledge"
       <*> json <| "backers_count"
-      <*> json <| "goal"
+      <*> (json <| "goal" >>- stringToInt)
       <*> json <| "percent_raised"
-      <*> json <| "pledged"
+      <*> (json <| "pledged" >>- stringToInt)
   }
 }
 
@@ -74,10 +74,10 @@ extension ProjectStatsEnvelope.FundingDistribution: Decodable {
   public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.FundingDistribution> {
     return curry(ProjectStatsEnvelope.FundingDistribution.init)
       <^> json <| "backers_count"
-      <*> json <| "cumulative_pledged"
+      <*> ((json <| "cumulative_pledged" >>- stringToInt) <|> (json <| "cumulative_pledged"))
       <*> json <| "cumulative_backers_count"
       <*> json <| "date"
-      <*> json <| "pledged"
+      <*> (json <| "pledged" >>- stringToInt)
   }
 }
 
@@ -86,8 +86,8 @@ extension ProjectStatsEnvelope.ReferralDistribution: Decodable {
     return curry(ProjectStatsEnvelope.ReferralDistribution.init)
       <^> json <| "backers_count"
       <*> json <| "code"
-      <*> json <| "percentage_of_dollars"
-      <*> json <| "pledged"
+      <*> (json <| "percentage_of_dollars" >>- toFloat)
+      <*> (json <| "pledged" >>- stringToInt)
       <*> json <| "referrer_name"
       <*> json <| "referrer_type"
   }
@@ -99,8 +99,8 @@ extension ProjectStatsEnvelope.RewardDistribution: Decodable {
     return create
       <^> json <| "backers_count"
       <*> json <| "reward_id"
-      <*> json <| "minimum"
-      <*> json <| "pledged"
+      <*> (json <| "minimum" >>- stringToInt)
+      <*> (json <| "pledged" >>- stringToInt)
   }
 }
 
@@ -113,4 +113,15 @@ extension ProjectStatsEnvelope.VideoStats: Decodable {
       <*> json <| "internal_completions"
       <*> json <| "internal_starts"
   }
+}
+
+private func stringToInt(string: String) -> Decoded<Int> {
+  return
+    Float(string).flatMap(Int.init).map(Decoded.Success) ??
+      Int(string).map(Decoded.Success) ??
+      .Success(0)
+}
+
+private func toFloat(string: String) -> Decoded<Float> {
+  return .Success(Float(string) ?? 0)
 }

@@ -338,7 +338,7 @@ public struct Service: ServiceType {
           case let .Success(value):
             return .init(value: value)
           case let .Failure(error):
-            print("Argo decoding model error: \(error)")
+            print("Argo decoding model \(M.self) error: \(error)")
             return .init(error: .couldNotDecodeJSON(error))
           }
       }

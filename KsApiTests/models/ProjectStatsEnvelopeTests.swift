@@ -10,53 +10,53 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
         [
           "code": "my_wonderful_referrer_code",
           "referrer_name": "My wonderful referrer name",
-          "percentage_of_dollars": 0.250,
+          "percentage_of_dollars": "0.250",
           "referrer_type": "Wonderful",
-          "pledged": 20.0,
+          "pledged": "20.0",
           "backers_count": 8
         ],
         [
           "code": "my_okay_referrer_code",
           "referrer_name": "My okay referrer name",
-          "percentage_of_dollars": 0.001,
+          "percentage_of_dollars": "0.001",
           "referrer_type": "Okay",
-          "pledged": 1.0,
+          "pledged": "1.0",
           "backers_count": 1
         ]
       ],
       "reward_distribution": [
         [
-          "pledged": 1.0,
+          "pledged": "1.0",
           "reward_id": 0,
           "backers_count": 5,
-          "minimum": 0.0
+          "minimum": "0.0"
         ],
         [
-          "pledged": 25.0,
+          "pledged": "25.0",
           "reward_id": 123456,
           "backers_count": 10,
-          "minimum": 5.0
+          "minimum": "5.0"
         ]
       ],
       "cumulative": [
-        "pledged": 40.0,
+        "pledged": "40.0",
         "average_pledge": 17.38,
         "percent_raised": 2.666666666666667,
         "backers_count": 20,
-        "goal": 15.0
+        "goal": "15.0"
       ],
       "funding_distribution": [
         [
           "cumulative_backers_count": 7,
-          "cumulative_pledged": 30,
-          "pledged": 38.0,
+          "cumulative_pledged": "30",
+          "pledged": "38.0",
           "date": 555444333,
           "backers_count": 13
         ],
         [
           "cumulative_backers_count": 14,
           "cumulative_pledged": 1000,
-          "pledged": 909.0,
+          "pledged": "909.0",
           "date": 333222111,
           "backers_count": 1
         ]
@@ -73,7 +73,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
     XCTAssertNotNil(stats)
 
     XCTAssertEqual(40, stats.value?.cumulative.pledged)
-    XCTAssertEqual(Int(17.38), stats.value?.cumulative.averagePledge)
+    XCTAssertEqual(17, stats.value?.cumulative.averagePledge)
     XCTAssertEqual(20, stats.value?.cumulative.backersCount)
 
     XCTAssertEqual(5, stats.value?.videoStats?.externalCompletions)
