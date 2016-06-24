@@ -11,6 +11,7 @@ extension User {
     name: "Blob",
     newsletters: .template,
     notifications: .template,
+    social: nil,
     stats: .template
   )
 

@@ -10,6 +10,7 @@ public struct User {
   public let name: String
   public let newsletters: NewsletterSubscriptions
   public let notifications: Notifications
+  public let social: Bool?
   public let stats: Stats
 
   public struct Avatar {
@@ -76,6 +77,7 @@ extension User: Decodable {
       <*> json <| "name"
       <*> User.NewsletterSubscriptions.decode(json)
       <*> User.Notifications.decode(json)
+      <*> json <|? "social"
       <*> User.Stats.decode(json)
   }
 }
