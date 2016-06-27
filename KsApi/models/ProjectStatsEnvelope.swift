@@ -12,7 +12,7 @@ public struct ProjectStatsEnvelope {
     public let averagePledge: Int
     public let backersCount: Int
     public let goal: Int
-    public let percentRaised: Float
+    public let percentRaised: Double
     public let pledged: Int
   }
 
@@ -27,7 +27,7 @@ public struct ProjectStatsEnvelope {
   public struct ReferralDistribution {
     public let backersCount: Int
     public let code: String
-    public let percentageOfDollars: Float
+    public let percentageOfDollars: Double
     public let pledged: Int
     public let referrerName: String
     public let referrerType: String
@@ -86,7 +86,7 @@ extension ProjectStatsEnvelope.ReferralDistribution: Decodable {
     return curry(ProjectStatsEnvelope.ReferralDistribution.init)
       <^> json <| "backers_count"
       <*> json <| "code"
-      <*> (json <| "percentage_of_dollars" >>- toFloat)
+      <*> (json <| "percentage_of_dollars" >>- toDouble)
       <*> (json <| "pledged" >>- stringToInt)
       <*> json <| "referrer_name"
       <*> json <| "referrer_type"
@@ -117,11 +117,11 @@ extension ProjectStatsEnvelope.VideoStats: Decodable {
 
 private func stringToInt(string: String) -> Decoded<Int> {
   return
-    Float(string).flatMap(Int.init).map(Decoded.Success) ??
+    Double(string).flatMap(Int.init).map(Decoded.Success) ??
       Int(string).map(Decoded.Success) ??
       .Success(0)
 }
 
-private func toFloat(string: String) -> Decoded<Float> {
-  return .Success(Float(string) ?? 0)
+private func toDouble(string: String) -> Decoded<Double> {
+  return .Success(Double(string) ?? 0)
 }
