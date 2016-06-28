@@ -82,6 +82,7 @@ internal final class MessageThreadTests: XCTestCase {
         "launched_at": 1000,
         "deadline": 1000,
         "state_changed_at": 1000,
+        "slug": "project",
         "urls": [
           "web": [
             "project": "https://www.kickstarter.com/projects/my-cool-projects"

@@ -1,3 +1,5 @@
+import Foundation
+import Prelude
 import ReactiveCocoa
 
 public enum Mailbox: String {
@@ -103,7 +105,7 @@ public protocol ServiceType {
     -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope>
 
   /// Fetch the newest data for a particular project from its id.
-  func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope>
+  func fetchProject(param param: Param) -> SignalProducer<Project, ErrorEnvelope>
 
   /// Fetch a single project with the specified discovery params.
   func fetchProject(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope>
@@ -133,6 +135,9 @@ public protocol ServiceType {
 
   /// Fetches all of the user's unanswered surveys.
   func fetchUnansweredSurveyResponses() -> SignalProducer<[SurveyResponse], ErrorEnvelope>
+
+  /// Fetches an update from its id and project.
+  func fetchUpdate(updateId updateId: Int, projectParam: Param) -> SignalProducer<Update, ErrorEnvelope>
 
   /// Fetches a project update draft.
   func fetchUpdateDraft(forProject project: Project) -> SignalProducer<UpdateDraft, ErrorEnvelope>
@@ -230,4 +235,106 @@ public func == (lhs: ServiceType, rhs: ServiceType) -> Bool {
 
 public func != (lhs: ServiceType, rhs: ServiceType) -> Bool {
   return !(lhs == rhs)
+}
+
+extension ServiceType {
+
+  /**
+   Prepares a URL request to be sent to the server.
+
+   - parameter originalRequest: The request that should be prepared.
+   - parameter query:           Additional query params that should be attached to the request.
+
+   - returns: A new URL request that is properly configured for the server.
+   */
+  public func preparedRequest(forRequest originalRequest: NSURLRequest, query: [String:AnyObject] = [:])
+    -> NSURLRequest {
+
+      guard let request = originalRequest.mutableCopy() as? NSMutableURLRequest else {
+        return originalRequest
+      }
+      guard let URL = request.URL else {
+        return originalRequest
+      }
+
+      var headers = self.defaultHeaders
+
+      // Combine current query params with the new ones we want to add.
+      let components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: false)!
+      var queryItems = components.queryItems ?? []
+      queryItems.appendContentsOf(
+        query
+          .withAllValuesFrom(self.defaultQueryParams)
+          .flatMap(queryComponents)
+          .map(NSURLQueryItem.init(name:value:))
+      )
+      components.queryItems = queryItems.sort { $0.name < $1.name }
+
+      if request.HTTPMethod.uppercaseString == "GET" || request.HTTPMethod.uppercaseString == "DELETE" {
+        request.URL = components.URL
+      } else if let query = components.query {
+        headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+        request.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+      }
+
+      let currentHeaders = request.allHTTPHeaderFields ?? [:]
+      request.allHTTPHeaderFields = currentHeaders.withAllValuesFrom(headers)
+
+      return request
+  }
+
+  /**
+   Prepares a request to be sent to the server.
+
+   - parameter URL:    The URL to turn into a request and prepare.
+   - parameter method: The HTTP verb to use for the request.
+   - parameter query:  Additional query params that should be attached to the request.
+
+   - returns: A new URL request that is properly configured for the server.
+   */
+  public func preparedRequest(forURL URL: NSURL, method: Method = .GET, query: [String:AnyObject] = [:])
+    -> NSURLRequest {
+
+      let request = NSMutableURLRequest(URL: URL)
+      request.HTTPMethod = method.rawValue
+      return self.preparedRequest(forRequest: request, query: query)
+  }
+
+  private var defaultHeaders: [String:String] {
+    var headers: [String:String] = [:]
+    headers["Accept-Language"] = self.language
+    headers["Kickstarter-iOS-App"] = self.buildVersion
+    if let token = self.oauthToken?.token {
+      headers["Authorization"] = "token \(token)"
+    } else {
+      headers["Authorization"] = self.serverConfig.basicHTTPAuth?.authorizationHeader
+    }
+
+    return headers
+  }
+
+  private var defaultQueryParams: [String:String] {
+    var query: [String:String] = [:]
+    query["client_id"] = self.serverConfig.apiClientAuth.clientId
+    query["oauth_token"] = self.oauthToken?.token
+    return query
+  }
+
+  private func queryComponents(key: String, _ value: AnyObject) -> [(String, String)] {
+    var components: [(String, String)] = []
+
+    if let dictionary = value as? [String: AnyObject] {
+      for (nestedKey, value) in dictionary {
+        components += queryComponents("\(key)[\(nestedKey)]", value)
+      }
+    } else if let array = value as? [AnyObject] {
+      for value in array {
+        components += queryComponents("\(key)[]", value)
+      }
+    } else {
+      components.append((key, String(value)))
+    }
+
+    return components
+  }
 }

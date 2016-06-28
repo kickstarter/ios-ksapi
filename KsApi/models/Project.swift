@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Prelude
 
 public struct Project {
   public let backing: Backing?
@@ -15,6 +16,7 @@ public struct Project {
   public let personalization: Personalization
   public let photo: Photo
   public let rewards: [Reward]?
+  public let slug: String
   public let state: State
   public let stats: Stats
   public let urls: UrlsEnvelope
@@ -136,6 +138,7 @@ extension Project: Decodable {
     return tmp2
       <*> json <| "photo"
       <*> json <||? "rewards"
+      <*> json <| "slug"
       <*> json <| "state"
       <*> Project.Stats.decode(json)
       <*> json <| "urls"

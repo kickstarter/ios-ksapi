@@ -30,6 +30,7 @@ extension Project {
     ),
     photo: .template,
     rewards: nil,
+    slug: "a-fun-project",
     state: .live,
     stats: Project.Stats(
       backersCount: 10,
@@ -40,7 +41,7 @@ extension Project {
     ),
     urls: Project.UrlsEnvelope(
       web: Project.UrlsEnvelope.WebEnvelope(
-        project: "https://www.kickstarter.com/projects/my-cool-projects"
+        project: "https://www.kickstarter.com/projects/creator/a-fun-project"
       )
     ),
     video: .template

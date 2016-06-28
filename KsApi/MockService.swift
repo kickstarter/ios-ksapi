@@ -49,6 +49,8 @@ internal struct MockService: ServiceType {
 
   private let fetchUnansweredSurveyResponsesResponse: [SurveyResponse]
 
+  private let fetchUpdateResponse: Update
+
   private let fetchUserSelfResponse: User?
   private let fetchUserSelfError: ErrorEnvelope?
 
@@ -124,6 +126,7 @@ internal struct MockService: ServiceType {
                 fetchUserSelfResponse: User? = nil,
                 followFriendError: ErrorEnvelope? = nil,
                 fetchUnansweredSurveyResponsesResponse: [SurveyResponse] = [],
+                fetchUpdateResponse: Update = .template,
                 fetchUserSelfError: ErrorEnvelope? = nil,
                 postCommentResponse: Comment? = nil,
                 postCommentError: ErrorEnvelope? = nil,
@@ -234,6 +237,8 @@ internal struct MockService: ServiceType {
     self.fetchProjectStatsError = fetchProjectStatsError
 
     self.fetchUnansweredSurveyResponsesResponse = fetchUnansweredSurveyResponsesResponse
+
+    self.fetchUpdateResponse = fetchUpdateResponse
 
     self.fetchUserSelfResponse = fetchUserSelfResponse ?? .template
     self.fetchUserSelfError = fetchUserSelfError
@@ -422,6 +427,7 @@ internal struct MockService: ServiceType {
       fetchProjectStatsResponse: self.fetchProjectStatsResponse,
       fetchProjectStatsError: self.fetchProjectStatsError,
       fetchUnansweredSurveyResponsesResponse: self.fetchUnansweredSurveyResponsesResponse,
+      fetchUpdateResponse: self.fetchUpdateResponse,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       followFriendError: self.followFriendError,
       fetchUserSelfError: self.fetchUserSelfError,
@@ -472,6 +478,7 @@ internal struct MockService: ServiceType {
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       followFriendError: self.followFriendError,
       fetchUnansweredSurveyResponsesResponse: self.fetchUnansweredSurveyResponsesResponse,
+      fetchUpdateResponse: self.fetchUpdateResponse,
       fetchUserSelfError: self.fetchUserSelfError,
       postCommentResponse: self.postCommentResponse,
       postCommentError: self.postCommentError,
@@ -636,11 +643,15 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: self.fetchProjectNotificationsResponse)
   }
 
-  internal func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
+  internal func fetchProject(param param: Param) -> SignalProducer<Project, ErrorEnvelope> {
     if let project = self.fetchProjectResponse {
       return SignalProducer(value: project)
     }
-    return SignalProducer(value: .template |> Project.lens.id .~ id)
+    return SignalProducer(
+      value: .template
+        |> Project.lens.id %~ { param.id ?? $0 }
+        |> Project.lens.slug %~ { param.slug ?? $0 }
+    )
   }
 
   internal func fetchProject(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
@@ -916,6 +927,12 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: error)
     }
     return SignalProducer(value: user)
+  }
+
+  internal func fetchUpdate(updateId updateId: Int, projectParam: Param)
+    -> SignalProducer<Update, ErrorEnvelope> {
+
+      return SignalProducer(value: self.fetchUpdateResponse |> Update.lens.id .~ updateId)
   }
 
   internal func fetchUpdateDraft(forProject project: Project) -> SignalProducer<UpdateDraft, ErrorEnvelope> {

@@ -29,7 +29,7 @@ internal enum Route {
   case messageThreads(mailbox: Mailbox, project: Project?)
   case postProjectComment(Project, body: String)
   case postUpdateComment(Update, body: String)
-  case project(Int)
+  case project(Param)
   case projectActivities(Project)
   case projectComments(Project)
   case projectNotifications
@@ -45,6 +45,7 @@ internal enum Route {
   case toggleStar(Project)
   case unansweredSurveyResponses
   case unfollowFriend(userId: Int)
+  case update(updateId: Int, projectParam: Param)
   case updateComments(Update)
   case updateProjectNotification(notification: ProjectNotification)
   case updateUpdateDraft(UpdateDraft, title: String, body: String, isPublic: Bool)
@@ -140,8 +141,8 @@ internal enum Route {
     case let .postUpdateComment(u, body):
       return (.POST, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", ["body": body], nil)
 
-    case let .project(id):
-      return (.GET, "/v1/projects/\(id)", [:], nil)
+    case let .project(param):
+      return (.GET, "/v1/projects/\(param.urlComponent)", [:], nil)
 
     case let .projectActivities(project):
       return (.GET, "/v1/projects/\(project.id)/activities", [:], nil)
@@ -193,6 +194,9 @@ internal enum Route {
 
     case let .unfollowFriend(userId):
       return (.DELETE, "v1/users/self/friends/\(userId)", [:], nil)
+
+    case let .update(id, projectParam):
+      return (.GET, "v1/projects/\(projectParam.urlComponent)/updates/\(id)", [:], nil)
 
     case let .updateComments(u):
       return (.GET, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", [:], nil)

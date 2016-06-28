@@ -70,7 +70,7 @@ public struct Service: ServiceType {
   public func previewUrl(forDraft draft: UpdateDraft) -> NSURL {
     let previewUrl = self.serverConfig.apiBaseUrl
       .URLByAppendingPathComponent("/v1/projects/\(draft.update.projectId)/updates/draft/preview")
-    return preparedRequest(previewUrl).URL!
+    return preparedRequest(forURL: previewUrl).URL!
   }
 
   public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
@@ -169,8 +169,8 @@ public struct Service: ServiceType {
       return requestPagination(paginationUrl)
   }
 
-  public func fetchProject(id id: Int) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.project(id))
+  public func fetchProject(param param: Param) -> SignalProducer<Project, ErrorEnvelope> {
+    return request(.project(param))
   }
 
   public func fetchProject(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
@@ -178,7 +178,7 @@ public struct Service: ServiceType {
   }
 
   public func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope> {
-    return request(.project(project.id))
+    return request(.project(.id(project.id)))
   }
 
   public func fetchProjectNotifications() -> SignalProducer<[ProjectNotification], ErrorEnvelope> {
@@ -214,6 +214,12 @@ public struct Service: ServiceType {
 
   public func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope> {
     return request(.user(user))
+  }
+
+  public func fetchUpdate(updateId updateId: Int, projectParam: Param)
+    -> SignalProducer<Update, ErrorEnvelope> {
+
+      return request(.update(updateId: updateId, projectParam: projectParam))
   }
 
   public func fetchUpdateDraft(forProject project: Project) -> SignalProducer<UpdateDraft, ErrorEnvelope> {
@@ -369,7 +375,7 @@ public struct Service: ServiceType {
         return .init(error: .invalidPaginationUrl)
       }
 
-      return Service.session.rac_JSONResponse(preparedRequest(paginationUrl))
+      return Service.session.rac_JSONResponse(preparedRequest(forURL: paginationUrl))
         .flatMap(decodeModel)
   }
 
@@ -381,7 +387,7 @@ public struct Service: ServiceType {
       let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
 
       return Service.session.rac_JSONResponse(
-        preparedRequest(URL, method: properties.method, query: properties.query),
+        preparedRequest(forURL: URL, method: properties.method, query: properties.query),
         uploading: properties.fileUrl
         )
         .flatMap(decodeModel)
@@ -395,71 +401,9 @@ public struct Service: ServiceType {
       let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
 
       return Service.session.rac_JSONResponse(
-        preparedRequest(URL, method: properties.method, query: properties.query),
+        preparedRequest(forURL: URL, method: properties.method, query: properties.query),
         uploading: properties.fileUrl
         )
         .flatMap(decodeModels)
-  }
-
-  private func preparedRequest(URL: NSURL, method: Method = .GET, query: [String:AnyObject] = [:])
-    -> NSURLRequest {
-
-    let request = NSMutableURLRequest(URL: URL)
-
-    request.HTTPMethod = method.rawValue
-
-    // Add some headers
-    var headers = [
-      "Accept-Language": self.language,
-      "Kickstarter-iOS-App": self.buildVersion
-      ]
-    headers["Authorization"] = self.serverConfig.basicHTTPAuth?.authorizationHeader
-
-    // Add some query params for authentication et al
-    var query = query
-    query["client_id"] = self.serverConfig.apiClientAuth.clientId
-    query["oauth_token"] = self.oauthToken?.token
-
-    // swiftlint:disable force_cast
-    // NB: instead of force cast we could bubble up a custom ErrorEnvelope error.
-    let components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: false)!
-    // swiftlint:enable force_cast
-
-    components.queryItems =
-      (
-        components.queryItems ?? [] + query
-          .flatMap(queryComponents)
-          .map(NSURLQueryItem.init(name:value:))
-      )
-      .sort { $0.name < $1.name && $0.value < $0.value }
-
-    if method == .GET || method == .DELETE {
-      request.URL = components.URL
-    } else if let query = components.query {
-      headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
-      request.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-    }
-
-    request.allHTTPHeaderFields = headers
-
-    return request
-  }
-
-  private func queryComponents(key: String, _ value: AnyObject) -> [(String, String)] {
-    var components: [(String, String)] = []
-
-    if let dictionary = value as? [String: AnyObject] {
-      for (nestedKey, value) in dictionary {
-        components += queryComponents("\(key)[\(nestedKey)]", value)
-      }
-    } else if let array = value as? [AnyObject] {
-      for value in array {
-        components += queryComponents("\(key)[]", value)
-      }
-    } else {
-      components.append((key, String(value)))
-    }
-
-    return components
   }
 }

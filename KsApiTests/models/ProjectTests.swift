@@ -112,9 +112,10 @@ final class ProjectTests: XCTestCase {
       "launched_at": 1000,
       "deadline": 1000,
       "state_changed_at": 1000,
+      "slug": "project",
       "urls": [
         "web": [
-          "project": "https://www.kickstarter.com/projects/my-cool-projects"
+          "project": "https://www.kickstarter.com/projects/blob/project"
         ]
       ],
       "state": "live"
@@ -194,6 +195,7 @@ final class ProjectTests: XCTestCase {
       "launched_at": 1000,
       "deadline": 1000,
       "state_changed_at": 1000,
+      "slug": "project",
       "urls": [
         "web": [
           "project": "https://www.kickstarter.com/projects/my-cool-projects"

@@ -113,6 +113,8 @@
 		A726621A1D07671D0087D883 /* UserTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72661F01D07671D0087D883 /* UserTemplates.swift */; };
 		A726621C1D0767DB0087D883 /* ConfigLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726621B1D0767DB0087D883 /* ConfigLenses.swift */; };
 		A726621D1D0767DB0087D883 /* ConfigLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A726621B1D0767DB0087D883 /* ConfigLenses.swift */; };
+		A731BF981D1F0A7E00A734AC /* Param.swift in Sources */ = {isa = PBXBuildFile; fileRef = A731BF971D1F0A7E00A734AC /* Param.swift */; };
+		A731BF991D1F0A7E00A734AC /* Param.swift in Sources */ = {isa = PBXBuildFile; fileRef = A731BF971D1F0A7E00A734AC /* Param.swift */; };
 		A73639881D03559C00445B24 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73639251D03550300445B24 /* Argo.framework */; };
 		A73639891D03559C00445B24 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736393A1D03550700445B24 /* Curry.framework */; };
 		A736398A1D03559C00445B24 /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73639491D03550C00445B24 /* Prelude.framework */; };
@@ -617,6 +619,7 @@
 		A72661EF1D07671D0087D883 /* User.StatsTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.StatsTemplates.swift; sourceTree = "<group>"; };
 		A72661F01D07671D0087D883 /* UserTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTemplates.swift; sourceTree = "<group>"; };
 		A726621B1D0767DB0087D883 /* ConfigLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigLenses.swift; sourceTree = "<group>"; };
+		A731BF971D1F0A7E00A734AC /* Param.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Param.swift; sourceTree = "<group>"; };
 		A736391A1D03550300445B24 /* Argo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Argo.xcodeproj; path = Frameworks/Argo/Argo.xcodeproj; sourceTree = "<group>"; };
 		A73639321D03550700445B24 /* Curry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Curry.xcodeproj; path = Frameworks/Curry/Curry.xcodeproj; sourceTree = "<group>"; };
 		A73639411D03550C00445B24 /* Prelude.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Prelude.xcodeproj; path = Frameworks/Prelude/Prelude.xcodeproj; sourceTree = "<group>"; };
@@ -917,6 +920,7 @@
 				A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */,
 				A73639A41D03565400445B24 /* lenses */,
 				A72661DB1D07671D0087D883 /* templates */,
+				A731BF971D1F0A7E00A734AC /* Param.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1529,6 +1533,7 @@
 				80FB0AFD1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift in Sources */,
 				A73639F61D03565400445B24 /* CommentLenses.swift in Sources */,
 				A73639FC1D03565400445B24 /* MessageLenses.swift in Sources */,
+				A731BF981D1F0A7E00A734AC /* Param.swift in Sources */,
 				A7363A1E1D03565400445B24 /* Project.Country.swift in Sources */,
 				A7363A001D03565400445B24 /* Project.DatesLenses.swift in Sources */,
 				A757E99F1D19903400A5C978 /* SurveyResponse.swift in Sources */,
@@ -1682,6 +1687,7 @@
 				A77967731C2B431C0002166F /* Service.swift in Sources */,
 				80FB0AFE1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift in Sources */,
 				A73639F71D03565400445B24 /* CommentLenses.swift in Sources */,
+				A731BF991D1F0A7E00A734AC /* Param.swift in Sources */,
 				A73639FD1D03565400445B24 /* MessageLenses.swift in Sources */,
 				A7363A1F1D03565400445B24 /* Project.Country.swift in Sources */,
 				A757E9A01D19903400A5C978 /* SurveyResponse.swift in Sources */,
