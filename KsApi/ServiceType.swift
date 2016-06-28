@@ -214,7 +214,7 @@ public protocol ServiceType {
 
   /// Updates the draft of a project update.
   func update(draft draft: UpdateDraft, title: String, body: String, isPublic: Bool)
-    -> SignalProducer<Update, ErrorEnvelope>
+    -> SignalProducer<UpdateDraft, ErrorEnvelope>
 }
 
 extension ServiceType {

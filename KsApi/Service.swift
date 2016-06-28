@@ -317,7 +317,7 @@ public struct Service: ServiceType {
     return request(.unfollowFriend(userId: id))
   }
   public func update(draft draft: UpdateDraft, title: String, body: String, isPublic: Bool)
-    -> SignalProducer<Update, ErrorEnvelope> {
+    -> SignalProducer<UpdateDraft, ErrorEnvelope> {
 
       return request(.updateUpdateDraft(draft, title: title, body: body, isPublic: isPublic))
   }
