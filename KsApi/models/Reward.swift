@@ -10,6 +10,7 @@ public struct Reward {
   public let minimum: Int
   public let remaining: Int?
   public let shipping: Shipping
+  public let title: String?
 
   /// Returns `true` is this is the "fake" "No reward" reward.
   public var isNoReward: Bool {
@@ -58,6 +59,7 @@ extension Reward: Decodable {
       <*> json <| "minimum"
       <*> json <|? "remaining"
       <*> Reward.Shipping.decode(json)
+      <*> json <|? "title"
   }
 }
 

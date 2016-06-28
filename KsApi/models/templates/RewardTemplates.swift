@@ -13,7 +13,8 @@ extension Reward {
       enabled: true,
       preference: .none,
       summary: "Ships anywhere in the world"
-    )
+    ),
+    title: nil
   )
 
   internal static let noReward = template
