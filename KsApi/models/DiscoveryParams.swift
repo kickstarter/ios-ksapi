@@ -37,22 +37,21 @@ public struct DiscoveryParams {
                                                sort: nil, staffPicks: nil, starred: nil, state: nil)
 
   public var queryParams: [String:String] {
-    var params: [String:String] = [
-      "staff_picks": self.staffPicks?.description,
-      "has_video": self.hasVideo?.description,
-      "starred": self.starred == true ? "1" : self.starred == false ? "-1" : nil,
-      "backed": self.backed == true ? "1" : self.backed == false ? "-1" : nil,
-      "social": self.social == true ? "1" : self.social == false ? "-1" : nil,
-      "recommended": self.recommended?.description,
-      "similar_to": self.similarTo?.id.description,
-      "category_id": self.category?.id.description,
-      "term": self.query,
-      "state": self.state?.rawValue,
-      "sort": self.sort?.rawValue,
-      "page": self.page?.description,
-      "per_page": self.perPage?.description,
-      "seed": self.seed?.description,
-    ].compact()
+    var params: [String:String] = [:]
+    params["staff_picks"] = self.staffPicks?.description
+    params["has_video"] = self.hasVideo?.description
+    params["starred"] = self.starred == true ? "1" : self.starred == false ? "-1" : nil
+    params["backed"] = self.backed == true ? "1" : self.backed == false ? "-1" : nil
+    params["social"] = self.social == true ? "1" : self.social == false ? "-1" : nil
+    params["recommended"] = self.recommended?.description
+    params["similar_to"] = self.similarTo?.id.description
+    params["category_id"] = self.category?.id.description
+    params["term"] = self.query
+    params["state"] = self.state?.rawValue
+    params["sort"] = self.sort?.rawValue
+    params["page"] = self.page?.description
+    params["per_page"] = self.perPage?.description
+    params["seed"] = self.seed?.description
 
     // Include the POTD only when searching for staff picks sorted by magic / no sort
     if params == ["staff_picks": "true"] ||

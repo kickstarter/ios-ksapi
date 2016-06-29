@@ -68,12 +68,13 @@ extension User: CustomDebugStringConvertible {
 extension User: Decodable {
   public static func decode(json: JSON) -> Decoded<User> {
     let create = curry(User.init)
-    return create
+    let tmp = create
       <^> json <| "avatar"
       <*> json <|? "facebook_connected"
       <*> json <| "id"
       <*> json <|? "is_friend"
       <*> json <|? "location"
+    return tmp
       <*> json <| "name"
       <*> User.NewsletterSubscriptions.decode(json)
       <*> User.Notifications.decode(json)

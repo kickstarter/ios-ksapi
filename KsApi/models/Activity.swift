@@ -54,11 +54,12 @@ extension Activity.Category: Decodable {
 extension Activity: Decodable {
   public static func decode(json: JSON) -> Decoded<Activity> {
     let create = curry(Activity.init)
-    return create
+    let tmp = create
       <^> json <|  "category"
       <*> json <|? "comment"
       <*> json <|  "created_at"
       <*> json <|  "id"
+    return tmp
       <*> Activity.MemberData.decode(json)
       <*> json <|? "project"
       <*> json <|? "update"
@@ -68,11 +69,13 @@ extension Activity: Decodable {
 
 extension Activity.MemberData: Decodable {
   public static func decode(json: JSON) -> Decoded<Activity.MemberData> {
-    return curry(Activity.MemberData.init)
+    let create = curry(Activity.MemberData.init)
+    let tmp = create
       <^> json <|? "amount"
       <*> json <|? "backing"
       <*> json <|? "old_amount"
       <*> json <|? "old_reward_id"
+    return tmp
       <*> json <|? "new_amount"
       <*> json <|? "new_reward_id"
       <*> json <|? "reward_id"

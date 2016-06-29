@@ -1,3 +1,5 @@
+import Argo
+
 /// Represents a way to paramterize a model by either an `id` integer or `slug` string.
 public enum Param {
   case id(Int)
@@ -26,6 +28,34 @@ public enum Param {
       return String(id)
     case let .slug(slug):
       return slug
+    }
+  }
+}
+
+extension Param: Equatable {}
+public func == (lhs: Param, rhs: Param) -> Bool {
+
+  switch (lhs, rhs) {
+  case let (.id(lhs), .id(rhs)):
+    return lhs == rhs
+  case let (.slug(lhs), .slug(rhs)):
+    return lhs == rhs
+  case let (.id(lhs), .slug(rhs)):
+    return String(lhs) == rhs
+  case let (.slug(lhs), .id(rhs)):
+    return lhs == String(rhs)
+  }
+}
+
+extension Param: Decodable {
+  public static func decode(json: JSON) -> Decoded<Param> {
+    switch json {
+    case let .String(slug):
+      return .Success(.slug(slug))
+    case let .Number(number):
+      return .Success(.id(number.integerValue))
+    default:
+      return .Failure(.Custom("Param must be a number or string."))
     }
   }
 }
