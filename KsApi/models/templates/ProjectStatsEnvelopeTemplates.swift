@@ -3,7 +3,7 @@ extension ProjectStatsEnvelope {
     cumulative: .template,
     fundingDistribution: [],
     referralDistribution: [],
-    rewardDistribution: [],
+    rewardStats: [.template],
     videoStats: .template
   )
 }

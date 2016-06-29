@@ -80,7 +80,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
     XCTAssertEqual(14, stats.value?.videoStats?.internalStarts)
 
     let fundingDistributions = stats.value?.fundingDistribution ?? []
-    let rewardDistributions = stats.value?.rewardDistribution ?? []
+    let rewardStats = stats.value?.rewardStats ?? []
     let referralDistributions = stats.value?.referralDistribution ?? []
 
     XCTAssertEqual(7, fundingDistributions[0].cumulativeBackersCount)
@@ -91,8 +91,14 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
     XCTAssertEqual("my_okay_referrer_code", referralDistributions[1].code)
     XCTAssertEqual(1, referralDistributions[1].backersCount)
 
-    XCTAssertEqual(0, rewardDistributions[0].id)
-    XCTAssertEqual(123456, rewardDistributions[1].id)
+    XCTAssertEqual(0, rewardStats[0].rewardId)
+    XCTAssertEqual(123456, rewardStats[1].rewardId)
+    XCTAssertEqual(1, rewardStats[0].pledged)
+    XCTAssertEqual(25, rewardStats[1].pledged)
+    XCTAssertEqual(5, rewardStats[0].backersCount)
+    XCTAssertEqual(10, rewardStats[1].backersCount)
+    XCTAssertEqual(0, rewardStats[0].minimum)
+    XCTAssertEqual(5, rewardStats[1].minimum)
 
   }
   // swiftlint:enable function_body_length
@@ -116,7 +122,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
     XCTAssertNil(stats.value?.cumulative)
     XCTAssertNil(stats.value?.fundingDistribution)
     XCTAssertNil(stats.value?.referralDistribution)
-    XCTAssertNil(stats.value?.rewardDistribution)
+    XCTAssertNil(stats.value?.rewardStats)
     XCTAssertNil(stats.value?.videoStats)
   }
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		013F78331D1D9EA5005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F78321D1D9EA5005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift */; };
+		013F78351D1DA118005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F78341D1DA118005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift */; };
+		013F78361D1DA122005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F78341D1DA118005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift */; };
+		013F78371D1DAAF9005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F78321D1D9EA5005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift */; };
 		0156B1FF1D075F84000C4252 /* FindFriendsEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */; };
 		0156B2001D075F84000C4252 /* FindFriendsEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */; };
 		0156B2121D076028000C4252 /* FriendStatsEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0156B2111D076028000C4252 /* FriendStatsEnvelopeTests.swift */; };
@@ -291,6 +295,8 @@
 		A777A5AE1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */; };
 		A77967731C2B431C0002166F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
 		A77967741C2B431C0002166F /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
+		A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift */; };
+		A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift */; };
 		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
 		A7FD09701C83E74F00332CCB /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
 		A7FD09751C83E74F00332CCB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
@@ -565,6 +571,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		013F78321D1D9EA5005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStatsEnvelope.RewardDistributionTemplates.swift; sourceTree = "<group>"; };
+		013F78341D1DA118005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStatsEnvelope.RewardDistributionLenses.swift; sourceTree = "<group>"; };
 		0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsEnvelopeTests.swift; sourceTree = "<group>"; };
 		0156B2111D076028000C4252 /* FriendStatsEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendStatsEnvelopeTests.swift; sourceTree = "<group>"; };
 		0156B2471D07B98D000C4252 /* FindFriendsEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsEnvelopeLenses.swift; sourceTree = "<group>"; };
@@ -710,6 +718,7 @@
 		A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.AvatarLenses.swift; sourceTree = "<group>"; };
 		A77967631C2B431C0002166F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A77967641C2B431C0002166F /* ServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
+		A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStatsEnvelope.CumulativeLenses.swift; sourceTree = "<group>"; };
 		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A7FD099D1C83E74F00332CCB /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FD09D21C83E8E900332CCB /* KsApi-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -777,21 +786,21 @@
 				A72661DD1D07671D0087D883 /* BackingTemplates.swift */,
 				A72661DE1D07671D0087D883 /* CategoriesEnvelopeTemplates.swift */,
 				A72661DF1D07671D0087D883 /* CategoryTemplates.swift */,
-				59D1E67B1D18A27000896A4C /* ProjectStatsEnvelope.VideoStatsTemplates.swift */,
-				59D1E6A91D19E54800896A4C /* ProjectStatsEnvelope.CumulativeTemplates.swift */,
-				59D1E67E1D18A8C000896A4C /* User.MemberDataTemplates.swift */,
 				A72661E01D07671D0087D883 /* CommentTemplates.swift */,
 				A72661E11D07671D0087D883 /* ConfigTemplates.swift */,
 				A72661E21D07671D0087D883 /* DiscoveryEnvelopeTemplates.swift */,
 				0156B3811D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift */,
 				0156B41B1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift */,
-				59D1E6A31D19C58800896A4C /* ProjectStatsEnvelopeTemplates.swift */,
 				A72661E31D07671D0087D883 /* LocationTemplates.swift */,
 				A72661E41D07671D0087D883 /* MessageTemplates.swift */,
 				A72661E51D07671D0087D883 /* MessageThreadTemplates.swift */,
 				A72661E61D07671D0087D883 /* Project.PhotoTemplates.swift */,
 				A72661E71D07671D0087D883 /* Project.VideoTemplates.swift */,
 				59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */,
+				59D1E6A91D19E54800896A4C /* ProjectStatsEnvelope.CumulativeTemplates.swift */,
+				013F78321D1D9EA5005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift */,
+				59D1E67B1D18A27000896A4C /* ProjectStatsEnvelope.VideoStatsTemplates.swift */,
+				59D1E6A31D19C58800896A4C /* ProjectStatsEnvelopeTemplates.swift */,
 				A72661E81D07671D0087D883 /* ProjectTemplates.swift */,
 				A72661E91D07671D0087D883 /* RewardTemplates.swift */,
 				A72661EA1D07671D0087D883 /* StarEnvelopeTemplates.swift */,
@@ -799,6 +808,7 @@
 				80FB0AFC1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift */,
 				A72661EB1D07671D0087D883 /* UpdateTemplates.swift */,
 				A72661EC1D07671D0087D883 /* User.AvatarTemplates.swift */,
+				59D1E67E1D18A8C000896A4C /* User.MemberDataTemplates.swift */,
 				A72661ED1D07671D0087D883 /* User.NewsletterSubscriptionsTemplates.swift */,
 				A72661EE1D07671D0087D883 /* User.NotificationsTemplates.swift */,
 				A72661EF1D07671D0087D883 /* User.StatsTemplates.swift */,
@@ -888,7 +898,6 @@
 				A73639981D03565400445B24 /* AccessTokenEnvelope.swift */,
 				A73639991D03565400445B24 /* Activity.swift */,
 				A736399A1D03565400445B24 /* ActivityEnvelope.swift */,
-				59D1E6A01D19C1F600896A4C /* ProjectStatsEnvelope.swift */,
 				A736399B1D03565400445B24 /* Backing.swift */,
 				A736399C1D03565400445B24 /* CategoriesEnvelope.swift */,
 				A736399D1D03565400445B24 /* Category.swift */,
@@ -909,6 +918,7 @@
 				A73639BE1D03565400445B24 /* Project.swift */,
 				A73639BF1D03565400445B24 /* Project.Video.swift */,
 				9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */,
+				59D1E6A01D19C1F600896A4C /* ProjectStatsEnvelope.swift */,
 				59B0DF231D0F13570081D2DC /* ProjectNotification.swift */,
 				9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */,
 				A73639C01D03565400445B24 /* Reward.swift */,
@@ -951,6 +961,8 @@
 				A73639B01D03565400445B24 /* ProjectLenses.swift */,
 				59B0DF311D0F13960081D2DC /* ProjectNotification.ProjectLenses.swift */,
 				59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */,
+				A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift */,
+				013F78341D1DA118005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift */,
 				59D1E6FE1D1B1CFD00896A4C /* ProjectStatsEnvelope.VideoStatsLenses.swift */,
 				59D1E6A61D19CD6300896A4C /* ProjectStatsEnvelopeLenses.swift */,
 				A73639B11D03565400445B24 /* RewardLenses.swift */,
@@ -1513,6 +1525,7 @@
 				59B0DF381D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A73639E21D03565400445B24 /* Category.swift in Sources */,
 				59B0E0581D1356850081D2DC /* Project.MemberDataLenses.swift in Sources */,
+				A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift in Sources */,
 				A72662071D07671D0087D883 /* Project.VideoTemplates.swift in Sources */,
 				A73639DE1D03565400445B24 /* Backing.swift in Sources */,
 				809F8B551D089DA5005BADD9 /* UpdateDraft.swift in Sources */,
@@ -1538,6 +1551,7 @@
 				A7363A001D03565400445B24 /* Project.DatesLenses.swift in Sources */,
 				A757E99F1D19903400A5C978 /* SurveyResponse.swift in Sources */,
 				A73639CE1D03565400445B24 /* Decodable.swift in Sources */,
+				013F78351D1DA118005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift in Sources */,
 				8062BBFE1D0F16BD00702C68 /* UpdateDraftLenses.swift in Sources */,
 				A73639C81D03565400445B24 /* BasicHTTPAuth.swift in Sources */,
 				A7363A261D03565400445B24 /* Reward.swift in Sources */,
@@ -1562,6 +1576,7 @@
 				A7363A121D03565400445B24 /* UserLenses.swift in Sources */,
 				9D9F582E1D1327E300CE81DE /* ProjectActivityEnvelope.swift in Sources */,
 				A777A59A1D05F55A00823FB1 /* VoidEnvelope.swift in Sources */,
+				013F78331D1D9EA5005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift in Sources */,
 				A777A5AD1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */,
 				A777A5981D05F55A00823FB1 /* FriendStatsEnvelope.swift in Sources */,
 				A73639D61D03565400445B24 /* Route.swift in Sources */,
@@ -1655,6 +1670,7 @@
 				A726620C1D07671D0087D883 /* RewardTemplates.swift in Sources */,
 				A726621D1D0767DB0087D883 /* ConfigLenses.swift in Sources */,
 				A72662041D07671D0087D883 /* MessageThreadTemplates.swift in Sources */,
+				013F78361D1DA122005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift in Sources */,
 				A73639CD1D03565400445B24 /* OauthToken.swift in Sources */,
 				A73639D11D03565400445B24 /* EncodableType.swift in Sources */,
 				A73639EF1D03565400445B24 /* ErrorEnvelope.swift in Sources */,
@@ -1701,6 +1717,7 @@
 				A72661F41D07671D0087D883 /* BackingTemplates.swift in Sources */,
 				A72661FA1D07671D0087D883 /* CommentTemplates.swift in Sources */,
 				59B0DF361D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */,
+				A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift in Sources */,
 				A7363A0F1D03565400445B24 /* User.NotificationsLenses.swift in Sources */,
 				59D1E6A21D19C1F600896A4C /* ProjectStatsEnvelope.swift in Sources */,
 				59D1E7001D1B1CFD00896A4C /* ProjectStatsEnvelope.VideoStatsLenses.swift in Sources */,
@@ -1727,6 +1744,7 @@
 				A72662181D07671D0087D883 /* User.StatsTemplates.swift in Sources */,
 				A72662001D07671D0087D883 /* LocationTemplates.swift in Sources */,
 				0156B3831D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift in Sources */,
+				013F78371D1DAAF9005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift in Sources */,
 				A72661FC1D07671D0087D883 /* ConfigTemplates.swift in Sources */,
 				A73639E51D03565400445B24 /* Comment.swift in Sources */,
 				A73639FF1D03565400445B24 /* MessageThreadLenses.swift in Sources */,

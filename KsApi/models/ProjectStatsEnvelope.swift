@@ -5,7 +5,7 @@ public struct ProjectStatsEnvelope {
   public let cumulative: ProjectStatsEnvelope.Cumulative
   public let fundingDistribution: [FundingDistribution]
   public let referralDistribution: [ReferralDistribution]
-  public let rewardDistribution: [RewardDistribution]
+  public let rewardStats: [RewardStats]
   public let videoStats: ProjectStatsEnvelope.VideoStats?
 
   public struct Cumulative {
@@ -33,11 +33,13 @@ public struct ProjectStatsEnvelope {
     public let referrerType: String
   }
 
-  public struct RewardDistribution {
+  public struct RewardStats {
     public let backersCount: Int
-    public let id: Int
+    public let rewardId: Int
     public let minimum: Int
     public let pledged: Int
+
+    public static let zero = RewardStats(backersCount: 0, rewardId: 0, minimum: 0, pledged: 0)
   }
 
   public struct VideoStats {
@@ -73,11 +75,11 @@ extension ProjectStatsEnvelope.Cumulative: Decodable {
 extension ProjectStatsEnvelope.FundingDistribution: Decodable {
   public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.FundingDistribution> {
     return curry(ProjectStatsEnvelope.FundingDistribution.init)
-      <^> json <| "backers_count"
+      <^> (json <| "backers_count" <|> .Success(0))
       <*> ((json <| "cumulative_pledged" >>- stringToInt) <|> (json <| "cumulative_pledged"))
       <*> json <| "cumulative_backers_count"
       <*> json <| "date"
-      <*> (json <| "pledged" >>- stringToInt)
+      <*> ((json <| "pledged" >>- stringToInt) <|> .Success(0))
   }
 }
 
@@ -93,15 +95,21 @@ extension ProjectStatsEnvelope.ReferralDistribution: Decodable {
   }
 }
 
-extension ProjectStatsEnvelope.RewardDistribution: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.RewardDistribution> {
-    let create = curry(ProjectStatsEnvelope.RewardDistribution.init)
+extension ProjectStatsEnvelope.RewardStats: Decodable {
+  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.RewardStats> {
+    let create = curry(ProjectStatsEnvelope.RewardStats.init)
     return create
       <^> json <| "backers_count"
       <*> json <| "reward_id"
       <*> (json <| "minimum" >>- stringToInt)
       <*> (json <| "pledged" >>- stringToInt)
   }
+}
+
+extension ProjectStatsEnvelope.RewardStats: Equatable {}
+public func == (lhs: ProjectStatsEnvelope.RewardStats, rhs: ProjectStatsEnvelope.RewardStats)
+  -> Bool {
+  return lhs.rewardId == rhs.rewardId
 }
 
 extension ProjectStatsEnvelope.VideoStats: Decodable {
