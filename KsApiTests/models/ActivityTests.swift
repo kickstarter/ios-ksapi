@@ -86,6 +86,7 @@ final internal class ActivityTests: XCTestCase {
       "id": 1,
       ])
 
-    XCTAssertNotNil(activity.error)
+    XCTAssertNil(activity.error)
+    XCTAssertEqual(.Some(.unknown), activity.value?.category)
   }
 }

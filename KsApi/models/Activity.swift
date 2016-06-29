@@ -29,6 +29,7 @@ public struct Activity {
     case suspension       = "suspension"
     case update           = "update"
     case watch            = "watch"
+    case unknown          = "unknown"
   }
 
   public struct MemberData {
@@ -48,9 +49,6 @@ public func == (lhs: Activity, rhs: Activity) -> Bool {
   return lhs.id == rhs.id
 }
 
-extension Activity.Category: Decodable {
-}
-
 extension Activity: Decodable {
   public static func decode(json: JSON) -> Decoded<Activity> {
     let create = curry(Activity.init)
@@ -64,6 +62,17 @@ extension Activity: Decodable {
       <*> json <|? "project"
       <*> json <|? "update"
       <*> json <|? "user"
+  }
+}
+
+extension Activity.Category: Decodable {
+  public static func decode(json: JSON) -> Decoded<Activity.Category> {
+    switch json {
+    case let .String(category):
+      return .Success(Activity.Category(rawValue: category) ?? .unknown)
+    default:
+      return .Failure(.TypeMismatch(expected: "String", actual: json.description))
+    }
   }
 }
 
