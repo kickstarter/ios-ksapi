@@ -10,7 +10,8 @@ extension Comment {
 
     public static let body = Lens<Comment, String>(
       view: { $0.body },
-      set: { Comment(author: $1.author, body: $0, createdAt: $1.createdAt, deletedAt: $1.deletedAt, id: $1.id) }
+      set: { Comment(author: $1.author, body: $0, createdAt: $1.createdAt, deletedAt: $1.deletedAt,
+        id: $1.id) }
     )
 
     public static let createdAt = Lens<Comment, NSTimeInterval>(
