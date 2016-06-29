@@ -76,6 +76,8 @@ internal struct MockService: ServiceType {
 
   private let unfollowFriendError: ErrorEnvelope?
 
+  private let updateDraftError: ErrorEnvelope?
+
   private let updateProjectNotificationResponse: ProjectNotification?
   private let updateProjectNotificationError: ErrorEnvelope?
 
@@ -141,6 +143,7 @@ internal struct MockService: ServiceType {
                 signupResponse: AccessTokenEnvelope? = nil,
                 signupError: ErrorEnvelope? = nil,
                 unfollowFriendError: ErrorEnvelope? = nil,
+                updateDraftError: ErrorEnvelope? = nil,
                 updateProjectNotificationResponse: ProjectNotification? = nil,
                 updateProjectNotificationError: ErrorEnvelope? = nil,
                 updateUserSelfError: ErrorEnvelope? = nil) {
@@ -269,6 +272,8 @@ internal struct MockService: ServiceType {
     self.signupError = signupError
 
     self.unfollowFriendError = unfollowFriendError
+
+    self.updateDraftError = updateDraftError
 
     self.updateProjectNotificationResponse = updateProjectNotificationResponse
 
@@ -948,7 +953,15 @@ internal struct MockService: ServiceType {
   internal func update(draft draft: UpdateDraft, title: String, body: String, isPublic: Bool)
     -> SignalProducer<UpdateDraft, ErrorEnvelope> {
 
-      return SignalProducer(value: .template)
+      if let error = self.updateDraftError {
+        return SignalProducer(error: error)
+      }
+      let updatedDraft = draft
+        |> UpdateDraft.lens.update.title .~ title
+        |> UpdateDraft.lens.update.body .~ body
+        |> UpdateDraft.lens.update.isPublic .~ isPublic
+
+      return SignalProducer(value: updatedDraft)
   }
 
   internal func addImage(file fileURL: NSURL, toDraft draft: UpdateDraft)
