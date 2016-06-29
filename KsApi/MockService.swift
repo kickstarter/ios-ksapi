@@ -16,6 +16,8 @@ internal struct MockService: ServiceType {
   private let fetchActivitiesResponse: [Activity]?
   private let fetchActivitiesError: ErrorEnvelope?
 
+  private let fetchBackingResponse: Backing
+
   private let fetchCategoriesResponse: CategoriesEnvelope?
 
   private let fetchCommentsResponse: [Comment]?
@@ -105,6 +107,7 @@ internal struct MockService: ServiceType {
                 facebookConnectError: ErrorEnvelope? = nil,
                 fetchActivitiesResponse: [Activity]? = nil,
                 fetchActivitiesError: ErrorEnvelope? = nil,
+                fetchBackingResponse: Backing = .template,
                 fetchCategoriesResponse: CategoriesEnvelope? = nil,
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
@@ -163,6 +166,8 @@ internal struct MockService: ServiceType {
     ]
 
     self.fetchActivitiesError = fetchActivitiesError
+
+    self.fetchBackingResponse = fetchBackingResponse
 
     self.fetchCategoriesResponse = fetchCategoriesResponse ?? (.template
       |> CategoriesEnvelope.lens.categories .~ [
@@ -532,22 +537,7 @@ internal struct MockService: ServiceType {
   func fetchBacking(forProject project: Project, forUser user: User)
     -> SignalProducer<Backing, ErrorEnvelope> {
 
-    return SignalProducer(
-      value: Backing(
-        amount: 10,
-        backerId: 1,
-        id: 1,
-        locationId: 1,
-        pledgedAt: 123456789.0,
-        projectCountry: "US",
-        projectId: 1,
-        reward: .template,
-        rewardId: 1,
-        sequence: 10,
-        shippingAmount: 2,
-        status: .pledged
-      )
-    )
+    return SignalProducer(value: fetchBackingResponse)
   }
 
   internal func fetchDiscovery(paginationUrl paginationUrl: String)
