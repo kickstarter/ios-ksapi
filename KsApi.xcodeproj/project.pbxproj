@@ -295,6 +295,7 @@
 		A777A5AE1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */; };
 		A77967731C2B431C0002166F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
 		A77967741C2B431C0002166F /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
+		A782B4421D2C27DF0069D10E /* Activity.MemberDataLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEE3BA31D1DB9950020C2BE /* Activity.MemberDataLenses.swift */; };
 		A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift */; };
 		A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeLenses.swift */; };
 		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
@@ -1696,6 +1697,7 @@
 				80762DE61D0710F00074189D /* StarEnvelopeLenses.swift in Sources */,
 				80762DDB1D0709D30074189D /* CategoriesEnvelopeLenses.swift in Sources */,
 				A7363A071D03565400445B24 /* ProjectLenses.swift in Sources */,
+				A782B4421D2C27DF0069D10E /* Activity.MemberDataLenses.swift in Sources */,
 				A7363A171D03565400445B24 /* Message.swift in Sources */,
 				A7363A111D03565400445B24 /* User.StatsLenses.swift in Sources */,
 				A7363A031D03565400445B24 /* Project.PersonalizationLenses.swift in Sources */,
