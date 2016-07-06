@@ -4,7 +4,7 @@ import Curry
 public struct ProjectStatsEnvelope {
   public let cumulative: ProjectStatsEnvelope.Cumulative
   public let fundingDistribution: [FundingDistribution]
-  public let referralDistribution: [ReferralDistribution]
+  public let referrerStats: [ReferrerStats]
   public let rewardStats: [RewardStats]
   public let videoStats: ProjectStatsEnvelope.VideoStats?
 
@@ -24,13 +24,20 @@ public struct ProjectStatsEnvelope {
     public let pledged: Int
   }
 
-  public struct ReferralDistribution {
+  public struct ReferrerStats {
     public let backersCount: Int
     public let code: String
     public let percentageOfDollars: Double
     public let pledged: Int
     public let referrerName: String
-    public let referrerType: String
+    public let referrerType: ReferrerType
+
+    public enum ReferrerType {
+      case custom
+      case external
+      case `internal`
+      case unknown
+    }
   }
 
   public struct RewardStats {
@@ -72,6 +79,11 @@ extension ProjectStatsEnvelope.Cumulative: Decodable {
   }
 }
 
+extension ProjectStatsEnvelope.Cumulative: Equatable {}
+public func == (lhs: ProjectStatsEnvelope.Cumulative, rhs: ProjectStatsEnvelope.Cumulative) -> Bool {
+  return lhs.averagePledge == rhs.averagePledge
+}
+
 extension ProjectStatsEnvelope.FundingDistribution: Decodable {
   public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.FundingDistribution> {
     return curry(ProjectStatsEnvelope.FundingDistribution.init)
@@ -83,15 +95,38 @@ extension ProjectStatsEnvelope.FundingDistribution: Decodable {
   }
 }
 
-extension ProjectStatsEnvelope.ReferralDistribution: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.ReferralDistribution> {
-    return curry(ProjectStatsEnvelope.ReferralDistribution.init)
+extension ProjectStatsEnvelope.ReferrerStats: Decodable {
+  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.ReferrerStats> {
+    return curry(ProjectStatsEnvelope.ReferrerStats.init)
       <^> json <| "backers_count"
       <*> json <| "code"
-      <*> (json <| "percentage_of_dollars" >>- toDouble)
+      <*> (json <| "percentage_of_dollars" >>- stringToDouble)
       <*> (json <| "pledged" >>- stringToInt)
       <*> json <| "referrer_name"
       <*> json <| "referrer_type"
+  }
+}
+
+extension ProjectStatsEnvelope.ReferrerStats: Equatable {}
+public func == (lhs: ProjectStatsEnvelope.ReferrerStats, rhs: ProjectStatsEnvelope.ReferrerStats) -> Bool {
+  return lhs.code == rhs.code
+}
+
+extension ProjectStatsEnvelope.ReferrerStats.ReferrerType: Decodable {
+  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.ReferrerStats.ReferrerType> {
+    if case .String(let referrerType) = json {
+      switch referrerType.lowercaseString {
+      case "custom":
+        return .Success(.custom)
+      case "external":
+        return .Success(.external)
+      case "kickstarter":
+        return .Success(.`internal`)
+      default:
+        return .Success(.unknown)
+      }
+    }
+    return .Success(.unknown)
   }
 }
 
@@ -113,7 +148,7 @@ public func == (lhs: ProjectStatsEnvelope.RewardStats, rhs: ProjectStatsEnvelope
 }
 
 extension ProjectStatsEnvelope.VideoStats: Decodable {
-  static public func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.VideoStats> {
+  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.VideoStats> {
     let create = curry(ProjectStatsEnvelope.VideoStats.init)
     return create
       <^> json <| "external_completions"
@@ -123,6 +158,15 @@ extension ProjectStatsEnvelope.VideoStats: Decodable {
   }
 }
 
+extension ProjectStatsEnvelope.VideoStats: Equatable {}
+public func == (lhs: ProjectStatsEnvelope.VideoStats, rhs: ProjectStatsEnvelope.VideoStats) -> Bool {
+  return
+    lhs.externalCompletions == rhs.externalCompletions &&
+    lhs.externalStarts == rhs.externalStarts &&
+    lhs.internalCompletions == rhs.internalCompletions &&
+    lhs.internalStarts == rhs.internalStarts
+}
+
 private func stringToInt(string: String) -> Decoded<Int> {
   return
     Double(string).flatMap(Int.init).map(Decoded.Success) ??
@@ -130,6 +174,6 @@ private func stringToInt(string: String) -> Decoded<Int> {
       .Success(0)
 }
 
-private func toDouble(string: String) -> Decoded<Double> {
-  return .Success(Double(string) ?? 0)
+private func stringToDouble(string: String) -> Decoded<Double> {
+  return Double(string).map(Decoded.Success) ?? .Success(0)
 }

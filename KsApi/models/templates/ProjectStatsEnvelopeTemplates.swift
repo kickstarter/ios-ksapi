@@ -2,7 +2,7 @@ extension ProjectStatsEnvelope {
   internal static let template = ProjectStatsEnvelope(
     cumulative: .template,
     fundingDistribution: [],
-    referralDistribution: [],
+    referrerStats: [],
     rewardStats: [.template],
     videoStats: .template
   )

@@ -11,7 +11,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
           "code": "my_wonderful_referrer_code",
           "referrer_name": "My wonderful referrer name",
           "percentage_of_dollars": "0.250",
-          "referrer_type": "Wonderful",
+          "referrer_type": "External",
           "pledged": "20.0",
           "backers_count": 8
         ],
@@ -19,7 +19,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
           "code": "my_okay_referrer_code",
           "referrer_name": "My okay referrer name",
           "percentage_of_dollars": "0.001",
-          "referrer_type": "Okay",
+          "referrer_type": "Kickstarter",
           "pledged": "1.0",
           "backers_count": 1
         ]
@@ -81,15 +81,17 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
 
     let fundingDistributions = stats.value?.fundingDistribution ?? []
     let rewardStats = stats.value?.rewardStats ?? []
-    let referralDistributions = stats.value?.referralDistribution ?? []
+    let referrerStats = stats.value?.referrerStats ?? []
 
     XCTAssertEqual(7, fundingDistributions[0].cumulativeBackersCount)
     XCTAssertEqual(14, fundingDistributions[1].cumulativeBackersCount)
 
-    XCTAssertEqual("my_wonderful_referrer_code", referralDistributions[0].code)
-    XCTAssertEqual(8, referralDistributions[0].backersCount)
-    XCTAssertEqual("my_okay_referrer_code", referralDistributions[1].code)
-    XCTAssertEqual(1, referralDistributions[1].backersCount)
+    XCTAssertEqual("my_wonderful_referrer_code", referrerStats[0].code)
+    XCTAssertEqual(8, referrerStats[0].backersCount)
+    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.external, referrerStats[0].referrerType)
+    XCTAssertEqual("my_okay_referrer_code", referrerStats[1].code)
+    XCTAssertEqual(1, referrerStats[1].backersCount)
+    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.`internal`, referrerStats[1].referrerType)
 
     XCTAssertEqual(0, rewardStats[0].rewardId)
     XCTAssertEqual(123456, rewardStats[1].rewardId)
@@ -121,7 +123,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
 
     XCTAssertNil(stats.value?.cumulative)
     XCTAssertNil(stats.value?.fundingDistribution)
-    XCTAssertNil(stats.value?.referralDistribution)
+    XCTAssertNil(stats.value?.referrerStats)
     XCTAssertNil(stats.value?.rewardStats)
     XCTAssertNil(stats.value?.videoStats)
   }

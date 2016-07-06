@@ -3,7 +3,6 @@ import Prelude
 
 extension ProjectStatsEnvelope.Cumulative {
   public enum lens {
-
     public static let averagePledge = Lens<ProjectStatsEnvelope.Cumulative, Int>(
       view: { $0.averagePledge },
       set: { .init(averagePledge: $0, backersCount: $1.backersCount, goal: $1.goal,
