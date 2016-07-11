@@ -74,7 +74,8 @@ extension Project {
         |> User.lens.avatar.large .~ "https://ksr-ugc.imgix.net/assets/006/286/957/203502774070f5c0bf5ddcbb58e13000_original.jpg?w=80&h=80&fit=crop&v=1461378633&auto=format&q=92&s=68edc5b8d1b110634b59589253801ea1"
         |> User.lens.avatar.medium .~ "https://ksr-ugc.imgix.net/assets/006/286/957/203502774070f5c0bf5ddcbb58e13000_original.jpg?w=80&h=80&fit=crop&v=1461378633&auto=format&q=92&s=68edc5b8d1b110634b59589253801ea1"
         |> User.lens.avatar.small .~ "https://ksr-ugc.imgix.net/assets/006/286/957/203502774070f5c0bf5ddcbb58e13000_original.jpg?w=80&h=80&fit=crop&v=1461378633&auto=format&q=92&s=68edc5b8d1b110634b59589253801ea1"
-  )
+    )
+    |> Project.lens.urls.web.project .~ "https://www.kickstarter.com/projects/1171937901/cosmic-surgery"
 
   internal static let anomalisa = .template
     |> Project.lens.photo.full .~ "https://ksr-ugc.imgix.net/assets/011/388/954/25e113da402393de9de995619428d10d_original.png?w=1024&h=576&fit=fill&bg=000000&v=1463681956&auto=format&q=92&s=2a9b6a90e1f52b96d7cbdcad28319f9d"

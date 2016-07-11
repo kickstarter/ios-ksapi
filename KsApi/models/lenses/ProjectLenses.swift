@@ -131,12 +131,38 @@ extension Project {
         slug: $1.slug, state: $1.state, stats: $0, urls: $1.urls, video: $1.video) }
     )
 
+    public static let urls = Lens<Project, Project.UrlsEnvelope>(
+      view: { $0.urls },
+      set: { Project(backing: $1.backing, blurb: $1.blurb, category: $1.category, country: $1.country,
+        creator: $1.creator, memberData: $1.memberData, dates: $1.dates, id: $1.id, location: $1.location,
+        name: $1.name, personalization: $1.personalization, photo: $1.photo, rewards: $1.rewards,
+        slug: $1.slug, state: $1.state, stats: $1.stats, urls: $0, video: $1.video) }
+    )
+
     public static let video = Lens<Project, Project.Video?>(
       view: { $0.video },
       set: { Project(backing: $1.backing, blurb: $1.blurb, category: $1.category, country: $1.country,
         creator: $1.creator, memberData: $1.memberData, dates: $1.dates, id: $1.id, location: $1.location,
         name: $1.name, personalization: $1.personalization, photo: $1.photo, rewards: $1.rewards,
         slug: $1.slug, state: $1.state, stats: $1.stats, urls: $1.urls, video: $0) }
+    )
+  }
+}
+
+extension Project.UrlsEnvelope {
+  public enum lens {
+    public static let web = Lens<Project.UrlsEnvelope, Project.UrlsEnvelope.WebEnvelope>(
+      view: { $0.web },
+      set: { part, _ in .init(web: part) }
+    )
+  }
+}
+
+extension Project.UrlsEnvelope.WebEnvelope {
+  public enum lens {
+    public static let project = Lens<Project.UrlsEnvelope.WebEnvelope, String>(
+      view: { $0.project },
+      set: { part, _ in .init(project: part) }
     )
   }
 }
@@ -258,5 +284,17 @@ extension LensType where Whole == Project, Part == Project.Photo {
 extension LensType where Whole == Project, Part == Project.MemberData {
   public var permissions: Lens<Whole, [Project.MemberData.Permission]> {
     return Whole.lens.memberData • Part.lens.permissions
+  }
+}
+
+extension LensType where Whole == Project, Part == Project.UrlsEnvelope {
+  public var web: Lens<Whole, Project.UrlsEnvelope.WebEnvelope> {
+    return Whole.lens.urls • Part.lens.web
+  }
+}
+
+extension LensType where Whole == Project, Part == Project.UrlsEnvelope.WebEnvelope {
+  public var project: Lens<Whole, String> {
+    return Whole.lens.urls.web • Part.lens.project
   }
 }
