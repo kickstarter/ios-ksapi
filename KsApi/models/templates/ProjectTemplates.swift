@@ -67,6 +67,19 @@ extension Project {
     |> Project.lens.stats.pledged .~ 22_318
     |> Project.lens.stats.goal .~ 22_000
     |> (Project.lens.location • Location.lens.displayableName) .~ "Hastings, UK"
+    |> Project.lens.rewards .~ [
+      Reward.noReward,
+      .template
+        |> Reward.lens.id .~ 1
+        |> Reward.lens.minimum .~ 25
+        |> Reward.lens.title .~ "Cosmic Surgery Book"
+        |> Reward.lens.description .~ "You will be the first to receive a copy of the book at this special ‘earlybird’ price. Limited to the first 100 copies.",
+      .template
+        |> Reward.lens.id .~ 2
+        |> Reward.lens.minimum .~ 100
+        |> Reward.lens.title .~ "The Cosmic Surgery Workshop"
+        |> Reward.lens.description .~ "A 1/2 day workshop with Alma Haser and Emily Macaulay being taught how to make your very own Cosmic Surgery portrait using one of your own photos."
+    ]
     |> Project.lens.country .~ .GB
     |> Project.lens.creator .~ (
       .template
