@@ -234,13 +234,7 @@ internal struct MockService: ServiceType {
       .template |> ProjectNotification.lens.id .~ 3
     ]
 
-    self.fetchProjectsResponse = fetchProjectsResponse ?? [
-      .template |> Project.lens.state .~ .successful,
-      .template |> Project.lens.state .~ .live,
-      .template |> Project.lens.state .~ .live
-      ]
-      .enumerate()
-      .map(Project.lens.id.set)
+    self.fetchProjectsResponse = fetchProjectsResponse ?? []
 
     self.fetchProjectsError = fetchProjectsError
 
