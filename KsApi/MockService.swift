@@ -531,7 +531,12 @@ internal struct MockService: ServiceType {
   func fetchBacking(forProject project: Project, forUser user: User)
     -> SignalProducer<Backing, ErrorEnvelope> {
 
-    return SignalProducer(value: fetchBackingResponse)
+    return SignalProducer(
+      value: fetchBackingResponse
+        |> Backing.lens.backer .~ user
+        |> Backing.lens.backerId .~ user.id
+        |> Backing.lens.projectId .~ project.id
+    )
   }
 
   internal func fetchDiscovery(paginationUrl paginationUrl: String)

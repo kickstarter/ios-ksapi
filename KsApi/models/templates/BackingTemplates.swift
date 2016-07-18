@@ -1,6 +1,7 @@
 extension Backing {
   internal static let template = Backing(
     amount: 10,
+    backer: .template,
     backerId: 1,
     id: 1,
     locationId: 1,

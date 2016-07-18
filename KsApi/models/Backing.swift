@@ -3,6 +3,7 @@ import Curry
 
 public struct Backing {
   public let amount: Int
+  public let backer: User?
   public let backerId: Int
   public let id: Int
   public let locationId: Int?
@@ -36,6 +37,7 @@ extension Backing: Decodable {
     let create = curry(Backing.init)
     let tmp = create
       <^> json <| "amount"
+      <*> json <|? "backer"
       <*> json <| "backer_id"
       <*> json <| "id"
       <*> json <|? "location_id"
