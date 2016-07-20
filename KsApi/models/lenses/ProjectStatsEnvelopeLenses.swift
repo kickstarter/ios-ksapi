@@ -3,31 +3,36 @@ import Prelude
 
 extension ProjectStatsEnvelope {
   public enum lens {
-    public static let cumulative = Lens<ProjectStatsEnvelope, ProjectStatsEnvelope.Cumulative>(
-      view: { $0.cumulative },
-      set: { ProjectStatsEnvelope(cumulative: $0, fundingDistribution: $1.fundingDistribution,
-        referrerStats: $1.referrerStats, rewardStats: $1.rewardStats,
-        videoStats: $1.videoStats) }
+    public static let cumulativeStats = Lens<ProjectStatsEnvelope, ProjectStatsEnvelope.CumulativeStats>(
+      view: { $0.cumulativeStats },
+      set: { ProjectStatsEnvelope(cumulativeStats: $0, fundingDistribution: $1.fundingDistribution,
+        referralDistribution: $1.referralDistribution, rewardDistribution: $1.rewardDistribution, videoStats: $1.videoStats) }
     )
 
-    public static let referrerStats =
+    public static let fundingDistribution = Lens<ProjectStatsEnvelope, [ProjectStatsEnvelope.FundingDateStats]>(
+      view: { $0.fundingDistribution },
+      set: { ProjectStatsEnvelope(cumulativeStats: $1.cumulativeStats, fundingDistribution: $0,
+        referralDistribution: $1.referralDistribution, rewardDistribution: $1.rewardDistribution, videoStats: $1.videoStats) }
+    )
+
+    public static let referralDistribution =
       Lens<ProjectStatsEnvelope, [ProjectStatsEnvelope.ReferrerStats]>(
-        view: { $0.referrerStats },
-        set: { ProjectStatsEnvelope(cumulative: $1.cumulative, fundingDistribution: $1.fundingDistribution,
-          referrerStats: $0, rewardStats: $1.rewardStats, videoStats: $1.videoStats) }
+        view: { $0.referralDistribution },
+        set: { ProjectStatsEnvelope(cumulativeStats: $1.cumulativeStats, fundingDistribution: $1.fundingDistribution,
+          referralDistribution: $0, rewardDistribution: $1.rewardDistribution, videoStats: $1.videoStats) }
     )
 
-    public static let rewardStats = Lens<ProjectStatsEnvelope, [RewardStats]>(
-      view: { $0.rewardStats },
-      set: { ProjectStatsEnvelope(cumulative: $1.cumulative, fundingDistribution: $1.fundingDistribution,
-        referrerStats: $1.referrerStats, rewardStats: $0,
+    public static let rewardDistribution = Lens<ProjectStatsEnvelope, [RewardStats]>(
+      view: { $0.rewardDistribution },
+      set: { ProjectStatsEnvelope(cumulativeStats: $1.cumulativeStats, fundingDistribution: $1.fundingDistribution,
+        referralDistribution: $1.referralDistribution, rewardDistribution: $0,
         videoStats: $1.videoStats) }
     )
 
     public static let videoStats = Lens<ProjectStatsEnvelope, ProjectStatsEnvelope.VideoStats?>(
       view: { $0.videoStats },
-      set: { ProjectStatsEnvelope(cumulative: $1.cumulative, fundingDistribution: $1.fundingDistribution,
-        referrerStats: $1.referrerStats, rewardStats: $1.rewardStats,
+      set: { ProjectStatsEnvelope(cumulativeStats: $1.cumulativeStats, fundingDistribution: $1.fundingDistribution,
+        referralDistribution: $1.referralDistribution, rewardDistribution: $1.rewardDistribution,
         videoStats: $0) }
     )
   }

@@ -2,13 +2,13 @@ import Argo
 import Curry
 
 public struct ProjectStatsEnvelope {
-  public let cumulative: ProjectStatsEnvelope.Cumulative
-  public let fundingDistribution: [FundingDistribution]
-  public let referrerStats: [ReferrerStats]
-  public let rewardStats: [RewardStats]
-  public let videoStats: ProjectStatsEnvelope.VideoStats?
+  public let cumulativeStats: CumulativeStats
+  public let fundingDistribution: [FundingDateStats]
+  public let referralDistribution: [ReferrerStats]
+  public let rewardDistribution: [RewardStats]
+  public let videoStats: VideoStats?
 
-  public struct Cumulative {
+  public struct CumulativeStats {
     public let averagePledge: Int
     public let backersCount: Int
     public let goal: Int
@@ -16,11 +16,11 @@ public struct ProjectStatsEnvelope {
     public let pledged: Int
   }
 
-  public struct FundingDistribution {
+  public struct FundingDateStats {
     public let backersCount: Int
     public let cumulativePledged: Int
     public let cumulativeBackersCount: Int
-    public let date: Int
+    public let date: NSTimeInterval
     public let pledged: Int
   }
 
@@ -68,9 +68,9 @@ extension ProjectStatsEnvelope: Decodable {
   }
 }
 
-extension ProjectStatsEnvelope.Cumulative: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.Cumulative> {
-    return curry(ProjectStatsEnvelope.Cumulative.init)
+extension ProjectStatsEnvelope.CumulativeStats: Decodable {
+  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.CumulativeStats> {
+    return curry(ProjectStatsEnvelope.CumulativeStats.init)
       <^> json <| "average_pledge"
       <*> json <| "backers_count"
       <*> (json <| "goal" >>- stringToInt)
@@ -79,20 +79,26 @@ extension ProjectStatsEnvelope.Cumulative: Decodable {
   }
 }
 
-extension ProjectStatsEnvelope.Cumulative: Equatable {}
-public func == (lhs: ProjectStatsEnvelope.Cumulative, rhs: ProjectStatsEnvelope.Cumulative) -> Bool {
-  return lhs.averagePledge == rhs.averagePledge
+extension ProjectStatsEnvelope.CumulativeStats: Equatable {}
+public func == (lhs: ProjectStatsEnvelope.CumulativeStats, rhs: ProjectStatsEnvelope.CumulativeStats)
+  -> Bool {
+    return lhs.averagePledge == rhs.averagePledge
 }
 
-extension ProjectStatsEnvelope.FundingDistribution: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.FundingDistribution> {
-    return curry(ProjectStatsEnvelope.FundingDistribution.init)
+extension ProjectStatsEnvelope.FundingDateStats: Decodable {
+  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.FundingDateStats> {
+    return curry(ProjectStatsEnvelope.FundingDateStats.init)
       <^> (json <| "backers_count" <|> .Success(0))
       <*> ((json <| "cumulative_pledged" >>- stringToInt) <|> (json <| "cumulative_pledged"))
       <*> json <| "cumulative_backers_count"
       <*> json <| "date"
       <*> ((json <| "pledged" >>- stringToInt) <|> .Success(0))
   }
+}
+
+extension ProjectStatsEnvelope.FundingDateStats: Equatable {}
+public func == (lhs: ProjectStatsEnvelope.FundingDateStats, rhs: ProjectStatsEnvelope.FundingDateStats) -> Bool {
+  return lhs.date == rhs.date
 }
 
 extension ProjectStatsEnvelope.ReferrerStats: Decodable {

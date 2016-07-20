@@ -72,35 +72,35 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
     let stats = ProjectStatsEnvelope.decodeJSONDictionary(json)
     XCTAssertNotNil(stats)
 
-    XCTAssertEqual(40, stats.value?.cumulative.pledged)
-    XCTAssertEqual(17, stats.value?.cumulative.averagePledge)
-    XCTAssertEqual(20, stats.value?.cumulative.backersCount)
+    XCTAssertEqual(40, stats.value?.cumulativeStats.pledged)
+    XCTAssertEqual(17, stats.value?.cumulativeStats.averagePledge)
+    XCTAssertEqual(20, stats.value?.cumulativeStats.backersCount)
 
     XCTAssertEqual(5, stats.value?.videoStats?.externalCompletions)
     XCTAssertEqual(14, stats.value?.videoStats?.internalStarts)
 
-    let fundingDistributions = stats.value?.fundingDistribution ?? []
-    let rewardStats = stats.value?.rewardStats ?? []
-    let referrerStats = stats.value?.referrerStats ?? []
+    let fundingDistribution = stats.value?.fundingDistribution ?? []
+    let rewardDistribution = stats.value?.rewardDistribution ?? []
+    let referralDistribution = stats.value?.referralDistribution ?? []
 
-    XCTAssertEqual(7, fundingDistributions[0].cumulativeBackersCount)
-    XCTAssertEqual(14, fundingDistributions[1].cumulativeBackersCount)
+    XCTAssertEqual(7, fundingDistribution[0].cumulativeBackersCount)
+    XCTAssertEqual(14, fundingDistribution[1].cumulativeBackersCount)
 
-    XCTAssertEqual("my_wonderful_referrer_code", referrerStats[0].code)
-    XCTAssertEqual(8, referrerStats[0].backersCount)
-    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.external, referrerStats[0].referrerType)
-    XCTAssertEqual("my_okay_referrer_code", referrerStats[1].code)
-    XCTAssertEqual(1, referrerStats[1].backersCount)
-    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.`internal`, referrerStats[1].referrerType)
+    XCTAssertEqual("my_wonderful_referrer_code", referralDistribution[0].code)
+    XCTAssertEqual(8, referralDistribution[0].backersCount)
+    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.external, referralDistribution[0].referrerType)
+    XCTAssertEqual("my_okay_referrer_code", referralDistribution[1].code)
+    XCTAssertEqual(1, referralDistribution[1].backersCount)
+    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.`internal`, referralDistribution[1].referrerType)
 
-    XCTAssertEqual(0, rewardStats[0].rewardId)
-    XCTAssertEqual(123456, rewardStats[1].rewardId)
-    XCTAssertEqual(1, rewardStats[0].pledged)
-    XCTAssertEqual(25, rewardStats[1].pledged)
-    XCTAssertEqual(5, rewardStats[0].backersCount)
-    XCTAssertEqual(10, rewardStats[1].backersCount)
-    XCTAssertEqual(0, rewardStats[0].minimum)
-    XCTAssertEqual(5, rewardStats[1].minimum)
+    XCTAssertEqual(0, rewardDistribution[0].rewardId)
+    XCTAssertEqual(123456, rewardDistribution[1].rewardId)
+    XCTAssertEqual(1, rewardDistribution[0].pledged)
+    XCTAssertEqual(25, rewardDistribution[1].pledged)
+    XCTAssertEqual(5, rewardDistribution[0].backersCount)
+    XCTAssertEqual(10, rewardDistribution[1].backersCount)
+    XCTAssertEqual(0, rewardDistribution[0].minimum)
+    XCTAssertEqual(5, rewardDistribution[1].minimum)
 
   }
   // swiftlint:enable function_body_length
@@ -121,10 +121,10 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
 
     let stats = ProjectStatsEnvelope.decodeJSONDictionary(json)
 
-    XCTAssertNil(stats.value?.cumulative)
+    XCTAssertNil(stats.value?.cumulativeStats)
     XCTAssertNil(stats.value?.fundingDistribution)
-    XCTAssertNil(stats.value?.referrerStats)
-    XCTAssertNil(stats.value?.rewardStats)
+    XCTAssertNil(stats.value?.referralDistribution)
+    XCTAssertNil(stats.value?.rewardDistribution)
     XCTAssertNil(stats.value?.videoStats)
   }
 }
