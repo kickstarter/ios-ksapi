@@ -58,7 +58,7 @@ extension LensType where Whole == UpdateDraft, Part == Update {
     return UpdateDraft.lens.update • Update.lens.title
   }
 
-  public var body: Lens<UpdateDraft, String> {
+  public var body: Lens<UpdateDraft, String?> {
     return UpdateDraft.lens.update • Update.lens.body
   }
 

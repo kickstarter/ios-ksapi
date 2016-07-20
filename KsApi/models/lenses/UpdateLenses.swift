@@ -3,7 +3,7 @@ import Prelude
 
 extension Update {
   public enum lens {
-    public static let body = Lens<Update, String>(
+    public static let body = Lens<Update, String?>(
       view: { $0.body },
       set: { Update(body: $0, commentsCount: $1.commentsCount, hasLiked: $1.hasLiked, id: $1.id,
         isPublic: $1.isPublic, likesCount: $1.likesCount, projectId: $1.projectId,
@@ -40,6 +40,14 @@ extension Update {
       set: { Update(body: $1.body, commentsCount: $1.commentsCount, hasLiked: $1.hasLiked, id: $1.id,
         isPublic: $1.isPublic, likesCount: $1.likesCount, projectId: $0,
         publishedAt: $1.publishedAt, sequence: $1.sequence, title: $1.title, urls: $1.urls, user: $1.user,
+        visible: $1.visible) }
+    )
+
+    public static let publishedAt = Lens<Update, NSTimeInterval?>(
+      view: { $0.publishedAt },
+      set: { Update(body: $1.body, commentsCount: $1.commentsCount, hasLiked: $1.hasLiked, id: $1.id,
+        isPublic: $1.isPublic, likesCount: $1.likesCount, projectId: $1.projectId,
+        publishedAt: $0, sequence: $1.sequence, title: $1.title, urls: $1.urls, user: $1.user,
         visible: $1.visible) }
     )
 

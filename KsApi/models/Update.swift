@@ -3,7 +3,7 @@ import Argo
 import Curry
 
 public struct Update {
-  public let body: String
+  public let body: String?
   public let commentsCount: Int?
   public let hasLiked: Bool?
   public let id: Int
@@ -15,7 +15,7 @@ public struct Update {
   public let title: String
   public let urls: UrlsEnvelope
   public let user: User?
-  public let visible: Bool
+  public let visible: Bool?
 
   public struct UrlsEnvelope {
     public let web: WebEnvelope
@@ -37,7 +37,7 @@ extension Update: Decodable {
   public static func decode(json: JSON) -> Decoded<Update> {
     let create = curry(Update.init)
     let tmp = create
-      <^> json <|  "body"
+      <^> json <|?  "body"
       <*> json <|? "comments_count"
       <*> json <|? "has_liked"
       <*> json <|  "id"
@@ -50,7 +50,7 @@ extension Update: Decodable {
       <*> json <|  "title"
       <*> json <|  "urls"
       <*> json <|? "user"
-      <*> json <|  "visible"
+      <*> json <|?  "visible"
   }
 }
 
