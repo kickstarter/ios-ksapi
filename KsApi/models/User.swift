@@ -44,6 +44,7 @@ public struct User {
   public struct Stats {
     public let backedProjectsCount: Int?
     public let createdProjectsCount: Int?
+    public let memberProjectsCount: Int?
     public let starredProjectsCount: Int?
     public let unansweredSurveysCount: Int?
     public let unreadMessagesCount: Int?
@@ -213,6 +214,7 @@ extension User.Stats: Decodable {
     return create
       <^> json <|? "backed_projects_count"
       <*> json <|? "created_projects_count"
+      <*> json <|? "member_projects_count"
       <*> json <|? "starred_projects_count"
       <*> json <|? "unanswered_surveys_count"
       <*> json <|? "unread_messages_count"
@@ -224,6 +226,7 @@ extension User.Stats: EncodableType {
     var result: [String: AnyObject] = [:]
     result["backed_projects_count"] =  self.backedProjectsCount
     result["created_projects_count"] = self.createdProjectsCount
+    result["member_projects_count"] = self.memberProjectsCount
     result["starred_projects_count"] = self.starredProjectsCount
     result["unanswered_surveys_count"] = self.unansweredSurveysCount
     result["unread_messages_count"] =  self.unreadMessagesCount
