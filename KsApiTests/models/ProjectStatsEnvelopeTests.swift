@@ -88,10 +88,12 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
 
     XCTAssertEqual("my_wonderful_referrer_code", referralDistribution[0].code)
     XCTAssertEqual(8, referralDistribution[0].backersCount)
-    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.external, referralDistribution[0].referrerType)
+    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.external,
+                   referralDistribution[0].referrerType)
     XCTAssertEqual("my_okay_referrer_code", referralDistribution[1].code)
     XCTAssertEqual(1, referralDistribution[1].backersCount)
-    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.`internal`, referralDistribution[1].referrerType)
+    XCTAssertEqual(ProjectStatsEnvelope.ReferrerStats.ReferrerType.`internal`,
+                   referralDistribution[1].referrerType)
 
     XCTAssertEqual(0, rewardDistribution[0].rewardId)
     XCTAssertEqual(123456, rewardDistribution[1].rewardId)

@@ -97,8 +97,9 @@ extension ProjectStatsEnvelope.FundingDateStats: Decodable {
 }
 
 extension ProjectStatsEnvelope.FundingDateStats: Equatable {}
-public func == (lhs: ProjectStatsEnvelope.FundingDateStats, rhs: ProjectStatsEnvelope.FundingDateStats) -> Bool {
-  return lhs.date == rhs.date
+public func == (lhs: ProjectStatsEnvelope.FundingDateStats, rhs: ProjectStatsEnvelope.FundingDateStats)
+  -> Bool {
+    return lhs.date == rhs.date
 }
 
 extension ProjectStatsEnvelope.ReferrerStats: Decodable {
