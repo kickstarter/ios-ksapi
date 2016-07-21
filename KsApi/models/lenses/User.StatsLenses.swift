@@ -18,7 +18,7 @@ extension User.Stats {
     )
 
     public static let memberProjectsCount = Lens<User.Stats, Int?>(
-      view: { $0.createdProjectsCount },
+      view: { $0.memberProjectsCount },
       set: { User.Stats(backedProjectsCount: $1.backedProjectsCount,
         createdProjectsCount: $1.createdProjectsCount, memberProjectsCount: $0,
         starredProjectsCount: $1.starredProjectsCount, unansweredSurveysCount: $1.unansweredSurveysCount,
