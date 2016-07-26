@@ -1,6 +1,6 @@
 [submodule "Frameworks/ReactiveExtensions"]
 	path = Frameworks/ReactiveExtensions
-	url = git@github.com:kickstarter/Kickstarter-ReactiveExtensions.git
+	url = https://github.com/kickstarter/Kickstarter-ReactiveExtensions.git
 [submodule "Frameworks/Argo"]
 	path = Frameworks/Argo
 	url = git://github.com/thoughtbot/Argo.git
@@ -9,4 +9,4 @@
 	url = https://github.com/thoughtbot/Curry.git
 [submodule "Frameworks/Prelude"]
 	path = Frameworks/Prelude
-	url = git@github.com:kickstarter/Kickstarter-Prelude.git
+	url = https://github.com/kickstarter/Kickstarter-Prelude.git
