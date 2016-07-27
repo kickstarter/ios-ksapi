@@ -188,6 +188,10 @@ public protocol ServiceType {
   func sendMessage(body body: String, toThread messageThread: MessageThread)
     -> SignalProducer<Message, ErrorEnvelope>
 
+  /// Sends a message to the creator of a particular project.
+  func sendMessage(body body: String, toCreatorOfProject project: Project)
+    -> SignalProducer<Message, ErrorEnvelope>
+
   /// Signup with email.
   func signup(name name: String, email: String, password: String, passwordConfirmation: String,
                    sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>

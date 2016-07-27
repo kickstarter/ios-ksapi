@@ -287,6 +287,12 @@ public struct Service: ServiceType {
       return request(.sendMessage(body: body, messageThread: messageThread))
   }
 
+  public func sendMessage(body body: String, toCreatorOfProject project: Project)
+    -> SignalProducer<Message, ErrorEnvelope> {
+
+      return request(.sendCreatorMessage(body: body, project: project))
+  }
+
   public func signup(name name: String,
                           email: String,
                           password: String,
