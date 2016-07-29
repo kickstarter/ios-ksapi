@@ -7,7 +7,7 @@ extension UpdateDraft {
     video: nil
   )
 
-  internal static let empty = template
+  internal static let blank = template
     |> UpdateDraft.lens.update.title .~ ""
     |> UpdateDraft.lens.update.body .~ ""
     |> UpdateDraft.lens.update.isPublic .~ true

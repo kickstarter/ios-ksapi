@@ -175,7 +175,7 @@ public protocol ServiceType {
   func previewUrl(forDraft draft: UpdateDraft) -> NSURL
 
   /// Publishes a project update draft.
-  func publish(draft draft: UpdateDraft) -> SignalProducer<UpdateDraft, ErrorEnvelope>
+  func publish(draft draft: UpdateDraft) -> SignalProducer<Update, ErrorEnvelope>
 
   /// Reset user password with email address.
   func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope>
@@ -274,11 +274,11 @@ extension ServiceType {
       )
       components.queryItems = queryItems.sort { $0.name < $1.name }
 
-      if request.HTTPMethod.uppercaseString == "GET" || request.HTTPMethod.uppercaseString == "DELETE" {
-        request.URL = components.URL
-      } else if let query = components.query {
-        headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
-        request.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+      request.URL = components.URL
+      if request.HTTPMethod.uppercaseString == "POST" || request.HTTPMethod.uppercaseString == "PUT",
+        let query = components.query {
+          headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+          request.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
       }
 
       let currentHeaders = request.allHTTPHeaderFields ?? [:]
@@ -302,6 +302,10 @@ extension ServiceType {
       let request = NSMutableURLRequest(URL: URL)
       request.HTTPMethod = method.rawValue
       return self.preparedRequest(forRequest: request, query: query)
+  }
+
+  public func isPrepared(request request: NSURLRequest) -> Bool {
+    return request.allHTTPHeaderFields?["Authorization"] != nil
   }
 
   private var defaultHeaders: [String:String] {

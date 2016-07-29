@@ -54,16 +54,23 @@ internal enum Route {
   case userSelf
   case user(User)
 
-  internal var requestProperties: (method: Method, path: String, query: [String:AnyObject], fileUrl: NSURL?) {
+  enum UploadParam: String {
+    case image
+    case video
+  }
+
+  internal var requestProperties:
+    (method: Method, path: String, query: [String:AnyObject], file: (name: UploadParam, url: NSURL)?) {
+
     switch self {
     case let .activities(categories):
       return (.GET, "/v1/activities", ["categories": categories.map { $0.rawValue }], nil)
 
     case let .addImage(file, draft):
-      return (.POST, "/v1/projects/\(draft.update.projectId)/updates/draft/images", [:], file)
+      return (.POST, "/v1/projects/\(draft.update.projectId)/updates/draft/images", [:], (.image, file))
 
     case let .addVideo(file, draft):
-      return (.POST, "/v1/projects/\(draft.update.projectId)/updates/draft/video", [:], file)
+      return (.POST, "/v1/projects/\(draft.update.projectId)/updates/draft/video", [:], (.video, file))
 
     case let .backing(projectId, backerId):
       return (.GET, "/v1/projects/\(projectId)/backers/\(backerId)", [:], nil)

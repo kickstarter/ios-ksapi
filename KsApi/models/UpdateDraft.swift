@@ -31,10 +31,19 @@ public struct UpdateDraft {
 }
 
 extension UpdateDraft.Attachment {
+  public var id: Int {
+    switch self {
+    case let .image(image):
+      return image.id
+    case let .video(video):
+      return video.id
+    }
+  }
+
   public var thumbUrl: String {
     switch self {
     case let .image(image):
-      return image.thumb
+      return image.full
     case let .video(video):
       return video.frame
     }
@@ -43,14 +52,7 @@ extension UpdateDraft.Attachment {
 
 extension UpdateDraft.Attachment: Equatable {}
 public func == (lhs: UpdateDraft.Attachment, rhs: UpdateDraft.Attachment) -> Bool {
-  switch (lhs, rhs) {
-  case let (.image(lhs), .image(rhs)):
-    return lhs.id == rhs.id
-  case let (.video(lhs), .video(rhs)):
-    return lhs.id == rhs.id
-  default:
-    return false
-  }
+  return lhs.id == rhs.id
 }
 
 extension UpdateDraft: Decodable {

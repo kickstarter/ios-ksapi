@@ -68,9 +68,8 @@ public struct Service: ServiceType {
   }
 
   public func previewUrl(forDraft draft: UpdateDraft) -> NSURL {
-    let previewUrl = self.serverConfig.apiBaseUrl
+    return self.serverConfig.apiBaseUrl
       .URLByAppendingPathComponent("/v1/projects/\(draft.update.projectId)/updates/draft/preview")
-    return preparedRequest(forURL: previewUrl).URL!
   }
 
   public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
@@ -267,7 +266,7 @@ public struct Service: ServiceType {
       return request(.postUpdateComment(update, body: body))
   }
 
-  public func publish(draft draft: UpdateDraft) -> SignalProducer<UpdateDraft, ErrorEnvelope> {
+  public func publish(draft draft: UpdateDraft) -> SignalProducer<Update, ErrorEnvelope> {
     return request(.publishUpdateDraft(draft))
   }
 
@@ -394,7 +393,7 @@ public struct Service: ServiceType {
 
       return Service.session.rac_JSONResponse(
         preparedRequest(forURL: URL, method: properties.method, query: properties.query),
-        uploading: properties.fileUrl
+        uploading: properties.file.map { ($1, $0.rawValue) }
         )
         .flatMap(decodeModel)
   }
@@ -408,7 +407,7 @@ public struct Service: ServiceType {
 
       return Service.session.rac_JSONResponse(
         preparedRequest(forURL: URL, method: properties.method, query: properties.query),
-        uploading: properties.fileUrl
+        uploading: properties.file.map { ($1, $0.rawValue) }
         )
         .flatMap(decodeModels)
   }

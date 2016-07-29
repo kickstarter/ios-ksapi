@@ -13,10 +13,10 @@ private let queue = dispatch_queue_create("com.kickstarter.ksapi", nil)
 internal extension NSURLSession {
 
   // Wrap an NSURLSession producer with error envelope logic.
-  internal func rac_dataResponse(request: NSURLRequest, uploading fileUrl: NSURL? = nil)
+  internal func rac_dataResponse(request: NSURLRequest, uploading file: (url: NSURL, name: String)? = nil)
     -> SignalProducer<NSData, ErrorEnvelope> {
 
-      let producer = fileUrl.map { self.rac_dataWithRequest(request, uploading: $0) }
+      let producer = file.map { self.rac_dataWithRequest(request, uploading: $0, named: $1) }
         ?? self.rac_dataWithRequest(request)
 
       return producer
@@ -55,10 +55,10 @@ internal extension NSURLSession {
 
   // Converts an NSURLSessionTask into a signal producer of raw JSON data. If the JSON does not parse
   // successfully, an `ErrorEnvelope.errorJSONCouldNotParse()` error is emitted.
-  internal func rac_JSONResponse(request: NSURLRequest, uploading fileUrl: NSURL? = nil)
+  internal func rac_JSONResponse(request: NSURLRequest, uploading file: (url: NSURL, name: String)? = nil)
     -> SignalProducer<AnyObject, ErrorEnvelope> {
 
-      return self.rac_dataResponse(request, uploading: fileUrl)
+      return self.rac_dataResponse(request, uploading: file)
         .map(parseJSONData)
         .flatMap { json -> SignalProducer<AnyObject, ErrorEnvelope> in
           guard let json = json else {
@@ -99,13 +99,34 @@ internal extension NSURLSession {
 private let defaultSessionError =
   NSError(domain: "com.kickstarter.KsApi.rac_dataWithRequest", code: 1, userInfo: nil)
 
+private let boundary = "k1ck574r73r154c0mp4ny"
+
 extension NSURLSession {
   // Returns a producer that will execute the given upload once for each invocation of start().
-  private func rac_dataWithRequest(request: NSURLRequest, uploading file: NSURL)
+  private func rac_dataWithRequest(request: NSURLRequest, uploading file: NSURL, named name: String)
     -> SignalProducer<(NSData, NSURLResponse), NSError> {
 
+      guard
+        let mutableRequest = request.mutableCopy() as? NSMutableURLRequest,
+        data = NSData(contentsOfFile: file.absoluteString),
+        mime = file.imageMime ?? data.imageMime,
+        filename = file.lastPathComponent,
+        multipartHead = ("--\(boundary)\r\n"
+          + "Content-Disposition: form-data; name=\"\(name)\"; filename=\"\(filename)\"\r\n"
+          + "Content-Type: \(mime)\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding),
+        multipartTail = "--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)
+        else { fatalError() }
+
+      let body = NSMutableData()
+      body.appendData(multipartHead)
+      body.appendData(data)
+      body.appendData(multipartTail)
+
+      mutableRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+      mutableRequest.HTTPBody = body
+
       return SignalProducer { observer, disposable in
-        let task = self.uploadTaskWithRequest(request, fromFile: file) { data, response, error in
+        let task = self.dataTaskWithRequest(mutableRequest) { data, response, error in
           guard let data = data, response = response else {
             observer.sendFailed(error ?? defaultSessionError)
             return

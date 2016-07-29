@@ -31,6 +31,11 @@ extension UpdateDraft.Image {
       view: { $0.thumb },
       set: { UpdateDraft.Image(id: $1.id, thumb: $0, full: $1.full) }
     )
+
+    public static let full = Lens<UpdateDraft.Image, String>(
+      view: { $0.thumb },
+      set: { UpdateDraft.Image(id: $1.id, thumb: $1.thumb, full: $0) }
+    )
   }
 }
 
@@ -54,6 +59,14 @@ extension UpdateDraft.Video {
 }
 
 extension LensType where Whole == UpdateDraft, Part == Update {
+  public var id: Lens<UpdateDraft, Int> {
+    return UpdateDraft.lens.update • Update.lens.id
+  }
+
+  public var projectId: Lens<UpdateDraft, Int> {
+    return UpdateDraft.lens.update • Update.lens.projectId
+  }
+
   public var title: Lens<UpdateDraft, String> {
     return UpdateDraft.lens.update • Update.lens.title
   }
@@ -64,5 +77,9 @@ extension LensType where Whole == UpdateDraft, Part == Update {
 
   public var isPublic: Lens<UpdateDraft, Bool> {
     return UpdateDraft.lens.update • Update.lens.isPublic
+  }
+
+  public var sequence: Lens<UpdateDraft, Int> {
+    return UpdateDraft.lens.update • Update.lens.sequence
   }
 }

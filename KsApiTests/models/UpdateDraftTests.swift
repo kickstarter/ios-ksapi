@@ -32,8 +32,8 @@ final class UpdateDraftTests: XCTestCase {
 
   func testAttachmentThumbUrl() {
 
-    let image = UpdateDraft.Attachment.image(.template |> UpdateDraft.Image.lens.thumb .~ "thumb.jpg")
-    XCTAssertEqual("thumb.jpg", image.thumbUrl)
+    let image = UpdateDraft.Attachment.image(.template |> UpdateDraft.Image.lens.full .~ "full.jpg")
+    XCTAssertEqual("full.jpg", image.thumbUrl)
 
     let video = UpdateDraft.Attachment.video(.template |> UpdateDraft.Video.lens.frame .~ "frame.jpg")
     XCTAssertEqual("frame.jpg", video.thumbUrl)

@@ -37,6 +37,13 @@ internal struct MockService: ServiceType {
   private let fetchDraftResponse: UpdateDraft?
   private let fetchDraftError: ErrorEnvelope?
 
+  private let addAttachmentResponse: UpdateDraft.Image?
+  private let addAttachmentError: ErrorEnvelope?
+  private let removeAttachmentResponse: UpdateDraft.Image?
+  private let removeAttachmentError: ErrorEnvelope?
+
+  private let publishUpdateError: ErrorEnvelope?
+
   private let fetchMessageThreadResponse: MessageThread
   private let fetchMessageThreadsResponse: [MessageThread]
 
@@ -120,6 +127,11 @@ internal struct MockService: ServiceType {
                 fetchFriendStatsError: ErrorEnvelope? = nil,
                 fetchDraftResponse: UpdateDraft? = nil,
                 fetchDraftError: ErrorEnvelope? = nil,
+                addAttachmentResponse: UpdateDraft.Image? = nil,
+                addAttachmentError: ErrorEnvelope? = nil,
+                removeAttachmentResponse: UpdateDraft.Image? = nil,
+                removeAttachmentError: ErrorEnvelope? = nil,
+                publishUpdateError: ErrorEnvelope? = nil,
                 fetchMessageThreadResponse: MessageThread? = nil,
                 fetchMessageThreadsResponse: [MessageThread]? = nil,
                 fetchProjectActivitiesResponse: [Activity]? = nil,
@@ -207,6 +219,13 @@ internal struct MockService: ServiceType {
 
     self.fetchDraftResponse = fetchDraftResponse
     self.fetchDraftError = fetchDraftError
+
+    self.addAttachmentResponse = addAttachmentResponse
+    self.addAttachmentError = addAttachmentError
+    self.removeAttachmentResponse = removeAttachmentResponse
+    self.removeAttachmentError = removeAttachmentError
+
+    self.publishUpdateError = publishUpdateError
 
     self.fetchMessageThreadResponse = fetchMessageThreadResponse ?? .template
 
@@ -972,13 +991,21 @@ internal struct MockService: ServiceType {
   internal func addImage(file fileURL: NSURL, toDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
 
-      return .empty
+      if let error = addAttachmentError {
+        return SignalProducer(error: error)
+      }
+
+      return SignalProducer(value: addAttachmentResponse ?? .template)
   }
 
   internal func delete(image image: UpdateDraft.Image, fromDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
 
-      return .empty
+      if let error = removeAttachmentError {
+        return SignalProducer(error: error)
+      }
+
+      return SignalProducer(value: removeAttachmentResponse ?? .template)
   }
 
   internal func addVideo(file fileURL: NSURL, toDraft draft: UpdateDraft)
@@ -993,12 +1020,17 @@ internal struct MockService: ServiceType {
       return .empty
   }
 
-  internal func publish(draft draft: UpdateDraft) -> SignalProducer<UpdateDraft, ErrorEnvelope> {
-    return .empty
+  internal func publish(draft draft: UpdateDraft) -> SignalProducer<Update, ErrorEnvelope> {
+    if let error = publishUpdateError {
+      return SignalProducer(error: error)
+    }
+
+    return SignalProducer(value: fetchUpdateResponse)
   }
 
   internal func previewUrl(forDraft draft: UpdateDraft) -> NSURL {
-    return NSURL(string: "***REMOVED***/v1/projects/\(draft.update.projectId)/draft/preview")!
+    return NSURL(string:
+      "https://***REMOVED***/projects/\(draft.update.projectId)/updates/\(draft.update.id)/preview")!
   }
 
 }
