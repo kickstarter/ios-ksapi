@@ -41,7 +41,7 @@ extension Activity.MemberData {
     public static let newRewardId = Lens<Activity.MemberData, Int?>(
       view: { $0.newRewardId },
       set: { Activity.MemberData(amount: $1.amount, backing: $1.backing, oldAmount: $1.oldAmount,
-        oldRewardId: $1.oldRewardId, newAmount: $1.newRewardId, newRewardId: $0,
+        oldRewardId: $1.oldRewardId, newAmount: $1.newAmount, newRewardId: $0,
         rewardId: $1.rewardId) }
     )
 
