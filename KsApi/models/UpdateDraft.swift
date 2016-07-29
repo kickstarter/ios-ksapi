@@ -30,6 +30,11 @@ public struct UpdateDraft {
   }
 }
 
+extension UpdateDraft: Equatable {}
+public func == (lhs: UpdateDraft, rhs: UpdateDraft) -> Bool {
+  return lhs.update.id == rhs.update.id
+}
+
 extension UpdateDraft.Attachment {
   public var id: Int {
     switch self {
