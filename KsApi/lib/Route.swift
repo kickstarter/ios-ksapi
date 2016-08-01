@@ -4,7 +4,7 @@ import Prelude
  A list of possible requests that can be made for Kickstarter data.
  */
 internal enum Route {
-  case activities(categories: [Activity.Category])
+  case activities(categories: [Activity.Category], count: Int?)
   case addImage(fileUrl: NSURL, toDraft: UpdateDraft)
   case addVideo(fileUrl: NSURL, toDraft: UpdateDraft)
   case backing(projectId: Int, backerId: Int)
@@ -63,8 +63,10 @@ internal enum Route {
     (method: Method, path: String, query: [String:AnyObject], file: (name: UploadParam, url: NSURL)?) {
 
     switch self {
-    case let .activities(categories):
-      return (.GET, "/v1/activities", ["categories": categories.map { $0.rawValue }], nil)
+    case let .activities(categories, count):
+      var params: [String:AnyObject] = ["categories": categories.map { $0.rawValue }]
+      params["count"] = count
+      return (.GET, "/v1/activities", params, nil)
 
     case let .addImage(file, draft):
       return (.POST, "/v1/projects/\(draft.update.projectId)/updates/draft/images", [:], (.image, file))

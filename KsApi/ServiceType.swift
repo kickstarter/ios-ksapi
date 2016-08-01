@@ -47,7 +47,7 @@ public protocol ServiceType {
     -> SignalProducer<UpdateDraft.Video, ErrorEnvelope>
 
   /// Fetch a page of activities.
-  func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
+  func fetchActivities(count count: Int?) -> SignalProducer<ActivityEnvelope, ErrorEnvelope>
 
   /// Fetch activities from a pagination URL
   func fetchActivities(paginationUrl paginationUrl: String) -> SignalProducer<ActivityEnvelope, ErrorEnvelope>

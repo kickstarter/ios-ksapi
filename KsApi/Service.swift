@@ -72,7 +72,7 @@ public struct Service: ServiceType {
       .URLByAppendingPathComponent("/v1/projects/\(draft.update.projectId)/updates/draft/preview")
   }
 
-  public func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
+  public func fetchActivities(count count: Int?) -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
     let categories: [Activity.Category] = [
       .backing,
       .cancellation,
@@ -82,7 +82,7 @@ public struct Service: ServiceType {
       .success,
       .update,
     ]
-    return request(.activities(categories: categories))
+    return request(.activities(categories: categories, count: count))
   }
 
   public func fetchActivities(paginationUrl paginationUrl: String)

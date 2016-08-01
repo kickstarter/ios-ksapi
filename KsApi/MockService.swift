@@ -523,7 +523,7 @@ internal struct MockService: ServiceType {
     )
   }
 
-  internal func fetchActivities() -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
+  internal func fetchActivities(count count: Int?) -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
 
     if let error = fetchActivitiesError {
       return SignalProducer(error: error)
@@ -544,7 +544,7 @@ internal struct MockService: ServiceType {
 
   internal func fetchActivities(paginationUrl paginationUrl: String)
     -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
-      return self.fetchActivities()
+      return self.fetchActivities(count: nil)
   }
 
   func fetchBacking(forProject project: Project, forUser user: User)
