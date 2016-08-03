@@ -38,8 +38,7 @@ internal enum Route {
   case publishUpdateDraft(UpdateDraft)
   case resetPassword(email: String)
   case searchMessages(query: String, project: Project?)
-  case sendCreatorMessage(body: String, project: Project)
-  case sendMessage(body: String, messageThread: MessageThread)
+  case sendMessage(body: String, messageSubject: MessageSubject)
   case signup(name: String, email: String, password: String, passwordConfirmation: String,
     sendNewsletters: Bool)
   case star(Project)
@@ -181,11 +180,20 @@ internal enum Route {
       }
       return (.GET, "/v1/message_threads/search", ["q": query], nil)
 
-    case let .sendCreatorMessage(body, project):
-      return (.POST, "v1/projects/\(project.id)/messages", ["body": body], nil)
+    case let .sendMessage(body, messageSubject):
+      switch messageSubject {
+      case let .backing(backing):
+        return (.POST,
+                "v1/projects/\(backing.projectId)/backers/\(backing.backerId)/messages",
+                ["body": body],
+                nil)
 
-    case let .sendMessage(body, messageThread):
-      return (.POST, "/v1/message_threads/\(messageThread.id)/messages", ["body": body], nil)
+      case let .messageThread(messageThread):
+        return (.POST, "/v1/message_threads/\(messageThread.id)/messages", ["body": body], nil)
+
+      case let .project(project):
+        return (.POST, "v1/projects/\(project.id)/messages", ["body": body], nil)
+      }
 
     case let .signup(name, email, password, passwordConfirmation, sendNewsletters):
       let params: [String:AnyObject] = ["name": name,

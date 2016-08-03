@@ -280,16 +280,11 @@ public struct Service: ServiceType {
       return request(.searchMessages(query: query, project: project))
   }
 
-  public func sendMessage(body body: String, toThread messageThread: MessageThread)
+  public func sendMessage(body body: String, toSubject subject: MessageSubject)
     -> SignalProducer<Message, ErrorEnvelope> {
 
-      return request(.sendMessage(body: body, messageThread: messageThread))
-  }
 
-  public func sendMessage(body body: String, toCreatorOfProject project: Project)
-    -> SignalProducer<Message, ErrorEnvelope> {
-
-      return request(.sendCreatorMessage(body: body, project: project))
+      return request(.sendMessage(body: body, messageSubject: subject))
   }
 
   public func signup(name name: String,

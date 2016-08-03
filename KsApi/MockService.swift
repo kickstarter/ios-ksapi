@@ -888,7 +888,7 @@ internal struct MockService: ServiceType {
       )
   }
 
-  internal func sendMessage(body body: String, toThread messageThread: MessageThread)
+  internal func sendMessage(body body: String, toSubject subject: MessageSubject)
     -> SignalProducer<Message, ErrorEnvelope> {
 
       return SignalProducer(
@@ -897,18 +897,6 @@ internal struct MockService: ServiceType {
           |> Message.lens.body .~ body
       )
   }
-
-
-  internal func sendMessage(body body: String, toCreatorOfProject project: Project)
-    -> SignalProducer<Message, ErrorEnvelope> {
-
-      return SignalProducer(
-        value: .template
-          |> Message.lens.id .~ body.hashValue
-          |> Message.lens.body .~ body
-      )
-  }
-
 
   internal func signup(name name: String,
                           email: String,

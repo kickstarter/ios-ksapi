@@ -307,6 +307,8 @@
 		A77967731C2B431C0002166F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
 		A77967741C2B431C0002166F /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
 		A782B4421D2C27DF0069D10E /* Activity.MemberDataLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEE3BA31D1DB9950020C2BE /* Activity.MemberDataLenses.swift */; };
+		A796649D1D52213100454C84 /* MessageSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796649C1D52213100454C84 /* MessageSubject.swift */; };
+		A796649E1D52213100454C84 /* MessageSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796649C1D52213100454C84 /* MessageSubject.swift */; };
 		A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
@@ -736,6 +738,7 @@
 		A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.AvatarLenses.swift; sourceTree = "<group>"; };
 		A77967631C2B431C0002166F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A77967641C2B431C0002166F /* ServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
+		A796649C1D52213100454C84 /* MessageSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSubject.swift; sourceTree = "<group>"; };
 		A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStatsEnvelope.CumulativeStatsLenses.swift; sourceTree = "<group>"; };
 		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A7FD099D1C83E74F00332CCB /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -952,6 +955,7 @@
 				A73639A41D03565400445B24 /* lenses */,
 				A72661DB1D07671D0087D883 /* templates */,
 				A731BF971D1F0A7E00A734AC /* Param.swift */,
+				A796649C1D52213100454C84 /* MessageSubject.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -1546,6 +1550,7 @@
 				A726620F1D07671D0087D883 /* UpdateTemplates.swift in Sources */,
 				A7363A2A1D03565400445B24 /* Update.swift in Sources */,
 				A75CAC431D137E2D00EBF323 /* Project.PhotoLenses.swift in Sources */,
+				A796649D1D52213100454C84 /* MessageSubject.swift in Sources */,
 				A757E9B81D19B37B00A5C978 /* SurveyResponseTemplates.swift in Sources */,
 				59B0DF381D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A73639E21D03565400445B24 /* Category.swift in Sources */,
@@ -1771,6 +1776,7 @@
 				A777A59B1D05F55A00823FB1 /* VoidEnvelope.swift in Sources */,
 				A777A5AE1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */,
 				A777A5991D05F55A00823FB1 /* FriendStatsEnvelope.swift in Sources */,
+				A796649E1D52213100454C84 /* MessageSubject.swift in Sources */,
 				A73639D71D03565400445B24 /* Route.swift in Sources */,
 				A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */,
 				A73639E91D03565400445B24 /* Config.swift in Sources */,

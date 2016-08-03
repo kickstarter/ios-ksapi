@@ -184,12 +184,8 @@ public protocol ServiceType {
   func searchMessages(query query: String, project: Project?)
     -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope>
 
-  /// Sends a message to a particular thread.
-  func sendMessage(body body: String, toThread messageThread: MessageThread)
-    -> SignalProducer<Message, ErrorEnvelope>
-
-  /// Sends a message to the creator of a particular project.
-  func sendMessage(body body: String, toCreatorOfProject project: Project)
+  /// Sends a message to a subject, i.e. creator project, message thread, backer of backing.
+  func sendMessage(body body: String, toSubject subject: MessageSubject)
     -> SignalProducer<Message, ErrorEnvelope>
 
   /// Signup with email.
