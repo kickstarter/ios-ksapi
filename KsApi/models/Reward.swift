@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Prelude
 
 public struct Reward {
   public let backersCount: Int?
@@ -35,15 +36,11 @@ public func == (lhs: Reward, rhs: Reward) -> Bool {
   return lhs.id == rhs.id
 }
 
+private let minimumAndIdComparator = Reward.lens.minimum.comparator <> Reward.lens.id.comparator
+
 extension Reward: Comparable {}
 public func < (lhs: Reward, rhs: Reward) -> Bool {
-  if lhs.minimum < rhs.minimum {
-    return true
-  }
-  if lhs.minimum == rhs.minimum && lhs.id < rhs.id {
-    return true
-  }
-  return false
+  return minimumAndIdComparator.isOrdered(lhs, rhs)
 }
 
 extension Reward: Decodable {
