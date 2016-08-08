@@ -211,8 +211,12 @@ public struct Service: ServiceType {
     return request(.userSelf)
   }
 
+  public func fetchUser(userId userId: Int) -> SignalProducer<User, ErrorEnvelope> {
+    return request(.user(userId: userId))
+  }
+
   public func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope> {
-    return request(.user(user))
+    return fetchUser(userId: user.id)
   }
 
   public func fetchUpdate(updateId updateId: Int, projectParam: Param)

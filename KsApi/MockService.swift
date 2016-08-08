@@ -61,6 +61,9 @@ internal struct MockService: ServiceType {
 
   private let fetchUpdateResponse: Update
 
+  private let fetchUserResponse: User?
+  private let fetchUserError: ErrorEnvelope?
+
   private let fetchUserSelfResponse: User?
   private let fetchUserSelfError: ErrorEnvelope?
 
@@ -142,6 +145,8 @@ internal struct MockService: ServiceType {
                 fetchProjectsError: ErrorEnvelope? = nil,
                 fetchProjectStatsResponse: ProjectStatsEnvelope? = nil,
                 fetchProjectStatsError: ErrorEnvelope? = nil,
+                fetchUserResponse: User? = nil,
+                fetchUserError: ErrorEnvelope? = nil,
                 fetchUserSelfResponse: User? = nil,
                 followFriendError: ErrorEnvelope? = nil,
                 fetchUnansweredSurveyResponsesResponse: [SurveyResponse] = [],
@@ -263,6 +268,9 @@ internal struct MockService: ServiceType {
     self.fetchUnansweredSurveyResponsesResponse = fetchUnansweredSurveyResponsesResponse
 
     self.fetchUpdateResponse = fetchUpdateResponse
+
+    self.fetchUserResponse = fetchUserResponse
+    self.fetchUserError = fetchUserError
 
     self.fetchUserSelfResponse = fetchUserSelfResponse ?? .template
     self.fetchUserSelfError = fetchUserSelfError
@@ -454,6 +462,8 @@ internal struct MockService: ServiceType {
       fetchProjectStatsError: self.fetchProjectStatsError,
       fetchUnansweredSurveyResponsesResponse: self.fetchUnansweredSurveyResponsesResponse,
       fetchUpdateResponse: self.fetchUpdateResponse,
+      fetchUserResponse: self.fetchUserResponse,
+      fetchUserError: self.fetchUserError,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       followFriendError: self.followFriendError,
       fetchUserSelfError: self.fetchUserSelfError,
@@ -501,6 +511,8 @@ internal struct MockService: ServiceType {
       fetchProjectsError: self.fetchProjectsError,
       fetchProjectStatsResponse: self.fetchProjectStatsResponse,
       fetchProjectStatsError: self.fetchProjectStatsError,
+      fetchUserResponse: self.fetchUserResponse,
+      fetchUserError: self.fetchUserError,
       fetchUserSelfResponse: self.fetchUserSelfResponse,
       followFriendError: self.followFriendError,
       fetchUnansweredSurveyResponsesResponse: self.fetchUnansweredSurveyResponsesResponse,
@@ -782,8 +794,18 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: self.fetchUnansweredSurveyResponsesResponse)
   }
 
+  internal func fetchUser(userId userId: Int) -> SignalProducer<User, ErrorEnvelope> {
+    if let error = self.fetchUserError {
+      return SignalProducer(error: error)
+    }
+    return SignalProducer(value: self.fetchUserResponse ?? (.template |> User.lens.id .~ userId))
+  }
+
   internal func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope> {
-    return SignalProducer(value: user)
+    if let error = self.fetchUserError {
+      return SignalProducer(error: error)
+    }
+    return SignalProducer(value: fetchUserResponse ?? user)
   }
 
   internal func fetchCategories() -> SignalProducer<CategoriesEnvelope, ErrorEnvelope> {

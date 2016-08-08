@@ -51,7 +51,7 @@ internal enum Route {
   case updateUpdateDraft(UpdateDraft, title: String, body: String, isPublic: Bool)
   case updateUserSelf(User)
   case userSelf
-  case user(User)
+  case user(userId: Int)
 
   enum UploadParam: String {
     case image
@@ -237,8 +237,8 @@ internal enum Route {
     case .userSelf:
       return (.GET, "/v1/users/self", [:], nil)
 
-    case let .user(user):
-      return (.GET, "/v1/users/\(user.id)", [:], nil)
+    case let .user(userId):
+      return (.GET, "/v1/users/\(userId)", [:], nil)
 
     }
   }

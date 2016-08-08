@@ -145,6 +145,9 @@ public protocol ServiceType {
   /// Fetch the newest data for a particular user.
   func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope>
 
+  /// Fetch a user.
+  func fetchUser(userId userId: Int) -> SignalProducer<User, ErrorEnvelope>
+
   /// Fetch the logged-in user's data.
   func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope>
 
