@@ -69,6 +69,10 @@ internal struct MockService: ServiceType {
 
   private let followFriendError: ErrorEnvelope?
 
+  private let incrementVideoCompletionError: ErrorEnvelope?
+
+  private let incrementVideoStartError: ErrorEnvelope?
+
   private let postCommentResponse: Comment?
   private let postCommentError: ErrorEnvelope?
 
@@ -149,6 +153,8 @@ internal struct MockService: ServiceType {
                 fetchUserError: ErrorEnvelope? = nil,
                 fetchUserSelfResponse: User? = nil,
                 followFriendError: ErrorEnvelope? = nil,
+                incrementVideoCompletionError: ErrorEnvelope? = nil,
+                incrementVideoStartError: ErrorEnvelope? = nil,
                 fetchUnansweredSurveyResponsesResponse: [SurveyResponse] = [],
                 fetchUpdateResponse: Update = .template,
                 fetchUserSelfError: ErrorEnvelope? = nil,
@@ -276,6 +282,10 @@ internal struct MockService: ServiceType {
     self.fetchUserSelfError = fetchUserSelfError
 
     self.followFriendError = followFriendError
+
+    self.incrementVideoCompletionError = incrementVideoCompletionError
+
+    self.incrementVideoStartError = incrementVideoStartError
 
     self.postCommentResponse = postCommentResponse ?? .template
 
@@ -815,6 +825,24 @@ internal struct MockService: ServiceType {
 
   internal func fetchCategory(id id: Int) -> SignalProducer<KsApi.Category, ErrorEnvelope> {
     return SignalProducer(value: .template |> Category.lens.id .~ id)
+  }
+
+  internal func incrementVideoCompletion(forProject project: Project) ->
+    SignalProducer<VoidEnvelope, ErrorEnvelope> {
+      if let error = incrementVideoCompletionError {
+        return .init(error: error)
+      } else {
+        return .init(value: VoidEnvelope())
+      }
+  }
+
+  internal func incrementVideoStart(forProject project: Project) ->
+    SignalProducer<VoidEnvelope, ErrorEnvelope> {
+      if let error = incrementVideoStartError {
+        return .init(error: error)
+      } else {
+        return .init(value: VoidEnvelope())
+      }
   }
 
   internal func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {

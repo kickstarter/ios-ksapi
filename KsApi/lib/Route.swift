@@ -22,6 +22,8 @@ internal enum Route {
   case friendStats
   case followAllFriends
   case followFriend(userId: Int)
+  case incrementVideoCompletion(project: Project)
+  case incrementVideoStart(project: Project)
   case login(email: String, password: String, code: String?)
   case markAsRead(MessageThread)
   case messagesForThread(MessageThread)
@@ -123,6 +125,18 @@ internal enum Route {
 
     case let .followFriend(userId):
       return (.POST, "v1/users/self/friends", ["followed_id": userId], nil)
+
+    case let .incrementVideoCompletion(project):
+      let statsURL = NSURL(string: project.urls.web.project)?
+        .URLByAppendingPathComponent("video/plays")
+        .absoluteString
+      return (.POST, statsURL ?? "", ["event_type": "complete", "location": "internal"], nil)
+
+    case let .incrementVideoStart(project):
+      let statsURL = NSURL(string: project.urls.web.project)?
+        .URLByAppendingPathComponent("video/plays")
+        .absoluteString
+      return (.POST, statsURL ?? "", ["event_type": "start", "location": "internal"], nil)
 
     case let .login(email, password, code):
       var params = ["email": email, "password": password]

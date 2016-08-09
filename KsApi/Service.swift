@@ -241,6 +241,36 @@ public struct Service: ServiceType {
     return request(.followFriend(userId: id))
   }
 
+  public func incrementVideoCompletion(forProject project: Project) ->
+    SignalProducer<VoidEnvelope, ErrorEnvelope> {
+
+      let producer = request(.incrementVideoCompletion(project: project))
+        as SignalProducer<VoidEnvelope, ErrorEnvelope>
+
+      return producer
+        .flatMapError { env -> SignalProducer<VoidEnvelope, ErrorEnvelope> in
+          if env.ksrCode == .ErrorEnvelopeJSONParsingFailed {
+            return .init(value: VoidEnvelope())
+          }
+          return .init(error: env)
+      }
+  }
+
+  public func incrementVideoStart(forProject project: Project) ->
+    SignalProducer<VoidEnvelope, ErrorEnvelope> {
+
+      let producer = request(.incrementVideoStart(project: project))
+        as SignalProducer<VoidEnvelope, ErrorEnvelope>
+
+      return producer
+        .flatMapError { env -> SignalProducer<VoidEnvelope, ErrorEnvelope> in
+          if env.ksrCode == .ErrorEnvelopeJSONParsingFailed {
+            return .init(value: VoidEnvelope())
+          }
+          return .init(error: env)
+      }
+  }
+
   public func login(email email: String, password: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
@@ -320,6 +350,7 @@ public struct Service: ServiceType {
   public func unfollowFriend(userId id: Int) -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
     return request(.unfollowFriend(userId: id))
   }
+
   public func update(draft draft: UpdateDraft, title: String, body: String, isPublic: Bool)
     -> SignalProducer<UpdateDraft, ErrorEnvelope> {
 
@@ -388,7 +419,7 @@ public struct Service: ServiceType {
 
       let properties = route.requestProperties
 
-      let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
+      let URL = NSURL(string: properties.path, relativeToURL: self.serverConfig.apiBaseUrl)!
 
       return Service.session.rac_JSONResponse(
         preparedRequest(forURL: URL, method: properties.method, query: properties.query),

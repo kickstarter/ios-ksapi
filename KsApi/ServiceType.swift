@@ -157,6 +157,12 @@ public protocol ServiceType {
   /// Follow a user with their id.
   func followFriend(userId id: Int) -> SignalProducer<User, ErrorEnvelope>
 
+  /// Increment the video complete stat for a project.
+  func incrementVideoCompletion(forProject project: Project) -> SignalProducer<VoidEnvelope, ErrorEnvelope>
+
+  /// Increment the video start stat for a project.
+  func incrementVideoStart(forProject project: Project) -> SignalProducer<VoidEnvelope, ErrorEnvelope>
+
   /// Attempt a login with an email, password and optional code.
   func login(email email: String, password: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
