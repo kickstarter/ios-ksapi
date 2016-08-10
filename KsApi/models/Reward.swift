@@ -10,6 +10,7 @@ public struct Reward {
   public let limit: Int?
   public let minimum: Int
   public let remaining: Int?
+  public let rewardsItems: [RewardsItem]
   public let shipping: Shipping
   public let title: String?
 
@@ -51,10 +52,11 @@ extension Reward: Decodable {
       <*> (json <| "description" <|> json <| "reward")
       <*> json <|? "estimated_delivery_on"
       <*> json <| "id"
-    return tmp
       <*> json <|? "limit"
+    return tmp
       <*> json <| "minimum"
       <*> json <|? "remaining"
+      <*> ((json <|| "rewards_items") <|> .Success([]))
       <*> Reward.Shipping.decode(json)
       <*> json <|? "title"
   }

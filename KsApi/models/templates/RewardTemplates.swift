@@ -9,20 +9,24 @@ extension Reward {
     limit: 100,
     minimum: 10,
     remaining: 50,
+    rewardsItems: [
+    ],
     shipping: Reward.Shipping(
-      enabled: true,
-      preference: .none,
-      summary: "Ships anywhere in the world"
+      enabled: false,
+      preference: nil,
+      summary: nil
     ),
     title: nil
   )
 
   internal static let noReward = template
-    |> Reward.lens.id .~ 0
+    |> Reward.lens.backersCount .~ nil
     <> Reward.lens.description .~ "No reward"
-    <> Reward.lens.backersCount .~ nil
     <> Reward.lens.estimatedDeliveryOn .~ nil
-    <> Reward.lens.remaining .~ nil
-    <> Reward.lens.minimum .~ 1
+    <> Reward.lens.id .~ 0
     <> Reward.lens.limit .~ nil
+    <> Reward.lens.minimum .~ 1
+    <> Reward.lens.remaining .~ nil
+    <> Reward.lens.rewardsItems .~ []
+    <> Reward.lens.title .~ nil
 }

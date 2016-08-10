@@ -281,6 +281,20 @@
 		A7363ABB1D035A4B00445B24 /* ReactiveExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736395E1D03551000445B24 /* ReactiveExtensions.framework */; };
 		A745D0621CA8B5D500C12802 /* ServiceTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A745D0611CA8B5D500C12802 /* ServiceTypeTests.swift */; };
 		A745D0631CA8B5D500C12802 /* ServiceTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A745D0611CA8B5D500C12802 /* ServiceTypeTests.swift */; };
+		A747A7ED1D455A3F00AF199A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A7EB1D455A3F00AF199A /* Item.swift */; };
+		A747A7EE1D455A3F00AF199A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A7EB1D455A3F00AF199A /* Item.swift */; };
+		A747A7EF1D455A3F00AF199A /* RewardsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A7EC1D455A3F00AF199A /* RewardsItem.swift */; };
+		A747A7F01D455A3F00AF199A /* RewardsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A7EC1D455A3F00AF199A /* RewardsItem.swift */; };
+		A747A8031D455A7300AF199A /* ItemLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A8001D455A7300AF199A /* ItemLenses.swift */; };
+		A747A8041D455A7300AF199A /* ItemLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A8001D455A7300AF199A /* ItemLenses.swift */; };
+		A747A8051D455A7300AF199A /* Reward.ShippingLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A8011D455A7300AF199A /* Reward.ShippingLenses.swift */; };
+		A747A8061D455A7300AF199A /* Reward.ShippingLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A8011D455A7300AF199A /* Reward.ShippingLenses.swift */; };
+		A747A8071D455A7300AF199A /* RewardItemLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A8021D455A7300AF199A /* RewardItemLenses.swift */; };
+		A747A8081D455A7300AF199A /* RewardItemLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A8021D455A7300AF199A /* RewardItemLenses.swift */; };
+		A747A80B1D455AD000AF199A /* ItemTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A8091D455AD000AF199A /* ItemTemplates.swift */; };
+		A747A80C1D455AD000AF199A /* ItemTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A8091D455AD000AF199A /* ItemTemplates.swift */; };
+		A747A80D1D455AD000AF199A /* RewardsItemTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A80A1D455AD000AF199A /* RewardsItemTemplates.swift */; };
+		A747A80E1D455AD000AF199A /* RewardsItemTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A80A1D455AD000AF199A /* RewardsItemTemplates.swift */; };
 		A753B56C1C2EED9800FDB616 /* KsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B56B1C2EED9800FDB616 /* KsApiTests.swift */; };
 		A753B56E1C2EED9800FDB616 /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		A757E99F1D19903400A5C978 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757E99E1D19903400A5C978 /* SurveyResponse.swift */; };
@@ -310,6 +324,10 @@
 		A782B4421D2C27DF0069D10E /* Activity.MemberDataLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEE3BA31D1DB9950020C2BE /* Activity.MemberDataLenses.swift */; };
 		A796649D1D52213100454C84 /* MessageSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796649C1D52213100454C84 /* MessageSubject.swift */; };
 		A796649E1D52213100454C84 /* MessageSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796649C1D52213100454C84 /* MessageSubject.swift */; };
+		A796A8C21D48EAE9009B6EF6 /* RewardsItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796A8C11D48EAE9009B6EF6 /* RewardsItemTests.swift */; };
+		A796A8C31D48EAE9009B6EF6 /* RewardsItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796A8C11D48EAE9009B6EF6 /* RewardsItemTests.swift */; };
+		A796A8D41D48EAF8009B6EF6 /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796A8D31D48EAF8009B6EF6 /* ItemTests.swift */; };
+		A796A8D51D48EAF8009B6EF6 /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796A8D31D48EAF8009B6EF6 /* ItemTests.swift */; };
 		A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
@@ -725,6 +743,13 @@
 		A7363A481D03588600445B24 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		A7378CCC1C809A7500F0A562 /* KsApi.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KsApi.playground; sourceTree = "<group>"; };
 		A745D0611CA8B5D500C12802 /* ServiceTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTypeTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A747A7EB1D455A3F00AF199A /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		A747A7EC1D455A3F00AF199A /* RewardsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsItem.swift; sourceTree = "<group>"; };
+		A747A8001D455A7300AF199A /* ItemLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemLenses.swift; sourceTree = "<group>"; };
+		A747A8011D455A7300AF199A /* Reward.ShippingLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reward.ShippingLenses.swift; sourceTree = "<group>"; };
+		A747A8021D455A7300AF199A /* RewardItemLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardItemLenses.swift; sourceTree = "<group>"; };
+		A747A8091D455AD000AF199A /* ItemTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTemplates.swift; sourceTree = "<group>"; };
+		A747A80A1D455AD000AF199A /* RewardsItemTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsItemTemplates.swift; sourceTree = "<group>"; };
 		A753B5691C2EED9800FDB616 /* KsApi-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A753B56B1C2EED9800FDB616 /* KsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KsApiTests.swift; sourceTree = "<group>"; };
 		A757E99E1D19903400A5C978 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
@@ -740,6 +765,8 @@
 		A77967631C2B431C0002166F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A77967641C2B431C0002166F /* ServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		A796649C1D52213100454C84 /* MessageSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSubject.swift; sourceTree = "<group>"; };
+		A796A8C11D48EAE9009B6EF6 /* RewardsItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsItemTests.swift; sourceTree = "<group>"; };
+		A796A8D31D48EAF8009B6EF6 /* ItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
 		A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStatsEnvelope.CumulativeStatsLenses.swift; sourceTree = "<group>"; };
 		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A7FD099D1C83E74F00332CCB /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -808,12 +835,12 @@
 				A72661DD1D07671D0087D883 /* BackingTemplates.swift */,
 				A72661DE1D07671D0087D883 /* CategoriesEnvelopeTemplates.swift */,
 				A72661DF1D07671D0087D883 /* CategoryTemplates.swift */,
-				59019FBB1D21C9D800EAEC9D /* ProjectStatsEnvelope.ReferrerStatsTemplates.swift */,
 				A72661E01D07671D0087D883 /* CommentTemplates.swift */,
 				A72661E11D07671D0087D883 /* ConfigTemplates.swift */,
 				A72661E21D07671D0087D883 /* DiscoveryEnvelopeTemplates.swift */,
 				0156B3811D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift */,
 				0156B41B1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift */,
+				A747A8091D455AD000AF199A /* ItemTemplates.swift */,
 				A72661E31D07671D0087D883 /* LocationTemplates.swift */,
 				A72661E41D07671D0087D883 /* MessageTemplates.swift */,
 				A72661E51D07671D0087D883 /* MessageThreadTemplates.swift */,
@@ -822,10 +849,12 @@
 				59B0DF371D0F13BE0081D2DC /* ProjectNotificationTemplates.swift */,
 				59D1E6A91D19E54800896A4C /* ProjectStatsEnvelope.CumulativeStatsTemplates.swift */,
 				59F1B71B1D2DB8FA001F7AF5 /* ProjectStatsEnvelope.FundingDateStatsTemplates.swift */,
+				59019FBB1D21C9D800EAEC9D /* ProjectStatsEnvelope.ReferrerStatsTemplates.swift */,
 				013F78321D1D9EA5005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift */,
 				59D1E67B1D18A27000896A4C /* ProjectStatsEnvelope.VideoStatsTemplates.swift */,
 				59D1E6A31D19C58800896A4C /* ProjectStatsEnvelopeTemplates.swift */,
 				A72661E81D07671D0087D883 /* ProjectTemplates.swift */,
+				A747A80A1D455AD000AF199A /* RewardsItemTemplates.swift */,
 				A72661E91D07671D0087D883 /* RewardTemplates.swift */,
 				A72661EA1D07671D0087D883 /* StarEnvelopeTemplates.swift */,
 				A757E9B71D19B37B00A5C978 /* SurveyResponseTemplates.swift */,
@@ -934,19 +963,22 @@
 				A73639A31D03565400445B24 /* ErrorEnvelope.swift */,
 				A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */,
 				A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */,
+				A747A7EB1D455A3F00AF199A /* Item.swift */,
 				A73639B71D03565400445B24 /* Location.swift */,
 				A73639B81D03565400445B24 /* Message.swift */,
 				A73639B91D03565400445B24 /* MessageThread.swift */,
 				A73639BA1D03565400445B24 /* MessageThreadEnvelope.swift */,
 				A73639BB1D03565400445B24 /* MessageThreadsEnvelope.swift */,
+				A731BF971D1F0A7E00A734AC /* Param.swift */,
 				A73639BC1D03565400445B24 /* Project.Country.swift */,
 				A73639BE1D03565400445B24 /* Project.swift */,
 				A73639BF1D03565400445B24 /* Project.Video.swift */,
 				9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */,
-				59D1E6A01D19C1F600896A4C /* ProjectStatsEnvelope.swift */,
 				59B0DF231D0F13570081D2DC /* ProjectNotification.swift */,
 				9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */,
+				59D1E6A01D19C1F600896A4C /* ProjectStatsEnvelope.swift */,
 				A73639C01D03565400445B24 /* Reward.swift */,
+				A747A7EC1D455A3F00AF199A /* RewardsItem.swift */,
 				A73639C11D03565400445B24 /* StarEnvelope.swift */,
 				A757E99E1D19903400A5C978 /* SurveyResponse.swift */,
 				A73639C21D03565400445B24 /* Update.swift */,
@@ -976,6 +1008,7 @@
 				0156B2471D07B98D000C4252 /* FindFriendsEnvelopeLenses.swift */,
 				0156B4291D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift */,
 				0156B42C1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift */,
+				A747A8001D455A7300AF199A /* ItemLenses.swift */,
 				A73639AA1D03565400445B24 /* LocationLenses.swift */,
 				A73639AB1D03565400445B24 /* MessageLenses.swift */,
 				A73639AC1D03565400445B24 /* MessageThreadLenses.swift */,
@@ -989,11 +1022,14 @@
 				59B0DF321D0F13960081D2DC /* ProjectNotificationLenses.swift */,
 				A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */,
 				59F1B7091D2DB453001F7AF5 /* ProjectStatsEnvelope.FundingDateStatsLenses.swift */,
+				59019F731D218C7A00EAEC9D /* ProjectStatsEnvelope.ReferrerStatsLenses.swift */,
 				013F78341D1DA118005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift */,
 				59D1E6FE1D1B1CFD00896A4C /* ProjectStatsEnvelope.VideoStatsLenses.swift */,
 				59673CC01D50F1A90035AFD9 /* Project.VideoLenses.swift */,
 				59019F731D218C7A00EAEC9D /* ProjectStatsEnvelope.ReferrerStatsLenses.swift */,
 				59D1E6A61D19CD6300896A4C /* ProjectStatsEnvelopeLenses.swift */,
+				A747A8011D455A7300AF199A /* Reward.ShippingLenses.swift */,
+				A747A8021D455A7300AF199A /* RewardItemLenses.swift */,
 				A73639B11D03565400445B24 /* RewardLenses.swift */,
 				80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */,
 				A757E9B41D19B2ED00A5C978 /* SurveyResponseLenses.swift */,
@@ -1028,14 +1064,16 @@
 				A7363A3B1D03588600445B24 /* ErrorEnvelopeTests.swift */,
 				0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */,
 				0156B2111D076028000C4252 /* FriendStatsEnvelopeTests.swift */,
-				59D1E6C41D19F25700896A4C /* ProjectStatsEnvelopeTests.swift */,
+				A796A8D31D48EAF8009B6EF6 /* ItemTests.swift */,
 				A7363A3C1D03588600445B24 /* LocationTests.swift */,
 				A7363A3D1D03588600445B24 /* MessageTests.swift */,
 				A7363A3E1D03588600445B24 /* MessageThreadTests.swift */,
 				A7363A3F1D03588600445B24 /* Project.CountryTests.swift */,
 				A7363A401D03588600445B24 /* Project.PhotoTests.swift */,
 				A7363A411D03588600445B24 /* Project.VideoTests.swift */,
+				59D1E6C41D19F25700896A4C /* ProjectStatsEnvelopeTests.swift */,
 				A7363A421D03588600445B24 /* ProjectTests.swift */,
+				A796A8C11D48EAE9009B6EF6 /* RewardsItemTests.swift */,
 				A7363A431D03588600445B24 /* RewardTests.swift */,
 				A757E9BA1D19B8D200A5C978 /* SurveyResponseTests.swift */,
 				809F8B621D08A26B005BADD9 /* UpdateDraftTests.swift */,
@@ -1502,6 +1540,7 @@
 				A7363A621D03588600445B24 /* Project.PhotoTests.swift in Sources */,
 				A7363A601D03588600445B24 /* Project.CountryTests.swift in Sources */,
 				A753B56C1C2EED9800FDB616 /* KsApiTests.swift in Sources */,
+				A796A8D51D48EAF8009B6EF6 /* ItemTests.swift in Sources */,
 				A7363A721D03588600445B24 /* UserTests.swift in Sources */,
 				A7363A561D03588600445B24 /* DiscoveryParamsTests.swift in Sources */,
 				A7363A581D03588600445B24 /* ErrorEnvelopeTests.swift in Sources */,
@@ -1516,6 +1555,7 @@
 				A7363A5A1D03588600445B24 /* LocationTests.swift in Sources */,
 				A7363A4A1D03588600445B24 /* EncodableTests.swift in Sources */,
 				A7363A661D03588600445B24 /* ProjectTests.swift in Sources */,
+				A796A8C31D48EAE9009B6EF6 /* RewardsItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,6 +1574,7 @@
 				A7363A1C1D03565400445B24 /* MessageThreadsEnvelope.swift in Sources */,
 				A73639F01D03565400445B24 /* ActivityLenses.swift in Sources */,
 				A73639F81D03565400445B24 /* DiscoveryParamsLenses.swift in Sources */,
+				A747A80D1D455AD000AF199A /* RewardsItemTemplates.swift in Sources */,
 				A7363A241D03565400445B24 /* Project.Video.swift in Sources */,
 				A72661F11D07671D0087D883 /* ActivityTemplates.swift in Sources */,
 				59B0DF241D0F13570081D2DC /* ProjectNotification.swift in Sources */,
@@ -1577,6 +1618,7 @@
 				80FB0AFD1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift in Sources */,
 				A73639F61D03565400445B24 /* CommentLenses.swift in Sources */,
 				A73639FC1D03565400445B24 /* MessageLenses.swift in Sources */,
+				A747A7ED1D455A3F00AF199A /* Item.swift in Sources */,
 				A731BF981D1F0A7E00A734AC /* Param.swift in Sources */,
 				80B6C7AD1D2C3F0300BCFD81 /* MimeType.swift in Sources */,
 				A7363A1E1D03565400445B24 /* Project.Country.swift in Sources */,
@@ -1585,7 +1627,9 @@
 				A73639CE1D03565400445B24 /* Decodable.swift in Sources */,
 				013F78351D1DA118005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift in Sources */,
 				8062BBFE1D0F16BD00702C68 /* UpdateDraftLenses.swift in Sources */,
+				A747A8051D455A7300AF199A /* Reward.ShippingLenses.swift in Sources */,
 				A73639C81D03565400445B24 /* BasicHTTPAuth.swift in Sources */,
+				A747A8071D455A7300AF199A /* RewardItemLenses.swift in Sources */,
 				A7363A261D03565400445B24 /* Reward.swift in Sources */,
 				A73639D81D03565400445B24 /* AccessTokenEnvelope.swift in Sources */,
 				A73639FA1D03565400445B24 /* LocationLenses.swift in Sources */,
@@ -1595,6 +1639,7 @@
 				59B0DF351D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */,
 				A7363A0E1D03565400445B24 /* User.NotificationsLenses.swift in Sources */,
 				0156B24A1D07B996000C4252 /* FindFriendsEnvelopeLenses.swift in Sources */,
+				A747A8031D455A7300AF199A /* ItemLenses.swift in Sources */,
 				59D1E6A11D19C1F600896A4C /* ProjectStatsEnvelope.swift in Sources */,
 				59D1E6FF1D1B1CFD00896A4C /* ProjectStatsEnvelope.VideoStatsLenses.swift in Sources */,
 				59F1B70A1D2DB453001F7AF5 /* ProjectStatsEnvelope.FundingDateStatsLenses.swift in Sources */,
@@ -1624,6 +1669,7 @@
 				A72661FF1D07671D0087D883 /* LocationTemplates.swift in Sources */,
 				0156B3821D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift in Sources */,
 				A72661FB1D07671D0087D883 /* ConfigTemplates.swift in Sources */,
+				A747A7EF1D455A3F00AF199A /* RewardsItem.swift in Sources */,
 				A73639E41D03565400445B24 /* Comment.swift in Sources */,
 				A73639FE1D03565400445B24 /* MessageThreadLenses.swift in Sources */,
 				A72662011D07671D0087D883 /* MessageTemplates.swift in Sources */,
@@ -1636,6 +1682,7 @@
 				A73639F41D03565400445B24 /* CategoryLenses.swift in Sources */,
 				A73639D41D03565400445B24 /* Method.swift in Sources */,
 				59019F741D218C7A00EAEC9D /* ProjectStatsEnvelope.ReferrerStatsLenses.swift in Sources */,
+				A747A80B1D455AD000AF199A /* ItemTemplates.swift in Sources */,
 				59D1E67F1D18A8C000896A4C /* User.MemberDataTemplates.swift in Sources */,
 				A72662131D07671D0087D883 /* User.NewsletterSubscriptionsTemplates.swift in Sources */,
 				A72662111D07671D0087D883 /* User.AvatarTemplates.swift in Sources */,
@@ -1666,6 +1713,7 @@
 				A7363A611D03588600445B24 /* Project.PhotoTests.swift in Sources */,
 				A7363A5F1D03588600445B24 /* Project.CountryTests.swift in Sources */,
 				A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */,
+				A796A8D41D48EAF8009B6EF6 /* ItemTests.swift in Sources */,
 				A7363A711D03588600445B24 /* UserTests.swift in Sources */,
 				A7363A551D03588600445B24 /* DiscoveryParamsTests.swift in Sources */,
 				A7363A571D03588600445B24 /* ErrorEnvelopeTests.swift in Sources */,
@@ -1680,6 +1728,7 @@
 				A7363A591D03588600445B24 /* LocationTests.swift in Sources */,
 				A7363A491D03588600445B24 /* EncodableTests.swift in Sources */,
 				A7363A651D03588600445B24 /* ProjectTests.swift in Sources */,
+				A796A8C21D48EAE9009B6EF6 /* RewardsItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1693,15 +1742,18 @@
 				A77967741C2B431C0002166F /* ServiceType.swift in Sources */,
 				A726620A1D07671D0087D883 /* ProjectTemplates.swift in Sources */,
 				804394FD1D06305E002E12C5 /* NSURLSession.swift in Sources */,
+				A747A8041D455A7300AF199A /* ItemLenses.swift in Sources */,
 				A73639ED1D03565400445B24 /* DiscoveryParams.swift in Sources */,
 				A7363A231D03565400445B24 /* Project.swift in Sources */,
 				A7363A1D1D03565400445B24 /* MessageThreadsEnvelope.swift in Sources */,
 				A73639F11D03565400445B24 /* ActivityLenses.swift in Sources */,
+				A747A80E1D455AD000AF199A /* RewardsItemTemplates.swift in Sources */,
 				A73639F91D03565400445B24 /* DiscoveryParamsLenses.swift in Sources */,
 				80B6C7AE1D2C3F0300BCFD81 /* MimeType.swift in Sources */,
 				A7363A251D03565400445B24 /* Project.Video.swift in Sources */,
 				A72661F21D07671D0087D883 /* ActivityTemplates.swift in Sources */,
 				59019F751D218C7A00EAEC9D /* ProjectStatsEnvelope.ReferrerStatsLenses.swift in Sources */,
+				A747A8081D455A7300AF199A /* RewardItemLenses.swift in Sources */,
 				59B0DF251D0F13570081D2DC /* ProjectNotification.swift in Sources */,
 				59D1E6A51D19C58900896A4C /* ProjectStatsEnvelopeTemplates.swift in Sources */,
 				A73639DB1D03565400445B24 /* Activity.swift in Sources */,
@@ -1713,6 +1765,7 @@
 				A73639D11D03565400445B24 /* EncodableType.swift in Sources */,
 				A73639EF1D03565400445B24 /* ErrorEnvelope.swift in Sources */,
 				A72661FE1D07671D0087D883 /* DiscoveryEnvelopeTemplates.swift in Sources */,
+				A747A7F01D455A3F00AF199A /* RewardsItem.swift in Sources */,
 				A75CAC551D138CBC00EBF323 /* MockService.swift in Sources */,
 				A72662101D07671D0087D883 /* UpdateTemplates.swift in Sources */,
 				A7363A2B1D03565400445B24 /* Update.swift in Sources */,
@@ -1756,6 +1809,7 @@
 				A7363A271D03565400445B24 /* Reward.swift in Sources */,
 				A73639D91D03565400445B24 /* AccessTokenEnvelope.swift in Sources */,
 				A73639FB1D03565400445B24 /* LocationLenses.swift in Sources */,
+				A747A8061D455A7300AF199A /* Reward.ShippingLenses.swift in Sources */,
 				A72661F41D07671D0087D883 /* BackingTemplates.swift in Sources */,
 				A72661FA1D07671D0087D883 /* CommentTemplates.swift in Sources */,
 				59F1B71D1D2DB8FA001F7AF5 /* ProjectStatsEnvelope.FundingDateStatsTemplates.swift in Sources */,
@@ -1789,6 +1843,7 @@
 				A72662001D07671D0087D883 /* LocationTemplates.swift in Sources */,
 				0156B3831D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift in Sources */,
 				013F78371D1DAAF9005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift in Sources */,
+				A747A7EE1D455A3F00AF199A /* Item.swift in Sources */,
 				A72661FC1D07671D0087D883 /* ConfigTemplates.swift in Sources */,
 				A73639E51D03565400445B24 /* Comment.swift in Sources */,
 				A73639FF1D03565400445B24 /* MessageThreadLenses.swift in Sources */,
@@ -1800,6 +1855,7 @@
 				A7363A1B1D03565400445B24 /* MessageThreadEnvelope.swift in Sources */,
 				A72662061D07671D0087D883 /* Project.PhotoTemplates.swift in Sources */,
 				A73639F51D03565400445B24 /* CategoryLenses.swift in Sources */,
+				A747A80C1D455AD000AF199A /* ItemTemplates.swift in Sources */,
 				A73639D51D03565400445B24 /* Method.swift in Sources */,
 				59D1E6801D18A8C000896A4C /* User.MemberDataTemplates.swift in Sources */,
 				A72662141D07671D0087D883 /* User.NewsletterSubscriptionsTemplates.swift in Sources */,

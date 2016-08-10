@@ -112,6 +112,7 @@ final class ProjectTests: XCTestCase {
       "launched_at": 1000,
       "deadline": 1000,
       "state_changed_at": 1000,
+      "static_usd_rate": 1.0,
       "slug": "project",
       "urls": [
         "web": [
@@ -195,6 +196,7 @@ final class ProjectTests: XCTestCase {
       "launched_at": 1000,
       "deadline": 1000,
       "state_changed_at": 1000,
+      "static_usd_rate": 1.0,
       "slug": "project",
       "urls": [
         "web": [
@@ -209,5 +211,13 @@ final class ProjectTests: XCTestCase {
     XCTAssertNil(project.error)
     XCTAssertEqual("US", project.value?.country.countryCode)
     XCTAssertEqual(true, project.value?.personalization.isBacking)
+  }
+
+  func testPledgedUsd() {
+    let project = .template
+      |> Project.lens.stats.staticUsdRate .~ 2.0
+      |> Project.lens.stats.pledged .~ 1_000
+
+    XCTAssertEqual(2_000, project.stats.pledgedUsd)
   }
 }

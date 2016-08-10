@@ -15,7 +15,7 @@ public struct Project {
   public let name: String
   public let personalization: Personalization
   public let photo: Photo
-  public let rewards: [Reward]?
+  public let rewards: [Reward]
   public let slug: String
   public let state: State
   public let stats: Stats
@@ -46,6 +46,7 @@ public struct Project {
     public let commentsCount: Int?
     public let goal: Int
     public let pledged: Int
+    public let staticUsdRate: Float
     public let updatesCount: Int?
 
     /// Percent funded as measured from `0.0` to `1.0`. See `percentFunded` for a value from `0` to `100`.
@@ -57,6 +58,16 @@ public struct Project {
     /// and `1.0`.
     public var percentFunded: Int {
       return Int(floor(self.fundingProgress * 100.0))
+    }
+
+    /// Pledged amount converted to USD.
+    public var pledgedUsd: Int {
+      return Int(floor(Float(self.pledged) * self.staticUsdRate))
+    }
+
+    /// Goal amount converted to USD.
+    public var goalUsd: Int {
+      return Int(floor(Float(self.goal) * self.staticUsdRate))
     }
   }
 
@@ -137,7 +148,7 @@ extension Project: Decodable {
       <*> Project.Personalization.decode(json)
     return tmp2
       <*> json <| "photo"
-      <*> json <||? "rewards"
+      <*> (json <|| "rewards" <|> .Success([]))
       <*> json <| "slug"
       <*> json <| "state"
       <*> Project.Stats.decode(json)
@@ -167,6 +178,7 @@ extension Project.Stats: Decodable {
       <*> json <|? "comments_count"
       <*> json <| "goal"
       <*> json <| "pledged"
+      <*> (json <| "static_usd_rate") <|> .Success(1.0)
       <*> json <|? "updates_count"
   }
 }

@@ -99,7 +99,7 @@ extension Project {
         state: $1.state, stats: $1.stats, urls: $1.urls, video: $1.video) }
     )
 
-    public static let rewards = Lens<Project, [Reward]?>(
+    public static let rewards = Lens<Project, [Reward]>(
       view: { $0.rewards },
       set: { Project(backing: $1.backing, blurb: $1.blurb, category: $1.category, country: $1.country,
         creator: $1.creator, memberData: $1.memberData, dates: $1.dates, id: $1.id, location: $1.location,
@@ -195,6 +195,16 @@ extension LensType where Whole == Project, Part == Category {
   }
 }
 
+extension LensType where Whole == Project, Part == Location {
+  public var name: Lens<Project, String> {
+    return Project.lens.location • Location.lens.name
+  }
+
+  public var displayableName: Lens<Project, String> {
+    return Project.lens.location • Location.lens.displayableName
+  }
+}
+
 extension LensType where Whole == Project, Part == Project.Stats {
   public var backersCount: Lens<Project, Int> {
     return Project.lens.stats • Project.Stats.lens.backersCount
@@ -210,6 +220,10 @@ extension LensType where Whole == Project, Part == Project.Stats {
 
   public var pledged: Lens<Project, Int> {
     return Project.lens.stats • Project.Stats.lens.pledged
+  }
+
+  public var staticUsdRate: Lens<Project, Float> {
+    return Project.lens.stats • Project.Stats.lens.staticUsdRate
   }
 
   public var updatesCount: Lens<Project, Int?> {
@@ -254,6 +268,10 @@ extension LensType where Whole == Project, Part == Project.Dates {
 }
 
 extension LensType where Whole == Project, Part == Project.Personalization {
+  public var backing: Lens<Project, Backing?> {
+    return Project.lens.personalization • Project.Personalization.lens.backing
+  }
+
   public var isBacking: Lens<Project, Bool?> {
     return Project.lens.personalization • Project.Personalization.lens.isBacking
   }

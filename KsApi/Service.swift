@@ -1,6 +1,7 @@
 // swiftlint:disable file_length
 
 import Argo
+import Foundation
 import Prelude
 import ReactiveCocoa
 import ReactiveExtensions
@@ -22,7 +23,7 @@ public struct Service: ServiceType {
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
     self.language = language
-    self.buildVersion = buildVersion
+    self.buildVersion = (NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String) ?? "1"
   }
 
   public func login(oauthToken: OauthTokenAuthType) -> Service {

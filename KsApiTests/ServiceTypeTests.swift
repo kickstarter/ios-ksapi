@@ -32,7 +32,7 @@ final class ServiceTypeTests: XCTestCase {
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
                    request.URL?.absoluteString)
     XCTAssertEqual(
-      ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr"],
+      ["Kickstarter-iOS-App": "1", "Authorization": "token cafebeef", "Accept-Language": "ksr"],
       request.allHTTPHeaderFields!
     )
   }
@@ -44,7 +44,7 @@ final class ServiceTypeTests: XCTestCase {
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
                    request.URL?.absoluteString)
     XCTAssertEqual(
-      ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr"],
+      ["Kickstarter-iOS-App": "1", "Authorization": "token cafebeef", "Accept-Language": "ksr"],
       request.allHTTPHeaderFields!
     )
     XCTAssertEqual("GET", request.HTTPMethod)
@@ -57,7 +57,7 @@ final class ServiceTypeTests: XCTestCase {
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
                    request.URL?.absoluteString)
     XCTAssertEqual(
-      ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr"],
+      ["Kickstarter-iOS-App": "1", "Authorization": "token cafebeef", "Accept-Language": "ksr"],
       request.allHTTPHeaderFields!
     )
     XCTAssertEqual("DELETE", request.HTTPMethod)
@@ -70,7 +70,7 @@ final class ServiceTypeTests: XCTestCase {
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
                    request.URL?.absoluteString)
     XCTAssertEqual(
-      ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
+      ["Kickstarter-iOS-App": "1", "Authorization": "token cafebeef", "Accept-Language": "ksr",
        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"],
       request.allHTTPHeaderFields!
     )

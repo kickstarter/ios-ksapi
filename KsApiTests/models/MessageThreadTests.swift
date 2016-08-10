@@ -82,6 +82,7 @@ internal final class MessageThreadTests: XCTestCase {
         "launched_at": 1000,
         "deadline": 1000,
         "state_changed_at": 1000,
+        "static_usd_rate": 1.0,
         "slug": "project",
         "urls": [
           "web": [

@@ -29,7 +29,7 @@ extension Project {
       isStarred: nil
     ),
     photo: .template,
-    rewards: nil,
+    rewards: [],
     slug: "a-fun-project",
     state: .live,
     stats: Project.Stats(
@@ -37,6 +37,7 @@ extension Project {
       commentsCount: 10,
       goal: 2_000,
       pledged: 1_000,
+      staticUsdRate: 1.0,
       updatesCount: 1
     ),
     urls: Project.UrlsEnvelope(
@@ -66,19 +67,71 @@ extension Project {
     |> Project.lens.stats.backersCount .~ 329
     |> Project.lens.stats.pledged .~ 22_318
     |> Project.lens.stats.goal .~ 22_000
+    |> Project.lens.stats.staticUsdRate .~ 1.31
     |> (Project.lens.location • Location.lens.displayableName) .~ "Hastings, UK"
     |> Project.lens.rewards .~ [
-      Reward.noReward,
+      .template
+        |> Reward.lens.id .~ 20
+        |> Reward.lens.minimum .~ 6
+        |> Reward.lens.limit .~ nil
+        |> Reward.lens.backersCount .~ 23
+        |> Reward.lens.title .~ "Postcards"
+        |> Reward.lens.description .~ "Pack of 5 postcards - images from the Cosmic Surgery series.",
+
       .template
         |> Reward.lens.id .~ 1
         |> Reward.lens.minimum .~ 25
-        |> Reward.lens.title .~ "Cosmic Surgery Book"
+        |> Reward.lens.limit .~ 100
+        |> Reward.lens.backersCount .~ 100
+        |> Reward.lens.remaining .~ 0
+        |> Reward.lens.title .~ "‘EARLYBIRD’ COSMIC SURGERY BOOK"
         |> Reward.lens.description .~ "You will be the first to receive a copy of the book at this special ‘earlybird’ price. Limited to the first 100 copies.",
+
       .template
         |> Reward.lens.id .~ 2
-        |> Reward.lens.minimum .~ 100
-        |> Reward.lens.title .~ "The Cosmic Surgery Workshop"
-        |> Reward.lens.description .~ "A 1/2 day workshop with Alma Haser and Emily Macaulay being taught how to make your very own Cosmic Surgery portrait using one of your own photos."
+        |> Reward.lens.minimum .~ 30
+        |> Reward.lens.backersCount .~ 83
+        |> Reward.lens.title .~ "COSMIC SURGERY BOOK"
+        |> Reward.lens.description .~ "You will be the first to receive a copy of the book at the special price of £30. The book will be sold for £35 in shops when released in July.",
+
+      .template
+        |> Reward.lens.id .~ 3
+        |> Reward.lens.minimum .~ 650
+        |> Reward.lens.limit .~ 10
+        |> Reward.lens.backersCount .~ 3
+        |> Reward.lens.title .~ "‘PATIENT NO. 16’ PRINT"
+        |> Reward.lens.description .~ "This is a newly released print available in the Cosmic Surgery print series."
+        |> Reward.lens.rewardsItems .~ [
+          .template
+            |> RewardsItem.lens.id .~ 1
+            |> RewardsItem.lens.item .~ (
+              .template
+                |> Item.lens.description .~ "60x60cm Fine Art Print on Fine Art Felt 310gsm Paper. Edition of 10."
+                |> Item.lens.name .~ "60x60cm Fine Art Print on Fine Art Felt 310gsm Paper. Edition of 10."
+            )
+            |> RewardsItem.lens.quantity .~ 1
+            |> RewardsItem.lens.rewardId .~ 3,
+
+          .template
+            |> RewardsItem.lens.id .~ 1
+            |> RewardsItem.lens.item .~ (
+              .template
+                |> Item.lens.description .~ "Signed copy of book."
+                |> Item.lens.name .~ "Signed copy of book."
+            )
+            |> RewardsItem.lens.quantity .~ 1
+            |> RewardsItem.lens.rewardId .~ 3,
+
+          .template
+            |> RewardsItem.lens.id .~ 1
+            |> RewardsItem.lens.item .~ (
+              .template
+                |> Item.lens.description .~ "Invite to book launch party."
+                |> Item.lens.name .~ "Invite to book launch party."
+            )
+            |> RewardsItem.lens.quantity .~ 1
+            |> RewardsItem.lens.rewardId .~ 3,
+      ]
     ]
     |> Project.lens.country .~ .GB
     |> Project.lens.creator .~ (
