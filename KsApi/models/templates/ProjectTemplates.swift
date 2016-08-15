@@ -49,7 +49,9 @@ extension Project {
   )
 
   internal static let todayByScottThrift = .template
-    |> Project.lens.photo.full .~ "https://ksr-ugc.imgix.net/assets/012/224/660/847bc4da31e6863e9351bee4e55b8005_original.jpg?w=1024&h=576&fit=fill&bg=FBFAF8&v=1464773625&auto=format&q=92&s=38af4533c87179eeab9790037edec189"
+    |> Project.lens.photo.full .~ "https://ksr-ugc.imgix.net/assets/012/224/660/847bc4da31e6863e9351bee4e55b8005_original.jpg?w=560&h=315&fit=fill&bg=FBFAF8&v=1464773625&auto=format&q=92&s=bb3773aebc4ad41e145ed8735cb3a221"
+    |> Project.lens.photo.med .~ "https://ksr-ugc.imgix.net/assets/012/224/660/847bc4da31e6863e9351bee4e55b8005_original.jpg?w=266&h=150&fit=fill&bg=FBFAF8&v=1464773625&auto=format&q=92&s=79a8051e6475e417ead9b0bfae63798b"
+    |> Project.lens.photo.small .~ "https://ksr-ugc.imgix.net/assets/012/224/660/847bc4da31e6863e9351bee4e55b8005_original.jpg?w=160&h=90&fit=fill&bg=FBFAF8&v=1464773625&auto=format&q=92&s=fc738d87d861a96333e9f93bee680c27"
     |> Project.lens.name .~ "Today"
     |> Project.lens.blurb .~ "A 24-hour timepiece beautifully designed to change the way you see your day."
     |> Project.lens.category.name .~ "Product Design"
@@ -145,6 +147,7 @@ extension Project {
 
   internal static let anomalisa = .template
     |> Project.lens.photo.full .~ "https://ksr-ugc.imgix.net/assets/011/388/954/25e113da402393de9de995619428d10d_original.png?w=1024&h=576&fit=fill&bg=000000&v=1463681956&auto=format&q=92&s=2a9b6a90e1f52b96d7cbdcad28319f9d"
+    |> Project.lens.photo.med .~ "https://ksr-ugc.imgix.net/assets/005/055/025/6e0d27710c9ae20d661e2974e99fe239_original.jpg?w=460&fit=max&v=1449722467&auto=format&q=92&s=cd67034e3ee1f363be0df4f5d3b5f728"
     |> Project.lens.name .~ "Charlie Kaufman's Anomalisa"
     |> Project.lens.blurb .~ "From writer Charlie Kaufman (Being John Malkovich, Eternal Sunshine of the Spotless Mind) and Duke Johnson (Moral Orel, Frankenhole) comes Anomalisa."
     |> Project.lens.category.name .~ "Animation"
