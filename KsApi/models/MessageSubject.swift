@@ -26,3 +26,17 @@ public enum MessageSubject {
     return nil
   }
 }
+
+extension MessageSubject: Equatable {}
+public func == (lhs: MessageSubject, rhs: MessageSubject) -> Bool {
+  switch (lhs, rhs) {
+  case let (.backing(lhs), .backing(rhs)):
+    return lhs == rhs
+  case let (.messageThread(lhs), .messageThread(rhs)):
+    return lhs == rhs
+  case let (.project(lhs), .project(rhs)):
+    return lhs == rhs
+  default:
+    return false
+  }
+}
