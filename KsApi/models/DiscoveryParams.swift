@@ -1,3 +1,5 @@
+import Argo
+import Curry
 import Prelude
 
 public struct DiscoveryParams {
@@ -17,13 +19,13 @@ public struct DiscoveryParams {
   public let starred: Bool?
   public let state: State?
 
-  public enum State: String {
+  public enum State: String, Decodable {
     case All = "all"
     case Live = "live"
     case Successful = "successful"
   }
 
-  public enum Sort: String {
+  public enum Sort: String, Decodable {
     case EndingSoon = "end_date"
     case Magic = "magic"
     case MostFunded = "most_funded"
@@ -83,4 +85,48 @@ extension DiscoveryParams: CustomStringConvertible, CustomDebugStringConvertible
   public var debugDescription: String {
     return self.queryParams.debugDescription
   }
+}
+
+extension DiscoveryParams: Decodable {
+  public static func decode(json: JSON) -> Decoded<DiscoveryParams> {
+    let j = curry(DiscoveryParams.init)
+      <^> (json <|? "backed" >>- stringIntToBool)
+      <*> json <|? "category"
+      <*> (json <|? "has_video" >>- stringToBool)
+      <*> (json <|? "include_potd" >>- stringToBool)
+      <*> (json <|? "page" >>- stringToInt)
+      <*> (json <|? "per_page" >>- stringToInt)
+      <*> json <|? "query"
+    return j
+      <*> (json <|? "recommended" >>- stringToBool)
+      <*> (json <|? "seed" >>- stringToInt)
+      <*> json <|? "similar_to"
+      <*> (json <|? "social" >>- stringIntToBool)
+      <*> json <|? "sort"
+      <*> (json <|? "staff_picks" >>- stringToBool)
+      <*> (json <|? "starred" >>- stringIntToBool)
+      <*> json <|? "state"
+  }
+}
+
+private func stringToBool(string: String?) -> Decoded<Bool?> {
+  guard let string = string else { return .Success(nil) }
+  switch string {
+  case "true":
+    return .Success(true)
+  case "false":
+    return .Success(false)
+  default:
+    return .Failure(.Custom("Could not parse string into bool."))
+  }
+}
+
+private func stringToInt(string: String?) -> Decoded<Int?> {
+  guard let string = string else { return .Success(nil) }
+  return Int(string).map(Decoded.Success) ?? .Failure(.Custom("Could not parse string into int."))
+}
+
+private func stringIntToBool(string: String?) -> Decoded<Bool?> {
+  guard let string = string else { return .Success(nil) }
+  return Int(string).map { .Success($0 == 1) } ?? .Failure(.Custom("Could not parse string into bool."))
 }
