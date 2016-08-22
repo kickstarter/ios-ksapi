@@ -6,35 +6,46 @@ import Prelude
 import ReactiveCocoa
 import ReactiveExtensions
 
+private extension NSBundle {
+  var _buildVersion: String {
+    return (self.infoDictionary?["CFBundleVersion"] as? String) ?? "1"
+  }
+}
+
 /**
  A `ServerType` that requests data from an API webservice.
 */
 public struct Service: ServiceType {
+  public let appId: String
   public let serverConfig: ServerConfigType
   public let oauthToken: OauthTokenAuthType?
   public let language: String
   public let buildVersion: String
 
-  public init(serverConfig: ServerConfigType = ServerConfig.production,
+  public init(appId: String = NSBundle.mainBundle().bundleIdentifier ?? "com.kickstarter.kickstarter",
+              serverConfig: ServerConfigType = ServerConfig.production,
               oauthToken: OauthTokenAuthType? = nil,
               language: String = "en",
-              buildVersion: String = "1") {
+              buildVersion: String = NSBundle.mainBundle()._buildVersion) {
 
+    self.appId = appId
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
     self.language = language
-    self.buildVersion = (NSBundle.mainBundle().infoDictionary?["CFBundleVersion"] as? String) ?? "1"
+    self.buildVersion = buildVersion
   }
 
   public func login(oauthToken: OauthTokenAuthType) -> Service {
-    return Service(serverConfig: self.serverConfig,
+    return Service(appId: self.appId,
+                   serverConfig: self.serverConfig,
                    oauthToken: oauthToken,
                    language: self.language,
                    buildVersion: self.buildVersion)
   }
 
   public func logout() -> Service {
-    return Service(serverConfig: self.serverConfig,
+    return Service(appId: self.appId,
+                   serverConfig: self.serverConfig,
                    oauthToken: nil,
                    language: self.language,
                    buildVersion: self.buildVersion)
@@ -303,6 +314,11 @@ public struct Service: ServiceType {
 
   public func publish(draft draft: UpdateDraft) -> SignalProducer<Update, ErrorEnvelope> {
     return request(.publishUpdateDraft(draft))
+  }
+
+  public func register(pushToken pushToken: String) -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
+
+    return request(.registerPushToken(pushToken))
   }
 
   public func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {

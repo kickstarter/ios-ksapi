@@ -38,6 +38,7 @@ internal enum Route {
   case projects(member: Bool)
   case projectStats(projectId: Int)
   case publishUpdateDraft(UpdateDraft)
+  case registerPushToken(String)
   case resetPassword(email: String)
   case searchMessages(query: String, project: Project?)
   case sendMessage(body: String, messageSubject: MessageSubject)
@@ -184,6 +185,9 @@ internal enum Route {
 
     case let .publishUpdateDraft(d):
       return (.POST, "/v1/projects/\(d.update.projectId)/updates/publish", [:], nil)
+
+    case let .registerPushToken(token):
+      return (.POST, "v1/users/self/ios/push_tokens", ["token": token], nil)
 
     case let .resetPassword(email):
       return (.POST, "/v1/users/reset", ["email": email], nil)

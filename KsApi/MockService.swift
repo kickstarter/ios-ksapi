@@ -5,6 +5,7 @@ import ReactiveCocoa
 import Prelude
 
 internal struct MockService: ServiceType {
+  internal let appId: String
   internal let serverConfig: ServerConfigType
   internal let oauthToken: OauthTokenAuthType?
   internal let language: String
@@ -99,12 +100,14 @@ internal struct MockService: ServiceType {
 
   private let updateUserSelfError: ErrorEnvelope?
 
-  internal init(serverConfig: ServerConfigType,
+  internal init(appId: String = "com.kickstarter.kickstarter.mock",
+                serverConfig: ServerConfigType,
                 oauthToken: OauthTokenAuthType?,
                 language: String,
                 buildVersion: String = "1") {
 
     self.init(
+      appId: appId,
       serverConfig: serverConfig,
       oauthToken: oauthToken,
       language: language,
@@ -113,7 +116,8 @@ internal struct MockService: ServiceType {
     )
   }
 
-  internal init(serverConfig: ServerConfigType = ServerConfig.production,
+  internal init(appId: String = "com.kickstarter.kickstarter.mock",
+                serverConfig: ServerConfigType = ServerConfig.production,
                 oauthToken: OauthTokenAuthType? = nil,
                 language: String = "en",
                 buildVersion: String = "1",
@@ -174,6 +178,7 @@ internal struct MockService: ServiceType {
                 updateProjectNotificationError: ErrorEnvelope? = nil,
                 updateUserSelfError: ErrorEnvelope? = nil) {
 
+    self.appId = appId
     self.serverConfig = serverConfig
     self.oauthToken = oauthToken
     self.language = language
@@ -445,6 +450,7 @@ internal struct MockService: ServiceType {
 
   internal func login(oauthToken: OauthTokenAuthType) -> MockService {
     return MockService(
+      appId: self.appId,
       serverConfig: self.serverConfig,
       oauthToken: oauthToken,
       language: self.language,
@@ -496,6 +502,7 @@ internal struct MockService: ServiceType {
 
   internal func logout() -> MockService {
     return MockService(
+      appId: self.appId,
       serverConfig: self.serverConfig,
       oauthToken: nil,
       language: self.language,
@@ -922,6 +929,10 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: error)
     }
     return SignalProducer(value: .template)
+  }
+
+  func register(pushToken pushToken: String) -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
+    return SignalProducer(value: VoidEnvelope())
   }
 
   internal func searchMessages(query query: String, project: Project?)

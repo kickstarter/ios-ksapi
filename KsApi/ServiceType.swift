@@ -11,12 +11,14 @@ public enum Mailbox: String {
  A type that knows how to perform requests for Kickstarter data.
  */
 public protocol ServiceType {
+  var appId: String { get }
   var serverConfig: ServerConfigType { get }
   var oauthToken: OauthTokenAuthType? { get }
   var language: String { get }
   var buildVersion: String { get }
 
-  init(serverConfig: ServerConfigType,
+  init(appId: String,
+       serverConfig: ServerConfigType,
        oauthToken: OauthTokenAuthType?,
        language: String,
        buildVersion: String)
@@ -186,6 +188,9 @@ public protocol ServiceType {
   /// Publishes a project update draft.
   func publish(draft draft: UpdateDraft) -> SignalProducer<Update, ErrorEnvelope>
 
+  /// Registers a push token.
+  func register(pushToken pushToken: String) -> SignalProducer<VoidEnvelope, ErrorEnvelope>
+
   /// Reset user password with email address.
   func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope>
 
@@ -320,6 +325,7 @@ extension ServiceType {
     var headers: [String:String] = [:]
     headers["Accept-Language"] = self.language
     headers["Kickstarter-iOS-App"] = self.buildVersion
+    headers["Kickstarter-App-Id"] = self.appId
     headers["Authorization"] = self.authorizationHeader
 
     return headers
