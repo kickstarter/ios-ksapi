@@ -282,8 +282,10 @@ extension ServiceType {
       request.URL = components.URL
       if request.HTTPMethod.uppercaseString == "POST" || request.HTTPMethod.uppercaseString == "PUT",
         let query = components.query {
-          headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+        headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+        if request.HTTPBody == nil {
           request.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        }
       }
 
       let currentHeaders = request.allHTTPHeaderFields ?? [:]
@@ -310,20 +312,25 @@ extension ServiceType {
   }
 
   public func isPrepared(request request: NSURLRequest) -> Bool {
-    return request.allHTTPHeaderFields?["Authorization"] != nil
+    return request.valueForHTTPHeaderField("Authorization") == authorizationHeader
+      && request.valueForHTTPHeaderField("Kickstarter-iOS-App") != nil
   }
 
   private var defaultHeaders: [String:String] {
     var headers: [String:String] = [:]
     headers["Accept-Language"] = self.language
     headers["Kickstarter-iOS-App"] = self.buildVersion
-    if let token = self.oauthToken?.token {
-      headers["Authorization"] = "token \(token)"
-    } else {
-      headers["Authorization"] = self.serverConfig.basicHTTPAuth?.authorizationHeader
-    }
+    headers["Authorization"] = self.authorizationHeader
 
     return headers
+  }
+
+  private var authorizationHeader: String? {
+    if let token = self.oauthToken?.token {
+      return "token \(token)"
+    } else {
+      return self.serverConfig.basicHTTPAuth?.authorizationHeader
+    }
   }
 
   private var defaultQueryParams: [String:String] {
