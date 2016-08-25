@@ -384,7 +384,7 @@ public struct Service: ServiceType {
     return request(.updateUserSelf(user))
   }
 
-  // MARK: -
+  // MARK: - Decoding Logic
 
   private func decodeModel<M: Decodable where M == M.DecodedType>(json: AnyObject) ->
     SignalProducer<M, ErrorEnvelope> {

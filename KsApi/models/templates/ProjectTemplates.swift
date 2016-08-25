@@ -16,6 +16,7 @@ extension Project {
     ),
     dates: Project.Dates(
       deadline: NSDate().timeIntervalSince1970 + 60.0 * 60.0 * 24.0 * 15.0,
+      featuredAt: nil,
       launchedAt: NSDate().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0,
       potdAt: nil,
       stateChangedAt: NSDate().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0
@@ -25,6 +26,7 @@ extension Project {
     name: "The Project",
     personalization: Project.Personalization(
       backing: nil,
+      friends: nil,
       isBacking: nil,
       isStarred: nil
     ),

@@ -254,6 +254,10 @@ extension LensType where Whole == Project, Part == Project.Dates {
     return Project.lens.dates • Project.Dates.lens.deadline
   }
 
+  public var featuredAt: Lens<Project, NSTimeInterval?> {
+    return Project.lens.dates • Project.Dates.lens.featuredAt
+  }
+
   public var launchedAt: Lens<Project, NSTimeInterval> {
     return Project.lens.dates • Project.Dates.lens.launchedAt
   }
@@ -270,6 +274,10 @@ extension LensType where Whole == Project, Part == Project.Dates {
 extension LensType where Whole == Project, Part == Project.Personalization {
   public var backing: Lens<Project, Backing?> {
     return Project.lens.personalization • Project.Personalization.lens.backing
+  }
+
+  public var friends: Lens<Project, [User]?> {
+    return Project.lens.personalization • Project.Personalization.lens.friends
   }
 
   public var isBacking: Lens<Project, Bool?> {

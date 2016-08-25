@@ -90,6 +90,7 @@ public struct Project {
 
   public struct Dates {
     public let deadline: NSTimeInterval
+    public let featuredAt: NSTimeInterval?
     public let launchedAt: NSTimeInterval
     public let potdAt: NSTimeInterval?
     public let stateChangedAt: NSTimeInterval
@@ -97,6 +98,7 @@ public struct Project {
 
   public struct Personalization {
     public let backing: Backing?
+    public let friends: [User]?
     public let isBacking: Bool?
     public let isStarred: Bool?
   }
@@ -112,10 +114,20 @@ public struct Project {
     return self.dates.deadline - NSDate().timeIntervalSince1970 <= 60.0 * 60.0 * 48.0
   }
 
+  public func isFeaturedToday(today today: NSDate = NSDate(), calendar: NSCalendar = .currentCalendar())
+    -> Bool {
+    guard let featuredAt = self.dates.featuredAt else { return false }
+    return isDateToday(date: featuredAt, today: today, calendar: calendar)
+  }
+
   public func isPotdToday(today today: NSDate = NSDate(), calendar: NSCalendar = .currentCalendar()) -> Bool {
     guard let potdAt = self.dates.potdAt else { return false }
+    return isDateToday(date: potdAt, today: today, calendar: calendar)
+  }
+
+  private func isDateToday(date date: NSTimeInterval, today: NSDate, calendar: NSCalendar) -> Bool {
     let startOfToday = calendar.startOfDayForDate(today)
-    return fabs(startOfToday.timeIntervalSince1970 - potdAt) < 1.0
+    return Double.abs(startOfToday.timeIntervalSince1970 - date) < 60.0 * 60.0 * 24.0
   }
 }
 
@@ -197,6 +209,7 @@ extension Project.Dates: Decodable {
   public static func decode(json: JSON) -> Decoded<Project.Dates> {
     return curry(Project.Dates.init)
       <^> json <| "deadline"
+      <*> json <|? "featured_at"
       <*> json <| "launched_at"
       <*> json <|? "potd_at"
       <*> json <| "state_changed_at"
@@ -207,6 +220,7 @@ extension Project.Personalization: Decodable {
   public static func decode(json: JSON) -> Decoded<Project.Personalization> {
     return curry(Project.Personalization.init)
       <^> json <|? "backing"
+      <*> json <||? "friends"
       <*> json <|? "is_backing"
       <*> json <|? "is_starred"
   }
