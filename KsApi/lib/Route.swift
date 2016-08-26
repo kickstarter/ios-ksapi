@@ -184,7 +184,7 @@ internal enum Route {
       return (.GET, "/v1/projects/\(projectId)/stats", [:], nil)
 
     case let .publishUpdateDraft(d):
-      return (.POST, "/v1/projects/\(d.update.projectId)/updates/publish", [:], nil)
+      return (.POST, "/v1/projects/\(d.update.projectId)/updates/draft/publish", [:], nil)
 
     case let .registerPushToken(token):
       return (.POST, "v1/users/self/ios/push_tokens", ["token": token], nil)

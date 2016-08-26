@@ -47,7 +47,7 @@ extension Update: Decodable {
       <*> json <|  "project_id"
       <*> json <|? "published_at"
       <*> json <|  "sequence"
-      <*> json <|  "title"
+      <*> json <| "title" <|> .Success("")
       <*> json <|  "urls"
       <*> json <|? "user"
       <*> json <|?  "visible"
