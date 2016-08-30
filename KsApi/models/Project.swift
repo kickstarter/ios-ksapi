@@ -27,6 +27,7 @@ public struct Project {
 
     public struct WebEnvelope {
       public let project: String
+      public let updates: String?
     }
   }
 
@@ -180,6 +181,7 @@ extension Project.UrlsEnvelope.WebEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<Project.UrlsEnvelope.WebEnvelope> {
     return curry(Project.UrlsEnvelope.WebEnvelope.init)
       <^> json <| "project"
+      <*> json <|? "updates"
   }
 }
 

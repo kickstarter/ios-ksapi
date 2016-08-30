@@ -44,7 +44,8 @@ extension Project {
     ),
     urls: Project.UrlsEnvelope(
       web: Project.UrlsEnvelope.WebEnvelope(
-        project: "https://www.kickstarter.com/projects/creator/a-fun-project"
+        project: "https://www.kickstarter.com/projects/creator/a-fun-project",
+        updates: "https://www.kickstarter.com/projects/creator/a-fun-project/posts"
       )
     ),
     video: .template

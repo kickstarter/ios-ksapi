@@ -162,7 +162,12 @@ extension Project.UrlsEnvelope.WebEnvelope {
   public enum lens {
     public static let project = Lens<Project.UrlsEnvelope.WebEnvelope, String>(
       view: { $0.project },
-      set: { part, _ in .init(project: part) }
+      set: { .init(project: $0, updates: $1.updates) }
+    )
+
+    public static let updates = Lens<Project.UrlsEnvelope.WebEnvelope, String?>(
+      view: { $0.updates },
+      set: { .init(project: $1.project, updates: $0) }
     )
   }
 }
