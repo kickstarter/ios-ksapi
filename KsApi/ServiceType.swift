@@ -285,8 +285,8 @@ extension ServiceType {
       components.queryItems = queryItems.sort { $0.name < $1.name }
 
       request.URL = components.URL
-      if request.HTTPMethod.uppercaseString == "POST" || request.HTTPMethod.uppercaseString == "PUT",
-        let query = components.query {
+      let method = request.HTTPMethod.uppercaseString
+      if method == "POST" || method == "PUT", let query = components.percentEncodedQuery {
         headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
         if request.HTTPBody == nil {
           request.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
