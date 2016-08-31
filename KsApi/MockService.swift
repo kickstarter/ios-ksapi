@@ -58,6 +58,8 @@ internal struct MockService: ServiceType {
   private let fetchProjectStatsResponse: ProjectStatsEnvelope?
   private let fetchProjectStatsError: ErrorEnvelope?
 
+  private let toggleStarResponse: StarEnvelope?
+
   private let fetchUnansweredSurveyResponsesResponse: [SurveyResponse]
 
   private let fetchUpdateResponse: Update
@@ -153,6 +155,7 @@ internal struct MockService: ServiceType {
                 fetchProjectsError: ErrorEnvelope? = nil,
                 fetchProjectStatsResponse: ProjectStatsEnvelope? = nil,
                 fetchProjectStatsError: ErrorEnvelope? = nil,
+                toggleStarResponse: StarEnvelope? = nil,
                 fetchUserResponse: User? = nil,
                 fetchUserError: ErrorEnvelope? = nil,
                 fetchUserSelfResponse: User? = nil,
@@ -275,6 +278,8 @@ internal struct MockService: ServiceType {
 
     self.fetchProjectStatsResponse = fetchProjectStatsResponse
     self.fetchProjectStatsError = fetchProjectStatsError
+
+    self.toggleStarResponse = toggleStarResponse
 
     self.fetchUnansweredSurveyResponsesResponse = fetchUnansweredSurveyResponsesResponse
 
@@ -449,107 +454,11 @@ internal struct MockService: ServiceType {
   }
 
   internal func login(oauthToken: OauthTokenAuthType) -> MockService {
-    return MockService(
-      appId: self.appId,
-      serverConfig: self.serverConfig,
-      oauthToken: oauthToken,
-      language: self.language,
-      buildVersion: self.buildVersion,
-      facebookConnectResponse: self.facebookConnectResponse,
-      facebookConnectError: self.facebookConnectError,
-      fetchActivitiesResponse: self.fetchActivitiesResponse,
-      fetchActivitiesError: self.fetchActivitiesError,
-      fetchCommentsResponse: self.fetchCommentsResponse,
-      fetchCommentsError: self.fetchCommentsError,
-      fetchDiscoveryResponse: self.fetchDiscoveryResponse,
-      fetchDiscoveryError: self.fetchDiscoveryError,
-      fetchFriendsResponse: self.fetchFriendsResponse,
-      fetchFriendsError: self.fetchFriendsError,
-      fetchFriendStatsResponse: self.fetchFriendStatsResponse,
-      fetchFriendStatsError: self.fetchFriendStatsError,
-      fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
-      fetchProjectActivitiesResponse: self.fetchProjectActivitiesResponse,
-      fetchProjectActivitiesError: self.fetchProjectActivitiesError,
-      fetchProjectResponse: self.fetchProjectResponse,
-      fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
-      fetchProjectsResponse: self.fetchProjectsResponse,
-      fetchProjectsError: self.fetchProjectsError,
-      fetchProjectStatsResponse: self.fetchProjectStatsResponse,
-      fetchProjectStatsError: self.fetchProjectStatsError,
-      fetchUnansweredSurveyResponsesResponse: self.fetchUnansweredSurveyResponsesResponse,
-      fetchUpdateResponse: self.fetchUpdateResponse,
-      fetchUserResponse: self.fetchUserResponse,
-      fetchUserError: self.fetchUserError,
-      fetchUserSelfResponse: self.fetchUserSelfResponse,
-      followFriendError: self.followFriendError,
-      fetchUserSelfError: self.fetchUserSelfError,
-      postCommentResponse: self.postCommentResponse,
-      postCommentError: self.postCommentError,
-      loginResponse: self.loginResponse,
-      loginError: self.loginError,
-      resendCodeResponse: self.resendCodeResponse,
-      resendCodeError: self.resendCodeError,
-      resetPasswordResponse: self.resetPasswordResponse,
-      resetPasswordError: self.resetPasswordError,
-      signupResponse: self.signupResponse,
-      signupError: self.signupError,
-      unfollowFriendError: self.unfollowFriendError,
-      updateProjectNotificationResponse: self.updateProjectNotificationResponse,
-      updateProjectNotificationError: self.updateProjectNotificationError,
-      updateUserSelfError: self.updateUserSelfError
-    )
+    return self |> MockService.lens.oauthToken .~ oauthToken
   }
 
   internal func logout() -> MockService {
-    return MockService(
-      appId: self.appId,
-      serverConfig: self.serverConfig,
-      oauthToken: nil,
-      language: self.language,
-      buildVersion: self.buildVersion,
-      facebookConnectResponse: self.facebookConnectResponse,
-      facebookConnectError: self.facebookConnectError,
-      fetchActivitiesResponse: self.fetchActivitiesResponse,
-      fetchActivitiesError: self.fetchActivitiesError,
-      fetchCommentsResponse: self.fetchCommentsResponse,
-      fetchCommentsError: self.fetchCommentsError,
-      fetchDiscoveryResponse: self.fetchDiscoveryResponse,
-      fetchDiscoveryError: self.fetchDiscoveryError,
-      fetchFriendsResponse: self.fetchFriendsResponse,
-      fetchFriendsError: self.fetchFriendsError,
-      fetchFriendStatsResponse: self.fetchFriendStatsResponse,
-      fetchFriendStatsError: self.fetchFriendStatsError,
-      fetchMessageThreadsResponse: self.fetchMessageThreadsResponse,
-      fetchProjectActivitiesResponse: self.fetchProjectActivitiesResponse,
-      fetchProjectActivitiesError: self.fetchProjectActivitiesError,
-      fetchProjectResponse: self.fetchProjectResponse,
-      fetchProjectNotificationsResponse: self.fetchProjectNotificationsResponse,
-      fetchProjectsResponse: self.fetchProjectsResponse,
-      fetchProjectsError: self.fetchProjectsError,
-      fetchProjectStatsResponse: self.fetchProjectStatsResponse,
-      fetchProjectStatsError: self.fetchProjectStatsError,
-      fetchUserResponse: self.fetchUserResponse,
-      fetchUserError: self.fetchUserError,
-      fetchUserSelfResponse: self.fetchUserSelfResponse,
-      followFriendError: self.followFriendError,
-      fetchUnansweredSurveyResponsesResponse: self.fetchUnansweredSurveyResponsesResponse,
-      fetchUpdateResponse: self.fetchUpdateResponse,
-      fetchUserSelfError: self.fetchUserSelfError,
-      postCommentResponse: self.postCommentResponse,
-      postCommentError: self.postCommentError,
-      loginResponse: self.loginResponse,
-      loginError: self.loginError,
-      resendCodeResponse: self.resendCodeResponse,
-      resendCodeError: self.resendCodeError,
-      resetPasswordResponse: self.resetPasswordResponse,
-      resetPasswordError: self.resetPasswordError,
-      signupResponse: self.signupResponse,
-      signupError: self.signupError,
-      unfollowFriendError: self.unfollowFriendError,
-      updateProjectNotificationResponse: self.updateProjectNotificationResponse,
-      updateProjectNotificationError: self.updateProjectNotificationError,
-      updateUserSelfError: self.updateUserSelfError
-    )
+    return self |> MockService.lens.oauthToken .~ nil
   }
 
   internal func fetchActivities(count count: Int?) -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
@@ -853,10 +762,8 @@ internal struct MockService: ServiceType {
   }
 
   internal func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
-    let project = project |> Project.lens.personalization.isStarred %~ { !($0 ?? false) }
-    return .init(
-      value: .template |> StarEnvelope.lens.project .~ project
-    )
+    guard let toggleStarResponse = toggleStarResponse else { return .init(error: .couldNotParseJSON) }
+    return .init(value: toggleStarResponse)
   }
 
   internal func star(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
@@ -1082,4 +989,80 @@ internal struct MockService: ServiceType {
       "https://***REMOVED***/projects/\(draft.update.projectId)/updates/\(draft.update.id)/preview")!
   }
 
+}
+
+private extension MockService {
+  // swiftlint:disable type_name
+  enum lens {
+    static let oauthToken = Lens<MockService, OauthTokenAuthType?>(
+      view: { $0.oauthToken },
+      set: {
+        MockService(
+          appId: $1.appId,
+          serverConfig: $1.serverConfig,
+          oauthToken: $0,
+          language: $1.language,
+          buildVersion: $1.buildVersion,
+          facebookConnectResponse: $1.facebookConnectResponse,
+          facebookConnectError: $1.facebookConnectError,
+          fetchActivitiesResponse: $1.fetchActivitiesResponse,
+          fetchActivitiesError: $1.fetchActivitiesError,
+          fetchBackingResponse: $1.fetchBackingResponse,
+          fetchCategoriesResponse: $1.fetchCategoriesResponse,
+          fetchCommentsResponse: $1.fetchCommentsResponse,
+          fetchCommentsError: $1.fetchCommentsError,
+          fetchConfigResponse: $1.fetchConfigResponse,
+          fetchDiscoveryResponse: $1.fetchDiscoveryResponse,
+          fetchDiscoveryError: $1.fetchDiscoveryError,
+          fetchFriendsResponse: $1.fetchFriendsResponse,
+          fetchFriendsError: $1.fetchFriendsError,
+          fetchFriendStatsResponse: $1.fetchFriendStatsResponse,
+          fetchFriendStatsError: $1.fetchFriendStatsError,
+          fetchDraftResponse: $1.fetchDraftResponse,
+          fetchDraftError: $1.fetchDraftError,
+          addAttachmentResponse: $1.addAttachmentResponse,
+          addAttachmentError: $1.addAttachmentError,
+          removeAttachmentResponse: $1.removeAttachmentResponse,
+          removeAttachmentError: $1.removeAttachmentError,
+          publishUpdateError: $1.publishUpdateError,
+          fetchMessageThreadResponse: $1.fetchMessageThreadResponse,
+          fetchMessageThreadsResponse: $1.fetchMessageThreadsResponse,
+          fetchProjectActivitiesResponse: $1.fetchProjectActivitiesResponse,
+          fetchProjectActivitiesError: $1.fetchProjectActivitiesError,
+          fetchProjectResponse: $1.fetchProjectResponse,
+          fetchProjectNotificationsResponse: $1.fetchProjectNotificationsResponse,
+          fetchProjectsResponse: $1.fetchProjectsResponse,
+          fetchProjectsError: $1.fetchProjectsError,
+          fetchProjectStatsResponse: $1.fetchProjectStatsResponse,
+          fetchProjectStatsError: $1.fetchProjectStatsError,
+          toggleStarResponse: $1.toggleStarResponse,
+          fetchUserResponse: $1.fetchUserResponse,
+          fetchUserError: $1.fetchUserError,
+          fetchUserSelfResponse: $1.fetchUserSelfResponse,
+          followFriendError: $1.followFriendError,
+          incrementVideoCompletionError: $1.incrementVideoCompletionError,
+          incrementVideoStartError: $1.incrementVideoStartError,
+          fetchUnansweredSurveyResponsesResponse: $1.fetchUnansweredSurveyResponsesResponse,
+          fetchUpdateResponse: $1.fetchUpdateResponse,
+          fetchUserSelfError: $1.fetchUserSelfError,
+          postCommentResponse: $1.postCommentResponse,
+          postCommentError: $1.postCommentError,
+          loginResponse: $1.loginResponse,
+          loginError: $1.loginError,
+          resendCodeResponse: $1.resendCodeResponse,
+          resendCodeError: $1.resendCodeError,
+          resetPasswordResponse: $1.resetPasswordResponse,
+          resetPasswordError: $1.resetPasswordError,
+          signupResponse: $1.signupResponse,
+          signupError: $1.signupError,
+          unfollowFriendError: $1.unfollowFriendError,
+          updateDraftError: $1.updateDraftError,
+          updateProjectNotificationResponse: $1.updateProjectNotificationResponse,
+          updateProjectNotificationError: $1.updateProjectNotificationError,
+          updateUserSelfError: $1.updateUserSelfError
+        )
+      }
+    )
+  }
+  // swiftlint:enable type_name
 }
