@@ -739,8 +739,13 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: self.fetchCategoriesResponse ?? .template)
   }
 
-  internal func fetchCategory(id id: Int) -> SignalProducer<KsApi.Category, ErrorEnvelope> {
-    return SignalProducer(value: .template |> Category.lens.id .~ id)
+  internal func fetchCategory(param param: Param) -> SignalProducer<KsApi.Category, ErrorEnvelope> {
+    switch param {
+    case let .id(id):
+      return SignalProducer(value: .template |> Category.lens.id .~ id)
+    case let .slug(slug):
+      return SignalProducer(value: .template |> Category.lens.slug .~ slug)
+    }
   }
 
   internal func incrementVideoCompletion(forProject project: Project) ->

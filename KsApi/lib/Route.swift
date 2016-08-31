@@ -9,7 +9,7 @@ internal enum Route {
   case addVideo(fileUrl: NSURL, toDraft: UpdateDraft)
   case backing(projectId: Int, backerId: Int)
   case categories
-  case category(Int)
+  case category(Param)
   case config
   case deleteImage(UpdateDraft.Image, fromDraft: UpdateDraft)
   case deleteVideo(UpdateDraft.Video, fromDraft: UpdateDraft)
@@ -82,8 +82,8 @@ internal enum Route {
     case .categories:
       return (.GET, "/v1/categories", [:], nil)
 
-    case let .category(id):
-      return (.GET, "/v1/categories/\(id)", [:], nil)
+    case let .category(param):
+      return (.GET, "/v1/categories/\(param.urlComponent)", [:], nil)
 
     case .config:
       return (.GET, "/v1/app/ios/config", [:], nil)

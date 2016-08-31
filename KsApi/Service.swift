@@ -111,8 +111,8 @@ public struct Service: ServiceType {
     return request(.categories)
   }
 
-  public func fetchCategory(id id: Int) -> SignalProducer<Category, ErrorEnvelope> {
-    return request(.category(id))
+  public func fetchCategory(param param: Param) -> SignalProducer<Category, ErrorEnvelope> {
+    return request(.category(param))
   }
 
   public func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {

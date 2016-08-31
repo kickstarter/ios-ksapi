@@ -62,7 +62,7 @@ public protocol ServiceType {
   func fetchCategories() -> SignalProducer<CategoriesEnvelope, ErrorEnvelope>
 
   /// Fetch the newest data for a particular category.
-  func fetchCategory(id id: Int) -> SignalProducer<Category, ErrorEnvelope>
+  func fetchCategory(param param: Param) -> SignalProducer<Category, ErrorEnvelope>
 
   /// Fetch comments from a pagination url.
   func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope>

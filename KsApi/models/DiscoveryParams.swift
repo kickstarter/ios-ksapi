@@ -20,17 +20,17 @@ public struct DiscoveryParams {
   public let state: State?
 
   public enum State: String, Decodable {
-    case All = "all"
-    case Live = "live"
-    case Successful = "successful"
+    case all
+    case live
+    case successful
   }
 
   public enum Sort: String, Decodable {
-    case EndingSoon = "end_date"
-    case Magic = "magic"
-    case MostFunded = "most_funded"
-    case Newest = "newest"
-    case Popular = "popularity"
+    case endingSoon = "end_date"
+    case magic
+    case mostFunded = "most_funded"
+    case newest
+    case popular = "popularity"
   }
 
   public static let defaults = DiscoveryParams(backed: nil, category: nil, hasVideo: nil,
@@ -57,7 +57,7 @@ public struct DiscoveryParams {
 
     // Include the POTD only when searching for staff picks sorted by magic / no sort
     if params == ["staff_picks": "true"] ||
-       params == ["staff_picks": "true", "sort": DiscoveryParams.Sort.Magic.rawValue] {
+       params == ["staff_picks": "true", "sort": DiscoveryParams.Sort.magic.rawValue] {
 
       params["include_potd"] = self.includePOTD?.description
     }
@@ -96,7 +96,7 @@ extension DiscoveryParams: Decodable {
       <*> (json <|? "include_potd" >>- stringToBool)
       <*> (json <|? "page" >>- stringToInt)
       <*> (json <|? "per_page" >>- stringToInt)
-      <*> json <|? "query"
+      <*> json <|? "term"
     return j
       <*> (json <|? "recommended" >>- stringToBool)
       <*> (json <|? "seed" >>- stringToInt)
@@ -112,9 +112,10 @@ extension DiscoveryParams: Decodable {
 private func stringToBool(string: String?) -> Decoded<Bool?> {
   guard let string = string else { return .Success(nil) }
   switch string {
-  case "true":
+  // taken from server's `value_to_boolean` function
+  case "true", "1", "t", "T", "true", "TRUE", "on", "ON":
     return .Success(true)
-  case "false":
+  case "false", "0", "f", "F", "false", "FALSE", "off", "OFF":
     return .Success(false)
   default:
     return .Failure(.Custom("Could not parse string into bool."))
@@ -128,5 +129,8 @@ private func stringToInt(string: String?) -> Decoded<Int?> {
 
 private func stringIntToBool(string: String?) -> Decoded<Bool?> {
   guard let string = string else { return .Success(nil) }
-  return Int(string).map { .Success($0 == 1) } ?? .Failure(.Custom("Could not parse string into bool."))
+  return Int(string)
+    .optionalFilter { $0 <= 1 && $0 >= -1 }
+    .map { .Success($0 == 0 ? nil : $0 == 1) }
+    ?? .Failure(.Custom("Could not parse string into bool."))
 }
