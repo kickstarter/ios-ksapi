@@ -115,6 +115,10 @@ public struct Service: ServiceType {
     return request(.category(param))
   }
 
+  public func fetchCheckout(checkoutUrl url: String) -> SignalProducer<CheckoutEnvelope, ErrorEnvelope> {
+    return request(.checkout(url))
+  }
+
   public func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
     return requestPagination(url)
   }

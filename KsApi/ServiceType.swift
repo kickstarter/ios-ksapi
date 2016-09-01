@@ -64,6 +64,9 @@ public protocol ServiceType {
   /// Fetch the newest data for a particular category.
   func fetchCategory(param param: Param) -> SignalProducer<Category, ErrorEnvelope>
 
+  /// Fetch a checkout's status.
+  func fetchCheckout(checkoutUrl url: String) -> SignalProducer<CheckoutEnvelope, ErrorEnvelope>
+
   /// Fetch comments from a pagination url.
   func fetchComments(paginationUrl url: String) -> SignalProducer<CommentsEnvelope, ErrorEnvelope>
 

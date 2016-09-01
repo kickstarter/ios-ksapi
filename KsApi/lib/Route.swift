@@ -10,6 +10,7 @@ internal enum Route {
   case backing(projectId: Int, backerId: Int)
   case categories
   case category(Param)
+  case checkout(String)
   case config
   case deleteImage(UpdateDraft.Image, fromDraft: UpdateDraft)
   case deleteVideo(UpdateDraft.Video, fromDraft: UpdateDraft)
@@ -84,6 +85,9 @@ internal enum Route {
 
     case let .category(param):
       return (.GET, "/v1/categories/\(param.urlComponent)", [:], nil)
+
+    case let .checkout(url):
+      return (.GET, url, [:], nil)
 
     case .config:
       return (.GET, "/v1/app/ios/config", [:], nil)

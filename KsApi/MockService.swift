@@ -21,6 +21,9 @@ internal struct MockService: ServiceType {
 
   private let fetchCategoriesResponse: CategoriesEnvelope?
 
+  private let fetchCheckoutResponse: CheckoutEnvelope?
+  private let fetchCheckoutError: ErrorEnvelope?
+
   private let fetchCommentsResponse: [Comment]?
   private let fetchCommentsError: ErrorEnvelope?
 
@@ -129,6 +132,8 @@ internal struct MockService: ServiceType {
                 fetchActivitiesError: ErrorEnvelope? = nil,
                 fetchBackingResponse: Backing = .template,
                 fetchCategoriesResponse: CategoriesEnvelope? = nil,
+                fetchCheckoutResponse: CheckoutEnvelope? = nil,
+                fetchCheckoutError: ErrorEnvelope? = nil,
                 fetchCommentsResponse: [Comment]? = nil,
                 fetchCommentsError: ErrorEnvelope? = nil,
                 fetchConfigResponse: Config? = nil,
@@ -208,6 +213,9 @@ internal struct MockService: ServiceType {
         .documentary
       ]
     )
+
+    self.fetchCheckoutResponse = fetchCheckoutResponse
+    self.fetchCheckoutError = fetchCheckoutError
 
     self.fetchCommentsResponse = fetchCommentsResponse ?? [
       .template |> Comment.lens.id .~ 2,
@@ -342,6 +350,16 @@ internal struct MockService: ServiceType {
           |> User.lens.id .~ 1
           |> User.lens.facebookConnected .~ true
       )
+  }
+
+  internal func fetchCheckout(checkoutUrl url: String) -> SignalProducer<CheckoutEnvelope, ErrorEnvelope> {
+    if let response = fetchCheckoutResponse {
+      return SignalProducer(value: response)
+    } else if let error = fetchCheckoutError {
+      return SignalProducer(error: error)
+    }
+
+    return SignalProducer(value: .template)
   }
 
   internal func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
