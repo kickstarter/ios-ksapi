@@ -5,7 +5,7 @@ extension SurveyResponse {
     project: .template,
     urls: SurveyResponse.UrlsEnvelope(
       web: SurveyResponse.UrlsEnvelope.WebEnvelope(
-        survey: "http://www.surveys.com"
+        survey: "https://www.kickstarter.com/projects/creator/project/surveys/1"
       )
     )
   )
