@@ -63,6 +63,9 @@ internal struct MockService: ServiceType {
 
   private let toggleStarResponse: StarEnvelope?
 
+  private let fetchSurveyResponseResponse: SurveyResponse?
+  private let fetchSurveyResponseError: ErrorEnvelope?
+
   private let fetchUnansweredSurveyResponsesResponse: [SurveyResponse]
 
   private let fetchUpdateResponse: Update
@@ -167,6 +170,8 @@ internal struct MockService: ServiceType {
                 followFriendError: ErrorEnvelope? = nil,
                 incrementVideoCompletionError: ErrorEnvelope? = nil,
                 incrementVideoStartError: ErrorEnvelope? = nil,
+                fetchSurveyResponseResponse: SurveyResponse? = nil,
+                fetchSurveyResponseError: ErrorEnvelope? = nil,
                 fetchUnansweredSurveyResponsesResponse: [SurveyResponse] = [],
                 fetchUpdateResponse: Update = .template,
                 fetchUserSelfError: ErrorEnvelope? = nil,
@@ -288,6 +293,9 @@ internal struct MockService: ServiceType {
     self.fetchProjectStatsError = fetchProjectStatsError
 
     self.toggleStarResponse = toggleStarResponse
+
+    self.fetchSurveyResponseResponse = fetchSurveyResponseResponse
+    self.fetchSurveyResponseError = fetchSurveyResponseError
 
     self.fetchUnansweredSurveyResponsesResponse = fetchUnansweredSurveyResponsesResponse
 
@@ -734,6 +742,16 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: self.fetchUserSelfResponse ?? .template)
   }
 
+  internal func fetchSurveyResponse(surveyResponseId id: Int)
+    -> SignalProducer<SurveyResponse, ErrorEnvelope> {
+    if let response = fetchSurveyResponseResponse {
+      return SignalProducer(value: response)
+    } else if let error = fetchSurveyResponseError {
+      return SignalProducer(error: error)
+    }
+    return SignalProducer(value: .template |> SurveyResponse.lens.id .~ id)
+  }
+
   internal func fetchUnansweredSurveyResponses() -> SignalProducer<[SurveyResponse], ErrorEnvelope> {
     return SignalProducer(value: self.fetchUnansweredSurveyResponsesResponse)
   }
@@ -1065,6 +1083,8 @@ private extension MockService {
           followFriendError: $1.followFriendError,
           incrementVideoCompletionError: $1.incrementVideoCompletionError,
           incrementVideoStartError: $1.incrementVideoStartError,
+          fetchSurveyResponseResponse: $1.fetchSurveyResponseResponse,
+          fetchSurveyResponseError: $1.fetchSurveyResponseError,
           fetchUnansweredSurveyResponsesResponse: $1.fetchUnansweredSurveyResponsesResponse,
           fetchUpdateResponse: $1.fetchUpdateResponse,
           fetchUserSelfError: $1.fetchUserSelfError,

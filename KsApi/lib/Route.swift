@@ -46,6 +46,7 @@ internal enum Route {
   case signup(name: String, email: String, password: String, passwordConfirmation: String,
     sendNewsletters: Bool)
   case star(Project)
+  case surveyResponse(surveyResponseId: Int)
   case toggleStar(Project)
   case unansweredSurveyResponses
   case unfollowFriend(userId: Int)
@@ -228,6 +229,9 @@ internal enum Route {
 
     case let .star(p):
       return (.PUT, "/v1/projects/\(p.id)/star", [:], nil)
+
+    case let.surveyResponse(surveyResponseId):
+      return (.GET, "/v1/users/self/surveys/\(surveyResponseId)", [:], nil)
 
     case let .toggleStar(p):
       return (.POST, "/v1/projects/\(p.id)/star/toggle", [:], nil)

@@ -138,6 +138,10 @@ public protocol ServiceType {
   /// Fetches the stats for a particular project.
   func fetchProjectStats(projectId projectId: Int) -> SignalProducer<ProjectStatsEnvelope, ErrorEnvelope>
 
+  /// Fetches a survey response belonging to the current user.
+  func fetchSurveyResponse(surveyResponseId surveyResponseId: Int)
+    -> SignalProducer<SurveyResponse, ErrorEnvelope>
+
   /// Fetches all of the user's unanswered surveys.
   func fetchUnansweredSurveyResponses() -> SignalProducer<[SurveyResponse], ErrorEnvelope>
 

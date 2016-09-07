@@ -223,6 +223,10 @@ public struct Service: ServiceType {
       return request(.projectStats(projectId: projectId))
   }
 
+  public func fetchSurveyResponse(surveyResponseId id: Int) -> SignalProducer<SurveyResponse, ErrorEnvelope> {
+    return request(.surveyResponse(surveyResponseId: id))
+  }
+
   public func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
     return request(.userSelf)
   }
