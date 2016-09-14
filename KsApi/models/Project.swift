@@ -156,7 +156,7 @@ extension Project: Decodable {
       <*> Project.MemberData.decode(json)
       <*> Project.Dates.decode(json)
       <*> json <| "id"
-      <*> json <| "location"
+      <*> (json <| "location" <|> .Success(Location.none))
       <*> json <| "name"
       <*> Project.Personalization.decode(json)
     return tmp2

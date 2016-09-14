@@ -6,6 +6,8 @@ public struct Location {
   public let displayableName: String
   public let id: Int
   public let name: String
+
+  public static let none = Location(country: "", displayableName: "", id: -42, name: "")
 }
 
 extension Location: Equatable {}
