@@ -758,6 +758,10 @@ internal struct MockService: ServiceType {
   }
 
   internal func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
+    if let error = fetchUserSelfError {
+      return SignalProducer(error: error)
+    }
+
     if self.oauthToken == nil {
       return SignalProducer(
         error: ErrorEnvelope(
