@@ -22,7 +22,6 @@ extension ProjectsEnvelope: Decodable {
   }
 }
 
-
 extension ProjectsEnvelope.UrlsEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<ProjectsEnvelope.UrlsEnvelope> {
     return curry(ProjectsEnvelope.UrlsEnvelope.init)

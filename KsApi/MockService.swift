@@ -11,6 +11,8 @@ internal struct MockService: ServiceType {
   internal let language: String
   internal let buildVersion: String
 
+  private let createPledgeResponse: CreatePledgeEnvelope
+
   private let facebookConnectResponse: User?
   private let facebookConnectError: ErrorEnvelope?
 
@@ -61,7 +63,7 @@ internal struct MockService: ServiceType {
   private let fetchProjectStatsResponse: ProjectStatsEnvelope?
   private let fetchProjectStatsError: ErrorEnvelope?
 
-  private let toggleStarResponse: StarEnvelope?
+  private let fetchShippingRulesResponse: [ShippingRule]
 
   private let fetchSurveyResponseResponse: SurveyResponse?
   private let fetchSurveyResponseError: ErrorEnvelope?
@@ -99,6 +101,10 @@ internal struct MockService: ServiceType {
   private let signupResponse: AccessTokenEnvelope?
   private let signupError: ErrorEnvelope?
 
+  private let submitApplePayResponse: SubmitApplePayEnvelope
+
+  private let toggleStarResponse: StarEnvelope?
+
   private let unfollowFriendError: ErrorEnvelope?
 
   private let updateDraftError: ErrorEnvelope?
@@ -129,6 +135,7 @@ internal struct MockService: ServiceType {
                 oauthToken: OauthTokenAuthType? = nil,
                 language: String = "en",
                 buildVersion: String = "1",
+                createPledgeResponse: CreatePledgeEnvelope = .template,
                 facebookConnectResponse: User? = nil,
                 facebookConnectError: ErrorEnvelope? = nil,
                 fetchActivitiesResponse: [Activity]? = nil,
@@ -163,7 +170,7 @@ internal struct MockService: ServiceType {
                 fetchProjectsError: ErrorEnvelope? = nil,
                 fetchProjectStatsResponse: ProjectStatsEnvelope? = nil,
                 fetchProjectStatsError: ErrorEnvelope? = nil,
-                toggleStarResponse: StarEnvelope? = nil,
+                fetchShippingRulesResponse: [ShippingRule] = [],
                 fetchUserResponse: User? = nil,
                 fetchUserError: ErrorEnvelope? = nil,
                 fetchUserSelfResponse: User? = nil,
@@ -185,6 +192,8 @@ internal struct MockService: ServiceType {
                 resetPasswordError: ErrorEnvelope? = nil,
                 signupResponse: AccessTokenEnvelope? = nil,
                 signupError: ErrorEnvelope? = nil,
+                submitApplePayResponse: SubmitApplePayEnvelope = .template,
+                toggleStarResponse: StarEnvelope? = nil,
                 unfollowFriendError: ErrorEnvelope? = nil,
                 updateDraftError: ErrorEnvelope? = nil,
                 updateProjectNotificationResponse: ProjectNotification? = nil,
@@ -196,6 +205,8 @@ internal struct MockService: ServiceType {
     self.oauthToken = oauthToken
     self.language = language
     self.buildVersion = buildVersion
+
+    self.createPledgeResponse = createPledgeResponse
 
     self.facebookConnectResponse = facebookConnectResponse
     self.facebookConnectError = facebookConnectError
@@ -292,7 +303,7 @@ internal struct MockService: ServiceType {
     self.fetchProjectStatsResponse = fetchProjectStatsResponse
     self.fetchProjectStatsError = fetchProjectStatsError
 
-    self.toggleStarResponse = toggleStarResponse
+    self.fetchShippingRulesResponse = fetchShippingRulesResponse
 
     self.fetchSurveyResponseResponse = fetchSurveyResponseResponse
     self.fetchSurveyResponseError = fetchSurveyResponseError
@@ -333,6 +344,10 @@ internal struct MockService: ServiceType {
 
     self.signupError = signupError
 
+    self.submitApplePayResponse = submitApplePayResponse
+
+    self.toggleStarResponse = toggleStarResponse
+
     self.unfollowFriendError = unfollowFriendError
 
     self.updateDraftError = updateDraftError
@@ -342,6 +357,15 @@ internal struct MockService: ServiceType {
     self.updateProjectNotificationError = updateProjectNotificationError
 
     self.updateUserSelfError = updateUserSelfError
+  }
+
+  internal func createPledge(project project: Project,
+                             amount: Double,
+                             reward: Reward?,
+                             shippingLocation: Location?,
+                             tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope> {
+
+    return SignalProducer(value: .template)
   }
 
   internal func facebookConnect(facebookAccessToken token: String)
@@ -727,6 +751,12 @@ internal struct MockService: ServiceType {
       return SignalProducer(value: .template)
   }
 
+  internal func fetchRewardShippingRules(projectId projectId: Int, rewardId: Int)
+    -> SignalProducer<ShippingRulesEnvelope, ErrorEnvelope> {
+
+      return .init(value: .init(shippingRules: fetchShippingRulesResponse))
+  }
+
   internal func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
     if self.oauthToken == nil {
       return SignalProducer(
@@ -943,6 +973,16 @@ internal struct MockService: ServiceType {
     )
   }
 
+  func submitApplePay(
+    checkoutUrl checkoutUrl: String,
+                stripeToken: String,
+                paymentInstrumentName: String,
+                paymentNetwork: String,
+                transactionIdentifier: String) -> SignalProducer<SubmitApplePayEnvelope, ErrorEnvelope> {
+
+    return SignalProducer(value: .template)
+  }
+
   internal func updateProjectNotification(notification: ProjectNotification)
     -> SignalProducer<ProjectNotification, ErrorEnvelope> {
       if let error = updateProjectNotificationError {
@@ -1029,7 +1069,6 @@ internal struct MockService: ServiceType {
     return NSURL(string:
       "https://***REMOVED***/projects/\(draft.update.projectId)/updates/\(draft.update.id)/preview")!
   }
-
 }
 
 private extension MockService {
@@ -1044,6 +1083,7 @@ private extension MockService {
           oauthToken: $0,
           language: $1.language,
           buildVersion: $1.buildVersion,
+          createPledgeResponse: $1.createPledgeResponse,
           facebookConnectResponse: $1.facebookConnectResponse,
           facebookConnectError: $1.facebookConnectError,
           fetchActivitiesResponse: $1.fetchActivitiesResponse,
@@ -1076,7 +1116,7 @@ private extension MockService {
           fetchProjectsError: $1.fetchProjectsError,
           fetchProjectStatsResponse: $1.fetchProjectStatsResponse,
           fetchProjectStatsError: $1.fetchProjectStatsError,
-          toggleStarResponse: $1.toggleStarResponse,
+          fetchShippingRulesResponse: $1.fetchShippingRulesResponse,
           fetchUserResponse: $1.fetchUserResponse,
           fetchUserError: $1.fetchUserError,
           fetchUserSelfResponse: $1.fetchUserSelfResponse,
@@ -1098,6 +1138,8 @@ private extension MockService {
           resetPasswordError: $1.resetPasswordError,
           signupResponse: $1.signupResponse,
           signupError: $1.signupError,
+          submitApplePayResponse: $1.submitApplePayResponse,
+          toggleStarResponse: $1.toggleStarResponse,
           unfollowFriendError: $1.unfollowFriendError,
           updateDraftError: $1.updateDraftError,
           updateProjectNotificationResponse: $1.updateProjectNotificationResponse,

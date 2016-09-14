@@ -19,11 +19,14 @@ final class ServiceTests: XCTestCase {
     XCTAssertTrue(s2 == s2)
     XCTAssertTrue(s3 == s3)
     XCTAssertTrue(s4 == s4)
+
     XCTAssertFalse(s1 == s2)
     XCTAssertFalse(s1 == s3)
     XCTAssertFalse(s1 == s4)
+
     XCTAssertFalse(s2 == s3)
-    XCTAssertFalse(s1 == s4)
+    XCTAssertFalse(s2 == s4)
+
     XCTAssertFalse(s3 == s4)
   }
 

@@ -105,19 +105,34 @@ public struct ErrorEnvelope {
   )
 }
 
-extension ErrorEnvelope: ErrorType {
-}
+extension ErrorEnvelope: ErrorType {}
 
 extension ErrorEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<ErrorEnvelope> {
     let create = curry(ErrorEnvelope.init)
-    let tmp = create
+
+    // Typically API errors come back in this form...
+    let standardErrorEnvelope = create
       <^> json <|| "error_messages"
       <*> json <|? "ksr_code"
       <*> json <| "http_code"
-    return tmp
       <*> json <|? "exception"
       <*> json <|? "facebook_user"
+
+    // ...but sometimes we make requests to the www server and JSON errors come back in a different envelope
+    let nonStandardErrorEnvelope = {
+      create
+        <^> concatSuccesses([
+          json <|| ["data", "errors", "amount"],
+          json <|| ["data", "errors", "backer_reward"],
+          ])
+        <*> .Success(ErrorEnvelope.KsrCode.UnknownCode)
+        <*> json <| "status"
+        <*> .Success(nil)
+        <*> .Success(nil)
+    }
+
+    return standardErrorEnvelope <|> nonStandardErrorEnvelope()
   }
 }
 
@@ -146,5 +161,14 @@ extension ErrorEnvelope.FacebookUser: Decodable {
       <^> json <| "id"
       <*> json <| "name"
       <*> json <| "email"
+  }
+}
+
+// Concats an array of decoded arrays into a decoded array. Ignores all failed decoded values, and so
+// always returns a successfully decoded value.
+private func concatSuccesses<A>(decodeds: [Decoded<[A]>]) -> Decoded<[A]> {
+
+  return decodeds.reduce(Decoded.Success([])) { accum, decoded in
+    .Success( (accum.value ?? []) + (decoded.value ?? []) )
   }
 }

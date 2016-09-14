@@ -12,6 +12,8 @@ internal enum Route {
   case category(Param)
   case checkout(String)
   case config
+  case createPledge(project: Project, amount: Double, reward: Reward?, shippingLocation: Location?,
+    tappedReward: Bool)
   case deleteImage(UpdateDraft.Image, fromDraft: UpdateDraft)
   case deleteVideo(UpdateDraft.Video, fromDraft: UpdateDraft)
   case discover(DiscoveryParams)
@@ -43,9 +45,12 @@ internal enum Route {
   case resetPassword(email: String)
   case searchMessages(query: String, project: Project?)
   case sendMessage(body: String, messageSubject: MessageSubject)
+  case shippingRules(projectId: Int, rewardId: Int)
   case signup(name: String, email: String, password: String, passwordConfirmation: String,
     sendNewsletters: Bool)
   case star(Project)
+  case submitApplePay(checkoutUrl: String, stripeToken: String, paymentInstrumentName: String,
+    paymentNetwork: String, transactionIdentifier: String)
   case surveyResponse(surveyResponseId: Int)
   case toggleStar(Project)
   case unansweredSurveyResponses
@@ -92,6 +97,22 @@ internal enum Route {
 
     case .config:
       return (.GET, "/v1/app/ios/config", [:], nil)
+
+    case let .createPledge(project, amount, reward, shippingLocation, tappedReward):
+      let pledgeUrl = NSURL(string: project.urls.web.project)?
+        .URLByAppendingPathComponent("pledge")
+        .absoluteString
+
+      var params: [String:AnyObject] = [:]
+      params["clicked_reward"] = tappedReward ? "true" : nil
+      params["format"] = "json"
+      params["backing"] = [
+        "amount": String(amount),
+        "backer_reward_id": reward.map { String($0.id) } ?? "",
+        "location_id": shippingLocation.map { String($0.id) }
+        ].compact()
+
+      return (.POST, pledgeUrl ?? "", params, nil)
 
     case let .deleteImage(i, draft):
       return (.DELETE, "/v1/projects/\(draft.update.projectId)/updates/draft/images/\(i.id)", [:], nil)
@@ -218,6 +239,9 @@ internal enum Route {
         return (.POST, "v1/projects/\(project.id)/messages", ["body": body], nil)
       }
 
+    case let .shippingRules(projectId, rewardId):
+      return (.GET, "/v1/projects/\(projectId)/rewards/\(rewardId)/shipping_rules", [:], nil)
+
     case let .signup(name, email, password, passwordConfirmation, sendNewsletters):
       let params: [String:AnyObject] = ["name": name,
                                         "email": email,
@@ -229,6 +253,20 @@ internal enum Route {
 
     case let .star(p):
       return (.PUT, "/v1/projects/\(p.id)/star", [:], nil)
+
+    case let .submitApplePay(checkoutUrl, stripeToken, paymentInstrumentName, paymentNetwork,
+      transactionIdentifier):
+
+      let params = [
+        "format": "json",
+        "payment_instrument_name": paymentInstrumentName,
+        "payment_network": paymentNetwork,
+        "payment_type": "apple_pay",
+        "token": stripeToken,
+        "transaction_identifier": transactionIdentifier,
+        ]
+
+      return (.POST, checkoutUrl, params, nil)
 
     case let.surveyResponse(surveyResponseId):
       return (.GET, "/v1/users/self/surveys/\(surveyResponseId)", [:], nil)

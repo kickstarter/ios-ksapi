@@ -40,6 +40,13 @@ public protocol ServiceType {
   func addVideo(file fileURL: NSURL, toDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Video, ErrorEnvelope>
 
+  /// Performs the first step of checkout by creating a pledge on the server.
+  func createPledge(project project: Project,
+                    amount: Double,
+                    reward: Reward?,
+                    shippingLocation: Location?,
+                    tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope>
+
   /// Removes an image from a project update draft.
   func delete(image image: UpdateDraft.Image, fromDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Image, ErrorEnvelope>
@@ -138,6 +145,10 @@ public protocol ServiceType {
   /// Fetches the stats for a particular project.
   func fetchProjectStats(projectId projectId: Int) -> SignalProducer<ProjectStatsEnvelope, ErrorEnvelope>
 
+  /// Fetches a reward for a project and reward id.
+  func fetchRewardShippingRules(projectId projectId: Int, rewardId: Int)
+    -> SignalProducer<ShippingRulesEnvelope, ErrorEnvelope>
+
   /// Fetches a survey response belonging to the current user.
   func fetchSurveyResponse(surveyResponseId surveyResponseId: Int)
     -> SignalProducer<SurveyResponse, ErrorEnvelope>
@@ -219,6 +230,12 @@ public protocol ServiceType {
 
   /// Star a project.
   func star(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope>
+
+  func submitApplePay(checkoutUrl checkoutUrl: String,
+                      stripeToken: String,
+                      paymentInstrumentName: String,
+                      paymentNetwork: String,
+                      transactionIdentifier: String) -> SignalProducer<SubmitApplePayEnvelope, ErrorEnvelope>
 
   /// Toggle the starred state on a project.
   func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope>
@@ -331,9 +348,9 @@ extension ServiceType {
   private var defaultHeaders: [String:String] {
     var headers: [String:String] = [:]
     headers["Accept-Language"] = self.language
-    headers["Kickstarter-iOS-App"] = self.buildVersion
-    headers["Kickstarter-App-Id"] = self.appId
     headers["Authorization"] = self.authorizationHeader
+    headers["Kickstarter-App-Id"] = self.appId
+    headers["Kickstarter-iOS-App"] = self.buildVersion
 
     return headers
   }

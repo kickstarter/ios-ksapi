@@ -10,11 +10,25 @@ extension Config {
         stripePublishableKey: $1.stripePublishableKey) }
     )
 
+    public static let launchedCountries = Lens<Config, [Project.Country]>(
+      view: { $0.launchedCountries },
+      set: { Config(abExperiments: $1.abExperiments, appId: $1.appId, countryCode: $1.countryCode,
+        features: $1.features, iTunesLink: $1.iTunesLink, launchedCountries: $0, locale: $1.locale,
+        stripePublishableKey: $1.stripePublishableKey) }
+    )
+
     public static let locale = Lens<Config, String>(
       view: { $0.locale },
       set: { Config(abExperiments: $1.abExperiments, appId: $1.appId, countryCode: $1.countryCode,
         features: $1.features, iTunesLink: $1.iTunesLink, launchedCountries: $1.launchedCountries, locale: $0,
         stripePublishableKey: $1.stripePublishableKey) }
+    )
+
+    public static let stripePublishableKey = Lens<Config, String>(
+      view: { $0.stripePublishableKey },
+      set: { Config(abExperiments: $1.abExperiments, appId: $1.appId, countryCode: $1.countryCode,
+        features: $1.features, iTunesLink: $1.iTunesLink, launchedCountries: $1.launchedCountries,
+        locale: $1.locale, stripePublishableKey: $0) }
     )
   }
 }

@@ -71,5 +71,4 @@ extension Reward.Shipping: Decodable {
   }
 }
 
-extension Reward.Shipping.Preference: Decodable {
-}
+extension Reward.Shipping.Preference: Decodable {}

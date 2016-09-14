@@ -30,4 +30,21 @@ class ErrorEnvelopeTests: XCTestCase {
     XCTAssertNil(env.error)
     XCTAssertEqual(ErrorEnvelope.KsrCode.UnknownCode, env.value?.ksrCode)
   }
+
+  func testJsonDecodingWithNonStandardError() {
+    let env = ErrorEnvelope.decodeJSONDictionary([
+      "status": 406,
+      "data": [
+        "errors": [
+          "amount": [
+            "Bad amount"
+          ]
+        ]
+      ]
+    ])
+    XCTAssertNil(env.error)
+    XCTAssertEqual(ErrorEnvelope.KsrCode.UnknownCode, env.value?.ksrCode)
+    XCTAssertEqual(["Bad amount"], env.value!.errorMessages)
+    XCTAssertEqual(406, env.value?.httpCode)
+  }
 }

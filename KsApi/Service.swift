@@ -67,6 +67,22 @@ public struct Service: ServiceType {
       return request(Route.addVideo(fileUrl: fileURL, toDraft: draft))
   }
 
+  public func createPledge(project project: Project,
+                           amount: Double,
+                           reward: Reward?,
+                           shippingLocation: Location?,
+                           tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope> {
+    return request(
+      .createPledge(
+        project: project,
+        amount: amount,
+        reward: reward,
+        shippingLocation: shippingLocation,
+        tappedReward: tappedReward
+      )
+    )
+  }
+
   public func delete(image image: UpdateDraft.Image, fromDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
 
@@ -223,6 +239,11 @@ public struct Service: ServiceType {
       return request(.projectStats(projectId: projectId))
   }
 
+  public func fetchRewardShippingRules(projectId projectId: Int, rewardId: Int)
+    -> SignalProducer<ShippingRulesEnvelope, ErrorEnvelope> {
+      return request(.shippingRules(projectId: projectId, rewardId: rewardId))
+  }
+
   public func fetchSurveyResponse(surveyResponseId id: Int) -> SignalProducer<SurveyResponse, ErrorEnvelope> {
     return request(.surveyResponse(surveyResponseId: id))
   }
@@ -342,7 +363,6 @@ public struct Service: ServiceType {
   public func sendMessage(body body: String, toSubject subject: MessageSubject)
     -> SignalProducer<Message, ErrorEnvelope> {
 
-
       return request(.sendMessage(body: body, messageSubject: subject))
   }
 
@@ -368,6 +388,24 @@ public struct Service: ServiceType {
     return request(.star(project))
   }
 
+  public func submitApplePay(
+    checkoutUrl checkoutUrl: String,
+                stripeToken: String,
+                paymentInstrumentName: String,
+                paymentNetwork: String,
+                transactionIdentifier: String) -> SignalProducer<SubmitApplePayEnvelope, ErrorEnvelope> {
+
+    return request(
+      .submitApplePay(
+        checkoutUrl: checkoutUrl,
+        stripeToken: stripeToken,
+        paymentInstrumentName: paymentInstrumentName,
+        paymentNetwork: paymentNetwork,
+        transactionIdentifier: transactionIdentifier
+      )
+    )
+  }
+
   public func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
     return request(.toggleStar(project))
   }
@@ -391,8 +429,6 @@ public struct Service: ServiceType {
   public func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope> {
     return request(.updateUserSelf(user))
   }
-
-  // MARK: - Decoding Logic
 
   private func decodeModel<M: Decodable where M == M.DecodedType>(json: AnyObject) ->
     SignalProducer<M, ErrorEnvelope> {
