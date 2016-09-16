@@ -141,6 +141,7 @@ extension Project {
     |> Project.lens.country .~ .GB
     |> Project.lens.creator .~ (
       .template
+        |> User.lens.id .~ "Alma Haser".hash
         |> User.lens.name .~ "Alma Haser"
         |> User.lens.avatar.large .~ "https://ksr-ugc.imgix.net/assets/006/286/957/203502774070f5c0bf5ddcbb58e13000_original.jpg?w=80&h=80&fit=crop&v=1461378633&auto=format&q=92&s=68edc5b8d1b110634b59589253801ea1"
         |> User.lens.avatar.medium .~ "https://ksr-ugc.imgix.net/assets/006/286/957/203502774070f5c0bf5ddcbb58e13000_original.jpg?w=80&h=80&fit=crop&v=1461378633&auto=format&q=92&s=68edc5b8d1b110634b59589253801ea1"
