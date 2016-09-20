@@ -201,7 +201,7 @@ public protocol ServiceType {
   func postComment(body: String, toUpdate update: Update) -> SignalProducer<Comment, ErrorEnvelope>
 
   /// Returns a project update preview URL.
-  func previewUrl(forDraft draft: UpdateDraft) -> NSURL
+  func previewUrl(forDraft draft: UpdateDraft) -> NSURL?
 
   /// Publishes a project update draft.
   func publish(draft draft: UpdateDraft) -> SignalProducer<Update, ErrorEnvelope>

@@ -9,6 +9,6 @@ public extension Decodable {
    - returns: A decoded value.
    */
   public static func decodeJSONDictionary(json: [String: AnyObject]) -> Decoded<DecodedType> {
-    return Self.decode(JSON.parse(json))
+    return Self.decode(JSON(json))
   }
 }

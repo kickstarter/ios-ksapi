@@ -101,7 +101,6 @@ internal enum Route {
     case let .createPledge(project, amount, reward, shippingLocation, tappedReward):
       let pledgeUrl = NSURL(string: project.urls.web.project)?
         .URLByAppendingPathComponent("pledge")
-        .absoluteString
 
       var params: [String:AnyObject] = [:]
       params["clicked_reward"] = tappedReward ? "true" : nil
@@ -112,7 +111,7 @@ internal enum Route {
         "location_id": shippingLocation.map { String($0.id) }
         ].compact()
 
-      return (.POST, pledgeUrl ?? "", params, nil)
+      return (.POST, pledgeUrl?.absoluteString ?? "", params, nil)
 
     case let .deleteImage(i, draft):
       return (.DELETE, "/v1/projects/\(draft.update.projectId)/updates/draft/images/\(i.id)", [:], nil)
@@ -156,14 +155,12 @@ internal enum Route {
     case let .incrementVideoCompletion(project):
       let statsURL = NSURL(string: project.urls.web.project)?
         .URLByAppendingPathComponent("video/plays")
-        .absoluteString
-      return (.POST, statsURL ?? "", ["event_type": "complete", "location": "internal"], nil)
+      return (.POST, statsURL?.absoluteString ?? "", ["event_type": "complete", "location": "internal"], nil)
 
     case let .incrementVideoStart(project):
       let statsURL = NSURL(string: project.urls.web.project)?
         .URLByAppendingPathComponent("video/plays")
-        .absoluteString
-      return (.POST, statsURL ?? "", ["event_type": "start", "location": "internal"], nil)
+      return (.POST, statsURL?.absoluteString ?? "", ["event_type": "start", "location": "internal"], nil)
 
     case let .login(email, password, code):
       var params = ["email": email, "password": password]

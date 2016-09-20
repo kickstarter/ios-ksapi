@@ -1069,9 +1069,9 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: fetchUpdateResponse)
   }
 
-  internal func previewUrl(forDraft draft: UpdateDraft) -> NSURL {
+  internal func previewUrl(forDraft draft: UpdateDraft) -> NSURL? {
     return NSURL(string:
-      "https://***REMOVED***/projects/\(draft.update.projectId)/updates/\(draft.update.id)/preview")!
+      "https://***REMOVED***/projects/\(draft.update.projectId)/updates/\(draft.update.id)/preview")
   }
 }
 

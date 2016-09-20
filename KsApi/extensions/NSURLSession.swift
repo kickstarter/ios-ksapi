@@ -1,6 +1,7 @@
 import Argo
 import Curry
 import Foundation
+import Prelude
 import ReactiveCocoa
 import Result
 
@@ -108,13 +109,13 @@ extension NSURLSession {
 
       guard
         let mutableRequest = request.mutableCopy() as? NSMutableURLRequest,
-        data = NSData(contentsOfFile: file.absoluteString),
-        mime = file.imageMime ?? data.imageMime,
-        filename = file.lastPathComponent,
-        multipartHead = ("--\(boundary)\r\n"
+        let data = optionalize(file.absoluteString).flatMap(NSData.init(contentsOfFile:)),
+        let mime = file.imageMime ?? data.imageMime,
+        let filename = file.lastPathComponent,
+        let multipartHead = ("--\(boundary)\r\n"
           + "Content-Disposition: form-data; name=\"\(name)\"; filename=\"\(filename)\"\r\n"
           + "Content-Type: \(mime)\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding),
-        multipartTail = "--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)
+        let multipartTail = "--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)
         else { fatalError() }
 
       let body = NSMutableData()
@@ -127,7 +128,7 @@ extension NSURLSession {
 
       return SignalProducer { observer, disposable in
         let task = self.dataTaskWithRequest(mutableRequest) { data, response, error in
-          guard let data = data, response = response else {
+          guard let data = data, let response = response else {
             observer.sendFailed(error ?? defaultSessionError)
             return
           }

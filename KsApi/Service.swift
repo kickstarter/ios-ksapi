@@ -95,7 +95,7 @@ public struct Service: ServiceType {
       return request(.deleteVideo(video, fromDraft: draft))
   }
 
-  public func previewUrl(forDraft draft: UpdateDraft) -> NSURL {
+  public func previewUrl(forDraft draft: UpdateDraft) -> NSURL? {
     return self.serverConfig.apiBaseUrl
       .URLByAppendingPathComponent("/v1/projects/\(draft.update.projectId)/updates/draft/preview")
   }
@@ -494,7 +494,10 @@ public struct Service: ServiceType {
 
       let properties = route.requestProperties
 
-      let URL = self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path)
+      guard let URL = optionalize(self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path))
+        else {
+          return .empty
+      }
 
       return Service.session.rac_JSONResponse(
         preparedRequest(forURL: URL, method: properties.method, query: properties.query),
