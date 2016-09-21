@@ -3,7 +3,6 @@ import Curry
 import Prelude
 
 public struct Project {
-  public let backing: Backing?
   public let blurb: String
   public let category: Category
   public let country: Country
@@ -147,8 +146,7 @@ extension Project: Decodable {
   static public func decode(json: JSON) -> Decoded<Project> {
     let create = curry(Project.init)
     let tmp1 = create
-      <^> json <|? "backing"
-      <*> json <| "blurb"
+      <^> json <| "blurb"
       <*> json <| "category"
       <*> Project.Country.decode(json)
       <*> json <| "creator"

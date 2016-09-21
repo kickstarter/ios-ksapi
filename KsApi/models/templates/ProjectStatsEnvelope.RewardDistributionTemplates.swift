@@ -8,7 +8,7 @@ extension ProjectStatsEnvelope.RewardStats {
 
   internal static let unPledged = ProjectStatsEnvelope.RewardStats(
     backersCount: 0,
-    rewardId: 0,
+    rewardId: Reward.noReward.id,
     minimum: 1,
     pledged: 0
   )

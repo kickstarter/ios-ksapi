@@ -16,7 +16,7 @@ public struct Reward {
 
   /// Returns `true` is this is the "fake" "No reward" reward.
   public var isNoReward: Bool {
-    return id == 0
+    return self.id == Reward.noReward.id
   }
 
   public struct Shipping {

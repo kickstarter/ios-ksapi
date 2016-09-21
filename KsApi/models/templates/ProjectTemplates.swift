@@ -3,7 +3,6 @@ import Prelude
 // swiftlint:disable line_length
 extension Project {
   internal static let template = Project(
-    backing: nil,
     blurb: "A fun project.",
     category: .template,
     country: .US,
