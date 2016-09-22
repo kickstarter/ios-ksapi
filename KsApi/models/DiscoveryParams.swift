@@ -130,7 +130,7 @@ private func stringToInt(string: String?) -> Decoded<Int?> {
 private func stringIntToBool(string: String?) -> Decoded<Bool?> {
   guard let string = string else { return .Success(nil) }
   return Int(string)
-    .optionalFilter { $0 <= 1 && $0 >= -1 }
+    .filter { $0 <= 1 && $0 >= -1 }
     .map { .Success($0 == 0 ? nil : $0 == 1) }
     ?? .Failure(.Custom("Could not parse string into bool."))
 }
