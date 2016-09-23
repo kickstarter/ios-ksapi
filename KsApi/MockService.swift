@@ -984,7 +984,7 @@ internal struct MockService: ServiceType {
                 paymentNetwork: String,
                 transactionIdentifier: String) -> SignalProducer<SubmitApplePayEnvelope, ErrorEnvelope> {
 
-    return SignalProducer(value: .template)
+    return SignalProducer(value: self.submitApplePayResponse)
   }
 
   internal func updateProjectNotification(notification: ProjectNotification)
