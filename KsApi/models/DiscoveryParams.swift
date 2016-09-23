@@ -55,9 +55,8 @@ public struct DiscoveryParams {
     params["per_page"] = self.perPage?.description
     params["seed"] = self.seed?.description
 
-    // Include the POTD only when searching for staff picks sorted by magic / no sort
-    if params == ["staff_picks": "true"] ||
-       params == ["staff_picks": "true", "sort": DiscoveryParams.Sort.magic.rawValue] {
+    // Include the POTD only when searching all projects sorted by magic / no sort
+    if params.isEmpty || params == ["sort": DiscoveryParams.Sort.magic.rawValue] {
 
       params["include_potd"] = self.includePOTD?.description
     }

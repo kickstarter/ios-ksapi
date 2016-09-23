@@ -61,23 +61,22 @@ class DiscoveryParamsTests: XCTestCase {
   func testPOTD() {
     let p1 = DiscoveryParams.defaults
       |> DiscoveryParams.lens.includePOTD .~ true
-    XCTAssertEqual([:], p1.queryParams,
-                   "POTD flag is not included when not staff picks + default sort.")
+    XCTAssertEqual(["include_potd": "true"], p1.queryParams,
+                   "POTD flag is included with no filter.")
 
     let p2 = DiscoveryParams.defaults
       |> DiscoveryParams.lens.includePOTD .~ true
       |> DiscoveryParams.lens.staffPicks .~ true
-    XCTAssertEqual(["staff_picks": "true", "include_potd": "true"],
+    XCTAssertEqual(["staff_picks": "true"],
                    p2.queryParams,
-                   "POTD flag is included when staff picks + default sort.")
+                   "POTD flag is not included with staff picks + default sort.")
 
     let p3 = DiscoveryParams.defaults
       |> DiscoveryParams.lens.includePOTD .~ true
-      |> DiscoveryParams.lens.staffPicks .~ true
       |> DiscoveryParams.lens.sort .~ .magic
-    XCTAssertEqual(["staff_picks": "true", "include_potd": "true", "sort": "magic"],
+    XCTAssertEqual(["include_potd": "true", "sort": "magic"],
                    p3.queryParams,
-                   "POTD flag is included when staff picks + magic sort.")
+                   "POTD flag is included with no filter + magic sort.")
   }
 
   func testDecode() {
