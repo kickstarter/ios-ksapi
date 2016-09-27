@@ -420,6 +420,24 @@ public struct Service: ServiceType {
       return request(.updateUpdateDraft(draft, title: title, body: body, isPublic: isPublic))
   }
 
+  public func updatePledge(
+    project project: Project,
+            amount: Double,
+            reward: Reward?,
+            shippingLocation: Location?,
+            tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope> {
+
+    return request(
+      .updatePledge(
+        project: project,
+        amount: amount,
+        reward: reward,
+        shippingLocation: shippingLocation,
+        tappedReward: tappedReward
+      )
+    )
+  }
+
   public func updateProjectNotification(notification: ProjectNotification)
     -> SignalProducer<ProjectNotification, ErrorEnvelope> {
 

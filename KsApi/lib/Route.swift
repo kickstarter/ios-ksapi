@@ -57,6 +57,8 @@ internal enum Route {
   case unfollowFriend(userId: Int)
   case update(updateId: Int, projectParam: Param)
   case updateComments(Update)
+  case updatePledge(project: Project, amount: Double, reward: Reward?, shippingLocation: Location?,
+    tappedReward: Bool)
   case updateProjectNotification(notification: ProjectNotification)
   case updateUpdateDraft(UpdateDraft, title: String, body: String, isPublic: Bool)
   case updateUserSelf(User)
@@ -282,6 +284,22 @@ internal enum Route {
 
     case let .updateComments(u):
       return (.GET, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", [:], nil)
+
+    case let .updatePledge(project, amount, reward, shippingLocation, tappedReward):
+      let pledgeUrl = NSURL(string: project.urls.web.project)?
+        .URLByAppendingPathComponent("pledge")
+        .URLByAppendingPathComponent("change_method")
+
+      var params: [String:AnyObject] = [:]
+      params["clicked_reward"] = tappedReward ? "true" : nil
+      params["format"] = "json"
+      params["backing"] = [
+        "amount": String(amount),
+        "backer_reward_id": reward.map { String($0.id) } ?? "",
+        "location_id": shippingLocation.map { String($0.id) }
+        ].compact()
+
+      return (.PUT, pledgeUrl?.absoluteString ?? "", params, nil)
 
     case let .updateUpdateDraft(d, title, body, isPublic):
       let params: [String:AnyObject] = ["title": title, "body": body, "public": isPublic]

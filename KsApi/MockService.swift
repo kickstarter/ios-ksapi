@@ -109,6 +109,8 @@ internal struct MockService: ServiceType {
 
   private let updateDraftError: ErrorEnvelope?
 
+  private let updatePledgeResponse: CreatePledgeEnvelope
+
   private let updateProjectNotificationResponse: ProjectNotification?
   private let updateProjectNotificationError: ErrorEnvelope?
 
@@ -196,6 +198,7 @@ internal struct MockService: ServiceType {
                 toggleStarResponse: StarEnvelope? = nil,
                 unfollowFriendError: ErrorEnvelope? = nil,
                 updateDraftError: ErrorEnvelope? = nil,
+                updatePledgeResponse: CreatePledgeEnvelope? = nil,
                 updateProjectNotificationResponse: ProjectNotification? = nil,
                 updateProjectNotificationError: ErrorEnvelope? = nil,
                 updateUserSelfError: ErrorEnvelope? = nil) {
@@ -351,6 +354,8 @@ internal struct MockService: ServiceType {
     self.unfollowFriendError = unfollowFriendError
 
     self.updateDraftError = updateDraftError
+
+    self.updatePledgeResponse = updatePledgeResponse ?? .template
 
     self.updateProjectNotificationResponse = updateProjectNotificationResponse
 
@@ -1029,6 +1034,16 @@ internal struct MockService: ServiceType {
       return SignalProducer(value: updatedDraft)
   }
 
+  internal func updatePledge(
+    project project: Project,
+            amount: Double,
+            reward: Reward?,
+            shippingLocation: Location?,
+            tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope> {
+
+    return SignalProducer(value: self.updatePledgeResponse)
+  }
+
   internal func addImage(file fileURL: NSURL, toDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
 
@@ -1146,6 +1161,7 @@ private extension MockService {
           toggleStarResponse: $1.toggleStarResponse,
           unfollowFriendError: $1.unfollowFriendError,
           updateDraftError: $1.updateDraftError,
+          updatePledgeResponse: $1.updatePledgeResponse,
           updateProjectNotificationResponse: $1.updateProjectNotificationResponse,
           updateProjectNotificationError: $1.updateProjectNotificationError,
           updateUserSelfError: $1.updateUserSelfError

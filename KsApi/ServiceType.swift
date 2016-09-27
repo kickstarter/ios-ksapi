@@ -243,6 +243,13 @@ public protocol ServiceType {
   /// Unfollow a user with their id.
   func unfollowFriend(userId id: Int) -> SignalProducer<VoidEnvelope, ErrorEnvelope>
 
+  /// Performs the first step of checkout by creating a pledge on the server.
+  func updatePledge(project project: Project,
+                            amount: Double,
+                            reward: Reward?,
+                            shippingLocation: Location?,
+                            tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope>
+
   /// Update the project notification setting.
   func updateProjectNotification(notification: ProjectNotification) ->
     SignalProducer<ProjectNotification, ErrorEnvelope>
