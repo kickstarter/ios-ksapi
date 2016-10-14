@@ -40,6 +40,9 @@ public protocol ServiceType {
   func addVideo(file fileURL: NSURL, toDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Video, ErrorEnvelope>
 
+  func changePaymentMethod(project project: Project)
+    -> SignalProducer<ChangePaymentMethodEnvelope, ErrorEnvelope>
+
   /// Performs the first step of checkout by creating a pledge on the server.
   func createPledge(project project: Project,
                     amount: Double,
@@ -248,7 +251,7 @@ public protocol ServiceType {
                             amount: Double,
                             reward: Reward?,
                             shippingLocation: Location?,
-                            tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope>
+                            tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope>
 
   /// Update the project notification setting.
   func updateProjectNotification(notification: ProjectNotification) ->

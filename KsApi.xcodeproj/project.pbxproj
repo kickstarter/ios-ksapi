@@ -293,6 +293,14 @@
 		A7363AB91D035A4B00445B24 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73639401D03550700445B24 /* Curry.framework */; };
 		A7363ABA1D035A4B00445B24 /* Prelude.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736394D1D03550C00445B24 /* Prelude.framework */; };
 		A7363ABB1D035A4B00445B24 /* ReactiveExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A736395E1D03551000445B24 /* ReactiveExtensions.framework */; };
+		A741765D1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A741765C1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift */; };
+		A741765E1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A741765C1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift */; };
+		A741766F1DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A741766E1DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift */; };
+		A74176701DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A741766E1DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift */; };
+		A74176831DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74176821DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift */; };
+		A74176841DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74176821DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift */; };
+		A74176951DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74176941DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift */; };
+		A74176961DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74176941DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift */; };
 		A7433B0B1D7F84B600C15400 /* SubmitApplePayEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7433B0A1D7F84B600C15400 /* SubmitApplePayEnvelope.swift */; };
 		A7433B0C1D7F84B600C15400 /* SubmitApplePayEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7433B0A1D7F84B600C15400 /* SubmitApplePayEnvelope.swift */; };
 		A7433B0E1D7F890800C15400 /* CreatePledgeEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7433B0D1D7F890800C15400 /* CreatePledgeEnvelopeTemplates.swift */; };
@@ -785,6 +793,10 @@
 		A7363A471D03588600445B24 /* User.NotificationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.NotificationsTests.swift; sourceTree = "<group>"; };
 		A7363A481D03588600445B24 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		A7378CCC1C809A7500F0A562 /* KsApi.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = KsApi.playground; sourceTree = "<group>"; };
+		A741765C1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePledgeEnvelope.swift; sourceTree = "<group>"; };
+		A741766E1DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePledgeEnvelopeTemplates.swift; sourceTree = "<group>"; };
+		A74176821DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePaymentMethodEnvelope.swift; sourceTree = "<group>"; };
+		A74176941DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePaymentMethodEnvelopeTemplates.swift; sourceTree = "<group>"; };
 		A7433B0A1D7F84B600C15400 /* SubmitApplePayEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitApplePayEnvelope.swift; sourceTree = "<group>"; };
 		A7433B0D1D7F890800C15400 /* CreatePledgeEnvelopeTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePledgeEnvelopeTemplates.swift; sourceTree = "<group>"; };
 		A7433B101D7F896600C15400 /* SubmitApplePayTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitApplePayTemplates.swift; sourceTree = "<group>"; };
@@ -889,6 +901,7 @@
 				A72661DD1D07671D0087D883 /* BackingTemplates.swift */,
 				A72661DE1D07671D0087D883 /* CategoriesEnvelopeTemplates.swift */,
 				A72661DF1D07671D0087D883 /* CategoryTemplates.swift */,
+				A74176941DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift */,
 				9D0FB7BF1D761A2A005774F2 /* CheckoutEnvelopeTemplates.swift */,
 				A72661E01D07671D0087D883 /* CommentTemplates.swift */,
 				A72661E11D07671D0087D883 /* ConfigTemplates.swift */,
@@ -918,6 +931,7 @@
 				A7433B101D7F896600C15400 /* SubmitApplePayTemplates.swift */,
 				A757E9B71D19B37B00A5C978 /* SurveyResponseTemplates.swift */,
 				80FB0AFC1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift */,
+				A741766E1DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift */,
 				A72661EB1D07671D0087D883 /* UpdateTemplates.swift */,
 				A72661EC1D07671D0087D883 /* User.AvatarTemplates.swift */,
 				59D1E67E1D18A8C000896A4C /* User.MemberDataTemplates.swift */,
@@ -1014,6 +1028,7 @@
 				A736399B1D03565400445B24 /* Backing.swift */,
 				A736399C1D03565400445B24 /* CategoriesEnvelope.swift */,
 				A736399D1D03565400445B24 /* Category.swift */,
+				A74176821DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift */,
 				9D0FB7AA1D761347005774F2 /* CheckoutEnvelope.swift */,
 				A736399E1D03565400445B24 /* Comment.swift */,
 				A736399F1D03565400445B24 /* CommentsEnvelope.swift */,
@@ -1049,6 +1064,7 @@
 				A757E99E1D19903400A5C978 /* SurveyResponse.swift */,
 				A73639C21D03565400445B24 /* Update.swift */,
 				809F8B541D089DA5005BADD9 /* UpdateDraft.swift */,
+				A741765C1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift */,
 				A73639C51D03565400445B24 /* User.swift */,
 				A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */,
 				A73639A41D03565400445B24 /* lenses */,
@@ -1100,6 +1116,7 @@
 				A75A9D891D6F2AE100603D1D /* ShippingRuleLenses.swift */,
 				A712E4661D6F7A78006F36F8 /* ShippingRulesEnvelopeLenses.swift */,
 				80762DE41D0710F00074189D /* StarEnvelopeLenses.swift */,
+				A7433B161D7F8AFB00C15400 /* SubmitApplePayEnvelopeLenses.swift */,
 				A757E9B41D19B2ED00A5C978 /* SurveyResponseLenses.swift */,
 				8062BBFD1D0F16BD00702C68 /* UpdateDraftLenses.swift */,
 				A73639B21D03565400445B24 /* UpdateLenses.swift */,
@@ -1108,7 +1125,6 @@
 				A73639B41D03565400445B24 /* User.NotificationsLenses.swift */,
 				A73639B51D03565400445B24 /* User.StatsLenses.swift */,
 				A73639B61D03565400445B24 /* UserLenses.swift */,
-				A7433B161D7F8AFB00C15400 /* SubmitApplePayEnvelopeLenses.swift */,
 			);
 			path = lenses;
 			sourceTree = "<group>";
@@ -1677,6 +1693,7 @@
 				A73639E21D03565400445B24 /* Category.swift in Sources */,
 				59B0E0581D1356850081D2DC /* Project.MemberDataLenses.swift in Sources */,
 				A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */,
+				A741766F1DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift in Sources */,
 				A72662071D07671D0087D883 /* Project.VideoTemplates.swift in Sources */,
 				A73639DE1D03565400445B24 /* Backing.swift in Sources */,
 				809F8B551D089DA5005BADD9 /* UpdateDraft.swift in Sources */,
@@ -1691,6 +1708,7 @@
 				A7363A061D03565400445B24 /* ProjectLenses.swift in Sources */,
 				A7363A161D03565400445B24 /* Message.swift in Sources */,
 				A7363A101D03565400445B24 /* User.StatsLenses.swift in Sources */,
+				A74176951DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift in Sources */,
 				A7363A021D03565400445B24 /* Project.PersonalizationLenses.swift in Sources */,
 				A7363A141D03565400445B24 /* Location.swift in Sources */,
 				A7FD09751C83E74F00332CCB /* Service.swift in Sources */,
@@ -1724,6 +1742,7 @@
 				A7472E871D69F6EA0031949A /* PushEnvelopeLenses.swift in Sources */,
 				A7433B0B1D7F84B600C15400 /* SubmitApplePayEnvelope.swift in Sources */,
 				59D1E6A11D19C1F600896A4C /* ProjectStatsEnvelope.swift in Sources */,
+				A74176831DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift in Sources */,
 				59D1E6FF1D1B1CFD00896A4C /* ProjectStatsEnvelope.VideoStatsLenses.swift in Sources */,
 				59F1B70A1D2DB453001F7AF5 /* ProjectStatsEnvelope.FundingDateStatsLenses.swift in Sources */,
 				A72662151D07671D0087D883 /* User.NotificationsTemplates.swift in Sources */,
@@ -1751,6 +1770,7 @@
 				A75A9DC51D6F5B4E00603D1D /* ShippingRulesEnvelopeTemplates.swift in Sources */,
 				0156B42D1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift in Sources */,
 				A7363A181D03565400445B24 /* MessageThread.swift in Sources */,
+				A741765D1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift in Sources */,
 				59D1E67C1D18A27000896A4C /* ProjectStatsEnvelope.VideoStatsTemplates.swift in Sources */,
 				59019FBC1D21C9D800EAEC9D /* ProjectStatsEnvelope.ReferrerStatsTemplates.swift in Sources */,
 				A72662171D07671D0087D883 /* User.StatsTemplates.swift in Sources */,
@@ -1868,6 +1888,7 @@
 				A7363A2B1D03565400445B24 /* Update.swift in Sources */,
 				A75CAC441D137E2D00EBF323 /* Project.PhotoLenses.swift in Sources */,
 				A757E9B91D19B37B00A5C978 /* SurveyResponseTemplates.swift in Sources */,
+				A74176701DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift in Sources */,
 				59B0DF391D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A70968B41D14357100DB39D3 /* ProjectActivityEnvelope.swift in Sources */,
 				A73639E31D03565400445B24 /* Category.swift in Sources */,
@@ -1882,6 +1903,7 @@
 				A73639E71D03565400445B24 /* CommentsEnvelope.swift in Sources */,
 				59D1E6AB1D19E54800896A4C /* ProjectStatsEnvelope.CumulativeStatsTemplates.swift in Sources */,
 				A73639F31D03565400445B24 /* BackingLenses.swift in Sources */,
+				A74176961DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift in Sources */,
 				A72661F61D07671D0087D883 /* CategoriesEnvelopeTemplates.swift in Sources */,
 				80762DE61D0710F00074189D /* StarEnvelopeLenses.swift in Sources */,
 				80762DDB1D0709D30074189D /* CategoriesEnvelopeLenses.swift in Sources */,
@@ -1915,6 +1937,7 @@
 				A7472E881D69F6EA0031949A /* PushEnvelopeLenses.swift in Sources */,
 				A7433B0C1D7F84B600C15400 /* SubmitApplePayEnvelope.swift in Sources */,
 				59B0DF361D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */,
+				A74176841DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift in Sources */,
 				A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */,
 				A7363A0F1D03565400445B24 /* User.NotificationsLenses.swift in Sources */,
 				59D1E6A21D19C1F600896A4C /* ProjectStatsEnvelope.swift in Sources */,
@@ -1942,6 +1965,7 @@
 				A75A9DC61D6F5B4E00603D1D /* ShippingRulesEnvelopeTemplates.swift in Sources */,
 				A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */,
 				A73639E91D03565400445B24 /* Config.swift in Sources */,
+				A741765E1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift in Sources */,
 				0156B42E1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift in Sources */,
 				A7363A191D03565400445B24 /* MessageThread.swift in Sources */,
 				59D1E67D1D18A27000896A4C /* ProjectStatsEnvelope.VideoStatsTemplates.swift in Sources */,

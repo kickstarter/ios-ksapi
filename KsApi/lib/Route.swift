@@ -10,6 +10,7 @@ internal enum Route {
   case backing(projectId: Int, backerId: Int)
   case categories
   case category(Param)
+  case changePaymentMethod(project: Project)
   case checkout(String)
   case config
   case createPledge(project: Project, amount: Double, reward: Reward?, shippingLocation: Location?,
@@ -93,6 +94,13 @@ internal enum Route {
 
     case let .category(param):
       return (.GET, "/v1/categories/\(param.urlComponent)", [:], nil)
+
+    case let .changePaymentMethod(project):
+      let changeMethodUrl = NSURL(string: project.urls.web.project)?
+        .URLByAppendingPathComponent("pledge")
+        .URLByAppendingPathComponent("change_method")
+
+      return (.PUT, changeMethodUrl?.absoluteString ?? "", ["format": "json"], nil)
 
     case let .checkout(url):
       return (.GET, url, [:], nil)
@@ -288,7 +296,6 @@ internal enum Route {
     case let .updatePledge(project, amount, reward, shippingLocation, tappedReward):
       let pledgeUrl = NSURL(string: project.urls.web.project)?
         .URLByAppendingPathComponent("pledge")
-        .URLByAppendingPathComponent("change_method")
 
       var params: [String:AnyObject] = [:]
       params["clicked_reward"] = tappedReward ? "true" : nil

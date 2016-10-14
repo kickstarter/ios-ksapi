@@ -1,4 +1,5 @@
 // swiftlint:disable file_length
+// swiftlint:disable type_body_length
 
 import Argo
 import Foundation
@@ -65,6 +66,12 @@ public struct Service: ServiceType {
     -> SignalProducer<UpdateDraft.Video, ErrorEnvelope> {
 
       return request(Route.addVideo(fileUrl: fileURL, toDraft: draft))
+  }
+
+  public func changePaymentMethod(project project: Project)
+    -> SignalProducer<ChangePaymentMethodEnvelope, ErrorEnvelope> {
+
+      return request(.changePaymentMethod(project: project))
   }
 
   public func createPledge(project project: Project,
@@ -425,7 +432,7 @@ public struct Service: ServiceType {
             amount: Double,
             reward: Reward?,
             shippingLocation: Location?,
-            tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope> {
+            tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope> {
 
     return request(
       .updatePledge(

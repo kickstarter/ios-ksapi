@@ -11,6 +11,8 @@ internal struct MockService: ServiceType {
   internal let language: String
   internal let buildVersion: String
 
+  private let changePaymentMethodResponse: ChangePaymentMethodEnvelope
+
   private let createPledgeResponse: CreatePledgeEnvelope
 
   private let facebookConnectResponse: User?
@@ -109,7 +111,7 @@ internal struct MockService: ServiceType {
 
   private let updateDraftError: ErrorEnvelope?
 
-  private let updatePledgeResponse: CreatePledgeEnvelope
+  private let updatePledgeResponse: UpdatePledgeEnvelope
 
   private let updateProjectNotificationResponse: ProjectNotification?
   private let updateProjectNotificationError: ErrorEnvelope?
@@ -137,6 +139,7 @@ internal struct MockService: ServiceType {
                 oauthToken: OauthTokenAuthType? = nil,
                 language: String = "en",
                 buildVersion: String = "1",
+                changePaymentMethodResponse: ChangePaymentMethodEnvelope = .template,
                 createPledgeResponse: CreatePledgeEnvelope = .template,
                 facebookConnectResponse: User? = nil,
                 facebookConnectError: ErrorEnvelope? = nil,
@@ -198,7 +201,7 @@ internal struct MockService: ServiceType {
                 toggleStarResponse: StarEnvelope? = nil,
                 unfollowFriendError: ErrorEnvelope? = nil,
                 updateDraftError: ErrorEnvelope? = nil,
-                updatePledgeResponse: CreatePledgeEnvelope? = nil,
+                updatePledgeResponse: UpdatePledgeEnvelope? = nil,
                 updateProjectNotificationResponse: ProjectNotification? = nil,
                 updateProjectNotificationError: ErrorEnvelope? = nil,
                 updateUserSelfError: ErrorEnvelope? = nil) {
@@ -209,6 +212,7 @@ internal struct MockService: ServiceType {
     self.language = language
     self.buildVersion = buildVersion
 
+    self.changePaymentMethodResponse = changePaymentMethodResponse
     self.createPledgeResponse = createPledgeResponse
 
     self.facebookConnectResponse = facebookConnectResponse
@@ -1039,7 +1043,7 @@ internal struct MockService: ServiceType {
             amount: Double,
             reward: Reward?,
             shippingLocation: Location?,
-            tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope> {
+            tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope> {
 
     return SignalProducer(value: self.updatePledgeResponse)
   }
@@ -1068,6 +1072,12 @@ internal struct MockService: ServiceType {
     -> SignalProducer<UpdateDraft.Video, ErrorEnvelope> {
 
       return .empty
+  }
+
+  internal func changePaymentMethod(project project: Project)
+    -> SignalProducer<ChangePaymentMethodEnvelope, ErrorEnvelope> {
+
+      return SignalProducer(value: self.changePaymentMethodResponse)
   }
 
   internal func delete(video video: UpdateDraft.Video, fromDraft draft: UpdateDraft)
@@ -1102,6 +1112,7 @@ private extension MockService {
           oauthToken: $0,
           language: $1.language,
           buildVersion: $1.buildVersion,
+          changePaymentMethodResponse: $1.changePaymentMethodResponse,
           createPledgeResponse: $1.createPledgeResponse,
           facebookConnectResponse: $1.facebookConnectResponse,
           facebookConnectError: $1.facebookConnectError,
