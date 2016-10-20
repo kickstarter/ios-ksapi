@@ -32,6 +32,6 @@ extension ActivityEnvelope.UrlsEnvelope: Decodable {
 extension ActivityEnvelope.UrlsEnvelope.ApiEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<ActivityEnvelope.UrlsEnvelope.ApiEnvelope> {
     return curry(ActivityEnvelope.UrlsEnvelope.ApiEnvelope.init)
-      <^> json <| "more_activities"
+      <^> json <| "more_activities" <|> .Success("")
   }
 }
