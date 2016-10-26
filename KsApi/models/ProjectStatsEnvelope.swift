@@ -43,7 +43,7 @@ public struct ProjectStatsEnvelope {
   public struct RewardStats {
     public let backersCount: Int
     public let rewardId: Int
-    public let minimum: Int
+    public let minimum: Int?
     public let pledged: Int
 
     public static let zero = RewardStats(backersCount: 0, rewardId: 0, minimum: 0, pledged: 0)
@@ -73,9 +73,9 @@ extension ProjectStatsEnvelope.CumulativeStats: Decodable {
     return curry(ProjectStatsEnvelope.CumulativeStats.init)
       <^> json <| "average_pledge"
       <*> json <| "backers_count"
-      <*> (json <| "goal" >>- stringToInt)
+      <*> (json <| "goal" >>- stringToIntOrZero)
       <*> json <| "percent_raised"
-      <*> (json <| "pledged" >>- stringToInt)
+      <*> (json <| "pledged" >>- stringToIntOrZero)
   }
 }
 
@@ -89,10 +89,10 @@ extension ProjectStatsEnvelope.FundingDateStats: Decodable {
   public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.FundingDateStats> {
     return curry(ProjectStatsEnvelope.FundingDateStats.init)
       <^> (json <| "backers_count" <|> .Success(0))
-      <*> ((json <| "cumulative_pledged" >>- stringToInt) <|> (json <| "cumulative_pledged"))
+      <*> ((json <| "cumulative_pledged" >>- stringToIntOrZero) <|> (json <| "cumulative_pledged"))
       <*> json <| "cumulative_backers_count"
       <*> json <| "date"
-      <*> ((json <| "pledged" >>- stringToInt) <|> .Success(0))
+      <*> ((json <| "pledged" >>- stringToIntOrZero) <|> .Success(0))
   }
 }
 
@@ -108,7 +108,7 @@ extension ProjectStatsEnvelope.ReferrerStats: Decodable {
       <^> json <| "backers_count"
       <*> json <| "code"
       <*> (json <| "percentage_of_dollars" >>- stringToDouble)
-      <*> (json <| "pledged" >>- stringToInt)
+      <*> (json <| "pledged" >>- stringToIntOrZero)
       <*> json <| "referrer_name"
       <*> json <| "referrer_type"
   }
@@ -139,12 +139,11 @@ extension ProjectStatsEnvelope.ReferrerStats.ReferrerType: Decodable {
 
 extension ProjectStatsEnvelope.RewardStats: Decodable {
   public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.RewardStats> {
-    let create = curry(ProjectStatsEnvelope.RewardStats.init)
-    return create
+    return curry(ProjectStatsEnvelope.RewardStats.init)
       <^> json <| "backers_count"
       <*> json <| "reward_id"
-      <*> (json <| "minimum" >>- stringToInt)
-      <*> (json <| "pledged" >>- stringToInt)
+      <*> ((json <|? "minimum" >>- stringToInt) <|> (json <|? "minimum"))
+      <*> (json <| "pledged" >>- stringToIntOrZero)
   }
 }
 
@@ -174,11 +173,20 @@ public func == (lhs: ProjectStatsEnvelope.VideoStats, rhs: ProjectStatsEnvelope.
     lhs.internalStarts == rhs.internalStarts
 }
 
-private func stringToInt(string: String) -> Decoded<Int> {
+private func stringToIntOrZero(string: String) -> Decoded<Int> {
   return
-    Double(string).flatMap(Int.init).map(Decoded.Success) ??
-      Int(string).map(Decoded.Success) ??
-      .Success(0)
+    Double(string).flatMap(Int.init).map(Decoded.Success)
+      ?? Int(string).map(Decoded.Success)
+      ?? .Success(0)
+}
+
+private func stringToInt(string: String?) -> Decoded<Int?> {
+  guard let string = string else { return .Success(nil) }
+
+  return
+    Double(string).flatMap(Int.init).map(Decoded.Success)
+      ?? Int(string).map(Decoded.Success)
+      ?? .Failure(.Custom("Could not parse string into int."))
 }
 
 private func stringToDouble(string: String) -> Decoded<Double> {

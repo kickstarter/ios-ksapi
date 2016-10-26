@@ -28,14 +28,19 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
         [
           "pledged": "1.0",
           "reward_id": 0,
-          "backers_count": 5,
-          "minimum": "0.0"
+          "backers_count": 5
         ],
         [
           "pledged": "25.0",
           "reward_id": 123456,
           "backers_count": 10,
-          "minimum": "5.0"
+          "minimum": 5.0
+        ],
+        [
+          "pledged": "25.0",
+          "reward_id": 57393985,
+          "backers_count": 20,
+          "minimum": "25.0"
         ]
       ],
       "cumulative": [
@@ -101,9 +106,9 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
     XCTAssertEqual(25, rewardDistribution[1].pledged)
     XCTAssertEqual(5, rewardDistribution[0].backersCount)
     XCTAssertEqual(10, rewardDistribution[1].backersCount)
-    XCTAssertEqual(0, rewardDistribution[0].minimum)
+    XCTAssertEqual(nil, rewardDistribution[0].minimum)
     XCTAssertEqual(5, rewardDistribution[1].minimum)
-
+    XCTAssertEqual(25, rewardDistribution[2].minimum)
   }
   // swiftlint:enable function_body_length
 
