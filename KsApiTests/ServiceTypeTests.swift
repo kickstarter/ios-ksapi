@@ -121,16 +121,16 @@ final class ServiceTypeTests: XCTestCase {
     let URL = NSURL(string: "http://api.ksr.com/v1/test?key=value") ?? NSURL()
     let request = self.service.preparedRequest(forURL: URL, method: .POST, query: ["extra": "1"])
 
-    XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
+    XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
                    request.URL?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
         "Kickstarter-App-Id": "com.kickstarter.test",
-       "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"],
+       "Content-Type": "application/json; charset=utf-8"],
       request.allHTTPHeaderFields!
     )
     XCTAssertEqual("POST", request.HTTPMethod)
-    XCTAssertEqual("client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
+    XCTAssertEqual("{\"extra\":\"1\"}",
                    String(data: request.HTTPBody ?? NSData(), encoding: NSUTF8StringEncoding))
   }
 
@@ -142,12 +142,12 @@ final class ServiceTypeTests: XCTestCase {
     baseRequest.HTTPMethod = "POST"
     let request = self.service.preparedRequest(forRequest: baseRequest, query: ["extra": "1"])
 
-    XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
+    XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
                    request.URL?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
         "Kickstarter-App-Id": "com.kickstarter.test",
-        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"],
+        "Content-Type": "application/json; charset=utf-8"],
       request.allHTTPHeaderFields!
     )
     XCTAssertEqual("POST", request.HTTPMethod)

@@ -307,25 +307,25 @@ extension ServiceType {
 
       var headers = self.defaultHeaders
 
-      // Combine current query params with the new ones we want to add.
+      let method = request.HTTPMethod.uppercaseString
       let components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: false)!
       var queryItems = components.queryItems ?? []
-      queryItems.appendContentsOf(
-        query
-          .withAllValuesFrom(self.defaultQueryParams)
-          .flatMap(queryComponents)
-          .map(NSURLQueryItem.init(name:value:))
-      )
-      components.queryItems = queryItems.sort { $0.name < $1.name }
+      queryItems.appendContentsOf(self.defaultQueryParams.map(NSURLQueryItem.init(name:value:)))
 
-      request.URL = components.URL
-      let method = request.HTTPMethod.uppercaseString
-      if method == "POST" || method == "PUT", let query = components.percentEncodedQuery {
-        headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+      if method == "POST" || method == "PUT" {
+        headers["Content-Type"] = "application/json; charset=utf-8"
         if request.HTTPBody == nil {
-          request.HTTPBody = query.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+          request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(query, options: [])
         }
+      } else {
+        queryItems.appendContentsOf(
+          query
+            .flatMap(queryComponents)
+            .map(NSURLQueryItem.init(name:value:))
+        )
       }
+      components.queryItems = queryItems.sort { $0.name < $1.name }
+      request.URL = components.URL
 
       let currentHeaders = request.allHTTPHeaderFields ?? [:]
       request.allHTTPHeaderFields = currentHeaders.withAllValuesFrom(headers)
