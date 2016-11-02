@@ -313,8 +313,8 @@ extension ServiceType {
       queryItems.appendContentsOf(self.defaultQueryParams.map(NSURLQueryItem.init(name:value:)))
 
       if method == "POST" || method == "PUT" {
-        headers["Content-Type"] = "application/json; charset=utf-8"
         if request.HTTPBody == nil {
+          headers["Content-Type"] = "application/json; charset=utf-8"
           request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(query, options: [])
         }
       } else {

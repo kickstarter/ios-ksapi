@@ -146,8 +146,7 @@ final class ServiceTypeTests: XCTestCase {
                    request.URL?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
-        "Kickstarter-App-Id": "com.kickstarter.test",
-        "Content-Type": "application/json; charset=utf-8"],
+        "Kickstarter-App-Id": "com.kickstarter.test"],
       request.allHTTPHeaderFields!
     )
     XCTAssertEqual("POST", request.HTTPMethod)
