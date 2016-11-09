@@ -61,7 +61,7 @@ extension ProjectStatsEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope> {
     return curry(ProjectStatsEnvelope.init)
       <^> json <| "cumulative"
-      <*> json <|| "funding_distribution"
+      <*> decodedJSON(json, forKey: "funding_distribution").flatMap(decodeSuccessfulFundingStats)
       <*> json <|| "referral_distribution"
       <*> json <|| "reward_distribution"
       <*> json <|? "video_stats"
@@ -171,6 +171,18 @@ public func == (lhs: ProjectStatsEnvelope.VideoStats, rhs: ProjectStatsEnvelope.
     lhs.externalStarts == rhs.externalStarts &&
     lhs.internalCompletions == rhs.internalCompletions &&
     lhs.internalStarts == rhs.internalStarts
+}
+
+private func decodeSuccessfulFundingStats(json: JSON) -> Decoded<[ProjectStatsEnvelope.FundingDateStats]> {
+  switch json {
+  case let .Array(arrayJSON):
+    let decodeds = arrayJSON
+      .map(ProjectStatsEnvelope.FundingDateStats.decode)
+    let successes = catDecoded(decodeds).map(Decoded.Success)
+    return sequence(successes)
+  default:
+    return .Failure(.Custom("Failed decoded values emitted."))
+  }
 }
 
 private func stringToIntOrZero(string: String) -> Decoded<Int> {

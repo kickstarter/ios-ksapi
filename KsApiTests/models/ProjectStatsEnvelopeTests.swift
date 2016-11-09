@@ -5,6 +5,24 @@ import XCTest
 final class ProjectStatsEnvelopeTests: XCTestCase {
   // swiftlint:disable function_body_length
   func testJSONDecoding() {
+    let fundingStats: [[String:AnyObject]] = [
+      [
+        "cumulative_backers_count": 7,
+        "cumulative_pledged": "30",
+        "pledged": "38.0",
+        "date": 555444333,
+        "backers_count": 13
+      ],
+      [
+        "cumulative_backers_count": 14,
+        "cumulative_pledged": 1000,
+        "pledged": "909.0",
+        "date": 333222111,
+        "backers_count": 1
+      ],
+      ["date": 555444334],
+      ["date": 555444335]
+    ]
     let json: [String: AnyObject] = [
       "referral_distribution": [
         [
@@ -50,22 +68,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
         "backers_count": 20,
         "goal": "15.0"
       ],
-      "funding_distribution": [
-        [
-          "cumulative_backers_count": 7,
-          "cumulative_pledged": "30",
-          "pledged": "38.0",
-          "date": 555444333,
-          "backers_count": 13
-        ],
-        [
-          "cumulative_backers_count": 14,
-          "cumulative_pledged": 1000,
-          "pledged": "909.0",
-          "date": 333222111,
-          "backers_count": 1
-        ]
-      ],
+      "funding_distribution": fundingStats,
       "video_stats": [
         "external_completions": 5,
         "external_starts": 14,
@@ -90,6 +93,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
 
     XCTAssertEqual(7, fundingDistribution[0].cumulativeBackersCount)
     XCTAssertEqual(14, fundingDistribution[1].cumulativeBackersCount)
+    XCTAssertEqual(2, fundingDistribution.count, "Funding stats with nil values discarded.")
 
     XCTAssertEqual("my_wonderful_referrer_code", referralDistribution[0].code)
     XCTAssertEqual(8, referralDistribution[0].backersCount)
