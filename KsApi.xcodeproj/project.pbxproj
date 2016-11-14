@@ -91,6 +91,8 @@
 		9D7ED0C21D11F4BE00811156 /* ProjectsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */; };
 		9D9F582E1D1327E300CE81DE /* ProjectActivityEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */; };
 		9DEE3BA41D1DB9950020C2BE /* Activity.MemberDataLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEE3BA31D1DB9950020C2BE /* Activity.MemberDataLenses.swift */; };
+		A7074F551DD7B48D00DAC505 /* PushEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7074F541DD7B48D00DAC505 /* PushEnvelopeTests.swift */; };
+		A7074F561DD7B48D00DAC505 /* PushEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7074F541DD7B48D00DAC505 /* PushEnvelopeTests.swift */; };
 		A70968B41D14357100DB39D3 /* ProjectActivityEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */; };
 		A712E4551D6F7A0A006F36F8 /* ShippingRuleTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712E4541D6F7A0A006F36F8 /* ShippingRuleTemplates.swift */; };
 		A712E4561D6F7A0A006F36F8 /* ShippingRuleTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712E4541D6F7A0A006F36F8 /* ShippingRuleTemplates.swift */; };
@@ -691,6 +693,7 @@
 		9D7ED0C01D11F4BE00811156 /* ProjectsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsEnvelope.swift; sourceTree = "<group>"; };
 		9D9F582D1D1327E300CE81DE /* ProjectActivityEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectActivityEnvelope.swift; sourceTree = "<group>"; };
 		9DEE3BA31D1DB9950020C2BE /* Activity.MemberDataLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.MemberDataLenses.swift; sourceTree = "<group>"; };
+		A7074F541DD7B48D00DAC505 /* PushEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushEnvelopeTests.swift; sourceTree = "<group>"; };
 		A712E4541D6F7A0A006F36F8 /* ShippingRuleTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingRuleTemplates.swift; sourceTree = "<group>"; };
 		A712E4661D6F7A78006F36F8 /* ShippingRulesEnvelopeLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingRulesEnvelopeLenses.swift; sourceTree = "<group>"; };
 		A713EC9C1C2C51B600B6234E /* ServerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServerConfig.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1159,6 +1162,7 @@
 				A7363A411D03588600445B24 /* Project.VideoTests.swift */,
 				59D1E6C41D19F25700896A4C /* ProjectStatsEnvelopeTests.swift */,
 				A7363A421D03588600445B24 /* ProjectTests.swift */,
+				A7074F541DD7B48D00DAC505 /* PushEnvelopeTests.swift */,
 				A796A8C11D48EAE9009B6EF6 /* RewardsItemTests.swift */,
 				A7363A431D03588600445B24 /* RewardTests.swift */,
 				A757E9BA1D19B8D200A5C978 /* SurveyResponseTests.swift */,
@@ -1648,6 +1652,7 @@
 				A7363A4A1D03588600445B24 /* EncodableTests.swift in Sources */,
 				9D0FB7C41D7621D4005774F2 /* CheckoutEnvelopeTests.swift in Sources */,
 				A7363A661D03588600445B24 /* ProjectTests.swift in Sources */,
+				A7074F561DD7B48D00DAC505 /* PushEnvelopeTests.swift in Sources */,
 				A796A8C31D48EAE9009B6EF6 /* RewardsItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1843,6 +1848,7 @@
 				A7363A491D03588600445B24 /* EncodableTests.swift in Sources */,
 				9D0FB7C31D7621D4005774F2 /* CheckoutEnvelopeTests.swift in Sources */,
 				A7363A651D03588600445B24 /* ProjectTests.swift in Sources */,
+				A7074F551DD7B48D00DAC505 /* PushEnvelopeTests.swift in Sources */,
 				A796A8C21D48EAE9009B6EF6 /* RewardsItemTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2107,12 +2113,10 @@
 				INFOPLIST_FILE = KsApi/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies -Onone";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kickstarter.KsApi;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

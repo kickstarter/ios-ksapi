@@ -184,10 +184,10 @@ public struct Service: ServiceType {
     return request(.friendStats)
   }
 
-  public func fetchMessageThread(messageThread messageThread: MessageThread)
+  public func fetchMessageThread(messageThreadId messageThreadId: Int)
     -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope> {
 
-      return request(.messagesForThread(messageThread))
+      return request(.messagesForThread(messageThreadId: messageThreadId))
   }
 
   public func fetchMessageThread(backing backing: Backing)

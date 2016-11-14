@@ -105,7 +105,7 @@ public protocol ServiceType {
   func fetchFriendStats() -> SignalProducer<FriendStatsEnvelope, ErrorEnvelope>
 
   /// Fetches all of the messages in a particular message thread.
-  func fetchMessageThread(messageThread messageThread: MessageThread)
+  func fetchMessageThread(messageThreadId messageThreadId: Int)
     -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope>
 
   /// Fetches all of the messages related to a particular backing.

@@ -48,6 +48,10 @@ public struct PushEnvelope {
 extension PushEnvelope: Decodable {
   public static func decode(json: JSON) -> Decoded<PushEnvelope> {
     let create = curry(PushEnvelope.init)
+
+    let update: Decoded<Update> = json <| "update" <|> json <| "post"
+    let optionalUpdate: Decoded<Update?> = update.map(Optional.Some) <|> .Success(nil)
+
     return create
       <^> json <|? "activity"
       <*> json <| "aps"
@@ -55,7 +59,7 @@ extension PushEnvelope: Decodable {
       <*> json <|? "message"
       <*> json <|? "project"
       <*> json <|? "survey"
-      <*> (json <|? "update" <|> json <|? "post")
+      <*> optionalUpdate
   }
 }
 

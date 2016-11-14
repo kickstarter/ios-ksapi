@@ -30,7 +30,7 @@ internal enum Route {
   case incrementVideoStart(project: Project)
   case login(email: String, password: String, code: String?)
   case markAsRead(MessageThread)
-  case messagesForThread(MessageThread)
+  case messagesForThread(messageThreadId: Int)
   case messagesForBacking(Backing)
   case messageThreads(mailbox: Mailbox, project: Project?)
   case postProjectComment(Project, body: String)
@@ -180,8 +180,8 @@ internal enum Route {
     case let .markAsRead(messageThread):
       return (.PUT, "/v1/message_threads/\(messageThread.id)/read", [:], nil)
 
-    case let .messagesForThread(messageThread):
-      return (.GET, "/v1/message_threads/\(messageThread.id)/messages", [:], nil)
+    case let .messagesForThread(messageThreadId):
+      return (.GET, "/v1/message_threads/\(messageThreadId)/messages", [:], nil)
 
     case let .messagesForBacking(backing):
       return (.GET, "/v1/projects/\(backing.projectId)/backers/\(backing.backerId)/messages", [:], nil)
