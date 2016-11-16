@@ -16,7 +16,7 @@ extension Project {
     public static let AT = Country(countryCode: "AT", currencyCode: "EUR", currencySymbol: "€",  maxPledge: 8_000, minPledge: 1, trailingCode: false)
     public static let BE = Country(countryCode: "BE", currencyCode: "EUR", currencySymbol: "€",  maxPledge: 7_000, minPledge: 1, trailingCode: false)
     public static let CA = Country(countryCode: "CA", currencyCode: "CAD", currencySymbol: "$",  maxPledge: 8_000, minPledge: 1, trailingCode: true)
-    public static let CH = Country(countryCode: "CH", currencyCode: "CHF", currencySymbol: "kr", maxPledge: 7_000, minPledge: 1, trailingCode: true)
+    public static let CH = Country(countryCode: "CH", currencyCode: "CHF", currencySymbol: "Fr", maxPledge: 7_000, minPledge: 1, trailingCode: true)
     public static let DE = Country(countryCode: "DE", currencyCode: "EUR", currencySymbol: "€",  maxPledge: 7_000, minPledge: 1, trailingCode: false)
     public static let DK = Country(countryCode: "DK", currencyCode: "DKK", currencySymbol: "kr", maxPledge: 50_000, minPledge: 5, trailingCode: true)
     public static let ES = Country(countryCode: "ES", currencyCode: "EUR", currencySymbol: "€",  maxPledge: 7_000, minPledge: 1, trailingCode: false)
