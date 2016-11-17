@@ -1,3 +1,4 @@
+// swiftlint:disable file_length
 import Foundation
 import Prelude
 import ReactiveCocoa
@@ -164,6 +165,12 @@ public protocol ServiceType {
 
   /// Fetches a project update draft.
   func fetchUpdateDraft(forProject project: Project) -> SignalProducer<UpdateDraft, ErrorEnvelope>
+
+  /// Fetches the current user's backed projects.
+  func fetchUserProjectsBacked() -> SignalProducer<ProjectsEnvelope, ErrorEnvelope>
+
+  /// Fetches more user backed projects.
+  func fetchUserProjectsBacked(paginationUrl url: String) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope>
 
   /// Fetch the newest data for a particular user.
   func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope>
@@ -398,3 +405,4 @@ extension ServiceType {
     return components
   }
 }
+// swiftlint:enable file_length

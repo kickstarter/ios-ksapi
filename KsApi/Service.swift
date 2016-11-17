@@ -255,6 +255,15 @@ public struct Service: ServiceType {
     return request(.surveyResponse(surveyResponseId: id))
   }
 
+  public func fetchUserProjectsBacked() -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
+    return request(.userProjectsBacked)
+  }
+
+  public func fetchUserProjectsBacked(paginationUrl url: String)
+    -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
+    return requestPagination(url)
+  }
+
   public func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
     return request(.userSelf)
   }

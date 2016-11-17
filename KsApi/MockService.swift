@@ -74,6 +74,9 @@ internal struct MockService: ServiceType {
 
   private let fetchUpdateResponse: Update
 
+  private let fetchUserProjectsBackedResponse: [Project]?
+  private let fetchUserProjectsBackedError: ErrorEnvelope?
+
   private let fetchUserResponse: User?
   private let fetchUserError: ErrorEnvelope?
 
@@ -176,6 +179,8 @@ internal struct MockService: ServiceType {
                 fetchProjectStatsResponse: ProjectStatsEnvelope? = nil,
                 fetchProjectStatsError: ErrorEnvelope? = nil,
                 fetchShippingRulesResponse: [ShippingRule] = [],
+                fetchUserProjectsBackedResponse: [Project]? = nil,
+                fetchUserProjectsBackedError: ErrorEnvelope? = nil,
                 fetchUserResponse: User? = nil,
                 fetchUserError: ErrorEnvelope? = nil,
                 fetchUserSelfResponse: User? = nil,
@@ -318,6 +323,9 @@ internal struct MockService: ServiceType {
     self.fetchUnansweredSurveyResponsesResponse = fetchUnansweredSurveyResponsesResponse
 
     self.fetchUpdateResponse = fetchUpdateResponse
+
+    self.fetchUserProjectsBackedResponse = fetchUserProjectsBackedResponse
+    self.fetchUserProjectsBackedError = fetchUserProjectsBackedError
 
     self.fetchUserResponse = fetchUserResponse
     self.fetchUserError = fetchUserError
@@ -766,6 +774,44 @@ internal struct MockService: ServiceType {
       return .init(value: .init(shippingRules: fetchShippingRulesResponse))
   }
 
+  internal func fetchUserProjectsBacked() -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
+    if let error = fetchUserProjectsBackedError {
+      return SignalProducer(error: error)
+    } else if let projects = fetchUserProjectsBackedResponse {
+      return SignalProducer(
+        value: ProjectsEnvelope(
+          projects: projects,
+          urls: ProjectsEnvelope.UrlsEnvelope(
+            api: ProjectsEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreProjects: ""
+            )
+          )
+        )
+      )
+    }
+    return .empty
+  }
+
+  internal func fetchUserProjectsBacked(paginationUrl url: String)
+    -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
+
+    if let error = fetchUserProjectsBackedError {
+      return SignalProducer(error: error)
+    } else if let projects = fetchUserProjectsBackedResponse {
+      return SignalProducer(
+        value: ProjectsEnvelope(
+          projects: projects,
+          urls: ProjectsEnvelope.UrlsEnvelope(
+            api: ProjectsEnvelope.UrlsEnvelope.ApiEnvelope(
+              moreProjects: ""
+            )
+          )
+        )
+      )
+    }
+    return .empty
+  }
+
   internal func fetchUserSelf() -> SignalProducer<User, ErrorEnvelope> {
     if let error = fetchUserSelfError {
       return SignalProducer(error: error)
@@ -1147,6 +1193,8 @@ private extension MockService {
           fetchProjectStatsResponse: $1.fetchProjectStatsResponse,
           fetchProjectStatsError: $1.fetchProjectStatsError,
           fetchShippingRulesResponse: $1.fetchShippingRulesResponse,
+          fetchUserProjectsBackedResponse: $1.fetchUserProjectsBackedResponse,
+          fetchUserProjectsBackedError: $1.fetchUserProjectsBackedError,
           fetchUserResponse: $1.fetchUserResponse,
           fetchUserError: $1.fetchUserError,
           fetchUserSelfResponse: $1.fetchUserSelfResponse,

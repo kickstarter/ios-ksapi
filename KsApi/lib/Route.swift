@@ -63,6 +63,7 @@ internal enum Route {
   case updateProjectNotification(notification: ProjectNotification)
   case updateUpdateDraft(UpdateDraft, title: String, body: String, isPublic: Bool)
   case updateUserSelf(User)
+  case userProjectsBacked
   case userSelf
   case user(userId: Int)
 
@@ -319,6 +320,9 @@ internal enum Route {
     case let .updateUserSelf(user):
       let params = user.notifications.encode().withAllValuesFrom(user.newsletters.encode())
       return (.PUT, "/v1/users/self", params, nil)
+
+    case .userProjectsBacked:
+      return (.GET, "/v1/users/self/projects/backed", [:], nil)
 
     case .userSelf:
       return (.GET, "/v1/users/self", [:], nil)
