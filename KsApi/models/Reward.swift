@@ -5,6 +5,7 @@ import Prelude
 public struct Reward {
   public let backersCount: Int?
   public let description: String
+  public let endsAt: NSTimeInterval?
   public let estimatedDeliveryOn: NSTimeInterval?
   public let id: Int
   public let limit: Int?
@@ -12,6 +13,7 @@ public struct Reward {
   public let remaining: Int?
   public let rewardsItems: [RewardsItem]
   public let shipping: Shipping
+  public let startsAt: NSTimeInterval?
   public let title: String?
 
   /// Returns `true` is this is the "fake" "No reward" reward.
@@ -47,17 +49,20 @@ public func < (lhs: Reward, rhs: Reward) -> Bool {
 extension Reward: Decodable {
   public static func decode(json: JSON) -> Decoded<Reward> {
     let create = curry(Reward.init)
-    let tmp = create
+    let tmp1 = create
       <^> json <|? "backers_count"
       <*> (json <| "description" <|> json <| "reward")
+      <*> json <|? "ends_at"
       <*> json <|? "estimated_delivery_on"
+    let tmp2 = tmp1
       <*> json <| "id"
       <*> json <|? "limit"
-    return tmp
       <*> json <| "minimum"
       <*> json <|? "remaining"
+    return tmp2
       <*> ((json <|| "rewards_items") <|> .Success([]))
       <*> Reward.Shipping.decode(json)
+      <*> json <|? "starts_at"
       <*> json <|? "title"
   }
 }
