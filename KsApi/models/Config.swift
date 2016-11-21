@@ -4,6 +4,7 @@ import Curry
 public struct Config {
   public let abExperiments: [String:String]
   public let appId: Int
+  public let applePayCountries: [String]
   public let countryCode: String
   public let features: [String:Bool]
   public let iTunesLink: String
@@ -18,6 +19,7 @@ extension Config: Decodable {
     let tmp = create
       <^> decodeDictionary(json <| "ab_experiments")
       <*> json <| "app_id"
+      <*> json <|| "apple_pay_countries"
       <*> json <| "country_code"
       <*> decodeDictionary(json <| "features")
     return tmp
@@ -33,6 +35,7 @@ extension Config: Equatable {
 public func == (lhs: Config, rhs: Config) -> Bool {
   return lhs.abExperiments == rhs.abExperiments &&
     lhs.appId == rhs.appId &&
+    lhs.applePayCountries == rhs.applePayCountries &&
     lhs.countryCode == rhs.countryCode &&
     lhs.features == rhs.features &&
     lhs.iTunesLink == rhs.iTunesLink &&
@@ -46,6 +49,7 @@ extension Config: EncodableType {
     var result: [String:AnyObject] = [:]
     result["ab_experiments"] = self.abExperiments
     result["app_id"] = self.appId
+    result["apple_pay_countries"] = self.applePayCountries
     result["country_code"] = self.countryCode
     result["features"] = self.features
     result["itunes_link"] = self.iTunesLink

@@ -252,16 +252,7 @@ internal struct MockService: ServiceType {
 
     self.fetchCommentsError = fetchCommentsError
 
-    self.fetchConfigResponse = fetchConfigResponse ?? Config(
-      abExperiments: [:],
-      appId: 123456789,
-      countryCode: "US",
-      features: [:],
-      iTunesLink: "http://www.itunes.com",
-      launchedCountries: [.US],
-      locale: "en",
-      stripePublishableKey: "pk"
-    )
+    self.fetchConfigResponse = fetchConfigResponse ?? .template
 
     self.fetchDiscoveryResponse = fetchDiscoveryResponse
     self.fetchDiscoveryError = fetchDiscoveryError

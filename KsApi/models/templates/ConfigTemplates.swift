@@ -4,6 +4,7 @@ extension Config {
   internal static let template = Config(
     abExperiments: [:],
     appId: 123456789,
+    applePayCountries: ["US", "GB", "CA", "AU", "FR", "CH", "SG", "HK", "ES", "NZ"],
     countryCode: "US",
     features: [:],
     iTunesLink: "http://www.itunes.com",
