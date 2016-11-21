@@ -66,16 +66,9 @@ class DiscoveryParamsTests: XCTestCase {
 
     let p2 = DiscoveryParams.defaults
       |> DiscoveryParams.lens.includePOTD .~ true
-      |> DiscoveryParams.lens.staffPicks .~ true
-    XCTAssertEqual(["staff_picks": "true"],
-                   p2.queryParams,
-                   "POTD flag is not included with staff picks + default sort.")
-
-    let p3 = DiscoveryParams.defaults
-      |> DiscoveryParams.lens.includePOTD .~ true
       |> DiscoveryParams.lens.sort .~ .magic
     XCTAssertEqual(["include_potd": "true", "sort": "magic"],
-                   p3.queryParams,
+                   p2.queryParams,
                    "POTD flag is included with no filter + magic sort.")
   }
 

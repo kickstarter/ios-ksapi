@@ -808,17 +808,6 @@ internal struct MockService: ServiceType {
       return SignalProducer(error: error)
     }
 
-    if self.oauthToken == nil {
-      return SignalProducer(
-        error: ErrorEnvelope(
-          errorMessages: ["Something went wrong"],
-          ksrCode: .AccessTokenInvalid,
-          httpCode: 401,
-          exception: nil
-        )
-      )
-    }
-
     return SignalProducer(value: self.fetchUserSelfResponse ?? .template)
   }
 

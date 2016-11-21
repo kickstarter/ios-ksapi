@@ -5,6 +5,8 @@ import Prelude
 public struct DiscoveryParams {
   public let backed: Bool?
   public let category: Category?
+  public let collaborated: Bool?
+  public let created: Bool?
   public let hasVideo: Bool?
   public let includePOTD: Bool?
   public let page: Int?
@@ -33,31 +35,33 @@ public struct DiscoveryParams {
     case popular = "popularity"
   }
 
-  public static let defaults = DiscoveryParams(backed: nil, category: nil, hasVideo: nil,
-                                               includePOTD: nil, page: nil, perPage: nil, query: nil,
-                                               recommended: nil, seed: nil, similarTo: nil, social: nil,
-                                               sort: nil, staffPicks: nil, starred: nil, state: nil)
+  public static let defaults = DiscoveryParams(backed: nil, category: nil, collaborated: nil, created: nil,
+                                               hasVideo: nil, includePOTD: nil, page: nil, perPage: nil,
+                                               query: nil, recommended: nil, seed: nil, similarTo: nil,
+                                               social: nil, sort: nil, staffPicks: nil, starred: nil,
+                                               state: nil)
 
   public var queryParams: [String:String] {
     var params: [String:String] = [:]
-    params["staff_picks"] = self.staffPicks?.description
-    params["has_video"] = self.hasVideo?.description
-    params["starred"] = self.starred == true ? "1" : self.starred == false ? "-1" : nil
     params["backed"] = self.backed == true ? "1" : self.backed == false ? "-1" : nil
-    params["social"] = self.social == true ? "1" : self.social == false ? "-1" : nil
-    params["recommended"] = self.recommended?.description
-    params["similar_to"] = self.similarTo?.id.description
     params["category_id"] = self.category?.id.description
-    params["term"] = self.query
-    params["state"] = self.state?.rawValue
-    params["sort"] = self.sort?.rawValue
+    params["collaborated"] = self.collaborated?.description
+    params["created"] = self.created?.description
+    params["has_video"] = self.hasVideo?.description
     params["page"] = self.page?.description
     params["per_page"] = self.perPage?.description
+    params["recommended"] = self.recommended?.description
     params["seed"] = self.seed?.description
+    params["similar_to"] = self.similarTo?.id.description
+    params["social"] = self.social == true ? "1" : self.social == false ? "-1" : nil
+    params["sort"] = self.sort?.rawValue
+    params["staff_picks"] = self.staffPicks?.description
+    params["starred"] = self.starred == true ? "1" : self.starred == false ? "-1" : nil
+    params["state"] = self.state?.rawValue
+    params["term"] = self.query
 
-    // Include the POTD only when searching all projects sorted by magic / no sort
-    if params.isEmpty || params == ["sort": DiscoveryParams.Sort.magic.rawValue] {
-
+    // Include the POTD only when searching when sorting by magic / not specifying sort
+    if params["sort"] == nil || params["sort"] == DiscoveryParams.Sort.magic.rawValue {
       params["include_potd"] = self.includePOTD?.description
     }
 
@@ -88,18 +92,22 @@ extension DiscoveryParams: CustomStringConvertible, CustomDebugStringConvertible
 
 extension DiscoveryParams: Decodable {
   public static func decode(json: JSON) -> Decoded<DiscoveryParams> {
-    let j = curry(DiscoveryParams.init)
+    let create = curry(DiscoveryParams.init)
+    let tmp1 = create
       <^> (json <|? "backed" >>- stringIntToBool)
       <*> json <|? "category"
+      <*> (json <|? "collaborated" >>- stringToBool)
+      <*> (json <|? "created" >>- stringToBool)
       <*> (json <|? "has_video" >>- stringToBool)
       <*> (json <|? "include_potd" >>- stringToBool)
+    let tmp2 = tmp1
       <*> (json <|? "page" >>- stringToInt)
       <*> (json <|? "per_page" >>- stringToInt)
       <*> json <|? "term"
-    return j
       <*> (json <|? "recommended" >>- stringToBool)
       <*> (json <|? "seed" >>- stringToInt)
       <*> json <|? "similar_to"
+    return tmp2
       <*> (json <|? "social" >>- stringIntToBool)
       <*> json <|? "sort"
       <*> (json <|? "staff_picks" >>- stringToBool)
