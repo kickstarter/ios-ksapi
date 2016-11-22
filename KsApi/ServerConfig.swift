@@ -24,15 +24,15 @@ public struct ServerConfig: ServerConfigType {
   public let basicHTTPAuth: BasicHTTPAuthType?
 
   public static let production: ServerConfigType = ServerConfig(
-    apiBaseUrl: NSURL(string: "https://***REMOVED***")!,
-    webBaseUrl: NSURL(string: "https://www.kickstarter.com")!,
+    apiBaseUrl: NSURL(string: "***REMOVED***")!,
+    webBaseUrl: NSURL(string: "***REMOVED***")!,
     apiClientAuth: ClientAuth.production,
     basicHTTPAuth: nil
   )
 
   public static let staging: ServerConfigType = ServerConfig(
-    apiBaseUrl: NSURL(string: "https://***REMOVED***")!,
-    webBaseUrl: NSURL(string: "https://***REMOVED***")!,
+    apiBaseUrl: NSURL(string: "***REMOVED***")!,
+    webBaseUrl: NSURL(string: "***REMOVED***")!,
     apiClientAuth: ClientAuth.development,
     basicHTTPAuth: BasicHTTPAuth.development
   )
