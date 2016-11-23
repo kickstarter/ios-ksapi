@@ -1121,8 +1121,10 @@ internal struct MockService: ServiceType {
   }
 
   internal func previewUrl(forDraft draft: UpdateDraft) -> NSURL? {
-    return NSURL(string:
-      "https://\(Secrets.Server.Api.production)/projects/\(draft.update.projectId)/updates/\(draft.update.id)/preview")
+    return NSURL(
+      string: "https://\(Secrets.Server.Api.production)/projects/\(draft.update.projectId)/updates/"
+        + "\(draft.update.id)/preview"
+    )
   }
 }
 
