@@ -37,8 +37,8 @@ public struct BasicHTTPAuth: BasicHTTPAuthType {
   public let password: String
 
   public static let development: BasicHTTPAuthType = BasicHTTPAuth(
-    username: "***REMOVED***",
-    password: "***REMOVED***"
+    username: Secrets.BasicHTTPAuth.username,
+    password: Secrets.BasicHTTPAuth.password
   )
 
   public init(username: String, password: String) {

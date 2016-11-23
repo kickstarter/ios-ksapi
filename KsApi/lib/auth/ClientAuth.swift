@@ -18,10 +18,10 @@ public struct ClientAuth: ClientAuthType {
   }
 
   public static let production: ClientAuthType = ClientAuth(
-    clientId: "***REMOVED***"
+    clientId: Secrets.ApiClient.production
   )
 
   public static let development: ClientAuthType = ClientAuth(
-    clientId: "***REMOVED***"
+    clientId: Secrets.ApiClient.staging
   )
 }

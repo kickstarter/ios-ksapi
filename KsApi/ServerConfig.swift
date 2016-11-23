@@ -24,15 +24,15 @@ public struct ServerConfig: ServerConfigType {
   public let basicHTTPAuth: BasicHTTPAuthType?
 
   public static let production: ServerConfigType = ServerConfig(
-    apiBaseUrl: NSURL(string: "***REMOVED***")!,
-    webBaseUrl: NSURL(string: "***REMOVED***")!,
+    apiBaseUrl: NSURL(string: Secrets.Server.Api.production)!,
+    webBaseUrl: NSURL(string: Secrets.Server.Web.production)!,
     apiClientAuth: ClientAuth.production,
     basicHTTPAuth: nil
   )
 
   public static let staging: ServerConfigType = ServerConfig(
-    apiBaseUrl: NSURL(string: "***REMOVED***")!,
-    webBaseUrl: NSURL(string: "***REMOVED***")!,
+    apiBaseUrl: NSURL(string: Secrets.Server.Api.staging)!,
+    webBaseUrl: NSURL(string: Secrets.Server.Web.staging)!,
     apiClientAuth: ClientAuth.development,
     basicHTTPAuth: BasicHTTPAuth.development
   )

@@ -375,6 +375,8 @@
 		A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
+		A7C8DDAE1DE4FC4E008DDA9A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8DDAD1DE4FC4E008DDA9A /* Secrets.swift */; };
+		A7C8DDAF1DE4FC4E008DDA9A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8DDAD1DE4FC4E008DDA9A /* Secrets.swift */; };
 		A7F16FD61D7F626800B75E9C /* CreatePledgeEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16FD51D7F626800B75E9C /* CreatePledgeEnvelope.swift */; };
 		A7F16FD71D7F626800B75E9C /* CreatePledgeEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F16FD51D7F626800B75E9C /* CreatePledgeEnvelope.swift */; };
 		A7FD09701C83E74F00332CCB /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
@@ -837,6 +839,7 @@
 		A796A8D31D48EAF8009B6EF6 /* ItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
 		A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStatsEnvelope.CumulativeStatsLenses.swift; sourceTree = "<group>"; };
 		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		A7C8DDAD1DE4FC4E008DDA9A /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "Frameworks/native-secrets/ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
 		A7F16FD51D7F626800B75E9C /* CreatePledgeEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePledgeEnvelope.swift; sourceTree = "<group>"; };
 		A7FD099D1C83E74F00332CCB /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FD09D21C83E8E900332CCB /* KsApi-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KsApi-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1018,6 +1021,7 @@
 				A736398F1D03565400445B24 /* BasicHTTPAuth.swift */,
 				A73639901D03565400445B24 /* ClientAuth.swift */,
 				A73639911D03565400445B24 /* OauthToken.swift */,
+				A7C8DDAD1DE4FC4E008DDA9A /* Secrets.swift */,
 			);
 			path = auth;
 			sourceTree = "<group>";
@@ -1752,6 +1756,7 @@
 				59F1B70A1D2DB453001F7AF5 /* ProjectStatsEnvelope.FundingDateStatsLenses.swift in Sources */,
 				A72662151D07671D0087D883 /* User.NotificationsTemplates.swift in Sources */,
 				A7363A0C1D03565400445B24 /* User.NewsletterSubscriptionsLenses.swift in Sources */,
+				A7C8DDAE1DE4FC4E008DDA9A /* Secrets.swift in Sources */,
 				A7363A0A1D03565400445B24 /* UpdateLenses.swift in Sources */,
 				A73639DC1D03565400445B24 /* ActivityEnvelope.swift in Sources */,
 				A72662191D07671D0087D883 /* UserTemplates.swift in Sources */,
@@ -1948,6 +1953,7 @@
 				A7363A0F1D03565400445B24 /* User.NotificationsLenses.swift in Sources */,
 				59D1E6A21D19C1F600896A4C /* ProjectStatsEnvelope.swift in Sources */,
 				59D1E7001D1B1CFD00896A4C /* ProjectStatsEnvelope.VideoStatsLenses.swift in Sources */,
+				A7C8DDAF1DE4FC4E008DDA9A /* Secrets.swift in Sources */,
 				0156B24B1D07B997000C4252 /* FindFriendsEnvelopeLenses.swift in Sources */,
 				A72662161D07671D0087D883 /* User.NotificationsTemplates.swift in Sources */,
 				A7363A0D1D03565400445B24 /* User.NewsletterSubscriptionsLenses.swift in Sources */,
