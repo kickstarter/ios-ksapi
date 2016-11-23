@@ -8,7 +8,7 @@ final class FindFriendsEnvelopeTests: XCTestCase {
       "contacts_imported": true,
       "urls": [
         "api": [
-          "more_users": "http://***REMOVED***/v1/users/self/friends/find?count=10"
+          "more_users": "http://\(Secrets.Server.Api.production)/v1/users/self/friends/find?count=10"
         ]
       ],
       "users": [
@@ -59,7 +59,7 @@ final class FindFriendsEnvelopeTests: XCTestCase {
     let users = friends.value?.users ?? []
 
     XCTAssertEqual(true, friends.value?.contactsImported)
-    XCTAssertEqual("http://***REMOVED***/v1/users/self/friends/find?count=10",
+    XCTAssertEqual("http://\(Secrets.Server.Api.production)/v1/users/self/friends/find?count=10",
                    friends.value?.urls.api.moreUsers)
     XCTAssertEqual(false, users[0].isFriend)
     XCTAssertEqual(true, users[1].isFriend)
