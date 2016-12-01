@@ -295,7 +295,7 @@ extension LensType where Whole == Project, Part == Project.Photo {
     return Project.lens.photo • Project.Photo.lens.med
   }
 
-  public var size1024x768: Lens<Project, String> {
+  public var size1024x768: Lens<Project, String?> {
     return Project.lens.photo • Project.Photo.lens.size1024x768
   }
 

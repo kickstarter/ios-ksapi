@@ -13,7 +13,7 @@ extension Project.Photo {
       set: { .init(full: $1.full, med: $0, size1024x768: $1.size1024x768, small: $1.small) }
     )
 
-    public static let size1024x768 = Lens<Project.Photo, String>(
+    public static let size1024x768 = Lens<Project.Photo, String?>(
       view: { $0.size1024x768 },
       set: { .init(full: $1.full, med: $1.med, size1024x768: $0, small: $1.small) }
     )
