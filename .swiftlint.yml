@@ -1,3 +1,5 @@
+disabled_rules:
+  - trailing_comma
 excluded:
   - Frameworks/
   - KsApi.playground/

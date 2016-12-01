@@ -84,7 +84,8 @@ final class ServiceTypeTests: XCTestCase {
                    request.URL?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
-        "Kickstarter-App-Id": "com.kickstarter.test"],
+        "Kickstarter-App-Id": "com.kickstarter.test",
+        "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
   }
@@ -97,7 +98,8 @@ final class ServiceTypeTests: XCTestCase {
                    request.URL?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
-        "Kickstarter-App-Id": "com.kickstarter.test"],
+        "Kickstarter-App-Id": "com.kickstarter.test",
+        "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
     XCTAssertEqual("GET", request.HTTPMethod)
@@ -111,7 +113,8 @@ final class ServiceTypeTests: XCTestCase {
                    request.URL?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
-        "Kickstarter-App-Id": "com.kickstarter.test"],
+        "Kickstarter-App-Id": "com.kickstarter.test",
+        "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
     XCTAssertEqual("DELETE", request.HTTPMethod)
@@ -126,7 +129,8 @@ final class ServiceTypeTests: XCTestCase {
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
         "Kickstarter-App-Id": "com.kickstarter.test",
-       "Content-Type": "application/json; charset=utf-8"],
+        "Content-Type": "application/json; charset=utf-8",
+        "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
     XCTAssertEqual("POST", request.HTTPMethod)
@@ -146,7 +150,8 @@ final class ServiceTypeTests: XCTestCase {
                    request.URL?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
-        "Kickstarter-App-Id": "com.kickstarter.test"],
+        "Kickstarter-App-Id": "com.kickstarter.test",
+        "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
     XCTAssertEqual("POST", request.HTTPMethod)
@@ -160,7 +165,8 @@ final class ServiceTypeTests: XCTestCase {
     XCTAssertEqual("http://api-hq.ksr.com/v1/test?client_id=deadbeef&key=value", request.URL?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1", "Authorization": "Basic dXNlcm5hbWU6cGFzc3dvcmQ=",
-        "Accept-Language": "en", "Kickstarter-App-Id": "com.kickstarter.test"],
+        "Accept-Language": "en", "Kickstarter-App-Id": "com.kickstarter.test",
+        "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
   }
@@ -188,7 +194,8 @@ final class ServiceTypeTests: XCTestCase {
                    request.URL?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1", "Authorization": "Basic dXNlcm5hbWU6cGFzc3dvcmQ=",
-        "Accept-Language": "en", "Kickstarter-App-Id": "com.kickstarter.test"],
+        "Accept-Language": "en", "Kickstarter-App-Id": "com.kickstarter.test",
+        "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
   }
