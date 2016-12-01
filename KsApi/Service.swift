@@ -514,7 +514,11 @@ public struct Service: ServiceType {
 
       let properties = route.requestProperties
 
-      let URL = NSURL(string: properties.path, relativeToURL: self.serverConfig.apiBaseUrl)!
+      guard let URL = NSURL(string: properties.path, relativeToURL: self.serverConfig.apiBaseUrl) else {
+        fatalError(
+          "NSURL(string: \(properties.path), relativeToURL: \(self.serverConfig.apiBaseUrl)) == nil"
+        )
+      }
 
       return Service.session.rac_JSONResponse(
         preparedRequest(forURL: URL, method: properties.method, query: properties.query),
