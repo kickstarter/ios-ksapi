@@ -16,7 +16,7 @@ extension DiscoveryEnvelope.UrlsEnvelope {
 
 extension DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope {
   internal static let template = DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope(
-    more_projects: "http://\(Secrets.Server.Api.production)/gimme/more"
+    more_projects: "http://\(Secrets.Api.Endpoint.production)/gimme/more"
   )
 }
 

@@ -529,7 +529,7 @@ internal struct MockService: ServiceType {
           activities: activities,
           urls: ActivityEnvelope.UrlsEnvelope(
             api: ActivityEnvelope.UrlsEnvelope.ApiEnvelope(
-              moreActivities: "http://\(Secrets.Server.Api.production)/gimme/more"
+              moreActivities: "http://\(Secrets.Api.Endpoint.production)/gimme/more"
             )
           )
         )
@@ -695,7 +695,7 @@ internal struct MockService: ServiceType {
           activities: activities,
           urls: ProjectActivityEnvelope.UrlsEnvelope(
             api: ProjectActivityEnvelope.UrlsEnvelope.ApiEnvelope(
-              moreActivities: "http://\(Secrets.Server.Api.production)/gimme/more"
+              moreActivities: "http://\(Secrets.Api.Endpoint.production)/gimme/more"
             )
           )
         )
@@ -1122,7 +1122,7 @@ internal struct MockService: ServiceType {
 
   internal func previewUrl(forDraft draft: UpdateDraft) -> NSURL? {
     return NSURL(
-      string: "https://\(Secrets.Server.Api.production)/projects/\(draft.update.projectId)/updates/"
+      string: "https://\(Secrets.Api.Endpoint.production)/projects/\(draft.update.projectId)/updates/"
         + "\(draft.update.id)/preview"
     )
   }
