@@ -387,6 +387,14 @@
 		A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B56B1C2EED9800FDB616 /* KsApiTests.swift */; };
 		A7FD09CA1C83E8E900332CCB /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		CA43C5FD1BB358F200C180DA /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D7C6C7B41DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */; };
+		D7C6C7B51DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */; };
+		D7C6C7C61DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7C51DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift */; };
+		D7C6C7C71DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7C51DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift */; };
+		D7C6C7C91DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7C81DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift */; };
+		D7C6C7CA1DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7C81DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift */; };
+		D7C6C7FC1DF71BC3005DC734 /* UpdatePledgeEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7FB1DF71BC3005DC734 /* UpdatePledgeEnvelopeTests.swift */; };
+		D7C6C7FD1DF71BC3005DC734 /* UpdatePledgeEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7FB1DF71BC3005DC734 /* UpdatePledgeEnvelopeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -846,6 +854,10 @@
 		CA43C5F91BB358F200C180DA /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA43C5FC1BB358F200C180DA /* KsApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsApi.h; sourceTree = "<group>"; };
 		CA43C5FE1BB358F200C180DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePledgeEnvelopeTests.swift; sourceTree = "<group>"; };
+		D7C6C7C51DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePaymentMethodEnvelopeTests.swift; sourceTree = "<group>"; };
+		D7C6C7C81DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitApplePayEnvelopeTests.swift; sourceTree = "<group>"; };
+		D7C6C7FB1DF71BC3005DC734 /* UpdatePledgeEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePledgeEnvelopeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1150,9 +1162,11 @@
 				A7363A351D03588600445B24 /* ActivityTests.swift */,
 				A7363A361D03588600445B24 /* BackingTests.swift */,
 				A7363A371D03588600445B24 /* CategoryTests.swift */,
+				D7C6C7C51DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift */,
 				9D0FB7C21D7621D4005774F2 /* CheckoutEnvelopeTests.swift */,
 				A7363A381D03588600445B24 /* CommentTests.swift */,
 				A7363A391D03588600445B24 /* ConfigTests.swift */,
+				D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */,
 				A7363A3A1D03588600445B24 /* DiscoveryParamsTests.swift */,
 				A7363A3B1D03588600445B24 /* ErrorEnvelopeTests.swift */,
 				0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */,
@@ -1169,8 +1183,10 @@
 				A7074F541DD7B48D00DAC505 /* PushEnvelopeTests.swift */,
 				A796A8C11D48EAE9009B6EF6 /* RewardsItemTests.swift */,
 				A7363A431D03588600445B24 /* RewardTests.swift */,
+				D7C6C7C81DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift */,
 				A757E9BA1D19B8D200A5C978 /* SurveyResponseTests.swift */,
 				809F8B621D08A26B005BADD9 /* UpdateDraftTests.swift */,
+				D7C6C7FB1DF71BC3005DC734 /* UpdatePledgeEnvelopeTests.swift */,
 				A7363A441D03588600445B24 /* UpdateTests.swift */,
 				A7363A451D03588600445B24 /* User.AvatarTests.swift */,
 				A7363A461D03588600445B24 /* User.NewsletterSubscriptionsTests.swift */,
@@ -1639,20 +1655,24 @@
 				A7363A6E1D03588600445B24 /* User.NewsletterSubscriptionsTests.swift in Sources */,
 				A7363A621D03588600445B24 /* Project.PhotoTests.swift in Sources */,
 				A7363A601D03588600445B24 /* Project.CountryTests.swift in Sources */,
+				D7C6C7C71DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift in Sources */,
 				A753B56C1C2EED9800FDB616 /* KsApiTests.swift in Sources */,
 				A796A8D51D48EAF8009B6EF6 /* ItemTests.swift in Sources */,
 				A7363A721D03588600445B24 /* UserTests.swift in Sources */,
 				A7363A561D03588600445B24 /* DiscoveryParamsTests.swift in Sources */,
+				D7C6C7FD1DF71BC3005DC734 /* UpdatePledgeEnvelopeTests.swift in Sources */,
 				A7363A581D03588600445B24 /* ErrorEnvelopeTests.swift in Sources */,
 				A7363A4E1D03588600445B24 /* BackingTests.swift in Sources */,
 				A7363A5C1D03588600445B24 /* MessageTests.swift in Sources */,
 				A7363A641D03588600445B24 /* Project.VideoTests.swift in Sources */,
+				D7C6C7CA1DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift in Sources */,
 				A7363A6A1D03588600445B24 /* UpdateTests.swift in Sources */,
 				A745D0631CA8B5D500C12802 /* ServiceTypeTests.swift in Sources */,
 				0156B2001D075F84000C4252 /* FindFriendsEnvelopeTests.swift in Sources */,
 				A7363A5E1D03588600445B24 /* MessageThreadTests.swift in Sources */,
 				59D1E6C61D19F25700896A4C /* ProjectStatsEnvelopeTests.swift in Sources */,
 				A7363A5A1D03588600445B24 /* LocationTests.swift in Sources */,
+				D7C6C7B51DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift in Sources */,
 				A7363A4A1D03588600445B24 /* EncodableTests.swift in Sources */,
 				9D0FB7C41D7621D4005774F2 /* CheckoutEnvelopeTests.swift in Sources */,
 				A7363A661D03588600445B24 /* ProjectTests.swift in Sources */,
@@ -1836,20 +1856,24 @@
 				A7363A6D1D03588600445B24 /* User.NewsletterSubscriptionsTests.swift in Sources */,
 				A7363A611D03588600445B24 /* Project.PhotoTests.swift in Sources */,
 				A7363A5F1D03588600445B24 /* Project.CountryTests.swift in Sources */,
+				D7C6C7C61DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift in Sources */,
 				A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */,
 				A796A8D41D48EAF8009B6EF6 /* ItemTests.swift in Sources */,
 				A7363A711D03588600445B24 /* UserTests.swift in Sources */,
 				A7363A551D03588600445B24 /* DiscoveryParamsTests.swift in Sources */,
+				D7C6C7FC1DF71BC3005DC734 /* UpdatePledgeEnvelopeTests.swift in Sources */,
 				A7363A571D03588600445B24 /* ErrorEnvelopeTests.swift in Sources */,
 				A7363A4D1D03588600445B24 /* BackingTests.swift in Sources */,
 				A7363A5B1D03588600445B24 /* MessageTests.swift in Sources */,
 				A7363A631D03588600445B24 /* Project.VideoTests.swift in Sources */,
+				D7C6C7C91DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift in Sources */,
 				A7363A691D03588600445B24 /* UpdateTests.swift in Sources */,
 				A745D0621CA8B5D500C12802 /* ServiceTypeTests.swift in Sources */,
 				0156B1FF1D075F84000C4252 /* FindFriendsEnvelopeTests.swift in Sources */,
 				A7363A5D1D03588600445B24 /* MessageThreadTests.swift in Sources */,
 				59D1E6C51D19F25700896A4C /* ProjectStatsEnvelopeTests.swift in Sources */,
 				A7363A591D03588600445B24 /* LocationTests.swift in Sources */,
+				D7C6C7B41DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift in Sources */,
 				A7363A491D03588600445B24 /* EncodableTests.swift in Sources */,
 				9D0FB7C31D7621D4005774F2 /* CheckoutEnvelopeTests.swift in Sources */,
 				A7363A651D03588600445B24 /* ProjectTests.swift in Sources */,
