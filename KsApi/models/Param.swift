@@ -30,6 +30,15 @@ public enum Param {
       return slug
     }
   }
+
+  public var escapedUrlComponent: String {
+    switch self {
+    case let .id(id):
+      return String(id)
+    case let .slug(slug):
+      return encodeForRFC3986(slug) ?? ""
+    }
+  }
 }
 
 extension Param: Equatable {}
@@ -58,4 +67,14 @@ extension Param: Decodable {
       return .Failure(.Custom("Param must be a number or string."))
     }
   }
+}
+
+private let allowableRFC3986: NSCharacterSet = {
+  let set = NSMutableCharacterSet.alphanumericCharacterSet()
+  set.addCharactersInString("-._~/?")
+  return set
+}()
+
+private func encodeForRFC3986(str: String) -> String? {
+  return str.stringByAddingPercentEncodingWithAllowedCharacters(allowableRFC3986)
 }

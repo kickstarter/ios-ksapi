@@ -94,7 +94,7 @@ internal enum Route {
       return (.GET, "/v1/categories", [:], nil)
 
     case let .category(param):
-      return (.GET, "/v1/categories/\(param.urlComponent)", [:], nil)
+      return (.GET, "/v1/categories/\(param.escapedUrlComponent)", [:], nil)
 
     case let .changePaymentMethod(project):
       let changeMethodUrl = NSURL(string: project.urls.web.project)?
@@ -200,7 +200,7 @@ internal enum Route {
       return (.POST, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", ["body": body], nil)
 
     case let .project(param):
-      return (.GET, "/v1/projects/\(param.urlComponent)", [:], nil)
+      return (.GET, "/v1/projects/\(param.escapedUrlComponent)", [:], nil)
 
     case let .projectActivities(project):
       return (.GET, "/v1/projects/\(project.id)/activities", [:], nil)
@@ -289,7 +289,7 @@ internal enum Route {
       return (.DELETE, "v1/users/self/friends/\(userId)", [:], nil)
 
     case let .update(id, projectParam):
-      return (.GET, "v1/projects/\(projectParam.urlComponent)/updates/\(id)", [:], nil)
+      return (.GET, "v1/projects/\(projectParam.escapedUrlComponent)/updates/\(id)", [:], nil)
 
     case let .updateComments(u):
       return (.GET, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", [:], nil)
