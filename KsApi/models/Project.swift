@@ -10,6 +10,7 @@ public struct Project {
   public let memberData: MemberData
   public let dates: Dates
   public let id: Int
+  public let liveStreams: [LiveStream]
   public let location: Location
   public let name: String
   public let personalization: Personalization
@@ -69,6 +70,14 @@ public struct Project {
     public var goalUsd: Int {
       return Int(floor(Float(self.goal) * self.staticUsdRate))
     }
+  }
+
+  public struct LiveStream {
+    public let id: String
+    public let isLiveNow: Bool
+    public let name: String
+    public let url: String
+    public let startDate: NSTimeInterval
   }
 
   public struct MemberData {
@@ -154,6 +163,7 @@ extension Project: Decodable {
       <*> Project.MemberData.decode(json)
       <*> Project.Dates.decode(json)
       <*> json <| "id"
+      <*> (json <|| "livestreams" <|> .Success([]))
       <*> (json <| "location" <|> .Success(Location.none))
       <*> json <| "name"
       <*> Project.Personalization.decode(json)
@@ -192,6 +202,18 @@ extension Project.Stats: Decodable {
       <*> json <| "pledged"
       <*> (json <| "static_usd_rate") <|> .Success(1.0)
       <*> json <|? "updates_count"
+  }
+}
+
+extension Project.LiveStream: Decodable {
+  public static func decode(json: JSON) -> Decoded<Project.LiveStream> {
+    print(json)
+    return curry(Project.LiveStream.init)
+      <^> json <| "id"
+      <*> json <| "live_now"
+      <*> json <| "name"
+      <*> json <| "url"
+      <*> json <| "start_date"
   }
 }
 

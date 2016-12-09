@@ -126,6 +126,25 @@ final class ProjectTests: XCTestCase {
     XCTAssertEqual("US", project.value?.country.countryCode)
   }
 
+  func testJSONParsing_WithLiveStreams() {
+    let liveStreamData = Project.LiveStream.decodeJSONDictionary(
+      [
+        "id": "1",
+        "name": "bar",
+        "url": "https://huzza.io/some/stream-foo-bar-baz",
+        "start_date": 123456789,
+        "live_now": true
+      ]
+    )
+
+    XCTAssertNil(liveStreamData.error)
+    XCTAssertEqual("1", liveStreamData.value?.id)
+    XCTAssertEqual("bar", liveStreamData.value?.name)
+    XCTAssertEqual("https://huzza.io/some/stream-foo-bar-baz", liveStreamData.value?.url)
+    XCTAssertEqual(123456789, liveStreamData.value?.startDate)
+    XCTAssertEqual(true, liveStreamData.value?.isLiveNow)
+  }
+
   func testJSONParsing_WithMemberData() {
     let memberData = Project.MemberData.decodeJSONDictionary([
       "last_update_published_at": 123456789,
