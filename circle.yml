@@ -3,6 +3,7 @@ machine:
     version: 7.3
 dependencies:
   pre:
+    - bin/bootstrap
     - brew update || brew update
     - brew install swiftlint
   override:
