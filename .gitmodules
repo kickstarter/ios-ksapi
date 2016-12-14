@@ -10,6 +10,3 @@
 [submodule "Frameworks/Prelude"]
 	path = Frameworks/Prelude
 	url = https://github.com/kickstarter/Kickstarter-Prelude.git
-[submodule "Frameworks/native-secrets"]
-	path = Frameworks/native-secrets
-	url = https://github.com/kickstarter/native-secrets.git
