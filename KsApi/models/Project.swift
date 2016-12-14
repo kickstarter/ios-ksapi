@@ -76,8 +76,8 @@ public struct Project {
     public let id: String
     public let isLiveNow: Bool
     public let name: String
-    public let url: String
     public let startDate: NSTimeInterval
+    public let url: String
   }
 
   public struct MemberData {
@@ -212,8 +212,8 @@ extension Project.LiveStream: Decodable {
       <^> json <| "id"
       <*> json <| "live_now"
       <*> json <| "name"
-      <*> json <| "url"
       <*> json <| "start_date"
+      <*> json <| "url"
   }
 }
 

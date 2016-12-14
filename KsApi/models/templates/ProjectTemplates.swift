@@ -21,7 +21,7 @@ extension Project {
       stateChangedAt: NSDate().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0
     ),
     id: 1,
-    liveStreams: [],
+    liveStreams: [.template],
     location: .template,
     name: "The Project",
     personalization: Project.Personalization(
