@@ -207,7 +207,6 @@ extension Project.Stats: Decodable {
 
 extension Project.LiveStream: Decodable {
   public static func decode(json: JSON) -> Decoded<Project.LiveStream> {
-    print(json)
     return curry(Project.LiveStream.init)
       <^> json <| "id"
       <*> json <| "live_now"
