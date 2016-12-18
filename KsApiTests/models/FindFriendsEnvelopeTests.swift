@@ -4,8 +4,8 @@ import XCTest
 final class FindFriendsEnvelopeTests: XCTestCase {
   // swiftlint:disable function_body_length
   func testJsonDecoding() {
-    let json: [String: AnyObject] = [
-      "contacts_imported": true as AnyObject,
+    let json: [String:Any] = [
+      "contacts_imported": true,
       "urls": [
         "api": [
           "more_users": "http://api.dev/v1/users/self/friends/find?count=10"
@@ -67,8 +67,8 @@ final class FindFriendsEnvelopeTests: XCTestCase {
   // swiftlint:enable function_body_length
 
   func testJsonDecoding_MissingData() {
-    let json: [String: AnyObject] = [
-      "contacts_imported": true as AnyObject,
+    let json: [String:Any] = [
+      "contacts_imported": true,
       "urls": [
         "api": [
         ]

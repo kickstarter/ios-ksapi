@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct CommentsEnvelope {
   public let comments: [Comment]
@@ -32,6 +33,6 @@ extension CommentsEnvelope.UrlsEnvelope: Decodable {
 extension CommentsEnvelope.UrlsEnvelope.ApiEnvelope: Decodable {
   public static func decode(_ json: JSON) -> Decoded<CommentsEnvelope.UrlsEnvelope.ApiEnvelope> {
     return curry(CommentsEnvelope.UrlsEnvelope.ApiEnvelope.init)
-      <^> json <| "more_comments" <|> .Success("")
+      <^> (json <| "more_comments" <|> .success(""))
   }
 }

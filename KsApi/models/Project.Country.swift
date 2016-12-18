@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 extension Project {
   public struct Country {
@@ -53,7 +54,7 @@ extension Project.Country: Decodable {
 }
 
 extension Project.Country: EncodableType {
-  public func encode() -> [String : AnyObject] {
+  public func encode() -> [String : Any] {
     var result: [String:AnyObject] = [:]
     result["country"] = self.countryCode as AnyObject?
     result["currency"] = self.currencyCode as AnyObject?

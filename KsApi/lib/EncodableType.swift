@@ -1,11 +1,11 @@
 import Foundation
 
 /**
- A type that can encode itself into a `[String:AnyObject]` dictionary, usually for then
+ A type that can encode itself into a `[String:Any]` dictionary, usually for then
  serializing to a JSON string.
 */
 public protocol EncodableType {
-  func encode() -> [String: AnyObject]
+  func encode() -> [String:Any]
 }
 
 public extension EncodableType {

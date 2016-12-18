@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct CheckoutEnvelope {
   public enum State: String {
@@ -17,7 +18,7 @@ extension CheckoutEnvelope: Decodable {
     let create = curry(CheckoutEnvelope.init)
     return create
       <^> json <| "state"
-      <*> json <| "state_reason" <|> .Success("")
+      <*> (json <| "state_reason" <|> .success(""))
   }
 }
 

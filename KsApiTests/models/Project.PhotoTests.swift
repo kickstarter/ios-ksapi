@@ -5,8 +5,8 @@ final class ProjectPhotoTests: XCTestCase {
 
   func testJSONParsing_WithPartialData() {
     let photo = Project.Photo.decodeJSONDictionary([
-      "full": "http://www.kickstarter.com/full.jpg",
-      "med": "http://www.kickstarter.com/med.jpg",
+      "full": "http://www.kickstarter.com/full.jpg" as AnyObject,
+      "med": "http://www.kickstarter.com/med.jpg" as AnyObject,
       ])
 
     XCTAssertNotNil(photo.error)
@@ -14,9 +14,9 @@ final class ProjectPhotoTests: XCTestCase {
 
   func testJSONParsing_WithMissing1024() {
     let photo = Project.Photo.decodeJSONDictionary([
-      "full": "http://www.kickstarter.com/full.jpg",
-      "med": "http://www.kickstarter.com/med.jpg",
-      "small": "http://www.kickstarter.com/small.jpg",
+      "full": "http://www.kickstarter.com/full.jpg" as AnyObject,
+      "med": "http://www.kickstarter.com/med.jpg" as AnyObject,
+      "small": "http://www.kickstarter.com/small.jpg" as AnyObject,
       ])
 
     XCTAssertNil(photo.error)
@@ -28,9 +28,9 @@ final class ProjectPhotoTests: XCTestCase {
 
   func testJSONParsing_WithFullData() {
     let photo = Project.Photo.decodeJSONDictionary([
-      "full": "http://www.kickstarter.com/full.jpg",
-      "med": "http://www.kickstarter.com/med.jpg",
-      "small": "http://www.kickstarter.com/small.jpg",
+      "full": "http://www.kickstarter.com/full.jpg" as AnyObject,
+      "med": "http://www.kickstarter.com/med.jpg" as AnyObject,
+      "small": "http://www.kickstarter.com/small.jpg" as AnyObject,
       "1024x768": "http://www.kickstarter.com/1024x768.jpg",
       ])
 

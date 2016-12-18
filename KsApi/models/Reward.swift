@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 import Prelude
 
 public struct Reward {
@@ -60,7 +61,7 @@ extension Reward: Decodable {
       <*> json <| "minimum"
       <*> json <|? "remaining"
     return tmp2
-      <*> ((json <|| "rewards_items") <|> .Success([]))
+      <*> ((json <|| "rewards_items") <|> .success([]))
       <*> Reward.Shipping.decode(json)
       <*> json <|? "starts_at"
       <*> json <|? "title"
@@ -70,7 +71,7 @@ extension Reward: Decodable {
 extension Reward.Shipping: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Reward.Shipping> {
     return curry(Reward.Shipping.init)
-      <^> json <| "shipping_enabled" <|> .Success(false)
+      <^> (json <| "shipping_enabled" <|> .success(false))
       <*> json <|? "shipping_preference"
       <*> json <|? "shipping_summary"
   }

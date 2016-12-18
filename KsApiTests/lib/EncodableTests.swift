@@ -6,8 +6,11 @@ final class EncodableTests: XCTestCase {
   struct EncodableModel: EncodableType {
     let id: Int
     let name: String
-    func encode() -> [String:AnyObject] {
-      return ["ID": self.id as AnyObject, "NAME": self.name as AnyObject]
+    func encode() -> [String:Any] {
+      return [
+        "ID": self.id,
+        "NAME": self.name
+      ]
     }
   }
 

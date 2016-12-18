@@ -2,6 +2,7 @@ import XCTest
 @testable import KsApi
 import Argo
 import Curry
+import Runes
 
 final class ConfigTests: XCTestCase {
 
@@ -14,9 +15,9 @@ final class ConfigTests: XCTestCase {
       "feature1": true,
       "feature2": false,
       ]
-    let json: [String:AnyObject] = [
-      "ab_experiments": abExperiments as AnyObject,
-      "app_id": 123456789 as AnyObject,
+    let json: [String:Any] = [
+      "ab_experiments": abExperiments,
+      "app_id": 123456789,
       "apple_pay_countries": ["US", "GB", "CA"],
       "country_code": "US",
       "features": features,

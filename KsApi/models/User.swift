@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct User {
   public let avatar: Avatar
@@ -74,7 +75,7 @@ extension User: Decodable {
       <*> json <|? "facebook_connected"
       <*> json <| "id"
       <*> json <|? "is_friend"
-      <*> json <|? "location"
+      <*> (json <|? "location" <|> .success(nil))
     return tmp
       <*> json <| "name"
       <*> User.NewsletterSubscriptions.decode(json)
@@ -85,14 +86,14 @@ extension User: Decodable {
 }
 
 extension User: EncodableType {
-  public func encode() -> [String:AnyObject] {
-    var result: [String:AnyObject] = [:]
-    result["avatar"] = self.avatar.encode() as AnyObject?
-    result["facebook_connected"] = self.facebookConnected as AnyObject?? ?? false as AnyObject?
-    result["id"] = self.id as AnyObject?
-    result["is_friend"] = self.isFriend as AnyObject?? ?? false as AnyObject?
-    result["location"] = self.location?.encode() as AnyObject?
-    result["name"] = self.name as AnyObject?
+  public func encode() -> [String:Any] {
+    var result: [String:Any] = [:]
+    result["avatar"] = self.avatar.encode()
+    result["facebook_connected"] = self.facebookConnected ?? false
+    result["id"] = self.id
+    result["is_friend"] = self.isFriend ?? false
+    result["location"] = self.location?.encode()
+    result["name"] = self.name
     result = result.withAllValuesFrom(self.newsletters.encode())
     result = result.withAllValuesFrom(self.notifications.encode())
     result = result.withAllValuesFrom(self.stats.encode())
@@ -111,15 +112,15 @@ extension User.Avatar: Decodable {
 }
 
 extension User.Avatar: EncodableType {
-  public func encode() -> [String:AnyObject] {
-    var ret = [
+  public func encode() -> [String:Any] {
+    var ret: [String:Any] = [
       "medium": self.medium,
       "small": self.small
     ]
 
     ret["large"] = self.large
 
-    return ret as [String : AnyObject]
+    return ret
   }
 }
 
@@ -134,12 +135,12 @@ extension User.NewsletterSubscriptions: Decodable {
 }
 
 extension User.NewsletterSubscriptions: EncodableType {
-  public func encode() -> [String: AnyObject] {
-    var result: [String: AnyObject] = [:]
-    result["games_newsletter"] = self.games as AnyObject?
-    result["happening_newsletter"] = self.happening as AnyObject?
-    result["promo_newsletter"] = self.promo as AnyObject?
-    result["weekly_newsletter"] = self.weekly as AnyObject?
+  public func encode() -> [String: Any] {
+    var result: [String: Any] = [:]
+    result["games_newsletter"] = self.games
+    result["happening_newsletter"] = self.happening
+    result["promo_newsletter"] = self.promo
+    result["weekly_newsletter"] = self.weekly
     return result
   }
 }
@@ -174,20 +175,20 @@ extension User.Notifications: Decodable {
 }
 
 extension User.Notifications: EncodableType {
-  public func encode() -> [String : AnyObject] {
-    var result: [String: AnyObject] = [:]
-    result["notify_of_backings"] = self.backings as AnyObject?
-    result["notify_of_comments"] = self.comments as AnyObject?
-    result["notify_of_follower"] = self.follower as AnyObject?
-    result["notify_of_friend_activity"] = self.friendActivity as AnyObject?
-    result["notify_of_post_likes"] = self.postLikes as AnyObject?
-    result["notify_of_updates"] = self.updates as AnyObject?
-    result["notify_mobile_of_backings"] = self.mobileBackings as AnyObject?
-    result["notify_mobile_of_comments"] = self.mobileComments as AnyObject?
-    result["notify_mobile_of_follower"] = self.mobileFollower as AnyObject?
-    result["notify_mobile_of_friend_activity"] = self.mobileFriendActivity as AnyObject?
-    result["notify_mobile_of_post_likes"] = self.mobilePostLikes as AnyObject?
-    result["notify_mobile_of_updates"] = self.mobileUpdates as AnyObject?
+  public func encode() -> [String : Any] {
+    var result: [String: Any] = [:]
+    result["notify_of_backings"] = self.backings
+    result["notify_of_comments"] = self.comments
+    result["notify_of_follower"] = self.follower
+    result["notify_of_friend_activity"] = self.friendActivity
+    result["notify_of_post_likes"] = self.postLikes
+    result["notify_of_updates"] = self.updates
+    result["notify_mobile_of_backings"] = self.mobileBackings
+    result["notify_mobile_of_comments"] = self.mobileComments
+    result["notify_mobile_of_follower"] = self.mobileFollower
+    result["notify_mobile_of_friend_activity"] = self.mobileFriendActivity
+    result["notify_mobile_of_post_likes"] = self.mobilePostLikes
+    result["notify_mobile_of_updates"] = self.mobileUpdates
     return result
   }
 }
@@ -222,14 +223,14 @@ extension User.Stats: Decodable {
 }
 
 extension User.Stats: EncodableType {
-  public func encode() -> [String: AnyObject] {
-    var result: [String: AnyObject] = [:]
-    result["backed_projects_count"] =  self.backedProjectsCount as AnyObject?
-    result["created_projects_count"] = self.createdProjectsCount as AnyObject?
-    result["member_projects_count"] = self.memberProjectsCount as AnyObject?
-    result["starred_projects_count"] = self.starredProjectsCount as AnyObject?
-    result["unanswered_surveys_count"] = self.unansweredSurveysCount as AnyObject?
-    result["unread_messages_count"] =  self.unreadMessagesCount as AnyObject?
+  public func encode() -> [String: Any] {
+    var result: [String: Any] = [:]
+    result["backed_projects_count"] =  self.backedProjectsCount
+    result["created_projects_count"] = self.createdProjectsCount
+    result["member_projects_count"] = self.memberProjectsCount
+    result["starred_projects_count"] = self.starredProjectsCount
+    result["unanswered_surveys_count"] = self.unansweredSurveysCount
+    result["unread_messages_count"] =  self.unreadMessagesCount
     return result
   }
 }

@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct ShippingRule {
   public let cost: Double
@@ -23,5 +24,5 @@ public func == (lhs: ShippingRule, rhs: ShippingRule) -> Bool {
 }
 
 private func stringToDouble(_ string: String) -> Decoded<Double> {
-  return Double(string).map(Decoded.Success) ?? .Success(0)
+  return Double(string).map(Decoded.success) ?? .success(0)
 }

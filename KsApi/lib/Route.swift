@@ -73,12 +73,12 @@ internal enum Route {
   }
 
   internal var requestProperties:
-    (method: Method, path: String, query: [String:AnyObject], file: (name: UploadParam, url: URL)?) {
+    (method: Method, path: String, query: [String:Any], file: (name: UploadParam, url: URL)?) {
 
     switch self {
     case let .activities(categories, count):
-      var params: [String:AnyObject] = ["categories": categories.map { $0.rawValue }]
-      params["count"] = count as AnyObject?
+      var params: [String:AnyObject] = ["categories": categories.map { $0.rawValue } as AnyObject]
+      params["count"] = count as AnyObject
       return (.GET, "/v1/activities", params, nil)
 
     case let .addImage(file, draft):
@@ -98,10 +98,10 @@ internal enum Route {
 
     case let .changePaymentMethod(project):
       let changeMethodUrl = URL(string: project.urls.web.project)?
-        .URLByAppendingPathComponent("pledge")
-        .URLByAppendingPathComponent("change_method")
+        .appendingPathComponent("pledge")
+        .appendingPathComponent("change_method")
 
-      return (.PUT, changeMethodUrl?.absoluteString ?? "", ["format": "json"], nil)
+      return (.PUT, changeMethodUrl?.absoluteString ?? "", ["format": "json" as AnyObject], nil)
 
     case let .checkout(url):
       return (.GET, url, [:], nil)
@@ -114,7 +114,7 @@ internal enum Route {
         .appendingPathComponent("pledge")
 
       var params: [String:AnyObject] = [:]
-      params["clicked_reward"] = tappedReward ? "true" : nil
+      params["clicked_reward"] = (tappedReward ? "true" : nil) as AnyObject
       params["format"] = "json" as AnyObject?
       params["backing"] = [
         "amount": String(amount),
@@ -299,7 +299,7 @@ internal enum Route {
         .appendingPathComponent("pledge")
 
       var params: [String:AnyObject] = [:]
-      params["clicked_reward"] = tappedReward ? "true" : nil
+      params["clicked_reward"] = (tappedReward ? "true" : nil) as AnyObject
       params["format"] = "json" as AnyObject?
       params["backing"] = [
         "amount": String(amount),

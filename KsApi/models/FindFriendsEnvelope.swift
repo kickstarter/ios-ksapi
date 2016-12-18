@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct FindFriendsEnvelope {
   public let contactsImported: Bool
@@ -20,7 +21,7 @@ extension FindFriendsEnvelope: Decodable {
     return curry(FindFriendsEnvelope.init)
       <^> json <|   "contacts_imported"
       <*> json <|   "urls"
-      <*> (json <|| "users") <|> .Success([])
+      <*> (json <|| "users" <|> .success([]))
   }
 }
 

@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct MessageThreadsEnvelope {
   public let messageThreads: [MessageThread]

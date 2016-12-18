@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct Comment {
   public let author: User
@@ -30,7 +31,7 @@ public func == (lhs: Comment, rhs: Comment) -> Bool {
 // sends back `0` when the comment hasn't been deleted, and we'd rather handle that value as `nil`.
 private func decodePositiveTimeInterval(_ interval: TimeInterval?) -> Decoded<TimeInterval?> {
   if let interval = interval, interval > 0.0 {
-    return .Success(interval)
+    return .success(interval)
   }
-  return .Success(nil)
+  return .success(nil)
 }

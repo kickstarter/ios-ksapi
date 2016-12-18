@@ -59,12 +59,12 @@ public func == (lhs: Param, rhs: Param) -> Bool {
 extension Param: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Param> {
     switch json {
-    case let .String(slug):
-      return .Success(.slug(slug))
-    case let .Number(number):
-      return .Success(.id(number.integerValue))
+    case let .string(slug):
+      return .success(.slug(slug))
+    case let .number(number):
+      return .success(.id(number.intValue))
     default:
-      return .Failure(.Custom("Param must be a number or string."))
+      return .failure(.custom("Param must be a number or string."))
     }
   }
 }

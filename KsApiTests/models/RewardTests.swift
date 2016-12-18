@@ -22,16 +22,16 @@ final class RewardTests: XCTestCase {
     let reward4 = Reward.template |> Reward.lens.id .~ 2 <> Reward.lens.minimum .~ 30
 
     let rewards = [reward1, reward2, reward3, reward4]
-    let sorted = rewards.sort()
+    let sorted = rewards.sorted()
 
     XCTAssertEqual(sorted, [reward1, reward3, reward4, reward2])
   }
 
   func testJsonParsing_WithMinimalData_AndDescription() {
     let reward = Reward.decodeJSONDictionary([
-      "id": 1,
-      "minimum": 10,
-      "description": "cool stuff"
+      "id": 1 as AnyObject,
+      "minimum": 10 as AnyObject,
+      "description": "cool stuff" as AnyObject
       ])
 
     XCTAssertNil(reward.error)
@@ -44,9 +44,9 @@ final class RewardTests: XCTestCase {
 
   func testJsonParsing_WithMinimalData_AndReward() {
     let reward = Reward.decodeJSONDictionary([
-      "id": 1,
-      "minimum": 10,
-      "reward": "cool stuff"
+      "id": 1 as AnyObject,
+      "minimum": 10 as AnyObject,
+      "reward": "cool stuff" as AnyObject
       ])
 
     XCTAssertNil(reward.error)
@@ -57,10 +57,10 @@ final class RewardTests: XCTestCase {
 
   func testJsonParsing_WithFullData() {
     let reward = Reward.decodeJSONDictionary([
-      "id": 1,
-      "description": "Some reward",
-      "minimum": 10,
-      "backers_count": 10
+      "id": 1 as AnyObject,
+      "description": "Some reward" as AnyObject,
+      "minimum": 10 as AnyObject,
+      "backers_count": 10 as AnyObject
       ])
 
     XCTAssertNotNil(reward)
@@ -73,10 +73,10 @@ final class RewardTests: XCTestCase {
   func testJsonDecoding_WithShipping() {
 
     let reward = Reward.decodeJSONDictionary([
-      "id": 1,
-      "description": "Some reward",
-      "minimum": 10,
-      "backers_count": 10,
+      "id": 1 as AnyObject,
+      "description": "Some reward" as AnyObject,
+      "minimum": 10 as AnyObject,
+      "backers_count": 10 as AnyObject,
       "shipping_enabled": true,
       "shipping_preference": "unrestricted",
       "shipping_summary": "Ships anywhere in the world."

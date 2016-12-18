@@ -1,6 +1,7 @@
 import Foundation
 import Argo
 import Curry
+import Runes
 
 public struct Update {
   public let body: String?
@@ -47,7 +48,7 @@ extension Update: Decodable {
       <*> json <|  "project_id"
       <*> json <|? "published_at"
       <*> json <|  "sequence"
-      <*> json <| "title" <|> .Success("")
+      <*> (json <| "title" <|> .success(""))
       <*> json <|  "urls"
       <*> json <|? "user"
       <*> json <|?  "visible"

@@ -20,7 +20,7 @@ extension Data {
 
 extension URL {
   internal var imageMime: String? {
-    return pathExtension.flatMap { mimeType(extension: $0, where: kUTTypeImage) }
+    return mimeType(extension: pathExtension, where: kUTTypeImage)
   }
 }
 

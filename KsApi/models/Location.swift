@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct Location {
   public let country: String
@@ -26,7 +27,7 @@ extension Location: Decodable {
 }
 
 extension Location: EncodableType {
-  public func encode() -> [String: AnyObject] {
+  public func encode() -> [String: Any] {
     var result: [String: AnyObject] = [:]
     result["country"] = self.country as AnyObject?
     result["displayable_name"] = self.displayableName as AnyObject?

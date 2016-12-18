@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct DiscoveryEnvelope {
   public let projects: [Project]

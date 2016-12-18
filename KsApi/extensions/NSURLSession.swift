@@ -1,8 +1,9 @@
 import Argo
 import Curry
+import Runes
 import Foundation
 import Prelude
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 private func parseJSONData(_ data: Data) -> AnyObject? {
@@ -10,21 +11,23 @@ private func parseJSONData(_ data: Data) -> AnyObject? {
 }
 
 private let queue = DispatchQueue(label: "com.kickstarter.ksapi", attributes: [])
+private let scheduler = QueueScheduler(qos: .background, name: "com.kickstarter.ksapi", targeting: nil)
 
 internal extension URLSession {
 
-  // Wrap an NSURLSession producer with error envelope logic.
-  internal func rac_dataResponse(_ request: NSURLRequest, uploading file: (url: NSURL, name: String)? = nil)
-    -> SignalProducer<NSData, ErrorEnvelope> {
+  // Wrap an URLSession producer with error envelope logic.
+  internal func rac_dataResponse(_ request: URLRequest, uploading file: (url: URL, name: String)? = nil)
+    -> SignalProducer<Data, ErrorEnvelope> {
 
       let producer = file.map { self.rac_dataWithRequest(request, uploading: $0, named: $1) }
-        ?? self.rac_dataWithRequest(request)
+        ?? self._rac_data(with: request)
 
       return producer
-        .startOn(QueueScheduler(queue: queue))
+//        .start(on: QueueScheduler(queue: queue))
+        .start(on: scheduler)
         .flatMapError { _ in SignalProducer(error: .couldNotParseErrorEnvelopeJSON) } // NSError
-        .flatMap(.Concat) { data, response -> SignalProducer<NSData, ErrorEnvelope> in
-          guard let response = response as? NSHTTPURLResponse else { fatalError() }
+        .flatMap(.concat) { data, response -> SignalProducer<Data, ErrorEnvelope> in
+          guard let response = response as? HTTPURLResponse else { fatalError() }
 
           guard
             (200..<300).contains(response.statusCode),
@@ -36,10 +39,10 @@ internal extension URLSession {
 
               if let json = parseJSONData(data) {
                 switch decode(json) as Decoded<ErrorEnvelope> {
-                case let .Success(envelope):
+                case let .success(envelope):
                   // Got the error envelope
                   return SignalProducer(error: envelope)
-                case let .Failure(error):
+                case let .failure(error):
                   print("Argo decoding error envelope error: \(error)")
                   return SignalProducer(error: .couldNotDecodeJSON(error))
                 }
@@ -54,9 +57,9 @@ internal extension URLSession {
         }
   }
 
-  // Converts an NSURLSessionTask into a signal producer of raw JSON data. If the JSON does not parse
+  // Converts an URLSessionTask into a signal producer of raw JSON data. If the JSON does not parse
   // successfully, an `ErrorEnvelope.errorJSONCouldNotParse()` error is emitted.
-  internal func rac_JSONResponse(_ request: NSURLRequest, uploading file: (url: NSURL, name: String)? = nil)
+  internal func rac_JSONResponse(_ request: URLRequest, uploading file: (url: URL, name: String)? = nil)
     -> SignalProducer<AnyObject, ErrorEnvelope> {
 
       return self.rac_dataResponse(request, uploading: file)
@@ -93,7 +96,7 @@ internal extension URLSession {
                                                    options: .withTransparentBounds,
                                                    range: range,
                                                    withTemplate: template)
-    } ?? ""
+    }
   }
 }
 
@@ -104,39 +107,64 @@ private let boundary = "k1ck574r73r154c0mp4ny"
 
 extension URLSession {
   // Returns a producer that will execute the given upload once for each invocation of start().
-  fileprivate func rac_dataWithRequest(_ request: NSURLRequest, uploading file: NSURL, named name: String)
-    -> SignalProducer<(NSData, NSURLResponse), NSError> {
+  fileprivate func rac_dataWithRequest(_ request: URLRequest, uploading file: URL, named name: String)
+    -> SignalProducer<(Data, URLResponse), AnyError> {
+
+      var mutableRequest = request
 
       guard
-        let mutableRequest = request.mutableCopy() as? NSMutableURLRequest,
-        let data = optionalize(file.absoluteString).flatMap(Data.init(contentsOfFile:)),
+        let data = try? Data.init(contentsOf: file),
         let mime = file.imageMime ?? data.imageMime,
-        let filename = file.lastPathComponent,
         let multipartHead = ("--\(boundary)\r\n"
-          + "Content-Disposition: form-data; name=\"\(name)\"; filename=\"\(filename)\"\r\n"
-          + "Content-Type: \(mime)\r\n\r\n").dataUsingEncoding(String.Encoding.utf8),
-        let multipartTail = "--\(boundary)--\r\n".data(using: String.Encoding.utf8)
+          + "Content-Disposition: form-data; name=\"\(name)\"; filename=\"\(file.lastPathComponent)\"\r\n"
+          + "Content-Type: \(mime)\r\n\r\n").data(using: .utf8),
+        let multipartTail = "--\(boundary)--\r\n".data(using: .utf8)
         else { fatalError() }
 
-      let body = NSMutableData()
-      body.appendData(multipartHead)
-      body.appendData(data)
+      var body = Data()
+      body.append(multipartHead)
+      body.append(data)
       body.append(multipartTail)
 
       mutableRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-      mutableRequest.HTTPBody = body
+      mutableRequest.httpBody = body as Data
 
       return SignalProducer { observer, disposable in
-        let task = self.dataTaskWithRequest(mutableRequest) { data, response, error in
+        let task = self.dataTask(with: mutableRequest) { data, response, error in
           guard let data = data, let response = response else {
-            observer.sendFailed(error ?? defaultSessionError)
+            observer.send(error: AnyError(error ?? defaultSessionError))
             return
           }
-          observer.sendNext((data, response))
+          observer.send(value: (data, response))
           observer.sendCompleted()
         }
         disposable += task.cancel
         task.resume()
       }
+  }
+
+
+
+
+
+
+
+
+  public func _rac_data(with request: URLRequest) -> SignalProducer<(Data, URLResponse), AnyError> {
+    return SignalProducer { observer, disposable in
+      let task = self.dataTask(with: request) { data, response, error in
+        if let data = data, let response = response {
+          observer.send(value: (data, response))
+          observer.sendCompleted()
+        } else {
+          observer.send(error: AnyError(error ?? defaultSessionError))
+        }
+      }
+
+      disposable += {
+        task.cancel()
+      }
+      task.resume()
+    }
   }
 }

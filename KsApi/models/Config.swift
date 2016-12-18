@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct Config {
   public let abExperiments: [String:String]
@@ -45,16 +46,16 @@ public func == (lhs: Config, rhs: Config) -> Bool {
 }
 
 extension Config: EncodableType {
-  public func encode() -> [String : AnyObject] {
-    var result: [String:AnyObject] = [:]
-    result["ab_experiments"] = self.abExperiments as AnyObject?
-    result["app_id"] = self.appId as AnyObject?
-    result["apple_pay_countries"] = self.applePayCountries as AnyObject?
-    result["country_code"] = self.countryCode as AnyObject?
-    result["features"] = self.features as AnyObject?
-    result["itunes_link"] = self.iTunesLink as AnyObject?
+  public func encode() -> [String : Any] {
+    var result: [String:Any] = [:]
+    result["ab_experiments"] = self.abExperiments
+    result["app_id"] = self.appId
+    result["apple_pay_countries"] = self.applePayCountries
+    result["country_code"] = self.countryCode
+    result["features"] = self.features
+    result["itunes_link"] = self.iTunesLink
     result["launched_countries"] = self.launchedCountries.map { $0.encode() }
-    result["locale"] = self.locale as AnyObject?
+    result["locale"] = self.locale
     result["stripe"] = ["publishable_key": self.stripePublishableKey]
     return result
   }
@@ -66,7 +67,7 @@ extension Config: EncodableType {
 private func decodeDictionary<T: Decodable>(_ j: Decoded<JSON>)
   -> Decoded<[String:T]> where T.DecodedType == T {
   switch j {
-  case let .Success(json): return [String: T].decode(json)
-  case let .Failure(e): return .Failure(e)
+  case let .success(json): return [String: T].decode(json)
+  case let .failure(e): return .failure(e)
   }
 }

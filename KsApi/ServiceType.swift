@@ -1,7 +1,7 @@
 // swiftlint:disable file_length
 import Foundation
 import Prelude
-import ReactiveCocoa
+import ReactiveSwift
 
 public enum Mailbox: String {
   case inbox
@@ -302,7 +302,7 @@ extension ServiceType {
 
    - returns: A new URL request that is properly configured for the server.
    */
-  public func preparedRequest(forRequest originalRequest: URLRequest, query: [String:AnyObject] = [:])
+  public func preparedRequest(forRequest originalRequest: URLRequest, query: [String:Any] = [:])
     -> URLRequest {
 
       guard let request = (originalRequest as NSURLRequest).mutableCopy() as? NSMutableURLRequest else {
@@ -325,11 +325,11 @@ extension ServiceType {
           request.httpBody = try? JSONSerialization.data(withJSONObject: query, options: [])
         }
       } else {
-        queryItems.append(
-          contentsOf: query
-            .flatMap(queryComponents)
-            .map(URLQueryItem.init(name:value:))
-        )
+        let __test__ = query
+          .flatMap(queryComponents)
+          .map(URLQueryItem.init(name:value:))
+
+        queryItems.append(contentsOf: __test__)
       }
       components.queryItems = queryItems.sorted { $0.name < $1.name }
       request.url = components.url
@@ -349,7 +349,7 @@ extension ServiceType {
 
    - returns: A new URL request that is properly configured for the server.
    */
-  public func preparedRequest(forURL URL: Foundation.URL, method: Method = .GET, query: [String:AnyObject] = [:])
+  public func preparedRequest(forURL URL: Foundation.URL, method: Method = .GET, query: [String:Any] = [:])
     -> URLRequest {
 
       let request = NSMutableURLRequest(url: URL)
@@ -397,14 +397,14 @@ extension ServiceType {
     return query
   }
 
-  fileprivate func queryComponents(_ key: String, _ value: AnyObject) -> [(String, String)] {
+  fileprivate func queryComponents(_ key: String, _ value: Any) -> [(String, String)] {
     var components: [(String, String)] = []
 
-    if let dictionary = value as? [String: AnyObject] {
+    if let dictionary = value as? [String:Any] {
       for (nestedKey, value) in dictionary {
         components += queryComponents("\(key)[\(nestedKey)]", value)
       }
-    } else if let array = value as? [AnyObject] {
+    } else if let array = value as? [Any] {
       for value in array {
         components += queryComponents("\(key)[]", value)
       }

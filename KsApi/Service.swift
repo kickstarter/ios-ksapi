@@ -4,7 +4,7 @@
 import Argo
 import Foundation
 import Prelude
-import ReactiveCocoa
+import ReactiveSwift
 import ReactiveExtensions
 
 private extension Bundle {
@@ -56,13 +56,13 @@ public struct Service: ServiceType {
     return request(.facebookConnect(facebookAccessToken: token))
   }
 
-  public func addImage(file fileURL: NSURL, toDraft draft: UpdateDraft)
+  public func addImage(file fileURL: URL, toDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
 
       return request(Route.addImage(fileUrl: fileURL, toDraft: draft))
   }
 
-  public func addVideo(file fileURL: NSURL, toDraft draft: UpdateDraft)
+  public func addVideo(file fileURL: URL, toDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Video, ErrorEnvelope> {
 
       return request(Route.addVideo(fileUrl: fileURL, toDraft: draft))
@@ -469,11 +469,11 @@ public struct Service: ServiceType {
 
       return SignalProducer(value: json)
         .map { json in decode(json) as Decoded<M> }
-        .flatMap(.Concat) { (decoded: Decoded<M>) -> SignalProducer<M, ErrorEnvelope> in
+        .flatMap(.concat) { (decoded: Decoded<M>) -> SignalProducer<M, ErrorEnvelope> in
           switch decoded {
-          case let .Success(value):
+          case let .success(value):
             return .init(value: value)
-          case let .Failure(error):
+          case let .failure(error):
             print("Argo decoding model \(M.self) error: \(error)")
             return .init(error: .couldNotDecodeJSON(error))
           }
@@ -485,11 +485,11 @@ public struct Service: ServiceType {
 
       return SignalProducer(value: json)
         .map { json in decode(json) as Decoded<[M]> }
-        .flatMap(.Concat) { (decoded: Decoded<[M]>) -> SignalProducer<[M], ErrorEnvelope> in
+        .flatMap(.concat) { (decoded: Decoded<[M]>) -> SignalProducer<[M], ErrorEnvelope> in
           switch decoded {
-          case let .Success(value):
+          case let .success(value):
             return .init(value: value)
-          case let .Failure(error):
+          case let .failure(error):
             print("Argo decoding model error: \(error)")
             return .init(error: .couldNotDecodeJSON(error))
           }
@@ -516,7 +516,7 @@ public struct Service: ServiceType {
 
       guard let URL = URL(string: properties.path, relativeTo: self.serverConfig.apiBaseUrl as URL) else {
         fatalError(
-          "NSURL(string: \(properties.path), relativeToURL: \(self.serverConfig.apiBaseUrl)) == nil"
+          "URL(string: \(properties.path), relativeToURL: \(self.serverConfig.apiBaseUrl)) == nil"
         )
       }
 
@@ -532,10 +532,7 @@ public struct Service: ServiceType {
 
       let properties = route.requestProperties
 
-      guard let URL = optionalize(self.serverConfig.apiBaseUrl.URLByAppendingPathComponent(properties.path))
-        else {
-          return .empty
-      }
+      let URL = self.serverConfig.apiBaseUrl.appendingPathComponent(properties.path)
 
       return Service.session.rac_JSONResponse(
         preparedRequest(forURL: URL, method: properties.method, query: properties.query),

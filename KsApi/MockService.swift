@@ -1,7 +1,7 @@
 // swiftlint:disable file_length
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
-import ReactiveCocoa
+import ReactiveSwift
 import Prelude
 
 internal struct MockService: ServiceType {
@@ -286,7 +286,7 @@ internal struct MockService: ServiceType {
       .template |> Activity.lens.category .~ .backing,
       .template |> Activity.lens.category .~ .commentProject
       ]
-      .enumerate()
+      .enumerated()
       .map(Activity.lens.id.set)
 
     self.fetchProjectActivitiesError = fetchProjectActivitiesError
@@ -566,7 +566,7 @@ internal struct MockService: ServiceType {
       }
       let envelope = self.fetchDiscoveryResponse ?? (.template
         |> DiscoveryEnvelope.lens.projects .~ (1...4).map(project)
-        |> DiscoveryEnvelope.lens.urls.api.moreProjects .~ paginationUrl + "+1"
+        |> DiscoveryEnvelope.lens.urls.api.moreProjects .~ (paginationUrl + "+1")
       )
 
       return SignalProducer(value: envelope)
@@ -1074,7 +1074,7 @@ internal struct MockService: ServiceType {
     return SignalProducer(value: self.updatePledgeResponse)
   }
 
-  internal func addImage(file fileURL: NSURL, toDraft draft: UpdateDraft)
+  internal func addImage(file fileURL: URL, toDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
 
       if let error = addAttachmentError {
@@ -1094,7 +1094,7 @@ internal struct MockService: ServiceType {
       return SignalProducer(value: removeAttachmentResponse ?? .template)
   }
 
-  internal func addVideo(file fileURL: NSURL, toDraft draft: UpdateDraft)
+  internal func addVideo(file fileURL: URL, toDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Video, ErrorEnvelope> {
 
       return .empty

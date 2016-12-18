@@ -1,6 +1,7 @@
 import Foundation
 import Argo
 import Curry
+import Runes
 
 public struct Activity {
   public let category: Activity.Category
@@ -68,10 +69,10 @@ extension Activity: Decodable {
 extension Activity.Category: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Activity.Category> {
     switch json {
-    case let .String(category):
-      return .Success(Activity.Category(rawValue: category) ?? .unknown)
+    case let .string(category):
+      return .success(Activity.Category(rawValue: category) ?? .unknown)
     default:
-      return .Failure(.TypeMismatch(expected: "String", actual: json.description))
+      return .failure(.typeMismatch(expected: "String", actual: json.description))
     }
   }
 }

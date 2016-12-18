@@ -1,4 +1,4 @@
-import ReactiveCocoa
+import ReactiveSwift
 
 public enum MessageSubject {
   case backing(Backing)

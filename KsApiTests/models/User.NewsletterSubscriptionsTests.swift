@@ -4,11 +4,11 @@ import XCTest
 final class NewsletterSubscriptionsTests: XCTestCase {
 
   func testJsonEncoding() {
-    let json: [String: AnyObject] = [
-      "games_newsletter": false as AnyObject,
-      "promo_newsletter": false as AnyObject,
-      "happening_newsletter": false as AnyObject,
-      "weekly_newsletter": false as AnyObject
+    let json: [String: Any] = [
+      "games_newsletter": false,
+      "promo_newsletter": false,
+      "happening_newsletter": false,
+      "weekly_newsletter": false
     ]
 
     let newsletter = User.NewsletterSubscriptions.decodeJSONDictionary(json)
@@ -41,9 +41,9 @@ final class NewsletterSubscriptionsTests: XCTestCase {
 
   func testJsonDecoding() {
     let json = User.NewsletterSubscriptions.decodeJSONDictionary([
-      "games_newsletter": true,
-      "happening_newsletter": false,
-      "promo_newsletter": true,
+      "games_newsletter": true as AnyObject,
+      "happening_newsletter": false as AnyObject,
+      "promo_newsletter": true as AnyObject,
       "weekly_newsletter": false
     ])
 

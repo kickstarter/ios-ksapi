@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct CreatePledgeEnvelope {
   public let checkoutUrl: String?
@@ -18,7 +19,7 @@ extension CreatePledgeEnvelope: Decodable {
 
 private func stringToIntOrZero(_ string: String) -> Decoded<Int> {
   return
-    Double(string).flatMap(Int.init).map(Decoded.Success)
-      ?? Int(string).map(Decoded.Success)
-      ?? .Success(0)
+    Double(string).flatMap(Int.init).map(Decoded.success)
+      ?? Int(string).map(Decoded.success)
+      ?? .success(0)
 }

@@ -1,6 +1,8 @@
 import XCTest
 @testable import KsApi
 
+private let emptyUrl = URL(string: "")!
+
 final class ServiceTypeTests: XCTestCase {
   fileprivate let service = Service(
     appId: "com.kickstarter.test",
@@ -54,7 +56,7 @@ final class ServiceTypeTests: XCTestCase {
   }
 
   func testIsPreparedAdhocWithoutOauthToken() {
-    let URL = Foundation.URL(string: "http://api-dev.ksr.com/v1/test?key=value") ?? Foundation.URL()
+    let URL = Foundation.URL(string: "http://api-dev.ksr.com/v1/test?key=value") ?? emptyUrl
     let request = URLRequest(url: URL)
     XCTAssertFalse(self.anonAdHocService.isPrepared(request: request))
     XCTAssertTrue(self.anonAdHocService.isPrepared(request:
@@ -63,25 +65,27 @@ final class ServiceTypeTests: XCTestCase {
   }
 
   func testIsPreparedWithOauthToken() {
-    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value&oauth_token=cafebeef") ?? Foundation.URL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value&oauth_token=cafebeef") ?? emptyUrl
     let request = URLRequest(url: URL)
     XCTAssertFalse(self.service.isPrepared(request: request))
     XCTAssertTrue(self.service.isPrepared(request: self.service.preparedRequest(forRequest: request)))
   }
 
   func testIsPreparedWithoutOauthToken() {
-    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? emptyUrl
     let request = URLRequest(url: URL)
     XCTAssertFalse(self.anonService.isPrepared(request: request))
     XCTAssertTrue(self.anonService.isPrepared(request: self.anonService.preparedRequest(forRequest: request)))
   }
 
   func testPreparedRequest() {
-    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
-    let request = self.service.preparedRequest(forRequest: .init(URL: URL))
+    let url = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? emptyUrl
+    let request = self.service.preparedRequest(forRequest: .init(url: url))
+
+
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
-                   request.URL?.absoluteString)
+                   request.url?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
         "Kickstarter-App-Id": "com.kickstarter.test",
@@ -91,41 +95,41 @@ final class ServiceTypeTests: XCTestCase {
   }
 
   func testPreparedURL() {
-    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? emptyUrl
     let request = self.service.preparedRequest(forURL: URL, query: ["extra": "1"])
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
-                   request.URL?.absoluteString)
+                   request.url?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
         "Kickstarter-App-Id": "com.kickstarter.test",
         "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
-    XCTAssertEqual("GET", request.HTTPMethod)
+    XCTAssertEqual("GET", request.httpMethod)
   }
 
   func testPreparedDeleteURL() {
-    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? emptyUrl
     let request = self.service.preparedRequest(forURL: URL, method: .DELETE, query: ["extra": "1"])
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
-                   request.URL?.absoluteString)
+                   request.url?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
         "Kickstarter-App-Id": "com.kickstarter.test",
         "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
-    XCTAssertEqual("DELETE", request.HTTPMethod)
+    XCTAssertEqual("DELETE", request.httpMethod)
   }
 
   func testPreparedPostURL() {
-    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? emptyUrl
     let request = self.service.preparedRequest(forURL: URL, method: .POST, query: ["extra": "1"])
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
-                   request.URL?.absoluteString)
+                   request.url?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
         "Kickstarter-App-Id": "com.kickstarter.test",
@@ -133,36 +137,36 @@ final class ServiceTypeTests: XCTestCase {
         "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
-    XCTAssertEqual("POST", request.HTTPMethod)
+    XCTAssertEqual("POST", request.httpMethod)
     XCTAssertEqual("{\"extra\":\"1\"}",
-                   String(data: request.HTTPBody ?? Data(), encoding: String.Encoding.utf8))
+                   String(data: request.httpBody ?? Data(), encoding: .utf8))
   }
 
   func testPreparedPostURLWithBody() {
-    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
-    let baseRequest = NSMutableURLRequest(url: URL)
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? emptyUrl
+    var baseRequest = URLRequest(url: URL)
     let body = "test".data(using: String.Encoding.utf8, allowLossyConversion: false)
     baseRequest.httpBody = body
     baseRequest.httpMethod = "POST"
     let request = self.service.preparedRequest(forRequest: baseRequest, query: ["extra": "1"])
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
-                   request.URL?.absoluteString)
+                   request.url?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1234567890", "Authorization": "token cafebeef", "Accept-Language": "ksr",
         "Kickstarter-App-Id": "com.kickstarter.test",
         "User-Agent": "Kickstarter/1 (iPhone; iOS 9.3 Scale/2.0)"],
       request.allHTTPHeaderFields!
     )
-    XCTAssertEqual("POST", request.HTTPMethod)
-    XCTAssertEqual(body, request.HTTPBody, "Body remains unchanged")
+    XCTAssertEqual("POST", request.httpMethod)
+    XCTAssertEqual(body, request.httpBody, "Body remains unchanged")
   }
 
   func testPreparedAdHocWithoutOauthToken() {
-    let URL = Foundation.URL(string: "http://api-hq.ksr.com/v1/test?key=value") ?? Foundation.URL()
-    let request = anonAdHocService.preparedRequest(forRequest: .init(URL: URL))
+    let URL = Foundation.URL(string: "http://api-hq.ksr.com/v1/test?key=value") ?? emptyUrl
+    let request = anonAdHocService.preparedRequest(forRequest: .init(url: URL))
 
-    XCTAssertEqual("http://api-hq.ksr.com/v1/test?client_id=deadbeef&key=value", request.URL?.absoluteString)
+    XCTAssertEqual("http://api-hq.ksr.com/v1/test?client_id=deadbeef&key=value", request.url?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1", "Authorization": "Basic dXNlcm5hbWU6cGFzc3dvcmQ=",
         "Accept-Language": "en", "Kickstarter-App-Id": "com.kickstarter.test",
@@ -187,11 +191,11 @@ final class ServiceTypeTests: XCTestCase {
       )
     )
 
-    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
-    let request = anonService.preparedRequest(forRequest: .init(URL: URL))
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? emptyUrl
+    let request = anonService.preparedRequest(forRequest: .init(url: URL))
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value",
-                   request.URL?.absoluteString)
+                   request.url?.absoluteString)
     XCTAssertEqual(
       ["Kickstarter-iOS-App": "1", "Authorization": "Basic dXNlcm5hbWU6cGFzc3dvcmQ=",
         "Accept-Language": "en", "Kickstarter-App-Id": "com.kickstarter.test",

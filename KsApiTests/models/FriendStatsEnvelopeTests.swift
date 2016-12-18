@@ -8,7 +8,7 @@ final class FriendStatsEnvelopeTests: XCTestCase {
       "stats": [
         "remote_friends_count": 202,
         "friend_projects_count": 1132
-      ]
+      ] as AnyObject
     ]
 
     let stats = FriendStatsEnvelope.decodeJSONDictionary(json)

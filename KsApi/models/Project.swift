@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 import Prelude
 
 public struct Project {
@@ -154,12 +155,12 @@ extension Project: Decodable {
       <*> Project.MemberData.decode(json)
       <*> Project.Dates.decode(json)
       <*> json <| "id"
-      <*> (json <| "location" <|> .Success(Location.none))
+      <*> (json <| "location" <|> .success(Location.none))
       <*> json <| "name"
       <*> Project.Personalization.decode(json)
     return tmp2
       <*> json <| "photo"
-      <*> (json <|| "rewards" <|> .Success([]))
+      <*> (json <|| "rewards" <|> .success([]))
       <*> json <| "slug"
       <*> json <| "state"
       <*> Project.Stats.decode(json)
@@ -185,21 +186,23 @@ extension Project.UrlsEnvelope.WebEnvelope: Decodable {
 
 extension Project.Stats: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Project.Stats> {
-    return curry(Project.Stats.init)
+    let create = curry(Project.Stats.init)
+    return create
       <^> json <| "backers_count"
       <*> json <|? "comments_count"
       <*> json <| "goal"
       <*> json <| "pledged"
-      <*> (json <| "static_usd_rate") <|> .Success(1.0)
+      <*> (json <| "static_usd_rate" <|> .success(1.0))
       <*> json <|? "updates_count"
   }
 }
 
 extension Project.MemberData: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Project.MemberData> {
-    return curry(Project.MemberData.init)
+    let create = curry(Project.MemberData.init)
+    return create
       <^> json <|? "last_update_published_at"
-      <*> (removeUnknowns <^> (json <|| "permissions") <|> .Success([]))
+      <*> (removeUnknowns <^> (json <|| "permissions") <|> .success([]))
       <*> json <|? "unread_messages_count"
       <*> json <|? "unseen_activity_count"
   }
@@ -233,7 +236,7 @@ extension Project.Photo: Decodable {
     let url1024: Decoded<String?> = ((json <| "1024x768") <|> (json <| "1024x576"))
       // swiftlint:disable:next syntactic_sugar
       .map(Optional<String>.init)
-      <|> .Success(nil)
+      <|> .success(nil)
 
     return create
       <^> json <| "full"
@@ -245,10 +248,10 @@ extension Project.Photo: Decodable {
 
 extension Project.MemberData.Permission: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Project.MemberData.Permission> {
-    if case .String(let permission) = json {
-      return self.init(rawValue: permission).map(pure) ?? .Success(.unknown)
+    if case .string(let permission) = json {
+      return self.init(rawValue: permission).map(pure) ?? .success(.unknown)
     }
-    return .Success(.unknown)
+    return .success(.unknown)
   }
 }
 

@@ -16,10 +16,10 @@ final class ProjectCountryTests: XCTestCase {
 
   func testJsonDecoding_StandardJSON() {
     let decodedCountry = Project.Country.decodeJSONDictionary([
-      "country": "US",
-      "currency": "USD",
-      "currency_symbol": "$",
-      "currency_trailing_code": true
+      "country": "US" as AnyObject,
+      "currency": "USD" as AnyObject,
+      "currency_symbol": "$" as AnyObject,
+      "currency_trailing_code": true as AnyObject
       ])
 
     XCTAssertEqual(.US, decodedCountry.value)
@@ -30,10 +30,10 @@ final class ProjectCountryTests: XCTestCase {
 
   func testJsonDecoding_ConfigJSON() {
     let decodedCountry = Project.Country.decodeJSONDictionary([
-      "name": "US",
-      "currency_code": "USD",
-      "currency_symbol": "$",
-      "trailing_code": true
+      "name": "US" as AnyObject,
+      "currency_code": "USD" as AnyObject,
+      "currency_symbol": "$" as AnyObject,
+      "trailing_code": true as AnyObject
       ])
 
     XCTAssertEqual(.US, decodedCountry.value)

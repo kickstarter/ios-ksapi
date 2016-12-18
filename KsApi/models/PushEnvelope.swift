@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct PushEnvelope {
   public let activity: Activity?
@@ -50,7 +51,7 @@ extension PushEnvelope: Decodable {
     let create = curry(PushEnvelope.init)
 
     let update: Decoded<Update> = json <| "update" <|> json <| "post"
-    let optionalUpdate: Decoded<Update?> = update.map(Optional.Some) <|> .Success(nil)
+    let optionalUpdate: Decoded<Update?> = update.map(Optional.some) <|> .success(nil)
 
     return create
       <^> json <|? "activity"
