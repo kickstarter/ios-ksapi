@@ -39,7 +39,7 @@ extension Project {
 }
 
 extension Project.Country: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.Country> {
+  public static func decode(_ json: JSON) -> Decoded<Project.Country> {
     let create = curry(Project.Country.init)
 
     return create
@@ -55,10 +55,10 @@ extension Project.Country: Decodable {
 extension Project.Country: EncodableType {
   public func encode() -> [String : AnyObject] {
     var result: [String:AnyObject] = [:]
-    result["country"] = self.countryCode
-    result["currency"] = self.currencyCode
-    result["currency_symbol"] = self.currencySymbol
-    result["currency_trailing_code"] = self.trailingCode
+    result["country"] = self.countryCode as AnyObject?
+    result["currency"] = self.currencyCode as AnyObject?
+    result["currency_symbol"] = self.currencySymbol as AnyObject?
+    result["currency_trailing_code"] = self.trailingCode as AnyObject?
     return result
   }
 }

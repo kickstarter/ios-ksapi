@@ -9,7 +9,7 @@ public struct RewardsItem {
 }
 
 extension RewardsItem: Decodable {
-  public static func decode(json: JSON) -> Decoded<RewardsItem> {
+  public static func decode(_ json: JSON) -> Decoded<RewardsItem> {
     return curry(RewardsItem.init)
       <^> json <| "id"
       <*> json <| "item"

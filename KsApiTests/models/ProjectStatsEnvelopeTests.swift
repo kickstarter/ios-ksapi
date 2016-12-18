@@ -7,15 +7,15 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
   func testJSONDecoding() {
     let fundingStats: [[String:AnyObject]] = [
       [
-        "cumulative_backers_count": 7,
-        "cumulative_pledged": "30",
-        "pledged": "38.0",
-        "date": 555444333,
-        "backers_count": 13
+        "cumulative_backers_count": 7 as AnyObject,
+        "cumulative_pledged": "30" as AnyObject,
+        "pledged": "38.0" as AnyObject,
+        "date": 555444333 as AnyObject,
+        "backers_count": 13 as AnyObject
       ],
       [
-        "cumulative_backers_count": 14,
-        "cumulative_pledged": 1000,
+        "cumulative_backers_count": 14 as AnyObject,
+        "cumulative_pledged": 1000 as AnyObject,
         "pledged": "909.0",
         "date": 333222111,
         "backers_count": 1

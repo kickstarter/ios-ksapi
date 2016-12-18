@@ -67,7 +67,7 @@ extension User: CustomDebugStringConvertible {
 }
 
 extension User: Decodable {
-  public static func decode(json: JSON) -> Decoded<User> {
+  public static func decode(_ json: JSON) -> Decoded<User> {
     let create = curry(User.init)
     let tmp = create
       <^> json <| "avatar"
@@ -87,12 +87,12 @@ extension User: Decodable {
 extension User: EncodableType {
   public func encode() -> [String:AnyObject] {
     var result: [String:AnyObject] = [:]
-    result["avatar"] = self.avatar.encode()
-    result["facebook_connected"] = self.facebookConnected ?? false
-    result["id"] = self.id
-    result["is_friend"] = self.isFriend ?? false
-    result["location"] = self.location?.encode()
-    result["name"] = self.name
+    result["avatar"] = self.avatar.encode() as AnyObject?
+    result["facebook_connected"] = self.facebookConnected as AnyObject?? ?? false as AnyObject?
+    result["id"] = self.id as AnyObject?
+    result["is_friend"] = self.isFriend as AnyObject?? ?? false as AnyObject?
+    result["location"] = self.location?.encode() as AnyObject?
+    result["name"] = self.name as AnyObject?
     result = result.withAllValuesFrom(self.newsletters.encode())
     result = result.withAllValuesFrom(self.notifications.encode())
     result = result.withAllValuesFrom(self.stats.encode())
@@ -102,7 +102,7 @@ extension User: EncodableType {
 }
 
 extension User.Avatar: Decodable {
-  public static func decode(json: JSON) -> Decoded<User.Avatar> {
+  public static func decode(_ json: JSON) -> Decoded<User.Avatar> {
     return curry(User.Avatar.init)
       <^> json <|? "large"
       <*> json <| "medium"
@@ -119,12 +119,12 @@ extension User.Avatar: EncodableType {
 
     ret["large"] = self.large
 
-    return ret
+    return ret as [String : AnyObject]
   }
 }
 
 extension User.NewsletterSubscriptions: Decodable {
-  public static func decode(json: JSON) -> Decoded<User.NewsletterSubscriptions> {
+  public static func decode(_ json: JSON) -> Decoded<User.NewsletterSubscriptions> {
     return curry(User.NewsletterSubscriptions.init)
       <^> json <|? "games_newsletter"
       <*> json <|? "happening_newsletter"
@@ -136,10 +136,10 @@ extension User.NewsletterSubscriptions: Decodable {
 extension User.NewsletterSubscriptions: EncodableType {
   public func encode() -> [String: AnyObject] {
     var result: [String: AnyObject] = [:]
-    result["games_newsletter"] = self.games
-    result["happening_newsletter"] = self.happening
-    result["promo_newsletter"] = self.promo
-    result["weekly_newsletter"] = self.weekly
+    result["games_newsletter"] = self.games as AnyObject?
+    result["happening_newsletter"] = self.happening as AnyObject?
+    result["promo_newsletter"] = self.promo as AnyObject?
+    result["weekly_newsletter"] = self.weekly as AnyObject?
     return result
   }
 }
@@ -153,7 +153,7 @@ public func == (lhs: User.NewsletterSubscriptions, rhs: User.NewsletterSubscript
 }
 
 extension User.Notifications: Decodable {
-  public static func decode(json: JSON) -> Decoded<User.Notifications> {
+  public static func decode(_ json: JSON) -> Decoded<User.Notifications> {
     let create = curry(User.Notifications.init)
     let tmp1 = create
       <^> json <|? "notify_of_backings"
@@ -176,18 +176,18 @@ extension User.Notifications: Decodable {
 extension User.Notifications: EncodableType {
   public func encode() -> [String : AnyObject] {
     var result: [String: AnyObject] = [:]
-    result["notify_of_backings"] = self.backings
-    result["notify_of_comments"] = self.comments
-    result["notify_of_follower"] = self.follower
-    result["notify_of_friend_activity"] = self.friendActivity
-    result["notify_of_post_likes"] = self.postLikes
-    result["notify_of_updates"] = self.updates
-    result["notify_mobile_of_backings"] = self.mobileBackings
-    result["notify_mobile_of_comments"] = self.mobileComments
-    result["notify_mobile_of_follower"] = self.mobileFollower
-    result["notify_mobile_of_friend_activity"] = self.mobileFriendActivity
-    result["notify_mobile_of_post_likes"] = self.mobilePostLikes
-    result["notify_mobile_of_updates"] = self.mobileUpdates
+    result["notify_of_backings"] = self.backings as AnyObject?
+    result["notify_of_comments"] = self.comments as AnyObject?
+    result["notify_of_follower"] = self.follower as AnyObject?
+    result["notify_of_friend_activity"] = self.friendActivity as AnyObject?
+    result["notify_of_post_likes"] = self.postLikes as AnyObject?
+    result["notify_of_updates"] = self.updates as AnyObject?
+    result["notify_mobile_of_backings"] = self.mobileBackings as AnyObject?
+    result["notify_mobile_of_comments"] = self.mobileComments as AnyObject?
+    result["notify_mobile_of_follower"] = self.mobileFollower as AnyObject?
+    result["notify_mobile_of_friend_activity"] = self.mobileFriendActivity as AnyObject?
+    result["notify_mobile_of_post_likes"] = self.mobilePostLikes as AnyObject?
+    result["notify_mobile_of_updates"] = self.mobileUpdates as AnyObject?
     return result
   }
 }
@@ -209,7 +209,7 @@ public func == (lhs: User.Notifications, rhs: User.Notifications) -> Bool {
 }
 
 extension User.Stats: Decodable {
-  public static func decode(json: JSON) -> Decoded<User.Stats> {
+  public static func decode(_ json: JSON) -> Decoded<User.Stats> {
     let create = curry(User.Stats.init)
     return create
       <^> json <|? "backed_projects_count"
@@ -224,12 +224,12 @@ extension User.Stats: Decodable {
 extension User.Stats: EncodableType {
   public func encode() -> [String: AnyObject] {
     var result: [String: AnyObject] = [:]
-    result["backed_projects_count"] =  self.backedProjectsCount
-    result["created_projects_count"] = self.createdProjectsCount
-    result["member_projects_count"] = self.memberProjectsCount
-    result["starred_projects_count"] = self.starredProjectsCount
-    result["unanswered_surveys_count"] = self.unansweredSurveysCount
-    result["unread_messages_count"] =  self.unreadMessagesCount
+    result["backed_projects_count"] =  self.backedProjectsCount as AnyObject?
+    result["created_projects_count"] = self.createdProjectsCount as AnyObject?
+    result["member_projects_count"] = self.memberProjectsCount as AnyObject?
+    result["starred_projects_count"] = self.starredProjectsCount as AnyObject?
+    result["unanswered_surveys_count"] = self.unansweredSurveysCount as AnyObject?
+    result["unread_messages_count"] =  self.unreadMessagesCount as AnyObject?
     return result
   }
 }

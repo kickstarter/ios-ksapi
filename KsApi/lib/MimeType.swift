@@ -1,9 +1,9 @@
 import Foundation
 import MobileCoreServices
 
-extension NSData {
+extension Data {
   internal var imageMime: String? {
-    guard let byte: UInt8 = UnsafeBufferPointer(start: UnsafePointer(self.bytes), count: 1).first
+    guard let byte: UInt8 = UnsafeBufferPointer(start: (self as NSData).bytes.bindMemory(to: UInt8.self, capacity: self.count), count: 1).first
       else { return nil }
     switch byte {
     case 0xFF:
@@ -18,18 +18,18 @@ extension NSData {
   }
 }
 
-extension NSURL {
+extension URL {
   internal var imageMime: String? {
     return pathExtension.flatMap { mimeType(extension: $0, where: kUTTypeImage) }
   }
 }
 
-private func mimeType(extension extension: String, where: CFString? = nil) -> String? {
-  let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, `extension`, `where`)?
+private func mimeType(extension: String, where: CFString? = nil) -> String? {
+  let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, `extension` as CFString, `where`)?
     .takeRetainedValue()
   return uti.flatMap(mimeType(uti:))
 }
 
-private func mimeType(uti uti: CFString) -> String? {
+private func mimeType(uti: CFString) -> String? {
   return UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() as String?
 }

@@ -2,11 +2,11 @@ import XCTest
 @testable import KsApi
 
 final class ServiceTypeTests: XCTestCase {
-  private let service = Service(
+  fileprivate let service = Service(
     appId: "com.kickstarter.test",
     serverConfig: ServerConfig(
-      apiBaseUrl: NSURL(string: "http://api.ksr.com")!,
-      webBaseUrl: NSURL(string: "http://www.ksr.com")!,
+      apiBaseUrl: URL(string: "http://api.ksr.com")!,
+      webBaseUrl: URL(string: "http://www.ksr.com")!,
       apiClientAuth: ClientAuth(
         clientId: "deadbeef"
       ),
@@ -22,11 +22,11 @@ final class ServiceTypeTests: XCTestCase {
     buildVersion: "1234567890"
   )
 
-  private let anonAdHocService = Service(
+  fileprivate let anonAdHocService = Service(
     appId: "com.kickstarter.test",
     serverConfig: ServerConfig(
-      apiBaseUrl: NSURL(string: "http://api-hq.dev.ksr.com")!,
-      webBaseUrl: NSURL(string: "http://hq.dev.ksr.com")!,
+      apiBaseUrl: URL(string: "http://api-hq.dev.ksr.com")!,
+      webBaseUrl: URL(string: "http://hq.dev.ksr.com")!,
       apiClientAuth: ClientAuth(
         clientId: "deadbeef"
       ),
@@ -37,11 +37,11 @@ final class ServiceTypeTests: XCTestCase {
     )
   )
 
-  private let anonService = Service(
+  fileprivate let anonService = Service(
     appId: "com.kickstarter.test",
     serverConfig: ServerConfig(
-      apiBaseUrl: NSURL(string: "http://api.ksr.com")!,
-      webBaseUrl: NSURL(string: "http://hq.ksr.com")!,
+      apiBaseUrl: URL(string: "http://api.ksr.com")!,
+      webBaseUrl: URL(string: "http://hq.ksr.com")!,
       apiClientAuth: ClientAuth(
         clientId: "deadbeef"
       ),
@@ -54,8 +54,8 @@ final class ServiceTypeTests: XCTestCase {
   }
 
   func testIsPreparedAdhocWithoutOauthToken() {
-    let URL = NSURL(string: "http://api-dev.ksr.com/v1/test?key=value") ?? NSURL()
-    let request = NSURLRequest(URL: URL)
+    let URL = Foundation.URL(string: "http://api-dev.ksr.com/v1/test?key=value") ?? Foundation.URL()
+    let request = URLRequest(url: URL)
     XCTAssertFalse(self.anonAdHocService.isPrepared(request: request))
     XCTAssertTrue(self.anonAdHocService.isPrepared(request:
       self.anonAdHocService.preparedRequest(forRequest: request))
@@ -63,21 +63,21 @@ final class ServiceTypeTests: XCTestCase {
   }
 
   func testIsPreparedWithOauthToken() {
-    let URL = NSURL(string: "http://api.ksr.com/v1/test?key=value&oauth_token=cafebeef") ?? NSURL()
-    let request = NSURLRequest(URL: URL)
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value&oauth_token=cafebeef") ?? Foundation.URL()
+    let request = URLRequest(url: URL)
     XCTAssertFalse(self.service.isPrepared(request: request))
     XCTAssertTrue(self.service.isPrepared(request: self.service.preparedRequest(forRequest: request)))
   }
 
   func testIsPreparedWithoutOauthToken() {
-    let URL = NSURL(string: "http://api.ksr.com/v1/test?key=value") ?? NSURL()
-    let request = NSURLRequest(URL: URL)
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
+    let request = URLRequest(url: URL)
     XCTAssertFalse(self.anonService.isPrepared(request: request))
     XCTAssertTrue(self.anonService.isPrepared(request: self.anonService.preparedRequest(forRequest: request)))
   }
 
   func testPreparedRequest() {
-    let URL = NSURL(string: "http://api.ksr.com/v1/test?key=value") ?? NSURL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
     let request = self.service.preparedRequest(forRequest: .init(URL: URL))
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
@@ -91,7 +91,7 @@ final class ServiceTypeTests: XCTestCase {
   }
 
   func testPreparedURL() {
-    let URL = NSURL(string: "http://api.ksr.com/v1/test?key=value") ?? NSURL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
     let request = self.service.preparedRequest(forURL: URL, query: ["extra": "1"])
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
@@ -106,7 +106,7 @@ final class ServiceTypeTests: XCTestCase {
   }
 
   func testPreparedDeleteURL() {
-    let URL = NSURL(string: "http://api.ksr.com/v1/test?key=value") ?? NSURL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
     let request = self.service.preparedRequest(forURL: URL, method: .DELETE, query: ["extra": "1"])
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&extra=1&key=value&oauth_token=cafebeef",
@@ -121,7 +121,7 @@ final class ServiceTypeTests: XCTestCase {
   }
 
   func testPreparedPostURL() {
-    let URL = NSURL(string: "http://api.ksr.com/v1/test?key=value") ?? NSURL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
     let request = self.service.preparedRequest(forURL: URL, method: .POST, query: ["extra": "1"])
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
@@ -135,15 +135,15 @@ final class ServiceTypeTests: XCTestCase {
     )
     XCTAssertEqual("POST", request.HTTPMethod)
     XCTAssertEqual("{\"extra\":\"1\"}",
-                   String(data: request.HTTPBody ?? NSData(), encoding: NSUTF8StringEncoding))
+                   String(data: request.HTTPBody ?? Data(), encoding: String.Encoding.utf8))
   }
 
   func testPreparedPostURLWithBody() {
-    let URL = NSURL(string: "http://api.ksr.com/v1/test?key=value") ?? NSURL()
-    let baseRequest = NSMutableURLRequest(URL: URL)
-    let body = "test".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-    baseRequest.HTTPBody = body
-    baseRequest.HTTPMethod = "POST"
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
+    let baseRequest = NSMutableURLRequest(url: URL)
+    let body = "test".data(using: String.Encoding.utf8, allowLossyConversion: false)
+    baseRequest.httpBody = body
+    baseRequest.httpMethod = "POST"
     let request = self.service.preparedRequest(forRequest: baseRequest, query: ["extra": "1"])
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
@@ -159,7 +159,7 @@ final class ServiceTypeTests: XCTestCase {
   }
 
   func testPreparedAdHocWithoutOauthToken() {
-    let URL = NSURL(string: "http://api-hq.ksr.com/v1/test?key=value") ?? NSURL()
+    let URL = Foundation.URL(string: "http://api-hq.ksr.com/v1/test?key=value") ?? Foundation.URL()
     let request = anonAdHocService.preparedRequest(forRequest: .init(URL: URL))
 
     XCTAssertEqual("http://api-hq.ksr.com/v1/test?client_id=deadbeef&key=value", request.URL?.absoluteString)
@@ -175,8 +175,8 @@ final class ServiceTypeTests: XCTestCase {
     let anonService = Service(
       appId: "com.kickstarter.test",
       serverConfig: ServerConfig(
-        apiBaseUrl: NSURL(string: "http://api.ksr.com")!,
-        webBaseUrl: NSURL(string: "http://www.ksr.com")!,
+        apiBaseUrl: Foundation.URL(string: "http://api.ksr.com")!,
+        webBaseUrl: Foundation.URL(string: "http://www.ksr.com")!,
         apiClientAuth: ClientAuth(
           clientId: "deadbeef"
         ),
@@ -187,7 +187,7 @@ final class ServiceTypeTests: XCTestCase {
       )
     )
 
-    let URL = NSURL(string: "http://api.ksr.com/v1/test?key=value") ?? NSURL()
+    let URL = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? Foundation.URL()
     let request = anonService.preparedRequest(forRequest: .init(URL: URL))
 
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value",

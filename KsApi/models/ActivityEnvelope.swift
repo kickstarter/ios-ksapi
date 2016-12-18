@@ -15,7 +15,7 @@ public struct ActivityEnvelope {
 }
 
 extension ActivityEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<ActivityEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<ActivityEnvelope> {
     return curry(ActivityEnvelope.init)
       <^> json <|| "activities"
       <*> json <|  "urls"
@@ -23,14 +23,14 @@ extension ActivityEnvelope: Decodable {
 }
 
 extension ActivityEnvelope.UrlsEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<ActivityEnvelope.UrlsEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<ActivityEnvelope.UrlsEnvelope> {
     return curry(ActivityEnvelope.UrlsEnvelope.init)
       <^> json <| "api"
   }
 }
 
 extension ActivityEnvelope.UrlsEnvelope.ApiEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<ActivityEnvelope.UrlsEnvelope.ApiEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<ActivityEnvelope.UrlsEnvelope.ApiEnvelope> {
     return curry(ActivityEnvelope.UrlsEnvelope.ApiEnvelope.init)
       <^> json <| "more_activities" <|> .Success("")
   }

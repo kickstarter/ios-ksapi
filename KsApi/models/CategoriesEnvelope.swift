@@ -6,7 +6,7 @@ public struct CategoriesEnvelope {
 }
 
 extension CategoriesEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<CategoriesEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<CategoriesEnvelope> {
     return curry(CategoriesEnvelope.init)
       <^> json <|| "categories"
   }

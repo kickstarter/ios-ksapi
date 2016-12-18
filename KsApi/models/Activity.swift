@@ -5,7 +5,7 @@ import Curry
 public struct Activity {
   public let category: Activity.Category
   public let comment: Comment?
-  public let createdAt: NSTimeInterval
+  public let createdAt: TimeInterval
   public let id: Int
   public let memberData: MemberData
   public let project: Project?
@@ -50,7 +50,7 @@ public func == (lhs: Activity, rhs: Activity) -> Bool {
 }
 
 extension Activity: Decodable {
-  public static func decode(json: JSON) -> Decoded<Activity> {
+  public static func decode(_ json: JSON) -> Decoded<Activity> {
     let create = curry(Activity.init)
     let tmp = create
       <^> json <|  "category"
@@ -66,7 +66,7 @@ extension Activity: Decodable {
 }
 
 extension Activity.Category: Decodable {
-  public static func decode(json: JSON) -> Decoded<Activity.Category> {
+  public static func decode(_ json: JSON) -> Decoded<Activity.Category> {
     switch json {
     case let .String(category):
       return .Success(Activity.Category(rawValue: category) ?? .unknown)
@@ -77,7 +77,7 @@ extension Activity.Category: Decodable {
 }
 
 extension Activity.MemberData: Decodable {
-  public static func decode(json: JSON) -> Decoded<Activity.MemberData> {
+  public static func decode(_ json: JSON) -> Decoded<Activity.MemberData> {
     let create = curry(Activity.MemberData.init)
     let tmp = create
       <^> json <|? "amount"

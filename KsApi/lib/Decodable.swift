@@ -8,7 +8,7 @@ public extension Decodable {
 
    - returns: A decoded value.
    */
-  public static func decodeJSONDictionary(json: [String: AnyObject]) -> Decoded<DecodedType> {
+  public static func decodeJSONDictionary(_ json: [String: AnyObject]) -> Decoded<DecodedType> {
     return Self.decode(JSON(json))
   }
 }

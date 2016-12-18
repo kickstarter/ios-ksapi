@@ -15,8 +15,8 @@ final class ConfigTests: XCTestCase {
       "feature2": false,
       ]
     let json: [String:AnyObject] = [
-      "ab_experiments": abExperiments,
-      "app_id": 123456789,
+      "ab_experiments": abExperiments as AnyObject,
+      "app_id": 123456789 as AnyObject,
       "apple_pay_countries": ["US", "GB", "CA"],
       "country_code": "US",
       "features": features,

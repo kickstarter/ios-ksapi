@@ -7,14 +7,14 @@ public struct ChangePaymentMethodEnvelope {
 }
 
 extension ChangePaymentMethodEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<ChangePaymentMethodEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<ChangePaymentMethodEnvelope> {
     return curry(ChangePaymentMethodEnvelope.init)
       <^> json <|? ["data", "new_checkout_url"]
       <*> ((json <| "status" >>- stringToIntOrZero) <|> (json <| "status"))
   }
 }
 
-private func stringToIntOrZero(string: String) -> Decoded<Int> {
+private func stringToIntOrZero(_ string: String) -> Decoded<Int> {
   return
     Double(string).flatMap(Int.init).map(Decoded.Success)
       ?? Int(string).map(Decoded.Success)

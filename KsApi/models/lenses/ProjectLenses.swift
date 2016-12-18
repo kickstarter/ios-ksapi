@@ -233,7 +233,7 @@ extension LensType where Whole == Project, Part == Project.Stats {
 }
 
 extension LensType where Whole == Project, Part == Project.MemberData {
-  public var lastUpdatePublishedAt: Lens<Project, NSTimeInterval?> {
+  public var lastUpdatePublishedAt: Lens<Project, TimeInterval?> {
     return Project.lens.memberData • Project.MemberData.lens.lastUpdatePublishedAt
   }
 
@@ -247,23 +247,23 @@ extension LensType where Whole == Project, Part == Project.MemberData {
 }
 
 extension LensType where Whole == Project, Part == Project.Dates {
-  public var deadline: Lens<Project, NSTimeInterval> {
+  public var deadline: Lens<Project, TimeInterval> {
     return Project.lens.dates • Project.Dates.lens.deadline
   }
 
-  public var featuredAt: Lens<Project, NSTimeInterval?> {
+  public var featuredAt: Lens<Project, TimeInterval?> {
     return Project.lens.dates • Project.Dates.lens.featuredAt
   }
 
-  public var launchedAt: Lens<Project, NSTimeInterval> {
+  public var launchedAt: Lens<Project, TimeInterval> {
     return Project.lens.dates • Project.Dates.lens.launchedAt
   }
 
-  public var potdAt: Lens<Project, NSTimeInterval?> {
+  public var potdAt: Lens<Project, TimeInterval?> {
     return Project.lens.dates • Project.Dates.lens.potdAt
   }
 
-  public var stateChangedAt: Lens<Project, NSTimeInterval> {
+  public var stateChangedAt: Lens<Project, TimeInterval> {
     return Project.lens.dates • Project.Dates.lens.stateChangedAt
   }
 }

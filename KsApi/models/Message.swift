@@ -4,14 +4,14 @@ import Foundation
 
 public struct Message {
   public let body: String
-  public let createdAt: NSTimeInterval
+  public let createdAt: TimeInterval
   public let id: Int
   public let recipient: User
   public let sender: User
 }
 
 extension Message: Decodable {
-  public static func decode(json: JSON) -> Decoded<Message> {
+  public static func decode(_ json: JSON) -> Decoded<Message> {
     let create = curry(Message.init)
     return create
       <^> json <| "body"

@@ -14,11 +14,11 @@ extension Project {
       unseenActivityCount: nil
     ),
     dates: Project.Dates(
-      deadline: NSDate().timeIntervalSince1970 + 60.0 * 60.0 * 24.0 * 15.0,
+      deadline: Date().timeIntervalSince1970 + 60.0 * 60.0 * 24.0 * 15.0,
       featuredAt: nil,
-      launchedAt: NSDate().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0,
+      launchedAt: Date().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0,
       potdAt: nil,
-      stateChangedAt: NSDate().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0
+      stateChangedAt: Date().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0
     ),
     id: 1,
     location: .template,

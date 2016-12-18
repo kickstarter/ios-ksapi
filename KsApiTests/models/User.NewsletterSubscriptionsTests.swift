@@ -5,10 +5,10 @@ final class NewsletterSubscriptionsTests: XCTestCase {
 
   func testJsonEncoding() {
     let json: [String: AnyObject] = [
-      "games_newsletter": false,
-      "promo_newsletter": false,
-      "happening_newsletter": false,
-      "weekly_newsletter": false
+      "games_newsletter": false as AnyObject,
+      "promo_newsletter": false as AnyObject,
+      "happening_newsletter": false as AnyObject,
+      "weekly_newsletter": false as AnyObject
     ]
 
     let newsletter = User.NewsletterSubscriptions.decodeJSONDictionary(json)
@@ -23,10 +23,10 @@ final class NewsletterSubscriptionsTests: XCTestCase {
 
   func testJsonEncoding_TrueValues() {
     let json: [String: AnyObject] = [
-      "games_newsletter": true,
-      "promo_newsletter": true,
-      "happening_newsletter": true,
-      "weekly_newsletter": true
+      "games_newsletter": true as AnyObject,
+      "promo_newsletter": true as AnyObject,
+      "happening_newsletter": true as AnyObject,
+      "weekly_newsletter": true as AnyObject
     ]
 
     let newsletter = User.NewsletterSubscriptions.decodeJSONDictionary(json)

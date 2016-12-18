@@ -15,7 +15,7 @@ public struct MessageThreadsEnvelope {
 }
 
 extension MessageThreadsEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<MessageThreadsEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<MessageThreadsEnvelope> {
     return curry(MessageThreadsEnvelope.init)
       <^> json <|| "message_threads"
       <*> json <| "urls"
@@ -23,14 +23,14 @@ extension MessageThreadsEnvelope: Decodable {
 }
 
 extension MessageThreadsEnvelope.UrlsEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<MessageThreadsEnvelope.UrlsEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<MessageThreadsEnvelope.UrlsEnvelope> {
     return curry(MessageThreadsEnvelope.UrlsEnvelope.init)
       <^> json <| "api"
   }
 }
 
 extension MessageThreadsEnvelope.UrlsEnvelope.ApiEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<MessageThreadsEnvelope.UrlsEnvelope.ApiEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<MessageThreadsEnvelope.UrlsEnvelope.ApiEnvelope> {
     return curry(MessageThreadsEnvelope.UrlsEnvelope.ApiEnvelope.init)
       <^> json <| "more_message_threads"
   }

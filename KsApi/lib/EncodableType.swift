@@ -14,8 +14,8 @@ public extension EncodableType {
 
    - returns: `NSData`
    */
-  public func toJSONData() -> NSData? {
-    return try? NSJSONSerialization.dataWithJSONObject(encode(), options: [])
+  public func toJSONData() -> Data? {
+    return try? JSONSerialization.data(withJSONObject: encode(), options: [])
   }
 
   /**
@@ -24,6 +24,6 @@ public extension EncodableType {
    - returns: `String`
    */
   public func toJSONString() -> String? {
-    return self.toJSONData().flatMap { String(data: $0, encoding: NSUTF8StringEncoding) }
+    return self.toJSONData().flatMap { String(data: $0, encoding: String.Encoding.utf8) }
   }
 }

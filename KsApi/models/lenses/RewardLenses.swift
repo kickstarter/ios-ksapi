@@ -19,7 +19,7 @@ extension Reward {
         title: $1.title) }
     )
 
-    public static let endsAt = Lens<Reward, NSTimeInterval?>(
+    public static let endsAt = Lens<Reward, TimeInterval?>(
       view: { $0.endsAt },
       set: { Reward(backersCount: $1.backersCount, description: $1.description, endsAt: $0,
         estimatedDeliveryOn: $1.estimatedDeliveryOn, id: $1.id, limit: $1.limit, minimum: $1.minimum,
@@ -27,7 +27,7 @@ extension Reward {
         title: $1.title) }
     )
 
-    public static let estimatedDeliveryOn = Lens<Reward, NSTimeInterval?>(
+    public static let estimatedDeliveryOn = Lens<Reward, TimeInterval?>(
       view: { $0.estimatedDeliveryOn },
       set: { Reward(backersCount: $1.backersCount, description: $1.description, endsAt: $1.endsAt,
         estimatedDeliveryOn: $0, id: $1.id, limit: $1.limit, minimum: $1.minimum,
@@ -83,7 +83,7 @@ extension Reward {
         title: $1.title) }
     )
 
-    public static let startsAt = Lens<Reward, NSTimeInterval?>(
+    public static let startsAt = Lens<Reward, TimeInterval?>(
       view: { $0.startsAt },
       set: { Reward(backersCount: $1.backersCount, description: $1.description, endsAt: $1.endsAt,
         estimatedDeliveryOn: $1.estimatedDeliveryOn, id: $1.id, limit: $1.limit, minimum: $1.minimum,

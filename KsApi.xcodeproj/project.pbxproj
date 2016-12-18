@@ -372,6 +372,8 @@
 		A796A8C31D48EAE9009B6EF6 /* RewardsItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796A8C11D48EAE9009B6EF6 /* RewardsItemTests.swift */; };
 		A796A8D41D48EAF8009B6EF6 /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796A8D31D48EAF8009B6EF6 /* ItemTests.swift */; };
 		A796A8D51D48EAF8009B6EF6 /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796A8D31D48EAF8009B6EF6 /* ItemTests.swift */; };
+		A79BE7FE1E071F6A0077A9B2 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79BE7EF1E071F5C0077A9B2 /* Runes.framework */; };
+		A79BE8011E071F720077A9B2 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79BE7F31E071F5C0077A9B2 /* Runes.framework */; };
 		A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7BBF31D1C2F95E400AC62B4 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */; };
@@ -650,6 +652,69 @@
 			remoteGlobalIDString = A7DB1D391C9F355E008244DA;
 			remoteInfo = "ReactiveExtensions-TestHelpers-iOS";
 		};
+		A79BE7EE1E071F5C0077A9B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F802D4D21A5F218E005E236C;
+			remoteInfo = "Runes-iOS";
+		};
+		A79BE7F01E071F5C0077A9B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F86B2E0B1A5F2B8D00C3B8BD;
+			remoteInfo = "Runes-Mac";
+		};
+		A79BE7F21E071F5C0077A9B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 51DE8A121BAB363500124320;
+			remoteInfo = "Runes-tvOS";
+		};
+		A79BE7F41E071F5C0077A9B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8624C261A645A9600C883B3;
+			remoteInfo = "Runes-iOS Tests";
+		};
+		A79BE7F61E071F5C0077A9B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F8624C451A645C9500C883B3;
+			remoteInfo = "Runes-Mac Tests";
+		};
+		A79BE7F81E071F5C0077A9B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 51DE8A211BAB36E600124320;
+			remoteInfo = "Runes-tvOS Tests";
+		};
+		A79BE7FA1E071F5C0077A9B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EAA6A5101B2F154D0058E9A8;
+			remoteInfo = "Runes-watchOS";
+		};
+		A79BE7FC1E071F650077A9B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F802D4D11A5F218E005E236C;
+			remoteInfo = "Runes-iOS";
+		};
+		A79BE7FF1E071F6F0077A9B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 51DE8A111BAB363500124320;
+			remoteInfo = "Runes-tvOS";
+		};
 		A7FD09D41C83E8FE00332CCB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA43C5F01BB358F200C180DA /* Project object */;
@@ -845,6 +910,7 @@
 		A796649C1D52213100454C84 /* MessageSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSubject.swift; sourceTree = "<group>"; };
 		A796A8C11D48EAE9009B6EF6 /* RewardsItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RewardsItemTests.swift; sourceTree = "<group>"; };
 		A796A8D31D48EAF8009B6EF6 /* ItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
+		A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Runes.xcodeproj; path = Frameworks/Argo/Carthage/Checkouts/Runes/Runes.xcodeproj; sourceTree = "<group>"; };
 		A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStatsEnvelope.CumulativeStatsLenses.swift; sourceTree = "<group>"; };
 		A7BBF31C1C2F95E400AC62B4 /* ServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ServiceTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		A7C8DDAD1DE4FC4E008DDA9A /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "Frameworks/native-secrets/ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
@@ -874,6 +940,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A79BE7FE1E071F6A0077A9B2 /* Runes.framework in Frameworks */,
 				A73639881D03559C00445B24 /* Argo.framework in Frameworks */,
 				A73639891D03559C00445B24 /* Curry.framework in Frameworks */,
 				A736398A1D03559C00445B24 /* Prelude.framework in Frameworks */,
@@ -894,6 +961,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A79BE8011E071F720077A9B2 /* Runes.framework in Frameworks */,
 				A7363AB81D035A4B00445B24 /* Argo.framework in Frameworks */,
 				A7363AB91D035A4B00445B24 /* Curry.framework in Frameworks */,
 				A7363ABA1D035A4B00445B24 /* Prelude.framework in Frameworks */,
@@ -1208,6 +1276,20 @@
 			path = KsApiTests;
 			sourceTree = "<group>";
 		};
+		A79BE7D61E071F5C0077A9B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A79BE7EF1E071F5C0077A9B2 /* Runes.framework */,
+				A79BE7F11E071F5C0077A9B2 /* Runes.framework */,
+				A79BE7F31E071F5C0077A9B2 /* Runes.framework */,
+				A79BE7F51E071F5C0077A9B2 /* Runes-iOS Tests.xctest */,
+				A79BE7F71E071F5C0077A9B2 /* Runes-Mac Tests.xctest */,
+				A79BE7F91E071F5C0077A9B2 /* Runes-tvOS Tests.xctest */,
+				A79BE7FB1E071F5C0077A9B2 /* Runes.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A7FD099F1C83E77B00332CCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1215,6 +1297,7 @@
 				A73639321D03550700445B24 /* Curry.xcodeproj */,
 				A73639411D03550C00445B24 /* Prelude.xcodeproj */,
 				A73639501D03551000445B24 /* ReactiveExtensions.xcodeproj */,
+				A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1313,6 +1396,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A79BE7FD1E071F650077A9B2 /* PBXTargetDependency */,
 				A73639801D03556C00445B24 /* PBXTargetDependency */,
 				A73639821D03556F00445B24 /* PBXTargetDependency */,
 				A73639841D03557200445B24 /* PBXTargetDependency */,
@@ -1354,6 +1438,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A79BE8001E071F6F0077A9B2 /* PBXTargetDependency */,
 				A7363AB01D035A3900445B24 /* PBXTargetDependency */,
 				A7363AB21D035A3900445B24 /* PBXTargetDependency */,
 				A7363AB41D035A3900445B24 /* PBXTargetDependency */,
@@ -1371,17 +1456,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Kickstarter;
 				TargetAttributes = {
 					A753B5681C2EED9800FDB616 = {
 						CreatedOnToolsVersion = 7.2;
 					};
 					A7FD096E1C83E74F00332CCB = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					A7FD09C21C83E8E900332CCB = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 					};
 					CA43C5F81BB358F200C180DA = {
 						CreatedOnToolsVersion = 7.1;
@@ -1415,6 +1500,10 @@
 				{
 					ProductGroup = A73639511D03551000445B24 /* Products */;
 					ProjectRef = A73639501D03551000445B24 /* ReactiveExtensions.xcodeproj */;
+				},
+				{
+					ProductGroup = A79BE7D61E071F5C0077A9B2 /* Products */;
+					ProjectRef = A79BE7D51E071F5C0077A9B2 /* Runes.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1601,6 +1690,55 @@
 			fileType = wrapper.cfbundle;
 			path = "Prelude-UIKit-tvOSTests.xctest";
 			remoteRef = A757E9B01D19903500A5C978 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A79BE7EF1E071F5C0077A9B2 /* Runes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Runes.framework;
+			remoteRef = A79BE7EE1E071F5C0077A9B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A79BE7F11E071F5C0077A9B2 /* Runes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Runes.framework;
+			remoteRef = A79BE7F01E071F5C0077A9B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A79BE7F31E071F5C0077A9B2 /* Runes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Runes.framework;
+			remoteRef = A79BE7F21E071F5C0077A9B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A79BE7F51E071F5C0077A9B2 /* Runes-iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Runes-iOS Tests.xctest";
+			remoteRef = A79BE7F41E071F5C0077A9B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A79BE7F71E071F5C0077A9B2 /* Runes-Mac Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Runes-Mac Tests.xctest";
+			remoteRef = A79BE7F61E071F5C0077A9B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A79BE7F91E071F5C0077A9B2 /* Runes-tvOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Runes-tvOS Tests.xctest";
+			remoteRef = A79BE7F81E071F5C0077A9B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A79BE7FB1E071F5C0077A9B2 /* Runes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Runes.framework;
+			remoteRef = A79BE7FA1E071F5C0077A9B2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2097,6 +2235,16 @@
 			name = "ReactiveExtensions-TestHelpers-iOS";
 			targetProxy = A75CAC581D138D6600EBF323 /* PBXContainerItemProxy */;
 		};
+		A79BE7FD1E071F650077A9B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Runes-iOS";
+			targetProxy = A79BE7FC1E071F650077A9B2 /* PBXContainerItemProxy */;
+		};
+		A79BE8001E071F6F0077A9B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Runes-tvOS";
+			targetProxy = A79BE7FF1E071F6F0077A9B2 /* PBXContainerItemProxy */;
+		};
 		A7FD09D51C83E8FE00332CCB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A7FD096E1C83E74F00332CCB /* KsApi-iOS */;
@@ -2136,6 +2284,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2147,7 +2296,6 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2157,6 +2305,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2168,7 +2317,6 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2183,7 +2331,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2198,7 +2345,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kickstarter.KsApiTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2217,8 +2363,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -2249,6 +2397,7 @@
 				PRODUCT_NAME = KsApi;
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2270,8 +2419,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -2295,6 +2446,7 @@
 				PRODUCT_NAME = KsApi;
 				STRIP_BITCODE_FROM_COPIED_FILES = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
@@ -2308,7 +2460,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2328,7 +2480,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

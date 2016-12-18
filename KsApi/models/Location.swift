@@ -16,7 +16,7 @@ public func == (lhs: Location, rhs: Location) -> Bool {
 }
 
 extension Location: Decodable {
-  static public func decode(json: JSON) -> Decoded<Location> {
+  static public func decode(_ json: JSON) -> Decoded<Location> {
     return curry(Location.init)
       <^> json <| "country"
       <*> json <| "displayable_name"
@@ -28,10 +28,10 @@ extension Location: Decodable {
 extension Location: EncodableType {
   public func encode() -> [String: AnyObject] {
     var result: [String: AnyObject] = [:]
-    result["country"] = self.country
-    result["displayable_name"] = self.displayableName
-    result["id"] = self.id
-    result["name"] = self.name
+    result["country"] = self.country as AnyObject?
+    result["displayable_name"] = self.displayableName as AnyObject?
+    result["id"] = self.id as AnyObject?
+    result["name"] = self.name as AnyObject?
     return result
   }
 }

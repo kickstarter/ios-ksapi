@@ -57,7 +57,7 @@ public func == (lhs: Param, rhs: Param) -> Bool {
 }
 
 extension Param: Decodable {
-  public static func decode(json: JSON) -> Decoded<Param> {
+  public static func decode(_ json: JSON) -> Decoded<Param> {
     switch json {
     case let .String(slug):
       return .Success(.slug(slug))
@@ -69,12 +69,12 @@ extension Param: Decodable {
   }
 }
 
-private let allowableRFC3986: NSCharacterSet = {
-  let set = NSMutableCharacterSet.alphanumericCharacterSet()
-  set.addCharactersInString("-._~/?")
-  return set
+private let allowableRFC3986: CharacterSet = {
+  let set = NSMutableCharacterSet.alphanumeric()
+  set.addCharacters(in: "-._~/?")
+  return set as CharacterSet
 }()
 
-private func encodeForRFC3986(str: String) -> String? {
-  return str.stringByAddingPercentEncodingWithAllowedCharacters(allowableRFC3986)
+private func encodeForRFC3986(_ str: String) -> String? {
+  return str.addingPercentEncoding(withAllowedCharacters: allowableRFC3986)
 }

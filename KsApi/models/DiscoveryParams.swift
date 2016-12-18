@@ -91,7 +91,7 @@ extension DiscoveryParams: CustomStringConvertible, CustomDebugStringConvertible
 }
 
 extension DiscoveryParams: Decodable {
-  public static func decode(json: JSON) -> Decoded<DiscoveryParams> {
+  public static func decode(_ json: JSON) -> Decoded<DiscoveryParams> {
     let create = curry(DiscoveryParams.init)
     let tmp1 = create
       <^> (json <|? "backed" >>- stringIntToBool)
@@ -116,7 +116,7 @@ extension DiscoveryParams: Decodable {
   }
 }
 
-private func stringToBool(string: String?) -> Decoded<Bool?> {
+private func stringToBool(_ string: String?) -> Decoded<Bool?> {
   guard let string = string else { return .Success(nil) }
   switch string {
   // taken from server's `value_to_boolean` function
@@ -129,12 +129,12 @@ private func stringToBool(string: String?) -> Decoded<Bool?> {
   }
 }
 
-private func stringToInt(string: String?) -> Decoded<Int?> {
+private func stringToInt(_ string: String?) -> Decoded<Int?> {
   guard let string = string else { return .Success(nil) }
   return Int(string).map(Decoded.Success) ?? .Failure(.Custom("Could not parse string into int."))
 }
 
-private func stringIntToBool(string: String?) -> Decoded<Bool?> {
+private func stringIntToBool(_ string: String?) -> Decoded<Bool?> {
   guard let string = string else { return .Success(nil) }
   return Int(string)
     .filter { $0 <= 1 && $0 >= -1 }

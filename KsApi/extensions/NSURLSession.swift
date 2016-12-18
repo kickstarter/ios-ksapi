@@ -5,16 +5,16 @@ import Prelude
 import ReactiveCocoa
 import Result
 
-private func parseJSONData(data: NSData) -> AnyObject? {
-  return try? NSJSONSerialization.JSONObjectWithData(data, options: [])
+private func parseJSONData(_ data: Data) -> AnyObject? {
+  return try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject?
 }
 
-private let queue = dispatch_queue_create("com.kickstarter.ksapi", nil)
+private let queue = DispatchQueue(label: "com.kickstarter.ksapi", attributes: [])
 
-internal extension NSURLSession {
+internal extension URLSession {
 
   // Wrap an NSURLSession producer with error envelope logic.
-  internal func rac_dataResponse(request: NSURLRequest, uploading file: (url: NSURL, name: String)? = nil)
+  internal func rac_dataResponse(_ request: NSURLRequest, uploading file: (url: NSURL, name: String)? = nil)
     -> SignalProducer<NSData, ErrorEnvelope> {
 
       let producer = file.map { self.rac_dataWithRequest(request, uploading: $0, named: $1) }
@@ -29,7 +29,7 @@ internal extension NSURLSession {
           guard
             (200..<300).contains(response.statusCode),
             let headers = response.allHeaderFields as? [String:String],
-            contentType = headers["Content-Type"] where contentType.hasPrefix("application/json")
+            let contentType = headers["Content-Type"], contentType.hasPrefix("application/json")
             else {
 
               print("[KsApi] Failure \(self.sanitized(request))")
@@ -56,7 +56,7 @@ internal extension NSURLSession {
 
   // Converts an NSURLSessionTask into a signal producer of raw JSON data. If the JSON does not parse
   // successfully, an `ErrorEnvelope.errorJSONCouldNotParse()` error is emitted.
-  internal func rac_JSONResponse(request: NSURLRequest, uploading file: (url: NSURL, name: String)? = nil)
+  internal func rac_JSONResponse(_ request: NSURLRequest, uploading file: (url: NSURL, name: String)? = nil)
     -> SignalProducer<AnyObject, ErrorEnvelope> {
 
       return self.rac_dataResponse(request, uploading: file)
@@ -70,27 +70,27 @@ internal extension NSURLSession {
   }
 
   // swiftlint:disable force_try
-  private static let sanitationRules = [
+  fileprivate static let sanitationRules = [
     "oauth_token=[REDACTED]":
-      try! NSRegularExpression(pattern: "oauth_token=([a-zA-Z0-9]*)", options: .CaseInsensitive),
+      try! NSRegularExpression(pattern: "oauth_token=([a-zA-Z0-9]*)", options: .caseInsensitive),
     "client_id=[REDACTED]":
-      try! NSRegularExpression(pattern: "client_id=([a-zA-Z0-9]*)", options: .CaseInsensitive),
+      try! NSRegularExpression(pattern: "client_id=([a-zA-Z0-9]*)", options: .caseInsensitive),
     "access_token=[REDACTED]":
-      try! NSRegularExpression(pattern: "access_token=([a-zA-Z0-9]*)", options: .CaseInsensitive),
+      try! NSRegularExpression(pattern: "access_token=([a-zA-Z0-9]*)", options: .caseInsensitive),
     "password=[REDACTED]":
-      try! NSRegularExpression(pattern: "password=([a-zA-Z0-9]*)", options: .CaseInsensitive)
+      try! NSRegularExpression(pattern: "password=([a-zA-Z0-9]*)", options: .caseInsensitive)
     ]
   // swiftlint:enable force_try
 
   // Strips sensitive materials from the request, e.g. oauth token, client id, fb token, password, etc...
-  private func sanitized(request: NSURLRequest) -> String {
-    guard let urlString = request.URL?.absoluteString else { return "" }
+  fileprivate func sanitized(_ request: URLRequest) -> String {
+    guard let urlString = request.url?.absoluteString else { return "" }
 
-    return NSURLSession.sanitationRules.reduce(urlString) { accum, templateAndRule in
+    return URLSession.sanitationRules.reduce(urlString) { accum, templateAndRule in
       let (template, rule) = templateAndRule
       let range = NSRange(location: 0, length: accum.characters.count)
-      return rule.stringByReplacingMatchesInString(accum,
-                                                   options: .WithTransparentBounds,
+      return rule.stringByReplacingMatches(in: accum,
+                                                   options: .withTransparentBounds,
                                                    range: range,
                                                    withTemplate: template)
     } ?? ""
@@ -102,26 +102,26 @@ private let defaultSessionError =
 
 private let boundary = "k1ck574r73r154c0mp4ny"
 
-extension NSURLSession {
+extension URLSession {
   // Returns a producer that will execute the given upload once for each invocation of start().
-  private func rac_dataWithRequest(request: NSURLRequest, uploading file: NSURL, named name: String)
+  fileprivate func rac_dataWithRequest(_ request: NSURLRequest, uploading file: NSURL, named name: String)
     -> SignalProducer<(NSData, NSURLResponse), NSError> {
 
       guard
         let mutableRequest = request.mutableCopy() as? NSMutableURLRequest,
-        let data = optionalize(file.absoluteString).flatMap(NSData.init(contentsOfFile:)),
+        let data = optionalize(file.absoluteString).flatMap(Data.init(contentsOfFile:)),
         let mime = file.imageMime ?? data.imageMime,
         let filename = file.lastPathComponent,
         let multipartHead = ("--\(boundary)\r\n"
           + "Content-Disposition: form-data; name=\"\(name)\"; filename=\"\(filename)\"\r\n"
-          + "Content-Type: \(mime)\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding),
-        let multipartTail = "--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)
+          + "Content-Type: \(mime)\r\n\r\n").dataUsingEncoding(String.Encoding.utf8),
+        let multipartTail = "--\(boundary)--\r\n".data(using: String.Encoding.utf8)
         else { fatalError() }
 
       let body = NSMutableData()
       body.appendData(multipartHead)
       body.appendData(data)
-      body.appendData(multipartTail)
+      body.append(multipartTail)
 
       mutableRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
       mutableRequest.HTTPBody = body

@@ -43,7 +43,7 @@ extension Update {
         visible: $1.visible) }
     )
 
-    public static let publishedAt = Lens<Update, NSTimeInterval?>(
+    public static let publishedAt = Lens<Update, TimeInterval?>(
       view: { $0.publishedAt },
       set: { Update(body: $1.body, commentsCount: $1.commentsCount, hasLiked: $1.hasLiked, id: $1.id,
         isPublic: $1.isPublic, likesCount: $1.likesCount, projectId: $1.projectId,

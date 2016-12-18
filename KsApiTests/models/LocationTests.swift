@@ -34,7 +34,7 @@ final class LocationTests: XCTestCase {
   }
 
   func testEncodeDecode() {
-    let location = [
+    let location: [String : Any] = [
       "country": "US",
       "id": 44,
       "displayable_name": "New Amsterdam, NY",

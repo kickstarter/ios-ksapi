@@ -7,7 +7,7 @@ import Prelude
 import ReactiveCocoa
 import ReactiveExtensions
 
-private extension NSBundle {
+private extension Bundle {
   var _buildVersion: String {
     return (self.infoDictionary?["CFBundleVersion"] as? String) ?? "1"
   }
@@ -23,11 +23,11 @@ public struct Service: ServiceType {
   public let language: String
   public let buildVersion: String
 
-  public init(appId: String = NSBundle.mainBundle().bundleIdentifier ?? "com.kickstarter.kickstarter",
+  public init(appId: String = Bundle.main.bundleIdentifier ?? "com.kickstarter.kickstarter",
               serverConfig: ServerConfigType = ServerConfig.production,
               oauthToken: OauthTokenAuthType? = nil,
               language: String = "en",
-              buildVersion: String = NSBundle.mainBundle()._buildVersion) {
+              buildVersion: String = Bundle.main._buildVersion) {
 
     self.appId = appId
     self.serverConfig = serverConfig
@@ -36,7 +36,7 @@ public struct Service: ServiceType {
     self.buildVersion = buildVersion
   }
 
-  public func login(oauthToken: OauthTokenAuthType) -> Service {
+  public func login(_ oauthToken: OauthTokenAuthType) -> Service {
     return Service(appId: self.appId,
                    serverConfig: self.serverConfig,
                    oauthToken: oauthToken,
@@ -68,13 +68,13 @@ public struct Service: ServiceType {
       return request(Route.addVideo(fileUrl: fileURL, toDraft: draft))
   }
 
-  public func changePaymentMethod(project project: Project)
+  public func changePaymentMethod(project: Project)
     -> SignalProducer<ChangePaymentMethodEnvelope, ErrorEnvelope> {
 
       return request(.changePaymentMethod(project: project))
   }
 
-  public func createPledge(project project: Project,
+  public func createPledge(project: Project,
                            amount: Double,
                            reward: Reward?,
                            shippingLocation: Location?,
@@ -90,24 +90,24 @@ public struct Service: ServiceType {
     )
   }
 
-  public func delete(image image: UpdateDraft.Image, fromDraft draft: UpdateDraft)
+  public func delete(image: UpdateDraft.Image, fromDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Image, ErrorEnvelope> {
 
       return request(.deleteImage(image, fromDraft: draft))
   }
 
-  public func delete(video video: UpdateDraft.Video, fromDraft draft: UpdateDraft)
+  public func delete(video: UpdateDraft.Video, fromDraft draft: UpdateDraft)
     -> SignalProducer<UpdateDraft.Video, ErrorEnvelope> {
 
       return request(.deleteVideo(video, fromDraft: draft))
   }
 
-  public func previewUrl(forDraft draft: UpdateDraft) -> NSURL? {
+  public func previewUrl(forDraft draft: UpdateDraft) -> URL? {
     return self.serverConfig.apiBaseUrl
-      .URLByAppendingPathComponent("/v1/projects/\(draft.update.projectId)/updates/draft/preview")
+      .appendingPathComponent("/v1/projects/\(draft.update.projectId)/updates/draft/preview")
   }
 
-  public func fetchActivities(count count: Int?) -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
+  public func fetchActivities(count: Int?) -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
     let categories: [Activity.Category] = [
       .backing,
       .cancellation,
@@ -120,7 +120,7 @@ public struct Service: ServiceType {
     return request(.activities(categories: categories, count: count))
   }
 
-  public func fetchActivities(paginationUrl paginationUrl: String)
+  public func fetchActivities(paginationUrl: String)
     -> SignalProducer<ActivityEnvelope, ErrorEnvelope> {
       return requestPagination(paginationUrl)
   }
@@ -134,7 +134,7 @@ public struct Service: ServiceType {
     return request(.categories)
   }
 
-  public func fetchCategory(param param: Param) -> SignalProducer<Category, ErrorEnvelope> {
+  public func fetchCategory(param: Param) -> SignalProducer<Category, ErrorEnvelope> {
     return request(.category(param))
   }
 
@@ -146,11 +146,11 @@ public struct Service: ServiceType {
     return requestPagination(url)
   }
 
-  public func fetchComments(project project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
+  public func fetchComments(project: Project) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
     return request(.projectComments(project))
   }
 
-  public func fetchComments(update update: Update) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
+  public func fetchComments(update: Update) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
     return request(.updateComments(update))
   }
 
@@ -158,13 +158,13 @@ public struct Service: ServiceType {
     return request(.config)
   }
 
-  public func fetchDiscovery(paginationUrl paginationUrl: String)
+  public func fetchDiscovery(paginationUrl: String)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
     return requestPagination(paginationUrl)
   }
 
-  public func fetchDiscovery(params params: DiscoveryParams)
+  public func fetchDiscovery(params: DiscoveryParams)
     -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
 
     return request(.discover(params))
@@ -174,7 +174,7 @@ public struct Service: ServiceType {
     return request(.friends)
   }
 
-  public func fetchFriends(paginationUrl paginationUrl: String)
+  public func fetchFriends(paginationUrl: String)
     -> SignalProducer<FindFriendsEnvelope, ErrorEnvelope> {
 
       return requestPagination(paginationUrl)
@@ -184,38 +184,38 @@ public struct Service: ServiceType {
     return request(.friendStats)
   }
 
-  public func fetchMessageThread(messageThreadId messageThreadId: Int)
+  public func fetchMessageThread(messageThreadId: Int)
     -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope> {
 
       return request(.messagesForThread(messageThreadId: messageThreadId))
   }
 
-  public func fetchMessageThread(backing backing: Backing)
+  public func fetchMessageThread(backing: Backing)
     -> SignalProducer<MessageThreadEnvelope, ErrorEnvelope> {
     return request(.messagesForBacking(backing))
   }
 
-  public func fetchMessageThreads(mailbox mailbox: Mailbox, project: Project?)
+  public func fetchMessageThreads(mailbox: Mailbox, project: Project?)
     -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
 
       return request(.messageThreads(mailbox: mailbox, project: project))
   }
 
-  public func fetchMessageThreads(paginationUrl paginationUrl: String)
+  public func fetchMessageThreads(paginationUrl: String)
     -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
 
       return requestPagination(paginationUrl)
   }
 
-  public func fetchProject(param param: Param) -> SignalProducer<Project, ErrorEnvelope> {
+  public func fetchProject(param: Param) -> SignalProducer<Project, ErrorEnvelope> {
     return request(.project(param))
   }
 
-  public func fetchProject(params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
+  public func fetchProject(_ params: DiscoveryParams) -> SignalProducer<DiscoveryEnvelope, ErrorEnvelope> {
     return request(.discover(params |> DiscoveryParams.lens.perPage .~ 1))
   }
 
-  public func fetchProject(project project: Project) -> SignalProducer<Project, ErrorEnvelope> {
+  public func fetchProject(project: Project) -> SignalProducer<Project, ErrorEnvelope> {
     return request(.project(.id(project.id)))
   }
 
@@ -228,12 +228,12 @@ public struct Service: ServiceType {
       return request(.projectActivities(project))
   }
 
-  public func fetchProjectActivities(paginationUrl paginationUrl: String)
+  public func fetchProjectActivities(paginationUrl: String)
     -> SignalProducer<ProjectActivityEnvelope, ErrorEnvelope> {
       return requestPagination(paginationUrl)
   }
 
-  public func fetchProjects(member member: Bool) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
+  public func fetchProjects(member: Bool) -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
     return request(.projects(member: member))
   }
 
@@ -241,12 +241,12 @@ public struct Service: ServiceType {
     return requestPagination(url)
   }
 
-  public func fetchProjectStats(projectId projectId: Int) ->
+  public func fetchProjectStats(projectId: Int) ->
     SignalProducer<ProjectStatsEnvelope, ErrorEnvelope> {
       return request(.projectStats(projectId: projectId))
   }
 
-  public func fetchRewardShippingRules(projectId projectId: Int, rewardId: Int)
+  public func fetchRewardShippingRules(projectId: Int, rewardId: Int)
     -> SignalProducer<ShippingRulesEnvelope, ErrorEnvelope> {
       return request(.shippingRules(projectId: projectId, rewardId: rewardId))
   }
@@ -268,15 +268,15 @@ public struct Service: ServiceType {
     return request(.userSelf)
   }
 
-  public func fetchUser(userId userId: Int) -> SignalProducer<User, ErrorEnvelope> {
+  public func fetchUser(userId: Int) -> SignalProducer<User, ErrorEnvelope> {
     return request(.user(userId: userId))
   }
 
-  public func fetchUser(user: User) -> SignalProducer<User, ErrorEnvelope> {
+  public func fetchUser(_ user: User) -> SignalProducer<User, ErrorEnvelope> {
     return fetchUser(userId: user.id)
   }
 
-  public func fetchUpdate(updateId updateId: Int, projectParam: Param)
+  public func fetchUpdate(updateId: Int, projectParam: Param)
     -> SignalProducer<Update, ErrorEnvelope> {
 
       return request(.update(updateId: updateId, projectParam: projectParam))
@@ -328,61 +328,61 @@ public struct Service: ServiceType {
       }
   }
 
-  public func login(email email: String, password: String, code: String?) ->
+  public func login(email: String, password: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
     return request(.login(email: email, password: password, code: code))
   }
 
-  public func login(facebookAccessToken facebookAccessToken: String, code: String?) ->
+  public func login(facebookAccessToken: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 
     return request(.facebookLogin(facebookAccessToken: facebookAccessToken, code: code))
   }
 
-  public func markAsRead(messageThread messageThread: MessageThread)
+  public func markAsRead(messageThread: MessageThread)
     -> SignalProducer<MessageThread, ErrorEnvelope> {
 
       return request(.markAsRead(messageThread))
   }
 
-  public func postComment(body: String, toProject project: Project) ->
+  public func postComment(_ body: String, toProject project: Project) ->
     SignalProducer<Comment, ErrorEnvelope> {
 
       return request(.postProjectComment(project, body: body))
   }
 
-  public func postComment(body: String, toUpdate update: Update) -> SignalProducer<Comment, ErrorEnvelope> {
+  public func postComment(_ body: String, toUpdate update: Update) -> SignalProducer<Comment, ErrorEnvelope> {
 
       return request(.postUpdateComment(update, body: body))
   }
 
-  public func publish(draft draft: UpdateDraft) -> SignalProducer<Update, ErrorEnvelope> {
+  public func publish(draft: UpdateDraft) -> SignalProducer<Update, ErrorEnvelope> {
     return request(.publishUpdateDraft(draft))
   }
 
-  public func register(pushToken pushToken: String) -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
+  public func register(pushToken: String) -> SignalProducer<VoidEnvelope, ErrorEnvelope> {
 
     return request(.registerPushToken(pushToken))
   }
 
-  public func resetPassword(email email: String) -> SignalProducer<User, ErrorEnvelope> {
+  public func resetPassword(email: String) -> SignalProducer<User, ErrorEnvelope> {
     return request(.resetPassword(email: email))
   }
 
-  public func searchMessages(query query: String, project: Project?)
+  public func searchMessages(query: String, project: Project?)
     -> SignalProducer<MessageThreadsEnvelope, ErrorEnvelope> {
 
       return request(.searchMessages(query: query, project: project))
   }
 
-  public func sendMessage(body body: String, toSubject subject: MessageSubject)
+  public func sendMessage(body: String, toSubject subject: MessageSubject)
     -> SignalProducer<Message, ErrorEnvelope> {
 
       return request(.sendMessage(body: body, messageSubject: subject))
   }
 
-  public func signup(name name: String,
+  public func signup(name: String,
                           email: String,
                           password: String,
                           passwordConfirmation: String,
@@ -400,12 +400,12 @@ public struct Service: ServiceType {
     return request(.facebookSignup(facebookAccessToken: token, sendNewsletters: sendNewsletters))
   }
 
-  public func star(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
+  public func star(_ project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
     return request(.star(project))
   }
 
   public func submitApplePay(
-    checkoutUrl checkoutUrl: String,
+    checkoutUrl: String,
                 stripeToken: String,
                 paymentInstrumentName: String,
                 paymentNetwork: String,
@@ -422,7 +422,7 @@ public struct Service: ServiceType {
     )
   }
 
-  public func toggleStar(project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
+  public func toggleStar(_ project: Project) -> SignalProducer<StarEnvelope, ErrorEnvelope> {
     return request(.toggleStar(project))
   }
 
@@ -430,14 +430,14 @@ public struct Service: ServiceType {
     return request(.unfollowFriend(userId: id))
   }
 
-  public func update(draft draft: UpdateDraft, title: String, body: String, isPublic: Bool)
+  public func update(draft: UpdateDraft, title: String, body: String, isPublic: Bool)
     -> SignalProducer<UpdateDraft, ErrorEnvelope> {
 
       return request(.updateUpdateDraft(draft, title: title, body: body, isPublic: isPublic))
   }
 
   public func updatePledge(
-    project project: Project,
+    project: Project,
             amount: Double,
             reward: Reward?,
             shippingLocation: Location?,
@@ -454,18 +454,18 @@ public struct Service: ServiceType {
     )
   }
 
-  public func updateProjectNotification(notification: ProjectNotification)
+  public func updateProjectNotification(_ notification: ProjectNotification)
     -> SignalProducer<ProjectNotification, ErrorEnvelope> {
 
     return request(.updateProjectNotification(notification: notification))
   }
 
-  public func updateUserSelf(user: User) -> SignalProducer<User, ErrorEnvelope> {
+  public func updateUserSelf(_ user: User) -> SignalProducer<User, ErrorEnvelope> {
     return request(.updateUserSelf(user))
   }
 
-  private func decodeModel<M: Decodable where M == M.DecodedType>(json: AnyObject) ->
-    SignalProducer<M, ErrorEnvelope> {
+  fileprivate func decodeModel<M: Decodable>(_ json: AnyObject) ->
+    SignalProducer<M, ErrorEnvelope> where M == M.DecodedType {
 
       return SignalProducer(value: json)
         .map { json in decode(json) as Decoded<M> }
@@ -480,8 +480,8 @@ public struct Service: ServiceType {
       }
   }
 
-  private func decodeModels<M: Decodable where M == M.DecodedType>(json: AnyObject) ->
-    SignalProducer<[M], ErrorEnvelope> {
+  fileprivate func decodeModels<M: Decodable>(_ json: AnyObject) ->
+    SignalProducer<[M], ErrorEnvelope> where M == M.DecodedType {
 
       return SignalProducer(value: json)
         .map { json in decode(json) as Decoded<[M]> }
@@ -496,12 +496,12 @@ public struct Service: ServiceType {
       }
   }
 
-  private static let session = NSURLSession(configuration: .defaultSessionConfiguration())
+  fileprivate static let session = URLSession(configuration: .default)
 
-  private func requestPagination<M: Decodable where M == M.DecodedType>(paginationUrl: String)
-    -> SignalProducer<M, ErrorEnvelope> {
+  fileprivate func requestPagination<M: Decodable>(_ paginationUrl: String)
+    -> SignalProducer<M, ErrorEnvelope> where M == M.DecodedType {
 
-      guard let paginationUrl = NSURL(string: paginationUrl) else {
+      guard let paginationUrl = URL(string: paginationUrl) else {
         return .init(error: .invalidPaginationUrl)
       }
 
@@ -509,12 +509,12 @@ public struct Service: ServiceType {
         .flatMap(decodeModel)
   }
 
-  private func request<M: Decodable where M == M.DecodedType>(route: Route)
-    -> SignalProducer<M, ErrorEnvelope> {
+  fileprivate func request<M: Decodable>(_ route: Route)
+    -> SignalProducer<M, ErrorEnvelope> where M == M.DecodedType {
 
       let properties = route.requestProperties
 
-      guard let URL = NSURL(string: properties.path, relativeToURL: self.serverConfig.apiBaseUrl) else {
+      guard let URL = URL(string: properties.path, relativeTo: self.serverConfig.apiBaseUrl as URL) else {
         fatalError(
           "NSURL(string: \(properties.path), relativeToURL: \(self.serverConfig.apiBaseUrl)) == nil"
         )
@@ -527,8 +527,8 @@ public struct Service: ServiceType {
         .flatMap(decodeModel)
   }
 
-  private func request<M: Decodable where M == M.DecodedType>(route: Route)
-    -> SignalProducer<[M], ErrorEnvelope> {
+  fileprivate func request<M: Decodable>(_ route: Route)
+    -> SignalProducer<[M], ErrorEnvelope> where M == M.DecodedType {
 
       let properties = route.requestProperties
 

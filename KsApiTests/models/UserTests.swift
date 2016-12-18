@@ -35,7 +35,7 @@ final class UserTests: XCTestCase {
         "name": "Brooklyn"
       ],
       "is_friend": false
-    ]
+    ] as [String : Any]
     let decoded = User.decodeJSONDictionary(json)
     let user = decoded.value
 
@@ -55,8 +55,8 @@ final class UserTests: XCTestCase {
 
   func testJsonEncoding() {
     let json: [String:AnyObject] = [
-      "id": 1,
-      "name": "Blob",
+      "id": 1 as AnyObject,
+      "name": "Blob" as AnyObject,
       "avatar": [
         "medium": "http://www.kickstarter.com/medium.jpg",
         "small": "http://www.kickstarter.com/small.jpg",

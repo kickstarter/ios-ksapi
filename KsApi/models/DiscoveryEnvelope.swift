@@ -24,7 +24,7 @@ public struct DiscoveryEnvelope {
 }
 
 extension DiscoveryEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<DiscoveryEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<DiscoveryEnvelope> {
     return curry(DiscoveryEnvelope.init)
       <^> json <|| "projects"
       <*> json <|  "urls"
@@ -33,21 +33,21 @@ extension DiscoveryEnvelope: Decodable {
 }
 
 extension DiscoveryEnvelope.UrlsEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<DiscoveryEnvelope.UrlsEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<DiscoveryEnvelope.UrlsEnvelope> {
     return curry(DiscoveryEnvelope.UrlsEnvelope.init)
       <^> json <| "api"
   }
 }
 
 extension DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope> {
     return curry(DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope.init)
       <^> json <| "more_projects"
   }
 }
 
 extension DiscoveryEnvelope.StatsEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<DiscoveryEnvelope.StatsEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<DiscoveryEnvelope.StatsEnvelope> {
     return curry(DiscoveryEnvelope.StatsEnvelope.init)
       <^> json <| "count"
   }

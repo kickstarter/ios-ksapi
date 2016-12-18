@@ -13,7 +13,7 @@ public struct CheckoutEnvelope {
 }
 
 extension CheckoutEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<CheckoutEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<CheckoutEnvelope> {
     let create = curry(CheckoutEnvelope.init)
     return create
       <^> json <| "state"

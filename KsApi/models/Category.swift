@@ -1,5 +1,18 @@
 import Argo
 import Curry
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 public struct Category {
   public let color: Int?
@@ -98,7 +111,7 @@ extension Category: CustomStringConvertible, CustomDebugStringConvertible {
 
 extension Category: Decodable {
 
-  public static func decode(json: JSON) -> Decoded<Category> {
+  public static func decode(_ json: JSON) -> Decoded<Category> {
     let create = curry(Category.init)
     let tmp = create
       <^> json <|? "color"

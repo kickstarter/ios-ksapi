@@ -8,7 +8,7 @@ public struct CreatePledgeEnvelope {
 }
 
 extension CreatePledgeEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<CreatePledgeEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<CreatePledgeEnvelope> {
     return curry(CreatePledgeEnvelope.init)
       <^> json <|? ["data", "checkout_url"]
       <*> json <|? ["data", "new_checkout_url"]
@@ -16,7 +16,7 @@ extension CreatePledgeEnvelope: Decodable {
   }
 }
 
-private func stringToIntOrZero(string: String) -> Decoded<Int> {
+private func stringToIntOrZero(_ string: String) -> Decoded<Int> {
   return
     Double(string).flatMap(Int.init).map(Decoded.Success)
       ?? Int(string).map(Decoded.Success)

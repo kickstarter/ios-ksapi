@@ -7,7 +7,7 @@ public struct StarEnvelope {
 }
 
 extension StarEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<StarEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<StarEnvelope> {
     return curry(StarEnvelope.init)
       <^> json <| "user"
       <*> json <| "project"

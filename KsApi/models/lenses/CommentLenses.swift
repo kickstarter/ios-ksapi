@@ -14,12 +14,12 @@ extension Comment {
         id: $1.id) }
     )
 
-    public static let createdAt = Lens<Comment, NSTimeInterval>(
+    public static let createdAt = Lens<Comment, TimeInterval>(
       view: { $0.createdAt },
       set: { Comment(author: $1.author, body: $1.body, createdAt: $0, deletedAt: $1.deletedAt, id: $1.id) }
     )
 
-    public static let deletedAt = Lens<Comment, NSTimeInterval?>(
+    public static let deletedAt = Lens<Comment, TimeInterval?>(
       view: { $0.deletedAt },
       set: { Comment(author: $1.author, body: $1.body, createdAt: $1.createdAt, deletedAt: $0, id: $1.id) }
     )

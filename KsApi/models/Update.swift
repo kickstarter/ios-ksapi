@@ -10,7 +10,7 @@ public struct Update {
   public let isPublic: Bool
   public let likesCount: Int?
   public let projectId: Int
-  public let publishedAt: NSTimeInterval?
+  public let publishedAt: TimeInterval?
   public let sequence: Int
   public let title: String
   public let urls: UrlsEnvelope
@@ -34,7 +34,7 @@ public func == (lhs: Update, rhs: Update) -> Bool {
 
 extension Update: Decodable {
 
-  public static func decode(json: JSON) -> Decoded<Update> {
+  public static func decode(_ json: JSON) -> Decoded<Update> {
     let create = curry(Update.init)
     let tmp = create
       <^> json <|?  "body"
@@ -55,14 +55,14 @@ extension Update: Decodable {
 }
 
 extension Update.UrlsEnvelope: Decodable {
-  static public func decode(json: JSON) -> Decoded<Update.UrlsEnvelope> {
+  static public func decode(_ json: JSON) -> Decoded<Update.UrlsEnvelope> {
     return curry(Update.UrlsEnvelope.init)
       <^> json <| "web"
   }
 }
 
 extension Update.UrlsEnvelope.WebEnvelope: Decodable {
-  static public func decode(json: JSON) -> Decoded<Update.UrlsEnvelope.WebEnvelope> {
+  static public func decode(_ json: JSON) -> Decoded<Update.UrlsEnvelope.WebEnvelope> {
     return curry(Update.UrlsEnvelope.WebEnvelope.init)
       <^> json <| "update"
   }

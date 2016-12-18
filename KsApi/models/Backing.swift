@@ -7,7 +7,7 @@ public struct Backing {
   public let backerId: Int
   public let id: Int
   public let locationId: Int?
-  public let pledgedAt: NSTimeInterval
+  public let pledgedAt: TimeInterval
   public let projectCountry: String
   public let projectId: Int
   public let reward: Reward?
@@ -33,7 +33,7 @@ public func == (lhs: Backing, rhs: Backing) -> Bool {
 }
 
 extension Backing: Decodable {
-  public static func decode(json: JSON) -> Decoded<Backing> {
+  public static func decode(_ json: JSON) -> Decoded<Backing> {
     let create = curry(Backing.init)
     let tmp = create
       <^> json <| "amount"

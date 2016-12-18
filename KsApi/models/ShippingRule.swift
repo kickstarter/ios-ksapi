@@ -8,7 +8,7 @@ public struct ShippingRule {
 }
 
 extension ShippingRule: Decodable {
-  public static func decode(json: JSON) -> Decoded<ShippingRule> {
+  public static func decode(_ json: JSON) -> Decoded<ShippingRule> {
     return curry(ShippingRule.init)
       <^> (json <| "cost" >>- stringToDouble)
       <*> json <|? "id"
@@ -22,6 +22,6 @@ public func == (lhs: ShippingRule, rhs: ShippingRule) -> Bool {
   return lhs.location ==  rhs.location
 }
 
-private func stringToDouble(string: String) -> Decoded<Double> {
+private func stringToDouble(_ string: String) -> Decoded<Double> {
   return Double(string).map(Decoded.Success) ?? .Success(0)
 }

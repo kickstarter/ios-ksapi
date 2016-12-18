@@ -14,7 +14,7 @@ public struct Config {
 }
 
 extension Config: Decodable {
-  public static func decode(json: JSON) -> Decoded<Config> {
+  public static func decode(_ json: JSON) -> Decoded<Config> {
     let create = curry(Config.init)
     let tmp = create
       <^> decodeDictionary(json <| "ab_experiments")
@@ -47,14 +47,14 @@ public func == (lhs: Config, rhs: Config) -> Bool {
 extension Config: EncodableType {
   public func encode() -> [String : AnyObject] {
     var result: [String:AnyObject] = [:]
-    result["ab_experiments"] = self.abExperiments
-    result["app_id"] = self.appId
-    result["apple_pay_countries"] = self.applePayCountries
-    result["country_code"] = self.countryCode
-    result["features"] = self.features
-    result["itunes_link"] = self.iTunesLink
+    result["ab_experiments"] = self.abExperiments as AnyObject?
+    result["app_id"] = self.appId as AnyObject?
+    result["apple_pay_countries"] = self.applePayCountries as AnyObject?
+    result["country_code"] = self.countryCode as AnyObject?
+    result["features"] = self.features as AnyObject?
+    result["itunes_link"] = self.iTunesLink as AnyObject?
     result["launched_countries"] = self.launchedCountries.map { $0.encode() }
-    result["locale"] = self.locale
+    result["locale"] = self.locale as AnyObject?
     result["stripe"] = ["publishable_key": self.stripePublishableKey]
     return result
   }
@@ -63,8 +63,8 @@ extension Config: EncodableType {
 // Useful for getting around swift optimization bug: https://github.com/thoughtbot/Argo/issues/363
 // Turns out using `>>-` or `flatMap` on a `Decoded` fails to compile with optimizations on, so this
 // function does it manually.
-private func decodeDictionary<T: Decodable where T.DecodedType == T>(j: Decoded<JSON>)
-  -> Decoded<[String:T]> {
+private func decodeDictionary<T: Decodable>(_ j: Decoded<JSON>)
+  -> Decoded<[String:T]> where T.DecodedType == T {
   switch j {
   case let .Success(json): return [String: T].decode(json)
   case let .Failure(e): return .Failure(e)
