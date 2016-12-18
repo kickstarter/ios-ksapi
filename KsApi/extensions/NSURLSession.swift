@@ -143,13 +143,6 @@ extension URLSession {
       }
   }
 
-
-
-
-
-
-
-
   public func _rac_data(with request: URLRequest) -> SignalProducer<(Data, URLResponse), AnyError> {
     return SignalProducer { observer, disposable in
       let task = self.dataTask(with: request) { data, response, error in

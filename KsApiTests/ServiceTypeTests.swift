@@ -82,8 +82,6 @@ final class ServiceTypeTests: XCTestCase {
     let url = Foundation.URL(string: "http://api.ksr.com/v1/test?key=value") ?? emptyUrl
     let request = self.service.preparedRequest(forRequest: .init(url: url))
 
-
-
     XCTAssertEqual("http://api.ksr.com/v1/test?client_id=deadbeef&key=value&oauth_token=cafebeef",
                    request.url?.absoluteString)
     XCTAssertEqual(
