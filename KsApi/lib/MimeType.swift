@@ -7,7 +7,7 @@ extension Data {
     let start = (self as NSData).bytes.bindMemory(to: UInt8.self, capacity: self.count)
 
     guard let byte: UInt8 = UnsafeBufferPointer(start: start, count: 1).first else { return nil }
-    
+
     switch byte {
     case 0xFF:
       return mimeType(uti: kUTTypeJPEG)

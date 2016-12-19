@@ -7,6 +7,7 @@ import ReactiveSwift
 import Result
 
 private func parseJSONData(_ data: Data) -> AnyObject? {
+  // swiftlint:disable:next force_try
   return try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject?
 }
 
@@ -23,7 +24,6 @@ internal extension URLSession {
         ?? self._rac_data(with: request)
 
       return producer
-//        .start(on: QueueScheduler(queue: queue))
         .start(on: scheduler)
         .flatMapError { _ in SignalProducer(error: .couldNotParseErrorEnvelopeJSON) } // NSError
         .flatMap(.concat) { data, response -> SignalProducer<Data, ErrorEnvelope> in
