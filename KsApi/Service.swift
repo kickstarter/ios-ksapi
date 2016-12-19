@@ -436,12 +436,11 @@ public struct Service: ServiceType {
       return request(.updateUpdateDraft(draft, title: title, body: body, isPublic: isPublic))
   }
 
-  public func updatePledge(
-    project: Project,
-            amount: Double,
-            reward: Reward?,
-            shippingLocation: Location?,
-            tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope> {
+  public func updatePledge(project: Project,
+                           amount: Double,
+                           reward: Reward?,
+                           shippingLocation: Location?,
+                           tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope> {
 
     return request(
       .updatePledge(
@@ -464,7 +463,7 @@ public struct Service: ServiceType {
     return request(.updateUserSelf(user))
   }
 
-  fileprivate func decodeModel<M: Decodable>(_ json: AnyObject) ->
+  private func decodeModel<M: Decodable>(_ json: AnyObject) ->
     SignalProducer<M, ErrorEnvelope> where M == M.DecodedType {
 
       return SignalProducer(value: json)
@@ -480,7 +479,7 @@ public struct Service: ServiceType {
       }
   }
 
-  fileprivate func decodeModels<M: Decodable>(_ json: AnyObject) ->
+  private func decodeModels<M: Decodable>(_ json: AnyObject) ->
     SignalProducer<[M], ErrorEnvelope> where M == M.DecodedType {
 
       return SignalProducer(value: json)
@@ -496,9 +495,9 @@ public struct Service: ServiceType {
       }
   }
 
-  fileprivate static let session = URLSession(configuration: .default)
+  private static let session = URLSession(configuration: .default)
 
-  fileprivate func requestPagination<M: Decodable>(_ paginationUrl: String)
+  private func requestPagination<M: Decodable>(_ paginationUrl: String)
     -> SignalProducer<M, ErrorEnvelope> where M == M.DecodedType {
 
       guard let paginationUrl = URL(string: paginationUrl) else {
@@ -509,7 +508,7 @@ public struct Service: ServiceType {
         .flatMap(decodeModel)
   }
 
-  fileprivate func request<M: Decodable>(_ route: Route)
+  private func request<M: Decodable>(_ route: Route)
     -> SignalProducer<M, ErrorEnvelope> where M == M.DecodedType {
 
       let properties = route.requestProperties
@@ -527,15 +526,15 @@ public struct Service: ServiceType {
         .flatMap(decodeModel)
   }
 
-  fileprivate func request<M: Decodable>(_ route: Route)
+  private func request<M: Decodable>(_ route: Route)
     -> SignalProducer<[M], ErrorEnvelope> where M == M.DecodedType {
 
       let properties = route.requestProperties
 
-      let URL = self.serverConfig.apiBaseUrl.appendingPathComponent(properties.path)
+      let url = self.serverConfig.apiBaseUrl.appendingPathComponent(properties.path)
 
       return Service.session.rac_JSONResponse(
-        preparedRequest(forURL: URL, method: properties.method, query: properties.query),
+        preparedRequest(forURL: url, method: properties.method, query: properties.query),
         uploading: properties.file.map { ($1, $0.rawValue) }
         )
         .flatMap(decodeModels)

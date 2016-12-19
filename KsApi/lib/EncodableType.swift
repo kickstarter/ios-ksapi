@@ -24,6 +24,6 @@ public extension EncodableType {
    - returns: `String`
    */
   public func toJSONString() -> String? {
-    return self.toJSONData().flatMap { String(data: $0, encoding: String.Encoding.utf8) }
+    return self.toJSONData().flatMap { String(data: $0, encoding: .utf8) }
   }
 }

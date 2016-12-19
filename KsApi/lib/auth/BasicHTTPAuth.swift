@@ -24,7 +24,7 @@ extension BasicHTTPAuthType {
   */
   var authorizationHeader: String? {
     let string = "\(username):\(password)"
-    if let data = string.data(using: String.Encoding.utf8) {
+    if let data = string.data(using: .utf8) {
       let base64 = data.base64EncodedString(options: .lineLength64Characters)
       return "Basic \(base64)"
     }

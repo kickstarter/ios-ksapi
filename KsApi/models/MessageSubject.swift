@@ -1,5 +1,3 @@
-import ReactiveSwift
-
 public enum MessageSubject {
   case backing(Backing)
   case messageThread(MessageThread)

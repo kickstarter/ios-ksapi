@@ -126,7 +126,7 @@ public struct Project {
     return isDateToday(date: potdAt, today: today, calendar: calendar)
   }
 
-  fileprivate func isDateToday(date: TimeInterval, today: Date, calendar: Calendar) -> Bool {
+  private func isDateToday(date: TimeInterval, today: Date, calendar: Calendar) -> Bool {
     let startOfToday = calendar.startOfDay(for: today)
     return abs(startOfToday.timeIntervalSince1970 - date) < 60.0 * 60.0 * 24.0
   }

@@ -23,7 +23,7 @@ extension Data {
 
 extension URL {
   internal var imageMime: String? {
-    return mimeType(extension: pathExtension, where: kUTTypeImage)
+    return mimeType(extension: self.pathExtension, where: kUTTypeImage)
   }
 }
 

@@ -70,9 +70,9 @@ extension Param: Decodable {
 }
 
 private let allowableRFC3986: CharacterSet = {
-  let set = NSMutableCharacterSet.alphanumeric()
-  set.addCharacters(in: "-._~/?")
-  return set as CharacterSet
+  var set = CharacterSet.alphanumerics
+  set.insert(charactersIn: "-._~/?")
+  return set
 }()
 
 private func encodeForRFC3986(_ str: String) -> String? {

@@ -255,14 +255,14 @@ public protocol ServiceType {
 
   /// Performs the first step of checkout by creating a pledge on the server.
   func updatePledge(project: Project,
-                            amount: Double,
-                            reward: Reward?,
-                            shippingLocation: Location?,
-                            tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope>
+                    amount: Double,
+                    reward: Reward?,
+                    shippingLocation: Location?,
+                    tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope>
 
   /// Update the project notification setting.
-  func updateProjectNotification(_ notification: ProjectNotification) ->
-    SignalProducer<ProjectNotification, ErrorEnvelope>
+  func updateProjectNotification(_ notification: ProjectNotification)
+    -> SignalProducer<ProjectNotification, ErrorEnvelope>
 
   /// Update the current user with settings attributes.
   func updateUserSelf(_ user: User) -> SignalProducer<User, ErrorEnvelope>
@@ -305,31 +305,29 @@ extension ServiceType {
   public func preparedRequest(forRequest originalRequest: URLRequest, query: [String:Any] = [:])
     -> URLRequest {
 
-      guard let request = (originalRequest as NSURLRequest).mutableCopy() as? NSMutableURLRequest else {
-        return originalRequest
-      }
+      var request = originalRequest
       guard let URL = request.url else {
         return originalRequest
       }
 
       var headers = self.defaultHeaders
 
-      let method = request.httpMethod.uppercased()
+      let method = request.httpMethod?.uppercased()
       var components = URLComponents(url: URL, resolvingAgainstBaseURL: false)!
       var queryItems = components.queryItems ?? []
       queryItems.append(contentsOf: self.defaultQueryParams.map(URLQueryItem.init(name:value:)))
 
-      if method == "POST" || method == "PUT" {
+      if method == .some("POST") || method == .some("PUT") {
         if request.httpBody == nil {
           headers["Content-Type"] = "application/json; charset=utf-8"
           request.httpBody = try? JSONSerialization.data(withJSONObject: query, options: [])
         }
       } else {
-        let __test__ = query
-          .flatMap(queryComponents)
-          .map(URLQueryItem.init(name:value:))
-
-        queryItems.append(contentsOf: __test__)
+        queryItems.append(
+          contentsOf: query
+            .flatMap(queryComponents)
+            .map(URLQueryItem.init(name:value:))
+        )
       }
       components.queryItems = queryItems.sorted { $0.name < $1.name }
       request.url = components.url
@@ -337,7 +335,7 @@ extension ServiceType {
       let currentHeaders = request.allHTTPHeaderFields ?? [:]
       request.allHTTPHeaderFields = currentHeaders.withAllValuesFrom(headers)
 
-      return request as URLRequest
+      return request
   }
 
   /**
@@ -349,12 +347,12 @@ extension ServiceType {
 
    - returns: A new URL request that is properly configured for the server.
    */
-  public func preparedRequest(forURL URL: Foundation.URL, method: Method = .GET, query: [String:Any] = [:])
+  public func preparedRequest(forURL url: URL, method: Method = .GET, query: [String:Any] = [:])
     -> URLRequest {
 
-      let request = NSMutableURLRequest(url: URL)
+      var request = URLRequest(url: url)
       request.httpMethod = method.rawValue
-      return self.preparedRequest(forRequest: request as URLRequest, query: query)
+      return self.preparedRequest(forRequest: request, query: query)
   }
 
   public func isPrepared(request: URLRequest) -> Bool {

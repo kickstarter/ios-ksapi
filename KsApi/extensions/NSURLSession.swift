@@ -7,11 +7,9 @@ import ReactiveSwift
 import Result
 
 private func parseJSONData(_ data: Data) -> AnyObject? {
-  // swiftlint:disable:next force_try
-  return try! JSONSerialization.jsonObject(with: data, options: []) as AnyObject?
+  return (try? JSONSerialization.jsonObject(with: data, options: [])) as AnyObject?
 }
 
-private let queue = DispatchQueue(label: "com.kickstarter.ksapi", attributes: [])
 private let scheduler = QueueScheduler(qos: .background, name: "com.kickstarter.ksapi", targeting: nil)
 
 internal extension URLSession {
@@ -21,7 +19,7 @@ internal extension URLSession {
     -> SignalProducer<Data, ErrorEnvelope> {
 
       let producer = file.map { self.rac_dataWithRequest(request, uploading: $0, named: $1) }
-        ?? self._rac_data(with: request)
+        ?? self.reactive.data(with: request)
 
       return producer
         .start(on: scheduler)
@@ -93,9 +91,9 @@ internal extension URLSession {
       let (template, rule) = templateAndRule
       let range = NSRange(location: 0, length: accum.characters.count)
       return rule.stringByReplacingMatches(in: accum,
-                                                   options: .withTransparentBounds,
-                                                   range: range,
-                                                   withTemplate: template)
+                                           options: .withTransparentBounds,
+                                           range: range,
+                                           withTemplate: template)
     }
   }
 }
@@ -113,7 +111,7 @@ extension URLSession {
       var mutableRequest = request
 
       guard
-        let data = try? Data.init(contentsOf: file),
+        let data = try? Data(contentsOf: file),
         let mime = file.imageMime ?? data.imageMime,
         let multipartHead = ("--\(boundary)\r\n"
           + "Content-Disposition: form-data; name=\"\(name)\"; filename=\"\(file.lastPathComponent)\"\r\n"
@@ -127,7 +125,7 @@ extension URLSession {
       body.append(multipartTail)
 
       mutableRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-      mutableRequest.httpBody = body as Data
+      mutableRequest.httpBody = body
 
       return SignalProducer { observer, disposable in
         let task = self.dataTask(with: mutableRequest) { data, response, error in
@@ -141,23 +139,5 @@ extension URLSession {
         disposable += task.cancel
         task.resume()
       }
-  }
-
-  public func _rac_data(with request: URLRequest) -> SignalProducer<(Data, URLResponse), AnyError> {
-    return SignalProducer { observer, disposable in
-      let task = self.dataTask(with: request) { data, response, error in
-        if let data = data, let response = response {
-          observer.send(value: (data, response))
-          observer.sendCompleted()
-        } else {
-          observer.send(error: AnyError(error ?? defaultSessionError))
-        }
-      }
-
-      disposable += {
-        task.cancel()
-      }
-      task.resume()
-    }
   }
 }
