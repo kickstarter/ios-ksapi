@@ -42,7 +42,7 @@ categories
 service.fetchActivities()
   .flatMap(.Concat) { SignalProducer<Activity, ErrorEnvelope>(values: $0.activities) }
   .map { $0.user?.name }
-  .ignoreNil()
+  .skipNil()
   .startWithNext { name in
     print("Activity user's name: \(name)")
 }
