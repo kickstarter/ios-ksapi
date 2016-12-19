@@ -54,12 +54,12 @@ extension Project.Country: Decodable {
 }
 
 extension Project.Country: EncodableType {
-  public func encode() -> [String : Any] {
-    var result: [String:AnyObject] = [:]
-    result["country"] = self.countryCode as AnyObject?
-    result["currency"] = self.currencyCode as AnyObject?
-    result["currency_symbol"] = self.currencySymbol as AnyObject?
-    result["currency_trailing_code"] = self.trailingCode as AnyObject?
+  public func encode() -> [String:Any] {
+    var result: [String:Any] = [:]
+    result["country"] = self.countryCode
+    result["currency"] = self.currencyCode
+    result["currency_symbol"] = self.currencySymbol
+    result["currency_trailing_code"] = self.trailingCode
     return result
   }
 }

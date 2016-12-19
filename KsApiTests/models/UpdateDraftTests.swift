@@ -7,10 +7,10 @@ final class UpdateDraftTests: XCTestCase {
   func testJSONParsing_WithCompleteData() {
 
     let decoded = UpdateDraft.decodeJSONDictionary([
-      "body": "world" as AnyObject,
-      "id": 1 as AnyObject,
-      "public": true as AnyObject,
-      "project_id": 2 as AnyObject,
+      "body": "world",
+      "id": 1,
+      "public": true,
+      "project_id": 2,
       "sequence": 3,
       "title": "hello",
       "visible": true,

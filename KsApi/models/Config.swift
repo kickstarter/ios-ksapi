@@ -46,7 +46,7 @@ public func == (lhs: Config, rhs: Config) -> Bool {
 }
 
 extension Config: EncodableType {
-  public func encode() -> [String : Any] {
+  public func encode() -> [String:Any] {
     var result: [String:Any] = [:]
     result["ab_experiments"] = self.abExperiments
     result["app_id"] = self.appId

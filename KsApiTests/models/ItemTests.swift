@@ -6,11 +6,11 @@ final class ItemTests: XCTestCase {
 
   func testDecoding() {
     let decoded = Item.decodeJSONDictionary([
-      "amount": 10.0 as AnyObject,
-      "description": "Hello" as AnyObject,
-      "id": 1 as AnyObject,
-      "name": "The thing" as AnyObject,
-      "project_id": 1 as AnyObject
+      "amount": 10.0,
+      "description": "Hello",
+      "id": 1,
+      "name": "The thing",
+      "project_id": 1
     ])
 
     XCTAssertNil(decoded.error)

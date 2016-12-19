@@ -80,6 +80,6 @@ final class FindFriendsEnvelopeTests: XCTestCase {
     let friends = FindFriendsEnvelope.decodeJSONDictionary(json)
 
     XCTAssertNil(friends.value?.urls.api.moreUsers)
-    XCTAssertNil(friends.value?.users)
+    XCTAssertEqual([], friends.value?.users ?? [])
   }
 }

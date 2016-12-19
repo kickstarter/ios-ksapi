@@ -27,12 +27,12 @@ extension Location: Decodable {
 }
 
 extension Location: EncodableType {
-  public func encode() -> [String: Any] {
-    var result: [String: AnyObject] = [:]
-    result["country"] = self.country as AnyObject?
-    result["displayable_name"] = self.displayableName as AnyObject?
-    result["id"] = self.id as AnyObject?
-    result["name"] = self.name as AnyObject?
+  public func encode() -> [String:Any] {
+    var result: [String:Any] = [:]
+    result["country"] = self.country
+    result["displayable_name"] = self.displayableName
+    result["id"] = self.id
+    result["name"] = self.name
     return result
   }
 }

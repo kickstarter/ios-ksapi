@@ -15,7 +15,7 @@ final class UserTests: XCTestCase {
   }
 
   func testJsonParsing() {
-    let json: [String : Any] = [
+    let json: [String:Any] = [
       "id": 1,
       "name": "Blob",
       "avatar": [

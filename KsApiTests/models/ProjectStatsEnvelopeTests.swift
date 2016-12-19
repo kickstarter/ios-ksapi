@@ -23,7 +23,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
       ["date": 555444334],
       ["date": 555444335]
     ]
-    let json: [String: Any] = [
+    let json: [String:Any] = [
       "referral_distribution": [
         [
           "code": "my_wonderful_referrer_code",
@@ -117,7 +117,7 @@ final class ProjectStatsEnvelopeTests: XCTestCase {
   // swiftlint:enable function_body_length
 
   func testJSONDecoding_MissingData() {
-    let json: [String: Any] = [
+    let json: [String:Any] = [
       "referral_distribution": [],
       "reward_distribution": [],
       "cumulative": [],

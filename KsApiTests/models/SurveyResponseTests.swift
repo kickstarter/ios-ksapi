@@ -5,7 +5,7 @@ import XCTest
 final internal class SurveyResponseTests: XCTestCase {
   func testJSONDecoding() {
     let decoded = SurveyResponse.decodeJSONDictionary([
-      "id": 1 as AnyObject,
+      "id": 1,
       "urls": [
         "web": [
           "survey": "http://"
