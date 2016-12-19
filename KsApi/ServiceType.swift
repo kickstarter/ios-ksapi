@@ -369,10 +369,10 @@ extension ServiceType {
     headers["Kickstarter-App-Id"] = self.appId
     headers["Kickstarter-iOS-App"] = self.buildVersion
 
-    let executable = Bundle.main.infoDictionary?["CFBundleExecutable"]
-    let bundleIdentifier = Bundle.main.infoDictionary?["CFBundleIdentifier"]
-    let app: AnyObject = (executable as AnyObject?? ?? bundleIdentifier as AnyObject?) ?? "Kickstarter" as AnyObject
-    let bundleVersion: AnyObject = Bundle.main.infoDictionary?["CFBundleVersion"] as AnyObject? ?? "1" as AnyObject
+    let executable = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String
+    let bundleIdentifier = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String
+    let app: String = executable ?? bundleIdentifier ?? "Kickstarter"
+    let bundleVersion: String = (Bundle.main.infoDictionary?["CFBundleVersion"] as? String) ?? "1"
     let model = UIDevice.current.model
     let systemVersion = UIDevice.current.systemVersion
     let scale = UIScreen.main.scale

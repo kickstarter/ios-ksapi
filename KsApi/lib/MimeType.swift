@@ -3,8 +3,11 @@ import MobileCoreServices
 
 extension Data {
   internal var imageMime: String? {
-    guard let byte: UInt8 = UnsafeBufferPointer(start: (self as NSData).bytes.bindMemory(to: UInt8.self, capacity: self.count), count: 1).first
-      else { return nil }
+
+    let start = (self as NSData).bytes.bindMemory(to: UInt8.self, capacity: self.count)
+
+    guard let byte: UInt8 = UnsafeBufferPointer(start: start, count: 1).first else { return nil }
+    
     switch byte {
     case 0xFF:
       return mimeType(uti: kUTTypeJPEG)
@@ -25,8 +28,9 @@ extension URL {
 }
 
 private func mimeType(extension: String, where: CFString? = nil) -> String? {
-  let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, `extension` as CFString, `where`)?
-    .takeRetainedValue()
+  let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,
+                                                  `extension` as CFString,
+                                                  `where`)?.takeRetainedValue()
   return uti.flatMap(mimeType(uti:))
 }
 

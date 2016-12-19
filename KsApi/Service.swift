@@ -4,8 +4,8 @@
 import Argo
 import Foundation
 import Prelude
-import ReactiveSwift
 import ReactiveExtensions
+import ReactiveSwift
 
 private extension Bundle {
   var _buildVersion: String {

@@ -1,18 +1,6 @@
 import Argo
 import Curry
 import Runes
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
 
 public struct Category {
   public let color: Int?
@@ -96,7 +84,11 @@ public func < (lhs: Category, rhs: Category) -> Bool {
     return false
   }
 
-  return lhs.root?.name < rhs.root?.name
+  if let lhsRootName = lhs.root?.name, let rhsRootName = rhs.root?.name {
+    return lhsRootName < rhsRootName
+  }
+
+  return lhs.root == nil
 }
 
 extension Category: CustomStringConvertible, CustomDebugStringConvertible {
