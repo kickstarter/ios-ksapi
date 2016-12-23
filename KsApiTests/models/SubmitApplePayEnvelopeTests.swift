@@ -6,10 +6,10 @@ final class SubmitApplePayEnvelopeTests: XCTestCase {
   func testDecodingWithStringStatus() {
     let decoded = SubmitApplePayEnvelope.decodeJSONDictionary(
       [
-        "data" : [
-          "thankyou_url" : "https://www.kickstarter.com/thanks"
+        "data": [
+          "thankyou_url": "https://www.kickstarter.com/thanks"
         ],
-        "status" : "200"
+        "status": "200"
       ]
     )
 
@@ -20,10 +20,10 @@ final class SubmitApplePayEnvelopeTests: XCTestCase {
   func testDecodingWithStatus() {
     let decoded = SubmitApplePayEnvelope.decodeJSONDictionary(
       [
-        "data" : [
-          "thankyou_url" : "https://www.kickstarter.com/thanks"
+        "data": [
+          "thankyou_url": "https://www.kickstarter.com/thanks"
         ],
-        "status" : 200
+        "status": 200
       ]
     )
 
@@ -35,8 +35,8 @@ final class SubmitApplePayEnvelopeTests: XCTestCase {
 
     let decoded = SubmitApplePayEnvelope.decodeJSONDictionary(
       [
-        "data" : [
-          "thankyou_url" : "https://www.kickstarter.com/thanks"
+        "data": [
+          "thankyou_url": "https://www.kickstarter.com/thanks"
         ]
       ]
     )
@@ -47,10 +47,10 @@ final class SubmitApplePayEnvelopeTests: XCTestCase {
   func testDecodingWithBadStatusData() {
     let decoded = SubmitApplePayEnvelope.decodeJSONDictionary(
       [
-        "data" : [
-          "thankyou_url" : "bad data"
+        "data": [
+          "thankyou_url": "bad data"
         ],
-        "status" : "bad data"
+        "status": "bad data"
       ]
     )
 
