@@ -77,7 +77,7 @@ public struct Project {
     public let id: String
     public let isLiveNow: Bool
     public let name: String
-    public let startDate: NSTimeInterval
+    public let startDate: TimeInterval
     public let url: String
   }
 
@@ -164,7 +164,7 @@ extension Project: Decodable {
       <*> Project.MemberData.decode(json)
       <*> Project.Dates.decode(json)
       <*> json <| "id"
-      <*> (json <|| "livestreams" <|> .Success([]))
+      <*> (json <|| "livestreams" <|> .success([]))
       <*> (json <| "location" <|> .success(Location.none))
       <*> json <| "name"
       <*> Project.Personalization.decode(json)
@@ -208,7 +208,7 @@ extension Project.Stats: Decodable {
 }
 
 extension Project.LiveStream: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.LiveStream> {
+  public static func decode(_ json: JSON) -> Decoded<Project.LiveStream> {
     return curry(Project.LiveStream.init)
       <^> json <| "id"
       <*> json <| "live_now"

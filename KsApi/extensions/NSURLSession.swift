@@ -6,9 +6,8 @@ import Prelude
 import ReactiveSwift
 import Result
 
-private func parseJSONData(_ data: Data) -> AnyObject? {
-  // FIXME: can anyobject be any here?
-  return (try? JSONSerialization.jsonObject(with: data, options: [])) as AnyObject?
+private func parseJSONData(_ data: Data) -> Any? {
+  return (try? JSONSerialization.jsonObject(with: data, options: []))
 }
 
 private let scheduler = QueueScheduler(qos: .background, name: "com.kickstarter.ksapi", targeting: nil)
@@ -59,11 +58,11 @@ internal extension URLSession {
   // Converts an URLSessionTask into a signal producer of raw JSON data. If the JSON does not parse
   // successfully, an `ErrorEnvelope.errorJSONCouldNotParse()` error is emitted.
   internal func rac_JSONResponse(_ request: URLRequest, uploading file: (url: URL, name: String)? = nil)
-    -> SignalProducer<AnyObject, ErrorEnvelope> {
+    -> SignalProducer<Any, ErrorEnvelope> {
 
       return self.rac_dataResponse(request, uploading: file)
         .map(parseJSONData)
-        .flatMap { json -> SignalProducer<AnyObject, ErrorEnvelope> in
+        .flatMap { json -> SignalProducer<Any, ErrorEnvelope> in
           guard let json = json else {
             return .init(error: .couldNotParseJSON)
           }

@@ -463,7 +463,7 @@ public struct Service: ServiceType {
     return request(.updateUserSelf(user))
   }
 
-  private func decodeModel<M: Decodable>(_ json: AnyObject) ->
+  private func decodeModel<M: Decodable>(_ json: Any) ->
     SignalProducer<M, ErrorEnvelope> where M == M.DecodedType {
 
       return SignalProducer(value: json)
@@ -479,7 +479,7 @@ public struct Service: ServiceType {
       }
   }
 
-  private func decodeModels<M: Decodable>(_ json: AnyObject) ->
+  private func decodeModels<M: Decodable>(_ json: Any) ->
     SignalProducer<[M], ErrorEnvelope> where M == M.DecodedType {
 
       return SignalProducer(value: json)
