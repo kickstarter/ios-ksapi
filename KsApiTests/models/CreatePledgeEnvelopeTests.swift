@@ -4,13 +4,13 @@ import XCTest
 final class CreatePledgeEnvelopeTests: XCTestCase {
 
   func testDecodingWithStringStatus() {
-    let decoded = CreatePledgeEnvelope.decodeJSONDictionary(["status" : "200"])
+    let decoded = CreatePledgeEnvelope.decodeJSONDictionary(["status": "200"])
     XCTAssertNil(decoded.error)
     XCTAssertEqual(200, decoded.value?.status)
   }
 
   func testDecodingWithIntStatus() {
-    let decoded = CreatePledgeEnvelope.decodeJSONDictionary(["status" : 200])
+    let decoded = CreatePledgeEnvelope.decodeJSONDictionary(["status": 200])
     XCTAssertNil(decoded.error)
     XCTAssertEqual(200, decoded.value?.status)
   }
@@ -21,7 +21,7 @@ final class CreatePledgeEnvelopeTests: XCTestCase {
   }
 
   func testDecodingWithBadStatusData() {
-    let decoded = CreatePledgeEnvelope.decodeJSONDictionary(["status" : "bad data"])
+    let decoded = CreatePledgeEnvelope.decodeJSONDictionary(["status": "bad data"])
     XCTAssertNil(decoded.error)
     XCTAssertEqual(0, decoded.value?.status)
   }
