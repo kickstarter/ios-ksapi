@@ -5,7 +5,9 @@ dependencies:
   pre:
     - bin/bootstrap
     - brew update || brew update
+    - sudo xcode-select -s /Applications/Xcode-8.2.app
     - brew install swiftlint
+    - sudo xcode-select -s /Applications/Xcode-7.3.app
   override:
     - git submodule sync --recursive
     - git submodule update --init --recursive || git submodule foreach git fetch origin --tags
@@ -15,9 +17,11 @@ test:
     - xcrun instruments -w 'iPhone 6 (9.3)' || true
     - sleep 15
   override:
+    - sudo xcode-select -s /Applications/Xcode-8.2.app
     - set -o pipefail &&
       swiftlint lint --strict --reporter json |
       tee $CIRCLE_ARTIFACTS/swiftlint-report.json
+    - sudo xcode-select -s /Applications/Xcode-7.3.app
     - bin/test iOS
 experimental:
   notify:
