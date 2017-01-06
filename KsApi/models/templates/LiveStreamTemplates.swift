@@ -1,6 +1,5 @@
 import Prelude
 
-// swiftlint:disable line_length
 extension Project.LiveStream {
   internal static let template = Project.LiveStream(
     id: "123",
