@@ -5,7 +5,9 @@ dependencies:
   pre:
     - bin/bootstrap
     - brew update || brew update
+    - sudo xcode-select -s /Applications/Xcode-8.2.app
     - brew install swiftlint
+    - sudo xcode-select -s /Applications/Xcode-7.3.app
   override:
     - git submodule sync --recursive
     - git submodule update --init --recursive || git submodule foreach git fetch origin --tags
