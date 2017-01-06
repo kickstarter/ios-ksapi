@@ -7,6 +7,7 @@ import ReactiveSwift
 import Result
 
 private func parseJSONData(_ data: Data) -> AnyObject? {
+  // FIXME: can anyobject be any here?
   return (try? JSONSerialization.jsonObject(with: data, options: [])) as AnyObject?
 }
 
