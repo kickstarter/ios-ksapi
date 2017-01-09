@@ -3,7 +3,7 @@ import Prelude
 
 extension Project.LiveStream {
   public enum lens {
-    public static let id = Lens<Project.LiveStream, String>(
+    public static let id = Lens<Project.LiveStream, Int>(
       view: { $0.id },
       set: { .init(id: $0, isLiveNow: $1.isLiveNow, name: $1.name, startDate: $1.startDate) }
     )

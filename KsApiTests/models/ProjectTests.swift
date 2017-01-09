@@ -138,10 +138,24 @@ final class ProjectTests: XCTestCase {
     )
 
     XCTAssertNil(liveStreamData.error)
-    XCTAssertEqual("1", liveStreamData.value?.id)
+    XCTAssertEqual(1, liveStreamData.value?.id)
     XCTAssertEqual("bar", liveStreamData.value?.name)
     XCTAssertEqual(123456789, liveStreamData.value?.startDate)
     XCTAssertEqual(true, liveStreamData.value?.isLiveNow)
+  }
+
+  func testJSONParsing_WithLiveStreams_IntId() {
+    let liveStreamData = Project.LiveStream.decodeJSONDictionary(
+      [
+        "id": 1,
+        "name": "bar",
+        "url": "https://huzza.io/some/stream-foo-bar-baz",
+        "start_date": 123456789,
+        "live_now": true
+      ]
+    )
+
+    XCTAssertEqual(1, liveStreamData.value?.id)
   }
 
   func testJSONParsing_WithMemberData() {
