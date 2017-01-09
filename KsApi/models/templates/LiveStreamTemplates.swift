@@ -5,7 +5,6 @@ extension Project.LiveStream {
     id: "123",
     isLiveNow: true,
     name: "Test Live Stream",
-    startDate: 123456789,
-    url: "http://www.kickstarter.com"
+    startDate: 123456789
   )
 }
