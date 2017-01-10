@@ -22,7 +22,7 @@ final class EncodableTests: XCTestCase {
   func testToJSONData() {
     let model = EncodableModel(id: 1, name: "Blob")
     let jsonString = "{\"ID\":1,\"NAME\":\"Blob\"}"
-    let jsonData = jsonString.data(using: String.Encoding.utf8)
+    let jsonData = jsonString.data(using: .utf8)
 
     XCTAssertEqual(model.toJSONData(), jsonData)
   }

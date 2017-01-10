@@ -141,7 +141,7 @@ final class ServiceTypeTests: XCTestCase {
   func testPreparedPostURLWithBody() {
     let url = URL(string: "http://api.ksr.com/v1/test?key=value")!
     var baseRequest = URLRequest(url: url)
-    let body = "test".data(using: String.Encoding.utf8, allowLossyConversion: false)
+    let body = "test".data(using: .utf8, allowLossyConversion: false)
     baseRequest.httpBody = body
     baseRequest.httpMethod = "POST"
     let request = self.service.preparedRequest(forRequest: baseRequest, query: ["extra": "1"])
