@@ -74,11 +74,10 @@ public struct Project {
   }
 
   public struct LiveStream {
-    public let id: String
+    public let id: Int
     public let isLiveNow: Bool
     public let name: String
     public let startDate: TimeInterval
-    public let url: String
   }
 
   public struct MemberData {
@@ -210,11 +209,10 @@ extension Project.Stats: Decodable {
 extension Project.LiveStream: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Project.LiveStream> {
     return curry(Project.LiveStream.init)
-      <^> json <| "id"
+      <^> (json <| "id" >>- toInt(string:)) <|> (json <| "id")
       <*> json <| "live_now"
       <*> json <| "name"
       <*> json <| "start_date"
-      <*> json <| "url"
   }
 }
 
@@ -278,4 +276,9 @@ extension Project.MemberData.Permission: Decodable {
 
 private func removeUnknowns(_ xs: [Project.MemberData.Permission]) -> [Project.MemberData.Permission] {
   return xs.filter { $0 != .unknown }
+}
+
+private func toInt(string string: String) -> Decoded<Int> {
+  return Int(string).map(Decoded.Success)
+    ?? Decoded.Failure(DecodeError.Custom("Couldn't decoded \"\(string)\" into Int."))
 }
