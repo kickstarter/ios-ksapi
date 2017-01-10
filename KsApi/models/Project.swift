@@ -209,7 +209,7 @@ extension Project.Stats: Decodable {
 extension Project.LiveStream: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Project.LiveStream> {
     return curry(Project.LiveStream.init)
-      <^> (json <| "id" >>- toInt(string:)) <|> (json <| "id")
+      <^> ((json <| "id" >>- toInt(string:)) <|> (json <| "id"))
       <*> json <| "live_now"
       <*> json <| "name"
       <*> json <| "start_date"
