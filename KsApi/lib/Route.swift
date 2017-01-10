@@ -214,7 +214,7 @@ internal enum Route {
       return (.GET, "/v1/users/self/notifications", [:], nil)
 
     case let .projects(member):
-      return (.GET, "/v1/users/self/projects", ["member": member], nil)
+      return (.GET, "/v1/users/self/projects", ["member": member ? "1" : "0"], nil)
 
     case let .projectStats(projectId):
       return (.GET, "/v1/projects/\(projectId)/stats", [:], nil)
