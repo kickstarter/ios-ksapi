@@ -1,16 +1,17 @@
 import Argo
 import Curry
+import Runes
 
 public struct Comment {
   public let author: User
   public let body: String
-  public let createdAt: NSTimeInterval
-  public let deletedAt: NSTimeInterval?
+  public let createdAt: TimeInterval
+  public let deletedAt: TimeInterval?
   public let id: Int
 }
 
 extension Comment: Decodable {
-  public static func decode(json: JSON) -> Decoded<Comment> {
+  public static func decode(_ json: JSON) -> Decoded<Comment> {
     return curry(Comment.init)
       <^> json <| "author"
       <*> json <| "body"
@@ -28,9 +29,9 @@ public func == (lhs: Comment, rhs: Comment) -> Bool {
 
 // Decode a time interval so that non-positive values are coalesced to `nil`. We do this because the API
 // sends back `0` when the comment hasn't been deleted, and we'd rather handle that value as `nil`.
-private func decodePositiveTimeInterval(interval: NSTimeInterval?) -> Decoded<NSTimeInterval?> {
-  if let interval = interval where interval > 0.0 {
-    return .Success(interval)
+private func decodePositiveTimeInterval(_ interval: TimeInterval?) -> Decoded<TimeInterval?> {
+  if let interval = interval, interval > 0.0 {
+    return .success(interval)
   }
-  return .Success(nil)
+  return .success(nil)
 }

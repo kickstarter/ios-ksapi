@@ -43,7 +43,7 @@ extension Backing {
         status: $1.status) }
     )
 
-    public static let pledgedAt = Lens<Backing, NSTimeInterval>(
+    public static let pledgedAt = Lens<Backing, TimeInterval>(
       view: { $0.pledgedAt },
       set: { Backing(amount: $1.amount, backer: $1.backer, backerId: $1.backerId, id: $1.id,
         locationId: $1.locationId, pledgedAt: $0, projectCountry: $1.projectCountry, projectId: $1.projectId,

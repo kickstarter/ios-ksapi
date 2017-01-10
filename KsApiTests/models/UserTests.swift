@@ -15,7 +15,7 @@ final class UserTests: XCTestCase {
   }
 
   func testJsonParsing() {
-    let json = [
+    let json: [String:Any] = [
       "id": 1,
       "name": "Blob",
       "avatar": [
@@ -50,11 +50,11 @@ final class UserTests: XCTestCase {
     XCTAssertEqual(false, user?.facebookConnected)
     XCTAssertEqual(false, user?.isFriend)
     XCTAssertNotNil(user?.location)
-    XCTAssertEqual(json, user?.encode() as! [String:NSObject])
+    XCTAssertEqual(json as NSDictionary?, user?.encode() as NSDictionary?)
   }
 
   func testJsonEncoding() {
-    let json: [String:AnyObject] = [
+    let json: [String:Any] = [
       "id": 1,
       "name": "Blob",
       "avatar": [
@@ -78,6 +78,6 @@ final class UserTests: XCTestCase {
     ]
     let user = User.decodeJSONDictionary(json)
 
-    XCTAssertEqual(user.value?.encode(), json as NSDictionary)
+    XCTAssertEqual(user.value?.encode() as NSDictionary?, json as NSDictionary?)
   }
 }

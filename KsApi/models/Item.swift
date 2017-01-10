@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct Item {
   public let amount: Float
@@ -11,7 +12,7 @@ public struct Item {
 }
 
 extension Item: Decodable {
-  public static func decode(json: JSON) -> Decoded<Item> {
+  public static func decode(_ json: JSON) -> Decoded<Item> {
     let create = curry(Item.init)
     return create
       <^> json <| "amount"

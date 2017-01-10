@@ -1,13 +1,16 @@
 machine:
   xcode:
-    version: 7.3
+    version: 8.2
 dependencies:
   pre:
     - bin/bootstrap
     - brew update || brew update
-    - sudo xcode-select -s /Applications/Xcode-8.2.app
     - brew install swiftlint
-    - sudo xcode-select -s /Applications/Xcode-7.3.app
+    - system_profiler SPSoftwareDataType
+    - security list-keychains
+    - security find-identity -p codesigning
+    - instruments -s devices
+    - xcodebuild -showsdks
   override:
     - git submodule sync --recursive
     - git submodule update --init --recursive || git submodule foreach git fetch origin --tags
@@ -17,12 +20,12 @@ test:
     - xcrun instruments -w 'iPhone 6 (9.3)' || true
     - sleep 15
   override:
-    - sudo xcode-select -s /Applications/Xcode-8.2.app
     - set -o pipefail &&
       swiftlint lint --strict --reporter json |
       tee $CIRCLE_ARTIFACTS/swiftlint-report.json
-    - sudo xcode-select -s /Applications/Xcode-7.3.app
-    - bin/test iOS
+    - bin/test iOS 9.3
+    - bin/test iOS 10.1
+    - bin/test tvOS 10.1
 experimental:
   notify:
     branches:

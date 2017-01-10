@@ -18,7 +18,7 @@ extension Project.LiveStream {
       set: { .init(id: $1.id, isLiveNow: $1.isLiveNow, name: $0, startDate: $1.startDate) }
     )
 
-    public static let startDate = Lens<Project.LiveStream, NSTimeInterval>(
+    public static let startDate = Lens<Project.LiveStream, TimeInterval>(
       view: { $0.startDate },
       set: { .init(id: $1.id, isLiveNow: $1.isLiveNow, name: $1.name, startDate: $0) }
     )

@@ -39,7 +39,7 @@ class CategoryTests: XCTestCase {
       Category.documentary,
       ]
 
-    XCTAssertEqual(sorted, categories.sort())
+    XCTAssertEqual(sorted, categories.sorted())
   }
 
   func testDescription() {

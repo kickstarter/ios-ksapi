@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct PushEnvelope {
   public let activity: Activity?
@@ -46,11 +47,11 @@ public struct PushEnvelope {
 }
 
 extension PushEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<PushEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<PushEnvelope> {
     let create = curry(PushEnvelope.init)
 
     let update: Decoded<Update> = json <| "update" <|> json <| "post"
-    let optionalUpdate: Decoded<Update?> = update.map(Optional.Some) <|> .Success(nil)
+    let optionalUpdate: Decoded<Update?> = update.map(Optional.some) <|> .success(nil)
 
     return create
       <^> json <|? "activity"
@@ -64,7 +65,7 @@ extension PushEnvelope: Decodable {
 }
 
 extension PushEnvelope.Activity: Decodable {
-  public static func decode(json: JSON) -> Decoded<PushEnvelope.Activity> {
+  public static func decode(_ json: JSON) -> Decoded<PushEnvelope.Activity> {
     let create = curry(PushEnvelope.Activity.init)
     return create
       <^> json <| "category"
@@ -78,14 +79,14 @@ extension PushEnvelope.Activity: Decodable {
 }
 
 extension PushEnvelope.ApsEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<PushEnvelope.ApsEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<PushEnvelope.ApsEnvelope> {
     return curry(PushEnvelope.ApsEnvelope.init)
       <^> json <| "alert"
   }
 }
 
 extension PushEnvelope.Message: Decodable {
-  public static func decode(json: JSON) -> Decoded<PushEnvelope.Message> {
+  public static func decode(_ json: JSON) -> Decoded<PushEnvelope.Message> {
     return curry(PushEnvelope.Message.init)
       <^> json <| "message_thread_id"
       <*> json <| "project_id"
@@ -93,7 +94,7 @@ extension PushEnvelope.Message: Decodable {
 }
 
 extension PushEnvelope.Project: Decodable {
-  public static func decode(json: JSON) -> Decoded<PushEnvelope.Project> {
+  public static func decode(_ json: JSON) -> Decoded<PushEnvelope.Project> {
     return curry(PushEnvelope.Project.init)
       <^> json <| "id"
       <*> json <|? "photo"
@@ -101,7 +102,7 @@ extension PushEnvelope.Project: Decodable {
 }
 
 extension PushEnvelope.Survey: Decodable {
-  public static func decode(json: JSON) -> Decoded<PushEnvelope.Survey> {
+  public static func decode(_ json: JSON) -> Decoded<PushEnvelope.Survey> {
     return curry(PushEnvelope.Survey.init)
       <^> json <| "id"
       <*> json <| "project_id"
@@ -109,7 +110,7 @@ extension PushEnvelope.Survey: Decodable {
 }
 
 extension PushEnvelope.Update: Decodable {
-  public static func decode(json: JSON) -> Decoded<PushEnvelope.Update> {
+  public static func decode(_ json: JSON) -> Decoded<PushEnvelope.Update> {
     return curry(PushEnvelope.Update.init)
       <^> json <| "id"
       <*> json <| "project_id"

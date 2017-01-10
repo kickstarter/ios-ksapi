@@ -3,7 +3,7 @@ import Prelude
 
 extension Project.MemberData {
   public enum lens {
-    public static let lastUpdatePublishedAt = Lens<Project.MemberData, NSTimeInterval?>(
+    public static let lastUpdatePublishedAt = Lens<Project.MemberData, TimeInterval?>(
       view: { $0.lastUpdatePublishedAt },
       set: { Project.MemberData(lastUpdatePublishedAt: $0, permissions: $1.permissions,
         unreadMessagesCount: $1.unreadMessagesCount, unseenActivityCount: $1.unseenActivityCount) }

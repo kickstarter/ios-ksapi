@@ -6,12 +6,12 @@ public protocol OauthTokenAuthType {
 }
 
 public func == (lhs: OauthTokenAuthType, rhs: OauthTokenAuthType) -> Bool {
-  return lhs.dynamicType == rhs.dynamicType &&
+  return type(of: lhs) == type(of: rhs) &&
     lhs.token == rhs.token
 }
 
 public func == (lhs: OauthTokenAuthType?, rhs: OauthTokenAuthType?) -> Bool {
-  return lhs?.dynamicType == rhs?.dynamicType &&
+  return type(of: lhs) == type(of: rhs) &&
     lhs?.token == rhs?.token
 }
 

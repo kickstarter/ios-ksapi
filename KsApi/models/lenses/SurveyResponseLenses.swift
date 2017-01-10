@@ -3,7 +3,7 @@ import Prelude
 
 extension SurveyResponse {
   public enum lens {
-    public static let answeredAt = Lens<SurveyResponse, NSTimeInterval?>(
+    public static let answeredAt = Lens<SurveyResponse, TimeInterval?>(
       view: { $0.answeredAt },
       set: { .init(answeredAt: $0, id: $1.id, project: $1.project, urls: $1.urls) }
     )

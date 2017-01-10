@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct MessageThread {
   public let backing: Backing?
@@ -12,7 +13,7 @@ public struct MessageThread {
 }
 
 extension MessageThread: Decodable {
-  public static func decode(json: JSON) -> Decoded<MessageThread> {
+  public static func decode(_ json: JSON) -> Decoded<MessageThread> {
     let create = curry(MessageThread.init)
     let tmp = create
       <^> json <|? "backing"

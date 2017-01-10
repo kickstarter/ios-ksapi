@@ -22,7 +22,7 @@ final class RewardTests: XCTestCase {
     let reward4 = Reward.template |> Reward.lens.id .~ 2 <> Reward.lens.minimum .~ 30
 
     let rewards = [reward1, reward2, reward3, reward4]
-    let sorted = rewards.sort()
+    let sorted = rewards.sorted()
 
     XCTAssertEqual(sorted, [reward1, reward3, reward4, reward2])
   }

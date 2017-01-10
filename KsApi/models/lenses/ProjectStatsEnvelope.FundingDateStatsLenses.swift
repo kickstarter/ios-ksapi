@@ -21,7 +21,7 @@ extension ProjectStatsEnvelope.FundingDateStats {
         cumulativeBackersCount: $0, date: $1.date, pledged: $1.pledged) }
     )
 
-    public static let date = Lens<ProjectStatsEnvelope.FundingDateStats, NSTimeInterval>(
+    public static let date = Lens<ProjectStatsEnvelope.FundingDateStats, TimeInterval>(
       view: { $0.date },
       set: { .init(backersCount: $1.backersCount, cumulativePledged: $1.cumulativePledged,
         cumulativeBackersCount: $1.cumulativeBackersCount, date: $0, pledged: $1.pledged) }

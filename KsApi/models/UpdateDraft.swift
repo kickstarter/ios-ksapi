@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct UpdateDraft {
   public let update: Update
@@ -61,7 +62,7 @@ public func == (lhs: UpdateDraft.Attachment, rhs: UpdateDraft.Attachment) -> Boo
 }
 
 extension UpdateDraft: Decodable {
-  public static func decode(json: JSON) -> Decoded<UpdateDraft> {
+  public static func decode(_ json: JSON) -> Decoded<UpdateDraft> {
     return curry(UpdateDraft.init)
       <^> Update.decode(json)
       <*> json <|| "images"
@@ -70,7 +71,7 @@ extension UpdateDraft: Decodable {
 }
 
 extension UpdateDraft.Image: Decodable {
-  public static func decode(json: JSON) -> Decoded<UpdateDraft.Image> {
+  public static func decode(_ json: JSON) -> Decoded<UpdateDraft.Image> {
     return curry(UpdateDraft.Image.init)
       <^> json <| "id"
       <*> json <| "thumb"
@@ -79,7 +80,7 @@ extension UpdateDraft.Image: Decodable {
 }
 
 extension UpdateDraft.Video: Decodable {
-  public static func decode(json: JSON) -> Decoded<UpdateDraft.Video> {
+  public static func decode(_ json: JSON) -> Decoded<UpdateDraft.Video> {
     return curry(UpdateDraft.Video.init)
       <^> json <| "id"
       <*> json <| "status"

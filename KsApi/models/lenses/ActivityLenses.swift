@@ -15,7 +15,7 @@ extension Activity {
         memberData: $1.memberData, project: $1.project, update: $1.update, user: $1.user) }
     )
 
-    public static let createdAt = Lens<Activity, NSTimeInterval>(
+    public static let createdAt = Lens<Activity, TimeInterval>(
       view: { $0.createdAt },
       set: { Activity(category: $1.category, comment: $1.comment, createdAt: $0, id: $1.id,
         memberData: $1.memberData, project: $1.project, update: $1.update, user: $1.user) }

@@ -5,7 +5,7 @@ extension Reward {
     backersCount: 50,
     description: "A cool thing",
     endsAt: nil,
-    estimatedDeliveryOn: NSDate().timeIntervalSince1970 + 60.0 * 60.0 * 24.0 * 365.0,
+    estimatedDeliveryOn: Date().timeIntervalSince1970 + 60.0 * 60.0 * 24.0 * 365.0,
     id: 1,
     limit: 100,
     minimum: 10,

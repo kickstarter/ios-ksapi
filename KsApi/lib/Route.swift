@@ -5,8 +5,8 @@ import Prelude
  */
 internal enum Route {
   case activities(categories: [Activity.Category], count: Int?)
-  case addImage(fileUrl: NSURL, toDraft: UpdateDraft)
-  case addVideo(fileUrl: NSURL, toDraft: UpdateDraft)
+  case addImage(fileUrl: URL, toDraft: UpdateDraft)
+  case addVideo(fileUrl: URL, toDraft: UpdateDraft)
   case backing(projectId: Int, backerId: Int)
   case categories
   case category(Param)
@@ -73,11 +73,11 @@ internal enum Route {
   }
 
   internal var requestProperties:
-    (method: Method, path: String, query: [String:AnyObject], file: (name: UploadParam, url: NSURL)?) {
+    (method: Method, path: String, query: [String:Any], file: (name: UploadParam, url: URL)?) {
 
     switch self {
     case let .activities(categories, count):
-      var params: [String:AnyObject] = ["categories": categories.map { $0.rawValue }]
+      var params: [String:Any] = ["categories": categories.map { $0.rawValue }]
       params["count"] = count
       return (.GET, "/v1/activities", params, nil)
 
@@ -97,9 +97,9 @@ internal enum Route {
       return (.GET, "/v1/categories/\(param.escapedUrlComponent)", [:], nil)
 
     case let .changePaymentMethod(project):
-      let changeMethodUrl = NSURL(string: project.urls.web.project)?
-        .URLByAppendingPathComponent("pledge")
-        .URLByAppendingPathComponent("change_method")
+      let changeMethodUrl = URL(string: project.urls.web.project)?
+        .appendingPathComponent("pledge")
+        .appendingPathComponent("change_method")
 
       return (.PUT, changeMethodUrl?.absoluteString ?? "", ["format": "json"], nil)
 
@@ -110,10 +110,10 @@ internal enum Route {
       return (.GET, "/v1/app/ios/config", [:], nil)
 
     case let .createPledge(project, amount, reward, shippingLocation, tappedReward):
-      let pledgeUrl = NSURL(string: project.urls.web.project)?
-        .URLByAppendingPathComponent("pledge")
+      let pledgeUrl = URL(string: project.urls.web.project)?
+        .appendingPathComponent("pledge")
 
-      var params: [String:AnyObject] = [:]
+      var params: [String:Any] = [:]
       params["clicked_reward"] = tappedReward ? "true" : nil
       params["format"] = "json"
       params["backing"] = [
@@ -142,10 +142,12 @@ internal enum Route {
       return (.PUT, "/v1/facebook/access_token", params, nil)
 
     case let .facebookSignup(facebookAccessToken, sendNewsletters):
-      let params: [String:AnyObject] = ["access_token": facebookAccessToken,
-                                        "intent": "register",
-                                        "send_newsletters": sendNewsletters,
-                                        "newsletter_opt_in": sendNewsletters]
+      let params: [String:Any] = [
+        "access_token": facebookAccessToken,
+        "intent": "register",
+        "send_newsletters": sendNewsletters,
+        "newsletter_opt_in": sendNewsletters
+      ]
       return (.PUT, "/v1/facebook/access_token", params, nil)
 
     case let .fetchUpdateDraft(project):
@@ -164,13 +166,13 @@ internal enum Route {
       return (.POST, "v1/users/self/friends", ["followed_id": userId], nil)
 
     case let .incrementVideoCompletion(project):
-      let statsURL = NSURL(string: project.urls.web.project)?
-        .URLByAppendingPathComponent("video/plays")
+      let statsURL = URL(string: project.urls.web.project)?
+        .appendingPathComponent("video/plays")
       return (.POST, statsURL?.absoluteString ?? "", ["event_type": "complete", "location": "internal"], nil)
 
     case let .incrementVideoStart(project):
-      let statsURL = NSURL(string: project.urls.web.project)?
-        .URLByAppendingPathComponent("video/plays")
+      let statsURL = URL(string: project.urls.web.project)?
+        .appendingPathComponent("video/plays")
       return (.POST, statsURL?.absoluteString ?? "", ["event_type": "start", "location": "internal"], nil)
 
     case let .login(email, password, code):
@@ -212,7 +214,7 @@ internal enum Route {
       return (.GET, "/v1/users/self/notifications", [:], nil)
 
     case let .projects(member):
-      return (.GET, "/v1/users/self/projects", ["member": member], nil)
+      return (.GET, "/v1/users/self/projects", ["member": member ? "1" : "0"], nil)
 
     case let .projectStats(projectId):
       return (.GET, "/v1/projects/\(projectId)/stats", [:], nil)
@@ -251,12 +253,14 @@ internal enum Route {
       return (.GET, "/v1/projects/\(projectId)/rewards/\(rewardId)/shipping_rules", [:], nil)
 
     case let .signup(name, email, password, passwordConfirmation, sendNewsletters):
-      let params: [String:AnyObject] = ["name": name,
-                                        "email": email,
-                                        "newsletter_opt_in": sendNewsletters,
-                                        "password": password,
-                                        "password_confirmation": passwordConfirmation,
-                                        "send_newsletters": sendNewsletters]
+      let params: [String:Any] = [
+        "name": name,
+        "email": email,
+        "newsletter_opt_in": sendNewsletters,
+        "password": password,
+        "password_confirmation": passwordConfirmation,
+        "send_newsletters": sendNewsletters
+      ]
       return (.POST, "/v1/users", params, nil)
 
     case let .star(p):
@@ -295,10 +299,10 @@ internal enum Route {
       return (.GET, "/v1/projects/\(u.projectId)/updates/\(u.id)/comments", [:], nil)
 
     case let .updatePledge(project, amount, reward, shippingLocation, tappedReward):
-      let pledgeUrl = NSURL(string: project.urls.web.project)?
-        .URLByAppendingPathComponent("pledge")
+      let pledgeUrl = URL(string: project.urls.web.project)?
+        .appendingPathComponent("pledge")
 
-      var params: [String:AnyObject] = [:]
+      var params: [String:Any] = [:]
       params["clicked_reward"] = tappedReward ? "true" : nil
       params["format"] = "json"
       params["backing"] = [
@@ -310,7 +314,7 @@ internal enum Route {
       return (.PUT, pledgeUrl?.absoluteString ?? "", params, nil)
 
     case let .updateUpdateDraft(d, title, body, isPublic):
-      let params: [String:AnyObject] = ["title": title, "body": body, "public": isPublic]
+      let params: [String:Any] = ["title": title, "body": body, "public": isPublic]
       return (.PUT, "/v1/projects/\(d.update.projectId)/updates/draft", params, nil)
 
     case let .updateProjectNotification(notification):

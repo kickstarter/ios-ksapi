@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct User {
   public let avatar: Avatar
@@ -67,14 +68,14 @@ extension User: CustomDebugStringConvertible {
 }
 
 extension User: Decodable {
-  public static func decode(json: JSON) -> Decoded<User> {
+  public static func decode(_ json: JSON) -> Decoded<User> {
     let create = curry(User.init)
     let tmp = create
       <^> json <| "avatar"
       <*> json <|? "facebook_connected"
       <*> json <| "id"
       <*> json <|? "is_friend"
-      <*> json <|? "location"
+      <*> (json <|? "location" <|> .success(nil))
     return tmp
       <*> json <| "name"
       <*> User.NewsletterSubscriptions.decode(json)
@@ -85,8 +86,8 @@ extension User: Decodable {
 }
 
 extension User: EncodableType {
-  public func encode() -> [String:AnyObject] {
-    var result: [String:AnyObject] = [:]
+  public func encode() -> [String:Any] {
+    var result: [String:Any] = [:]
     result["avatar"] = self.avatar.encode()
     result["facebook_connected"] = self.facebookConnected ?? false
     result["id"] = self.id
@@ -102,7 +103,7 @@ extension User: EncodableType {
 }
 
 extension User.Avatar: Decodable {
-  public static func decode(json: JSON) -> Decoded<User.Avatar> {
+  public static func decode(_ json: JSON) -> Decoded<User.Avatar> {
     return curry(User.Avatar.init)
       <^> json <|? "large"
       <*> json <| "medium"
@@ -111,8 +112,8 @@ extension User.Avatar: Decodable {
 }
 
 extension User.Avatar: EncodableType {
-  public func encode() -> [String:AnyObject] {
-    var ret = [
+  public func encode() -> [String:Any] {
+    var ret: [String:Any] = [
       "medium": self.medium,
       "small": self.small
     ]
@@ -124,7 +125,7 @@ extension User.Avatar: EncodableType {
 }
 
 extension User.NewsletterSubscriptions: Decodable {
-  public static func decode(json: JSON) -> Decoded<User.NewsletterSubscriptions> {
+  public static func decode(_ json: JSON) -> Decoded<User.NewsletterSubscriptions> {
     return curry(User.NewsletterSubscriptions.init)
       <^> json <|? "games_newsletter"
       <*> json <|? "happening_newsletter"
@@ -134,8 +135,8 @@ extension User.NewsletterSubscriptions: Decodable {
 }
 
 extension User.NewsletterSubscriptions: EncodableType {
-  public func encode() -> [String: AnyObject] {
-    var result: [String: AnyObject] = [:]
+  public func encode() -> [String:Any] {
+    var result: [String:Any] = [:]
     result["games_newsletter"] = self.games
     result["happening_newsletter"] = self.happening
     result["promo_newsletter"] = self.promo
@@ -153,7 +154,7 @@ public func == (lhs: User.NewsletterSubscriptions, rhs: User.NewsletterSubscript
 }
 
 extension User.Notifications: Decodable {
-  public static func decode(json: JSON) -> Decoded<User.Notifications> {
+  public static func decode(_ json: JSON) -> Decoded<User.Notifications> {
     let create = curry(User.Notifications.init)
     let tmp1 = create
       <^> json <|? "notify_of_backings"
@@ -174,8 +175,8 @@ extension User.Notifications: Decodable {
 }
 
 extension User.Notifications: EncodableType {
-  public func encode() -> [String : AnyObject] {
-    var result: [String: AnyObject] = [:]
+  public func encode() -> [String:Any] {
+    var result: [String:Any] = [:]
     result["notify_of_backings"] = self.backings
     result["notify_of_comments"] = self.comments
     result["notify_of_follower"] = self.follower
@@ -209,7 +210,7 @@ public func == (lhs: User.Notifications, rhs: User.Notifications) -> Bool {
 }
 
 extension User.Stats: Decodable {
-  public static func decode(json: JSON) -> Decoded<User.Stats> {
+  public static func decode(_ json: JSON) -> Decoded<User.Stats> {
     let create = curry(User.Stats.init)
     return create
       <^> json <|? "backed_projects_count"
@@ -222,8 +223,8 @@ extension User.Stats: Decodable {
 }
 
 extension User.Stats: EncodableType {
-  public func encode() -> [String: AnyObject] {
-    var result: [String: AnyObject] = [:]
+  public func encode() -> [String:Any] {
+    var result: [String:Any] = [:]
     result["backed_projects_count"] =  self.backedProjectsCount
     result["created_projects_count"] = self.createdProjectsCount
     result["member_projects_count"] = self.memberProjectsCount

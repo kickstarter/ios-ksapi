@@ -6,7 +6,7 @@ public protocol ClientAuthType {
 }
 
 public func == (lhs: ClientAuthType, rhs: ClientAuthType) -> Bool {
-  return lhs.dynamicType == rhs.dynamicType &&
+  return type(of: lhs) == type(of: rhs) &&
     lhs.clientId == rhs.clientId
 }
 

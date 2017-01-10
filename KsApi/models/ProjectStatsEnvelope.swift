@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct ProjectStatsEnvelope {
   public let cumulativeStats: CumulativeStats
@@ -20,7 +21,7 @@ public struct ProjectStatsEnvelope {
     public let backersCount: Int
     public let cumulativePledged: Int
     public let cumulativeBackersCount: Int
-    public let date: NSTimeInterval
+    public let date: TimeInterval
     public let pledged: Int
   }
 
@@ -58,7 +59,7 @@ public struct ProjectStatsEnvelope {
 }
 
 extension ProjectStatsEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<ProjectStatsEnvelope> {
     return curry(ProjectStatsEnvelope.init)
       <^> json <| "cumulative"
       <*> decodedJSON(json, forKey: "funding_distribution").flatMap(decodeSuccessfulFundingStats)
@@ -69,7 +70,7 @@ extension ProjectStatsEnvelope: Decodable {
 }
 
 extension ProjectStatsEnvelope.CumulativeStats: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.CumulativeStats> {
+  public static func decode(_ json: JSON) -> Decoded<ProjectStatsEnvelope.CumulativeStats> {
     return curry(ProjectStatsEnvelope.CumulativeStats.init)
       <^> json <| "average_pledge"
       <*> json <| "backers_count"
@@ -86,13 +87,14 @@ public func == (lhs: ProjectStatsEnvelope.CumulativeStats, rhs: ProjectStatsEnve
 }
 
 extension ProjectStatsEnvelope.FundingDateStats: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.FundingDateStats> {
-    return curry(ProjectStatsEnvelope.FundingDateStats.init)
-      <^> (json <| "backers_count" <|> .Success(0))
+  public static func decode(_ json: JSON) -> Decoded<ProjectStatsEnvelope.FundingDateStats> {
+    let create = curry(ProjectStatsEnvelope.FundingDateStats.init)
+    return create
+      <^> (json <| "backers_count" <|> .success(0))
       <*> ((json <| "cumulative_pledged" >>- stringToIntOrZero) <|> (json <| "cumulative_pledged"))
       <*> json <| "cumulative_backers_count"
       <*> json <| "date"
-      <*> ((json <| "pledged" >>- stringToIntOrZero) <|> .Success(0))
+      <*> ((json <| "pledged" >>- stringToIntOrZero) <|> .success(0))
   }
 }
 
@@ -103,7 +105,7 @@ public func == (lhs: ProjectStatsEnvelope.FundingDateStats, rhs: ProjectStatsEnv
 }
 
 extension ProjectStatsEnvelope.ReferrerStats: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.ReferrerStats> {
+  public static func decode(_ json: JSON) -> Decoded<ProjectStatsEnvelope.ReferrerStats> {
     return curry(ProjectStatsEnvelope.ReferrerStats.init)
       <^> json <| "backers_count"
       <*> json <| "code"
@@ -120,25 +122,25 @@ public func == (lhs: ProjectStatsEnvelope.ReferrerStats, rhs: ProjectStatsEnvelo
 }
 
 extension ProjectStatsEnvelope.ReferrerStats.ReferrerType: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.ReferrerStats.ReferrerType> {
-    if case .String(let referrerType) = json {
-      switch referrerType.lowercaseString {
+  public static func decode(_ json: JSON) -> Decoded<ProjectStatsEnvelope.ReferrerStats.ReferrerType> {
+    if case .string(let referrerType) = json {
+      switch referrerType.lowercased() {
       case "custom":
-        return .Success(.custom)
+        return .success(.custom)
       case "external":
-        return .Success(.external)
+        return .success(.external)
       case "kickstarter":
-        return .Success(.`internal`)
+        return .success(.`internal`)
       default:
-        return .Success(.unknown)
+        return .success(.unknown)
       }
     }
-    return .Success(.unknown)
+    return .success(.unknown)
   }
 }
 
 extension ProjectStatsEnvelope.RewardStats: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.RewardStats> {
+  public static func decode(_ json: JSON) -> Decoded<ProjectStatsEnvelope.RewardStats> {
     return curry(ProjectStatsEnvelope.RewardStats.init)
       <^> json <| "backers_count"
       <*> json <| "reward_id"
@@ -154,7 +156,7 @@ public func == (lhs: ProjectStatsEnvelope.RewardStats, rhs: ProjectStatsEnvelope
 }
 
 extension ProjectStatsEnvelope.VideoStats: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectStatsEnvelope.VideoStats> {
+  public static func decode(_ json: JSON) -> Decoded<ProjectStatsEnvelope.VideoStats> {
     let create = curry(ProjectStatsEnvelope.VideoStats.init)
     return create
       <^> json <| "external_completions"
@@ -173,34 +175,34 @@ public func == (lhs: ProjectStatsEnvelope.VideoStats, rhs: ProjectStatsEnvelope.
     lhs.internalStarts == rhs.internalStarts
 }
 
-private func decodeSuccessfulFundingStats(json: JSON) -> Decoded<[ProjectStatsEnvelope.FundingDateStats]> {
+private func decodeSuccessfulFundingStats(_ json: JSON) -> Decoded<[ProjectStatsEnvelope.FundingDateStats]> {
   switch json {
-  case let .Array(arrayJSON):
+  case let .array(arrayJSON):
     let decodeds = arrayJSON
       .map(ProjectStatsEnvelope.FundingDateStats.decode)
-    let successes = catDecoded(decodeds).map(Decoded.Success)
+    let successes = catDecoded(decodeds).map(Decoded.success)
     return sequence(successes)
   default:
-    return .Failure(.Custom("Failed decoded values emitted."))
+    return .failure(.custom("Failed decoded values emitted."))
   }
 }
 
-private func stringToIntOrZero(string: String) -> Decoded<Int> {
+private func stringToIntOrZero(_ string: String) -> Decoded<Int> {
   return
-    Double(string).flatMap(Int.init).map(Decoded.Success)
-      ?? Int(string).map(Decoded.Success)
-      ?? .Success(0)
+    Double(string).flatMap(Int.init).map(Decoded.success)
+      ?? Int(string).map(Decoded.success)
+      ?? .success(0)
 }
 
-private func stringToInt(string: String?) -> Decoded<Int?> {
-  guard let string = string else { return .Success(nil) }
+private func stringToInt(_ string: String?) -> Decoded<Int?> {
+  guard let string = string else { return .success(nil) }
 
   return
-    Double(string).flatMap(Int.init).map(Decoded.Success)
-      ?? Int(string).map(Decoded.Success)
-      ?? .Failure(.Custom("Could not parse string into int."))
+    Double(string).flatMap(Int.init).map(Decoded.success)
+      ?? Int(string).map(Decoded.success)
+      ?? .failure(.custom("Could not parse string into int."))
 }
 
-private func stringToDouble(string: String) -> Decoded<Double> {
-  return Double(string).map(Decoded.Success) ?? .Success(0)
+private func stringToDouble(_ string: String) -> Decoded<Double> {
+  return Double(string).map(Decoded.success) ?? .success(0)
 }

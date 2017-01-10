@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 import Prelude
 
 public struct Project {
@@ -76,11 +77,11 @@ public struct Project {
     public let id: Int
     public let isLiveNow: Bool
     public let name: String
-    public let startDate: NSTimeInterval
+    public let startDate: TimeInterval
   }
 
   public struct MemberData {
-    public let lastUpdatePublishedAt: NSTimeInterval?
+    public let lastUpdatePublishedAt: TimeInterval?
     public let permissions: [Permission]
     public let unreadMessagesCount: Int?
     public let unseenActivityCount: Int?
@@ -97,11 +98,11 @@ public struct Project {
   }
 
   public struct Dates {
-    public let deadline: NSTimeInterval
-    public let featuredAt: NSTimeInterval?
-    public let launchedAt: NSTimeInterval
-    public let potdAt: NSTimeInterval?
-    public let stateChangedAt: NSTimeInterval
+    public let deadline: TimeInterval
+    public let featuredAt: TimeInterval?
+    public let launchedAt: TimeInterval
+    public let potdAt: TimeInterval?
+    public let stateChangedAt: TimeInterval
   }
 
   public struct Personalization {
@@ -119,23 +120,23 @@ public struct Project {
   }
 
   public var endsIn48Hours: Bool {
-    return self.dates.deadline - NSDate().timeIntervalSince1970 <= 60.0 * 60.0 * 48.0
+    return self.dates.deadline - Date().timeIntervalSince1970 <= 60.0 * 60.0 * 48.0
   }
 
-  public func isFeaturedToday(today today: NSDate = NSDate(), calendar: NSCalendar = .currentCalendar())
+  public func isFeaturedToday(today: Date = Date(), calendar: Calendar = .current)
     -> Bool {
     guard let featuredAt = self.dates.featuredAt else { return false }
     return isDateToday(date: featuredAt, today: today, calendar: calendar)
   }
 
-  public func isPotdToday(today today: NSDate = NSDate(), calendar: NSCalendar = .currentCalendar()) -> Bool {
+  public func isPotdToday(today: Date = Date(), calendar: Calendar = .current) -> Bool {
     guard let potdAt = self.dates.potdAt else { return false }
     return isDateToday(date: potdAt, today: today, calendar: calendar)
   }
 
-  private func isDateToday(date date: NSTimeInterval, today: NSDate, calendar: NSCalendar) -> Bool {
-    let startOfToday = calendar.startOfDayForDate(today)
-    return Double.abs(startOfToday.timeIntervalSince1970 - date) < 60.0 * 60.0 * 24.0
+  private func isDateToday(date: TimeInterval, today: Date, calendar: Calendar) -> Bool {
+    let startOfToday = calendar.startOfDay(for: today)
+    return abs(startOfToday.timeIntervalSince1970 - date) < 60.0 * 60.0 * 24.0
   }
 }
 
@@ -151,7 +152,7 @@ extension Project: CustomDebugStringConvertible {
 }
 
 extension Project: Decodable {
-  static public func decode(json: JSON) -> Decoded<Project> {
+  static public func decode(_ json: JSON) -> Decoded<Project> {
     let create = curry(Project.init)
     let tmp1 = create
       <^> json <| "blurb"
@@ -162,13 +163,13 @@ extension Project: Decodable {
       <*> Project.MemberData.decode(json)
       <*> Project.Dates.decode(json)
       <*> json <| "id"
-      <*> (json <|| "livestreams" <|> .Success([]))
-      <*> (json <| "location" <|> .Success(Location.none))
+      <*> (json <|| "livestreams" <|> .success([]))
+      <*> (json <| "location" <|> .success(Location.none))
       <*> json <| "name"
       <*> Project.Personalization.decode(json)
     return tmp2
       <*> json <| "photo"
-      <*> (json <|| "rewards" <|> .Success([]))
+      <*> (json <|| "rewards" <|> .success([]))
       <*> json <| "slug"
       <*> json <| "state"
       <*> Project.Stats.decode(json)
@@ -178,14 +179,14 @@ extension Project: Decodable {
 }
 
 extension Project.UrlsEnvelope: Decodable {
-  static public func decode(json: JSON) -> Decoded<Project.UrlsEnvelope> {
+  static public func decode(_ json: JSON) -> Decoded<Project.UrlsEnvelope> {
     return curry(Project.UrlsEnvelope.init)
       <^> json <| "web"
   }
 }
 
 extension Project.UrlsEnvelope.WebEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.UrlsEnvelope.WebEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<Project.UrlsEnvelope.WebEnvelope> {
     return curry(Project.UrlsEnvelope.WebEnvelope.init)
       <^> json <| "project"
       <*> json <|? "updates"
@@ -193,21 +194,22 @@ extension Project.UrlsEnvelope.WebEnvelope: Decodable {
 }
 
 extension Project.Stats: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.Stats> {
-    return curry(Project.Stats.init)
+  public static func decode(_ json: JSON) -> Decoded<Project.Stats> {
+    let create = curry(Project.Stats.init)
+    return create
       <^> json <| "backers_count"
       <*> json <|? "comments_count"
       <*> json <| "goal"
       <*> json <| "pledged"
-      <*> (json <| "static_usd_rate") <|> .Success(1.0)
+      <*> (json <| "static_usd_rate" <|> .success(1.0))
       <*> json <|? "updates_count"
   }
 }
 
 extension Project.LiveStream: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.LiveStream> {
+  public static func decode(_ json: JSON) -> Decoded<Project.LiveStream> {
     return curry(Project.LiveStream.init)
-      <^> (json <| "id" >>- toInt(string:)) <|> (json <| "id")
+      <^> ((json <| "id" >>- toInt(string:)) <|> (json <| "id"))
       <*> json <| "live_now"
       <*> json <| "name"
       <*> json <| "start_date"
@@ -215,17 +217,18 @@ extension Project.LiveStream: Decodable {
 }
 
 extension Project.MemberData: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.MemberData> {
-    return curry(Project.MemberData.init)
+  public static func decode(_ json: JSON) -> Decoded<Project.MemberData> {
+    let create = curry(Project.MemberData.init)
+    return create
       <^> json <|? "last_update_published_at"
-      <*> (removeUnknowns <^> (json <|| "permissions") <|> .Success([]))
+      <*> (removeUnknowns <^> (json <|| "permissions") <|> .success([]))
       <*> json <|? "unread_messages_count"
       <*> json <|? "unseen_activity_count"
   }
 }
 
 extension Project.Dates: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.Dates> {
+  public static func decode(_ json: JSON) -> Decoded<Project.Dates> {
     return curry(Project.Dates.init)
       <^> json <| "deadline"
       <*> json <|? "featured_at"
@@ -236,7 +239,7 @@ extension Project.Dates: Decodable {
 }
 
 extension Project.Personalization: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.Personalization> {
+  public static func decode(_ json: JSON) -> Decoded<Project.Personalization> {
     return curry(Project.Personalization.init)
       <^> json <|? "backing"
       <*> json <||? "friends"
@@ -246,13 +249,13 @@ extension Project.Personalization: Decodable {
 }
 
 extension Project.Photo: Decodable {
-  static public func decode(json: JSON) -> Decoded<Project.Photo> {
+  static public func decode(_ json: JSON) -> Decoded<Project.Photo> {
     let create = curry(Project.Photo.init)
 
     let url1024: Decoded<String?> = ((json <| "1024x768") <|> (json <| "1024x576"))
       // swiftlint:disable:next syntactic_sugar
       .map(Optional<String>.init)
-      <|> .Success(nil)
+      <|> .success(nil)
 
     return create
       <^> json <| "full"
@@ -263,19 +266,19 @@ extension Project.Photo: Decodable {
 }
 
 extension Project.MemberData.Permission: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.MemberData.Permission> {
-    if case .String(let permission) = json {
-      return self.init(rawValue: permission).map(pure) ?? .Success(.unknown)
+  public static func decode(_ json: JSON) -> Decoded<Project.MemberData.Permission> {
+    if case .string(let permission) = json {
+      return self.init(rawValue: permission).map(pure) ?? .success(.unknown)
     }
-    return .Success(.unknown)
+    return .success(.unknown)
   }
 }
 
-private func removeUnknowns(xs: [Project.MemberData.Permission]) -> [Project.MemberData.Permission] {
+private func removeUnknowns(_ xs: [Project.MemberData.Permission]) -> [Project.MemberData.Permission] {
   return xs.filter { $0 != .unknown }
 }
 
-private func toInt(string string: String) -> Decoded<Int> {
-  return Int(string).map(Decoded.Success)
-    ?? Decoded.Failure(DecodeError.Custom("Couldn't decoded \"\(string)\" into Int."))
+private func toInt(string: String) -> Decoded<Int> {
+  return Int(string).map(Decoded.success)
+    ?? Decoded.failure(DecodeError.custom("Couldn't decoded \"\(string)\" into Int."))
 }

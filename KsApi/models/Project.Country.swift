@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 extension Project {
   public struct Country {
@@ -39,7 +40,7 @@ extension Project {
 }
 
 extension Project.Country: Decodable {
-  public static func decode(json: JSON) -> Decoded<Project.Country> {
+  public static func decode(_ json: JSON) -> Decoded<Project.Country> {
     let create = curry(Project.Country.init)
 
     return create
@@ -53,8 +54,8 @@ extension Project.Country: Decodable {
 }
 
 extension Project.Country: EncodableType {
-  public func encode() -> [String : AnyObject] {
-    var result: [String:AnyObject] = [:]
+  public func encode() -> [String:Any] {
+    var result: [String:Any] = [:]
     result["country"] = self.countryCode
     result["currency"] = self.currencyCode
     result["currency_symbol"] = self.currencySymbol

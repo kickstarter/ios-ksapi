@@ -1,11 +1,11 @@
 import Foundation
 
 /**
- A type that can encode itself into a `[String:AnyObject]` dictionary, usually for then
+ A type that can encode itself into a `[String:Any]` dictionary, usually for then
  serializing to a JSON string.
 */
 public protocol EncodableType {
-  func encode() -> [String: AnyObject]
+  func encode() -> [String:Any]
 }
 
 public extension EncodableType {
@@ -14,8 +14,8 @@ public extension EncodableType {
 
    - returns: `NSData`
    */
-  public func toJSONData() -> NSData? {
-    return try? NSJSONSerialization.dataWithJSONObject(encode(), options: [])
+  public func toJSONData() -> Data? {
+    return try? JSONSerialization.data(withJSONObject: encode(), options: [])
   }
 
   /**
@@ -24,6 +24,6 @@ public extension EncodableType {
    - returns: `String`
    */
   public func toJSONString() -> String? {
-    return self.toJSONData().flatMap { String(data: $0, encoding: NSUTF8StringEncoding) }
+    return self.toJSONData().flatMap { String(data: $0, encoding: .utf8) }
   }
 }

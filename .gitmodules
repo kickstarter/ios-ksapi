@@ -10,3 +10,6 @@
 [submodule "Frameworks/Prelude"]
 	path = Frameworks/Prelude
 	url = https://github.com/kickstarter/Kickstarter-Prelude.git
+[submodule "Frameworks/Runes"]
+	path = Frameworks/Runes
+	url = https://github.com/thoughtbot/Runes.git

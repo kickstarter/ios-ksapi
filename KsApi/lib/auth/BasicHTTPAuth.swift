@@ -7,13 +7,13 @@ public protocol BasicHTTPAuthType {
 }
 
 public func == (lhs: BasicHTTPAuthType, rhs: BasicHTTPAuthType) -> Bool {
-  return lhs.dynamicType == rhs.dynamicType &&
+  return type(of: lhs) == type(of: rhs) &&
     lhs.username == rhs.username &&
     lhs.password == rhs.password
 }
 
 public func == (lhs: BasicHTTPAuthType?, rhs: BasicHTTPAuthType?) -> Bool {
-  return lhs?.dynamicType == rhs?.dynamicType &&
+  return type(of: lhs) == type(of: rhs) &&
     lhs?.username == rhs?.username &&
     lhs?.password == rhs?.password
 }
@@ -24,8 +24,8 @@ extension BasicHTTPAuthType {
   */
   var authorizationHeader: String? {
     let string = "\(username):\(password)"
-    if let data = string.dataUsingEncoding(NSUTF8StringEncoding) {
-      let base64 = data.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+    if let data = string.data(using: .utf8) {
+      let base64 = data.base64EncodedString(options: .lineLength64Characters)
       return "Basic \(base64)"
     }
     return nil

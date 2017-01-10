@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct ErrorEnvelope {
   public let errorMessages: [String]
@@ -79,7 +80,7 @@ public struct ErrorEnvelope {
 
    - returns: An error envelope that describes why decoding failed.
    */
-  internal static func couldNotDecodeJSON(decodeError: DecodeError) -> ErrorEnvelope {
+  internal static func couldNotDecodeJSON(_ decodeError: DecodeError) -> ErrorEnvelope {
     return ErrorEnvelope(
       errorMessages: ["Argo decoding error: \(decodeError.description)"],
       ksrCode: .DecodingJSONFailed,
@@ -105,10 +106,10 @@ public struct ErrorEnvelope {
   )
 }
 
-extension ErrorEnvelope: ErrorType {}
+extension ErrorEnvelope: Error {}
 
 extension ErrorEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<ErrorEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<ErrorEnvelope> {
     let create = curry(ErrorEnvelope.init)
 
     // Typically API errors come back in this form...
@@ -126,10 +127,10 @@ extension ErrorEnvelope: Decodable {
           json <|| ["data", "errors", "amount"],
           json <|| ["data", "errors", "backer_reward"],
           ])
-        <*> .Success(ErrorEnvelope.KsrCode.UnknownCode)
+        <*> .success(ErrorEnvelope.KsrCode.UnknownCode)
         <*> json <| "status"
-        <*> .Success(nil)
-        <*> .Success(nil)
+        <*> .success(nil)
+        <*> .success(nil)
     }
 
     return standardErrorEnvelope <|> nonStandardErrorEnvelope()
@@ -137,7 +138,7 @@ extension ErrorEnvelope: Decodable {
 }
 
 extension ErrorEnvelope.Exception: Decodable {
-  public static func decode(json: JSON) -> Decoded<ErrorEnvelope.Exception> {
+  public static func decode(_ json: JSON) -> Decoded<ErrorEnvelope.Exception> {
     return curry(ErrorEnvelope.Exception.init)
       <^> json <||? "backtrace"
       <*> json <|? "message"
@@ -145,18 +146,18 @@ extension ErrorEnvelope.Exception: Decodable {
 }
 
 extension ErrorEnvelope.KsrCode: Decodable {
-  public static func decode(j: JSON) -> Decoded<ErrorEnvelope.KsrCode> {
+  public static func decode(_ j: JSON) -> Decoded<ErrorEnvelope.KsrCode> {
     switch j {
-    case let .String(s):
+    case let .string(s):
       return pure(ErrorEnvelope.KsrCode(rawValue: s) ?? ErrorEnvelope.KsrCode.UnknownCode)
     default:
-      return .typeMismatch("ErrorEnvelope.KsrCode", actual: j)
+      return .typeMismatch(expected: "ErrorEnvelope.KsrCode", actual: j)
     }
   }
 }
 
 extension ErrorEnvelope.FacebookUser: Decodable {
-  public static func decode(json: JSON) -> Decoded<ErrorEnvelope.FacebookUser> {
+  public static func decode(_ json: JSON) -> Decoded<ErrorEnvelope.FacebookUser> {
     return curry(ErrorEnvelope.FacebookUser.init)
       <^> json <| "id"
       <*> json <| "name"
@@ -166,9 +167,9 @@ extension ErrorEnvelope.FacebookUser: Decodable {
 
 // Concats an array of decoded arrays into a decoded array. Ignores all failed decoded values, and so
 // always returns a successfully decoded value.
-private func concatSuccesses<A>(decodeds: [Decoded<[A]>]) -> Decoded<[A]> {
+private func concatSuccesses<A>(_ decodeds: [Decoded<[A]>]) -> Decoded<[A]> {
 
-  return decodeds.reduce(Decoded.Success([])) { accum, decoded in
-    .Success( (accum.value ?? []) + (decoded.value ?? []) )
+  return decodeds.reduce(Decoded.success([])) { accum, decoded in
+    .success( (accum.value ?? []) + (decoded.value ?? []) )
   }
 }

@@ -2,15 +2,15 @@
  A type that knows the location of a Kickstarter API and web server.
 */
 public protocol ServerConfigType {
-  var apiBaseUrl: NSURL { get }
-  var webBaseUrl: NSURL { get }
+  var apiBaseUrl: URL { get }
+  var webBaseUrl: URL { get }
   var apiClientAuth: ClientAuthType { get }
   var basicHTTPAuth: BasicHTTPAuthType? { get }
 }
 
 public func == (lhs: ServerConfigType, rhs: ServerConfigType) -> Bool {
   return
-    lhs.dynamicType == rhs.dynamicType &&
+    type(of: lhs) == type(of: rhs) &&
     lhs.apiBaseUrl == rhs.apiBaseUrl &&
     lhs.webBaseUrl == rhs.webBaseUrl &&
     lhs.apiClientAuth == rhs.apiClientAuth &&
@@ -18,34 +18,34 @@ public func == (lhs: ServerConfigType, rhs: ServerConfigType) -> Bool {
 }
 
 public struct ServerConfig: ServerConfigType {
-  public let apiBaseUrl: NSURL
-  public let webBaseUrl: NSURL
+  public let apiBaseUrl: URL
+  public let webBaseUrl: URL
   public let apiClientAuth: ClientAuthType
   public let basicHTTPAuth: BasicHTTPAuthType?
 
   public static let production: ServerConfigType = ServerConfig(
-    apiBaseUrl: NSURL(string: "https://\(Secrets.Api.Endpoint.production)")!,
-    webBaseUrl: NSURL(string: "https://\(Secrets.WebEndpoint.production)")!,
+    apiBaseUrl: URL(string: "https://\(Secrets.Api.Endpoint.production)")!,
+    webBaseUrl: URL(string: "https://\(Secrets.WebEndpoint.production)")!,
     apiClientAuth: ClientAuth.production,
     basicHTTPAuth: nil
   )
 
   public static let staging: ServerConfigType = ServerConfig(
-    apiBaseUrl: NSURL(string: "https://\(Secrets.Api.Endpoint.staging)")!,
-    webBaseUrl: NSURL(string: "https://\(Secrets.WebEndpoint.staging)")!,
+    apiBaseUrl: URL(string: "https://\(Secrets.Api.Endpoint.staging)")!,
+    webBaseUrl: URL(string: "https://\(Secrets.WebEndpoint.staging)")!,
     apiClientAuth: ClientAuth.development,
     basicHTTPAuth: BasicHTTPAuth.development
   )
 
   public static let local: ServerConfigType = ServerConfig(
-    apiBaseUrl: NSURL(string: "http://api.ksr.dev")!,
-    webBaseUrl: NSURL(string: "http://ksr.dev")!,
+    apiBaseUrl: URL(string: "http://api.ksr.dev")!,
+    webBaseUrl: URL(string: "http://ksr.dev")!,
     apiClientAuth: ClientAuth.development,
     basicHTTPAuth: BasicHTTPAuth.development
   )
 
-  public init(apiBaseUrl: NSURL,
-              webBaseUrl: NSURL,
+  public init(apiBaseUrl: URL,
+              webBaseUrl: URL,
               apiClientAuth: ClientAuthType,
               basicHTTPAuth: BasicHTTPAuthType?) {
 

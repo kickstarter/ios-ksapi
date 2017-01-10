@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 import Prelude
 
 public struct DiscoveryParams {
@@ -91,7 +92,7 @@ extension DiscoveryParams: CustomStringConvertible, CustomDebugStringConvertible
 }
 
 extension DiscoveryParams: Decodable {
-  public static func decode(json: JSON) -> Decoded<DiscoveryParams> {
+  public static func decode(_ json: JSON) -> Decoded<DiscoveryParams> {
     let create = curry(DiscoveryParams.init)
     let tmp1 = create
       <^> (json <|? "backed" >>- stringIntToBool)
@@ -116,28 +117,28 @@ extension DiscoveryParams: Decodable {
   }
 }
 
-private func stringToBool(string: String?) -> Decoded<Bool?> {
-  guard let string = string else { return .Success(nil) }
+private func stringToBool(_ string: String?) -> Decoded<Bool?> {
+  guard let string = string else { return .success(nil) }
   switch string {
   // taken from server's `value_to_boolean` function
   case "true", "1", "t", "T", "true", "TRUE", "on", "ON":
-    return .Success(true)
+    return .success(true)
   case "false", "0", "f", "F", "false", "FALSE", "off", "OFF":
-    return .Success(false)
+    return .success(false)
   default:
-    return .Failure(.Custom("Could not parse string into bool."))
+    return .failure(.custom("Could not parse string into bool."))
   }
 }
 
-private func stringToInt(string: String?) -> Decoded<Int?> {
-  guard let string = string else { return .Success(nil) }
-  return Int(string).map(Decoded.Success) ?? .Failure(.Custom("Could not parse string into int."))
+private func stringToInt(_ string: String?) -> Decoded<Int?> {
+  guard let string = string else { return .success(nil) }
+  return Int(string).map(Decoded.success) ?? .failure(.custom("Could not parse string into int."))
 }
 
-private func stringIntToBool(string: String?) -> Decoded<Bool?> {
-  guard let string = string else { return .Success(nil) }
+private func stringIntToBool(_ string: String?) -> Decoded<Bool?> {
+  guard let string = string else { return .success(nil) }
   return Int(string)
     .filter { $0 <= 1 && $0 >= -1 }
-    .map { .Success($0 == 0 ? nil : $0 == 1) }
-    ?? .Failure(.Custom("Could not parse string into bool."))
+    .map { .success($0 == 0 ? nil : $0 == 1) }
+    .coalesceWith(.failure(.custom("Could not parse string into bool.")))
 }

@@ -1,8 +1,9 @@
 import Argo
 import Curry
+import Runes
 
 public struct SurveyResponse {
-  public let answeredAt: NSTimeInterval?
+  public let answeredAt: TimeInterval?
   public let id: Int
   public let project: Project?
   public let urls: UrlsEnvelope
@@ -22,7 +23,7 @@ public func == (lhs: SurveyResponse, rhs: SurveyResponse) -> Bool {
 }
 
 extension SurveyResponse: Decodable {
-  public static func decode(json: JSON) -> Decoded<SurveyResponse> {
+  public static func decode(_ json: JSON) -> Decoded<SurveyResponse> {
     return curry(SurveyResponse.init)
       <^> json <|? "answered_at"
       <*> json <| "id"
@@ -32,14 +33,14 @@ extension SurveyResponse: Decodable {
 }
 
 extension SurveyResponse.UrlsEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<SurveyResponse.UrlsEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<SurveyResponse.UrlsEnvelope> {
     return curry(SurveyResponse.UrlsEnvelope.init)
       <^> json <| "web"
   }
 }
 
 extension SurveyResponse.UrlsEnvelope.WebEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<SurveyResponse.UrlsEnvelope.WebEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<SurveyResponse.UrlsEnvelope.WebEnvelope> {
     return curry(SurveyResponse.UrlsEnvelope.WebEnvelope.init)
       <^> json <| "survey"
   }

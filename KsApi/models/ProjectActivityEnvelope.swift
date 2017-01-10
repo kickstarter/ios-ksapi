@@ -1,5 +1,6 @@
 import Argo
 import Curry
+import Runes
 
 public struct ProjectActivityEnvelope {
   public let activities: [Activity]
@@ -15,7 +16,7 @@ public struct ProjectActivityEnvelope {
 }
 
 extension ProjectActivityEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectActivityEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<ProjectActivityEnvelope> {
     return curry(ProjectActivityEnvelope.init)
       <^> json <|| "activities"
       <*> json <|  "urls"
@@ -23,15 +24,15 @@ extension ProjectActivityEnvelope: Decodable {
 }
 
 extension ProjectActivityEnvelope.UrlsEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectActivityEnvelope.UrlsEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<ProjectActivityEnvelope.UrlsEnvelope> {
     return curry(ProjectActivityEnvelope.UrlsEnvelope.init)
       <^> json <| "api"
   }
 }
 
 extension ProjectActivityEnvelope.UrlsEnvelope.ApiEnvelope: Decodable {
-  public static func decode(json: JSON) -> Decoded<ProjectActivityEnvelope.UrlsEnvelope.ApiEnvelope> {
+  public static func decode(_ json: JSON) -> Decoded<ProjectActivityEnvelope.UrlsEnvelope.ApiEnvelope> {
     return curry(ProjectActivityEnvelope.UrlsEnvelope.ApiEnvelope.init)
-      <^> json <| "more_activities" <|> .Success("")
+      <^> (json <| "more_activities" <|> .success(""))
   }
 }
