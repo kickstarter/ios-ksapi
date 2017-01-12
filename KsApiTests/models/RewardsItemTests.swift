@@ -8,7 +8,6 @@ final class RewardsItemTests: XCTestCase {
     let decoded = RewardsItem.decodeJSONDictionary([
       "id": 1,
       "item": [
-        "amount": 10.0,
         "description": "Hello",
         "id": 1,
         "name": "The thing",
@@ -24,7 +23,6 @@ final class RewardsItemTests: XCTestCase {
     XCTAssertEqual(2, decoded.value?.quantity)
     XCTAssertEqual(3, decoded.value?.rewardId)
 
-    XCTAssertEqual(10.0, decoded.value?.item.amount)
     XCTAssertEqual("Hello", decoded.value?.item.description)
     XCTAssertEqual(1, decoded.value?.item.id)
     XCTAssertEqual("The thing", decoded.value?.item.name)
