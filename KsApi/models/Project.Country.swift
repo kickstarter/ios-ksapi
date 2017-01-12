@@ -43,10 +43,11 @@ extension Project.Country: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Project.Country> {
     let create = curry(Project.Country.init)
 
-    return create
+    let tmp = create
       <^> (json <| "country" <|> json <| "name")
       <*> (json <| "currency" <|> json <| "currency_code")
       <*> json <| "currency_symbol"
+    return tmp
       <*> json <|? "max_pledge"
       <*> json <|? "min_pledge"
       <*> (json <| "currency_trailing_code" <|> json <| "trailing_code")

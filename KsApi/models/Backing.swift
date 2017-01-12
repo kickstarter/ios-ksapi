@@ -36,16 +36,17 @@ public func == (lhs: Backing, rhs: Backing) -> Bool {
 extension Backing: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Backing> {
     let create = curry(Backing.init)
-    let tmp = create
+    let tmp1 = create
       <^> json <| "amount"
       <*> json <|? "backer"
       <*> json <| "backer_id"
       <*> json <| "id"
+    let tmp2 = tmp1
       <*> json <|? "location_id"
       <*> json <| "pledged_at"
       <*> json <| "project_country"
-    return tmp
       <*> json <| "project_id"
+    return tmp2
       <*> json <|? "reward"
       <*> json <|? "reward_id"
       <*> json <| "sequence"
