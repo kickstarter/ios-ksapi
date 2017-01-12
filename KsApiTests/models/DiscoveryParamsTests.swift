@@ -15,21 +15,21 @@ class DiscoveryParamsTests: XCTestCase {
 
     let params = DiscoveryParams.defaults
       |> DiscoveryParams.lens.staffPicks .~ true
-      <> DiscoveryParams.lens.hasVideo .~ true
-      <> DiscoveryParams.lens.starred .~ true
-      <> DiscoveryParams.lens.backed .~ false
-      <> DiscoveryParams.lens.social .~ true
-      <> DiscoveryParams.lens.recommended .~ true
-      <> DiscoveryParams.lens.similarTo .~ Project.template
-      <> DiscoveryParams.lens.category .~ Category.art
-      <> DiscoveryParams.lens.query .~ "wallet"
-      <> DiscoveryParams.lens.state .~ .live
-      <> DiscoveryParams.lens.sort .~ .popular
-      <> DiscoveryParams.lens.page .~ 1
-      <> DiscoveryParams.lens.perPage .~ 20
-      <> DiscoveryParams.lens.seed .~ 123
+      |> DiscoveryParams.lens.hasVideo .~ true
+      |> DiscoveryParams.lens.starred .~ true
+      |> DiscoveryParams.lens.backed .~ false
+      |> DiscoveryParams.lens.social .~ true
+      |> DiscoveryParams.lens.recommended .~ true
+      |> DiscoveryParams.lens.similarTo .~ Project.template
+      |> DiscoveryParams.lens.category .~ Category.art
+      |> DiscoveryParams.lens.query .~ "wallet"
+      |> DiscoveryParams.lens.state .~ .live
+      |> DiscoveryParams.lens.sort .~ .popular
+      |> DiscoveryParams.lens.page .~ 1
+      |> DiscoveryParams.lens.perPage .~ 20
+      |> DiscoveryParams.lens.seed .~ 123
 
-    XCTAssertEqual([
+    let queryParams: [String:String] = [
       "staff_picks": "true",
       "has_video": "true",
       "backed": "-1",
@@ -44,7 +44,9 @@ class DiscoveryParamsTests: XCTestCase {
       "per_page": "20",
       "seed": "123",
       "similar_to": Project.template.id.description
-    ], params.queryParams)
+    ]
+
+    XCTAssertEqual(queryParams, params.queryParams)
   }
 
   func testEquatable() {

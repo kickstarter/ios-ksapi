@@ -1,3 +1,4 @@
+#if DEBUG
 // swiftlint:disable file_length
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
@@ -1212,3 +1213,4 @@ private extension MockService {
   }
   // swiftlint:enable type_name
 }
+#endif

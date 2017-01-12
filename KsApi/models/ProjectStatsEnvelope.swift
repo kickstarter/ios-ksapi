@@ -71,7 +71,8 @@ extension ProjectStatsEnvelope: Decodable {
 
 extension ProjectStatsEnvelope.CumulativeStats: Decodable {
   public static func decode(_ json: JSON) -> Decoded<ProjectStatsEnvelope.CumulativeStats> {
-    return curry(ProjectStatsEnvelope.CumulativeStats.init)
+    let create = curry(ProjectStatsEnvelope.CumulativeStats.init)
+    return create
       <^> json <| "average_pledge"
       <*> json <| "backers_count"
       <*> (json <| "goal" >>- stringToIntOrZero)
@@ -106,10 +107,12 @@ public func == (lhs: ProjectStatsEnvelope.FundingDateStats, rhs: ProjectStatsEnv
 
 extension ProjectStatsEnvelope.ReferrerStats: Decodable {
   public static func decode(_ json: JSON) -> Decoded<ProjectStatsEnvelope.ReferrerStats> {
-    return curry(ProjectStatsEnvelope.ReferrerStats.init)
+    let create = curry(ProjectStatsEnvelope.ReferrerStats.init)
+    let tmp = create
       <^> json <| "backers_count"
       <*> json <| "code"
       <*> (json <| "percentage_of_dollars" >>- stringToDouble)
+    return tmp
       <*> (json <| "pledged" >>- stringToIntOrZero)
       <*> json <| "referrer_name"
       <*> json <| "referrer_type"
