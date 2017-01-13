@@ -145,6 +145,11 @@ public func == (lhs: Project, rhs: Project) -> Bool {
   return lhs.id == rhs.id
 }
 
+extension Project.LiveStream: Equatable {}
+public func == (lhs: Project.LiveStream, rhs: Project.LiveStream) -> Bool {
+  return lhs.id == rhs.id
+}
+
 extension Project: CustomDebugStringConvertible {
   public var debugDescription: String {
     return "Project(id: \(self.id), name: \"\(self.name)\")"
