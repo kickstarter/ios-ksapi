@@ -37,18 +37,20 @@ extension Update: Decodable {
 
   public static func decode(_ json: JSON) -> Decoded<Update> {
     let create = curry(Update.init)
-    let tmp = create
+    let tmp1 = create
       <^> json <|?  "body"
       <*> json <|? "comments_count"
       <*> json <|? "has_liked"
+    let tmp2 = tmp1
       <*> json <|  "id"
       <*> json <|  "public"
       <*> json <|? "likes_count"
-    return tmp
+    let tmp3 = tmp2
       <*> json <|  "project_id"
       <*> json <|? "published_at"
       <*> json <|  "sequence"
       <*> (json <| "title" <|> .success(""))
+    return tmp3
       <*> json <|  "urls"
       <*> json <|? "user"
       <*> json <|?  "visible"

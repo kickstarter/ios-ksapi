@@ -12,10 +12,12 @@ public struct Comment {
 
 extension Comment: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Comment> {
-    return curry(Comment.init)
+    let create = curry(Comment.init)
+    let tmp = create
       <^> json <| "author"
       <*> json <| "body"
       <*> json <| "created_at"
+    return tmp
       <*> (json <|? "deleted_at" >>- decodePositiveTimeInterval)
       <*> json <| "id"
   }

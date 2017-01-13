@@ -94,25 +94,27 @@ extension DiscoveryParams: CustomStringConvertible, CustomDebugStringConvertible
 extension DiscoveryParams: Decodable {
   public static func decode(_ json: JSON) -> Decoded<DiscoveryParams> {
     let create = curry(DiscoveryParams.init)
+
     let tmp1 = create
-      <^> (json <|? "backed" >>- stringIntToBool)
+      <^> ((json <|? "backed" >>- stringIntToBool) as Decoded<Bool?>)
       <*> json <|? "category"
-      <*> (json <|? "collaborated" >>- stringToBool)
-      <*> (json <|? "created" >>- stringToBool)
-      <*> (json <|? "has_video" >>- stringToBool)
-      <*> (json <|? "include_potd" >>- stringToBool)
+      <*> ((json <|? "collaborated" >>- stringToBool) as Decoded<Bool?>)
+      <*> ((json <|? "created" >>- stringToBool) as Decoded<Bool?>)
     let tmp2 = tmp1
-      <*> (json <|? "page" >>- stringToInt)
-      <*> (json <|? "per_page" >>- stringToInt)
+      <*> ((json <|? "has_video" >>- stringToBool) as Decoded<Bool?>)
+      <*> ((json <|? "include_potd" >>- stringToBool) as Decoded<Bool?>)
+      <*> ((json <|? "page" >>- stringToInt) as Decoded<Int?>)
+      <*> ((json <|? "per_page" >>- stringToInt) as Decoded<Int?>)
+    let tmp3 = tmp2
       <*> json <|? "term"
-      <*> (json <|? "recommended" >>- stringToBool)
-      <*> (json <|? "seed" >>- stringToInt)
+      <*> ((json <|? "recommended" >>- stringToBool) as Decoded<Bool?>)
+      <*> ((json <|? "seed" >>- stringToInt) as Decoded<Int?>)
       <*> json <|? "similar_to"
-    return tmp2
-      <*> (json <|? "social" >>- stringIntToBool)
+    return tmp3
+      <*> ((json <|? "social" >>- stringIntToBool) as Decoded<Bool?>)
       <*> json <|? "sort"
-      <*> (json <|? "staff_picks" >>- stringToBool)
-      <*> (json <|? "starred" >>- stringIntToBool)
+      <*> ((json <|? "staff_picks" >>- stringToBool) as Decoded<Bool?>)
+      <*> ((json <|? "starred" >>- stringIntToBool) as Decoded<Bool?>)
       <*> json <|? "state"
   }
 }

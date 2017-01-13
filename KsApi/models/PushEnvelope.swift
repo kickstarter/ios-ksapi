@@ -53,10 +53,11 @@ extension PushEnvelope: Decodable {
     let update: Decoded<Update> = json <| "update" <|> json <| "post"
     let optionalUpdate: Decoded<Update?> = update.map(Optional.some) <|> .success(nil)
 
-    return create
+    let tmp = create
       <^> json <|? "activity"
       <*> json <| "aps"
       <*> json <|? "for_creator"
+    return tmp
       <*> json <|? "message"
       <*> json <|? "project"
       <*> json <|? "survey"
@@ -67,11 +68,12 @@ extension PushEnvelope: Decodable {
 extension PushEnvelope.Activity: Decodable {
   public static func decode(_ json: JSON) -> Decoded<PushEnvelope.Activity> {
     let create = curry(PushEnvelope.Activity.init)
-    return create
+    let tmp = create
       <^> json <| "category"
       <*> json <|? "comment_id"
       <*> json <| "id"
       <*> json <|? "project_id"
+    return tmp
       <*> json <|? "project_photo"
       <*> json <|? "update_id"
       <*> json <|? "user_photo"

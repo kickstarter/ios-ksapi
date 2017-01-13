@@ -170,12 +170,13 @@ extension Project: Decodable {
       <*> json <| "id"
       <*> (json <|| "livestreams" <|> .success([]))
       <*> (json <| "location" <|> .success(Location.none))
+    let tmp3 = tmp2
       <*> json <| "name"
       <*> Project.Personalization.decode(json)
-    return tmp2
       <*> json <| "photo"
       <*> (json <|| "rewards" <|> .success([]))
       <*> json <| "slug"
+    return tmp3
       <*> json <| "state"
       <*> Project.Stats.decode(json)
       <*> json <| "urls"
