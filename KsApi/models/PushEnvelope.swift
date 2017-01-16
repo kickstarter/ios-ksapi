@@ -6,6 +6,7 @@ public struct PushEnvelope {
   public let activity: Activity?
   public let aps: ApsEnvelope
   public let forCreator: Bool?
+  public let liveStream: LiveStream?
   public let message: Message?
   public let project: Project?
   public let survey: Survey?
@@ -23,6 +24,10 @@ public struct PushEnvelope {
 
   public struct ApsEnvelope {
     public let alert: String
+  }
+
+  public struct LiveStream {
+    public let id: Int
   }
 
   public struct Message {
@@ -57,6 +62,7 @@ extension PushEnvelope: Decodable {
       <^> json <|? "activity"
       <*> json <| "aps"
       <*> json <|? "for_creator"
+      <*> json <|? "live_stream"
     return tmp
       <*> json <|? "message"
       <*> json <|? "project"
@@ -84,6 +90,13 @@ extension PushEnvelope.ApsEnvelope: Decodable {
   public static func decode(_ json: JSON) -> Decoded<PushEnvelope.ApsEnvelope> {
     return curry(PushEnvelope.ApsEnvelope.init)
       <^> json <| "alert"
+  }
+}
+
+extension PushEnvelope.LiveStream: Decodable {
+  public static func decode(_ json: JSON) -> Decoded<PushEnvelope.LiveStream> {
+    return curry(PushEnvelope.LiveStream.init)
+      <^> json <| "id"
   }
 }
 
