@@ -8,6 +8,7 @@ public struct DiscoveryParams {
   public let category: Category?
   public let collaborated: Bool?
   public let created: Bool?
+  public let hasLiveStreams: Bool?
   public let hasVideo: Bool?
   public let includePOTD: Bool?
   public let page: Int?
@@ -37,10 +38,10 @@ public struct DiscoveryParams {
   }
 
   public static let defaults = DiscoveryParams(backed: nil, category: nil, collaborated: nil, created: nil,
-                                               hasVideo: nil, includePOTD: nil, page: nil, perPage: nil,
-                                               query: nil, recommended: nil, seed: nil, similarTo: nil,
-                                               social: nil, sort: nil, staffPicks: nil, starred: nil,
-                                               state: nil)
+                                               hasLiveStreams: nil, hasVideo: nil, includePOTD: nil,
+                                               page: nil, perPage: nil, query: nil, recommended: nil,
+                                               seed: nil, similarTo: nil, social: nil, sort: nil,
+                                               staffPicks: nil, starred: nil, state: nil)
 
   public var queryParams: [String:String] {
     var params: [String:String] = [:]
@@ -48,6 +49,7 @@ public struct DiscoveryParams {
     params["category_id"] = self.category?.id.description
     params["collaborated"] = self.collaborated?.description
     params["created"] = self.created?.description
+    params["has_live_streams"] = self.hasLiveStreams?.description
     params["has_video"] = self.hasVideo?.description
     params["page"] = self.page?.description
     params["per_page"] = self.perPage?.description
@@ -101,6 +103,7 @@ extension DiscoveryParams: Decodable {
       <*> ((json <|? "collaborated" >>- stringToBool) as Decoded<Bool?>)
       <*> ((json <|? "created" >>- stringToBool) as Decoded<Bool?>)
     let tmp2 = tmp1
+      <*> json <|? "has_live_streams"
       <*> ((json <|? "has_video" >>- stringToBool) as Decoded<Bool?>)
       <*> ((json <|? "include_potd" >>- stringToBool) as Decoded<Bool?>)
       <*> ((json <|? "page" >>- stringToInt) as Decoded<Int?>)
