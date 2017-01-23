@@ -11,7 +11,7 @@ public struct Project {
   public let memberData: MemberData
   public let dates: Dates
   public let id: Int
-  public let liveStreams: [LiveStream]
+  public let liveStreams: [LiveStream]?
   public let location: Location
   public let name: String
   public let personalization: Personalization
@@ -168,7 +168,7 @@ extension Project: Decodable {
       <*> Project.MemberData.decode(json)
       <*> Project.Dates.decode(json)
       <*> json <| "id"
-      <*> (json <|| "livestreams" <|> .success([]))
+      <*> json <||? "livestreams"
       <*> (json <| "location" <|> .success(Location.none))
     let tmp3 = tmp2
       <*> json <| "name"

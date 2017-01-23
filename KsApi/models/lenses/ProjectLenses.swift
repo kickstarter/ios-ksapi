@@ -57,7 +57,7 @@ extension Project {
         state: $1.state, stats: $1.stats, urls: $1.urls, video: $1.video) }
     )
 
-    public static let liveStreams = Lens<Project, [LiveStream]>(
+    public static let liveStreams = Lens<Project, [LiveStream]?>(
       view: { $0.liveStreams },
       set: { Project(blurb: $1.blurb, category: $1.category, country: $1.country,
         creator: $1.creator, memberData: $1.memberData, dates: $1.dates, id: $1.id,
