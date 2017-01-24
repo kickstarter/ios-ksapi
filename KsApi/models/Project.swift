@@ -71,7 +71,7 @@ public struct Project {
       return Int(floor(Float(self.goal) * self.staticUsdRate))
     }
   }
-  
+
   public struct MemberData {
     public let lastUpdatePublishedAt: TimeInterval?
     public let permissions: [Permission]

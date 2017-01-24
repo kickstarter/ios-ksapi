@@ -978,10 +978,10 @@ internal struct MockService: ServiceType {
   }
 
   internal func signup(name: String,
-                          email: String,
-                          password: String,
-                          passwordConfirmation: String,
-                          sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+                       email: String,
+                       password: String,
+                       passwordConfirmation: String,
+                       sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
     if let error = signupError {
       return SignalProducer(error: error)
     } else if let accessTokenEnvelope = signupResponse {
@@ -1013,12 +1013,12 @@ internal struct MockService: ServiceType {
     )
   }
 
-  func submitApplePay(
-    checkoutUrl: String,
-                stripeToken: String,
-                paymentInstrumentName: String,
-                paymentNetwork: String,
-                transactionIdentifier: String) -> SignalProducer<SubmitApplePayEnvelope, ErrorEnvelope> {
+  func submitApplePay(checkoutUrl: String,
+                      stripeToken: String,
+                      paymentInstrumentName: String,
+                      paymentNetwork: String,
+                      transactionIdentifier: String) ->
+    SignalProducer<SubmitApplePayEnvelope, ErrorEnvelope> {
 
     return SignalProducer(value: self.submitApplePayResponse)
   }
@@ -1067,10 +1067,10 @@ internal struct MockService: ServiceType {
 
   internal func updatePledge(
     project: Project,
-            amount: Double,
-            reward: Reward?,
-            shippingLocation: Location?,
-            tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope> {
+    amount: Double,
+    reward: Reward?,
+    shippingLocation: Location?,
+    tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope> {
 
     return SignalProducer(value: self.updatePledgeResponse)
   }
