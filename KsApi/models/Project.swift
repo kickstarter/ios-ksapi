@@ -11,7 +11,6 @@ public struct Project {
   public let memberData: MemberData
   public let dates: Dates
   public let id: Int
-  public let liveStreams: [LiveStream]?
   public let location: Location
   public let name: String
   public let personalization: Personalization
@@ -72,14 +71,7 @@ public struct Project {
       return Int(floor(Float(self.goal) * self.staticUsdRate))
     }
   }
-
-  public struct LiveStream {
-    public let id: Int
-    public let isLiveNow: Bool
-    public let name: String
-    public let startDate: TimeInterval
-  }
-
+  
   public struct MemberData {
     public let lastUpdatePublishedAt: TimeInterval?
     public let permissions: [Permission]
@@ -145,11 +137,6 @@ public func == (lhs: Project, rhs: Project) -> Bool {
   return lhs.id == rhs.id
 }
 
-extension Project.LiveStream: Equatable {}
-public func == (lhs: Project.LiveStream, rhs: Project.LiveStream) -> Bool {
-  return lhs.id == rhs.id
-}
-
 extension Project: CustomDebugStringConvertible {
   public var debugDescription: String {
     return "Project(id: \(self.id), name: \"\(self.name)\")"
@@ -168,7 +155,6 @@ extension Project: Decodable {
       <*> Project.MemberData.decode(json)
       <*> Project.Dates.decode(json)
       <*> json <| "id"
-      <*> json <||? "livestreams"
       <*> (json <| "location" <|> .success(Location.none))
     let tmp3 = tmp2
       <*> json <| "name"
@@ -209,16 +195,6 @@ extension Project.Stats: Decodable {
       <*> json <| "pledged"
       <*> (json <| "static_usd_rate" <|> .success(1.0))
       <*> json <|? "updates_count"
-  }
-}
-
-extension Project.LiveStream: Decodable {
-  public static func decode(_ json: JSON) -> Decoded<Project.LiveStream> {
-    return curry(Project.LiveStream.init)
-      <^> ((json <| "id" >>- toInt(string:)) <|> (json <| "id"))
-      <*> json <| "live_now"
-      <*> json <| "name"
-      <*> json <| "start_date"
   }
 }
 
