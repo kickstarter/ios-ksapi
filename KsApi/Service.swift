@@ -383,10 +383,10 @@ public struct Service: ServiceType {
   }
 
   public func signup(name: String,
-                          email: String,
-                          password: String,
-                          passwordConfirmation: String,
-                          sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
+                     email: String,
+                     password: String,
+                     passwordConfirmation: String,
+                     sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
     return request(.signup(name: name,
                            email: email,
                            password: password,
@@ -406,10 +406,10 @@ public struct Service: ServiceType {
 
   public func submitApplePay(
     checkoutUrl: String,
-                stripeToken: String,
-                paymentInstrumentName: String,
-                paymentNetwork: String,
-                transactionIdentifier: String) -> SignalProducer<SubmitApplePayEnvelope, ErrorEnvelope> {
+    stripeToken: String,
+    paymentInstrumentName: String,
+    paymentNetwork: String,
+    transactionIdentifier: String) -> SignalProducer<SubmitApplePayEnvelope, ErrorEnvelope> {
 
     return request(
       .submitApplePay(
