@@ -72,6 +72,7 @@ internal enum Route {
     case video
   }
 
+  // swiftlint:disable:next large_tuple
   internal var requestProperties:
     (method: Method, path: String, query: [String:Any], file: (name: UploadParam, url: URL)?) {
 
