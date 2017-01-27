@@ -232,7 +232,7 @@ public protocol ServiceType {
 
   /// Signup with email.
   func signup(name: String, email: String, password: String, passwordConfirmation: String,
-              sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
+                   sendNewsletters: Bool) -> SignalProducer<AccessTokenEnvelope, ErrorEnvelope>
 
   /// Signup with Facebook access token and newsletter bool.
   func signup(facebookAccessToken: String, sendNewsletters: Bool) ->

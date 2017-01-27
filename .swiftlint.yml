@@ -1,5 +1,4 @@
 disabled_rules:
-  - large_tuple
   - trailing_comma
 excluded:
   - Frameworks/

@@ -389,6 +389,10 @@
 		A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B56B1C2EED9800FDB616 /* KsApiTests.swift */; };
 		A7FD09CA1C83E8E900332CCB /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		CA43C5FD1BB358F200C180DA /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D06783B41E01DAD100620C20 /* Project.LiveStreamLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06783B31E01DAD000620C20 /* Project.LiveStreamLenses.swift */; };
+		D06783B51E01DAD100620C20 /* Project.LiveStreamLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06783B31E01DAD000620C20 /* Project.LiveStreamLenses.swift */; };
+		D06783C61E01DEDA00620C20 /* LiveStreamTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06783C51E01DEDA00620C20 /* LiveStreamTemplates.swift */; };
+		D06783C71E01DEDB00620C20 /* LiveStreamTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06783C51E01DEDA00620C20 /* LiveStreamTemplates.swift */; };
 		D7C6C7B41DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */; };
 		D7C6C7B51DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */; };
 		D7C6C7C61DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7C51DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift */; };
@@ -920,6 +924,8 @@
 		CA43C5F91BB358F200C180DA /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA43C5FC1BB358F200C180DA /* KsApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsApi.h; sourceTree = "<group>"; };
 		CA43C5FE1BB358F200C180DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D06783B31E01DAD000620C20 /* Project.LiveStreamLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.LiveStreamLenses.swift; sourceTree = "<group>"; };
+		D06783C51E01DEDA00620C20 /* LiveStreamTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveStreamTemplates.swift; sourceTree = "<group>"; };
 		D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePledgeEnvelopeTests.swift; sourceTree = "<group>"; };
 		D7C6C7C51DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePaymentMethodEnvelopeTests.swift; sourceTree = "<group>"; };
 		D7C6C7C81DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitApplePayEnvelopeTests.swift; sourceTree = "<group>"; };
@@ -996,6 +1002,7 @@
 				0156B3811D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift */,
 				0156B41B1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift */,
 				A747A8091D455AD000AF199A /* ItemTemplates.swift */,
+				D06783C51E01DEDA00620C20 /* LiveStreamTemplates.swift */,
 				A72661E31D07671D0087D883 /* LocationTemplates.swift */,
 				A72661E41D07671D0087D883 /* MessageTemplates.swift */,
 				A72661E51D07671D0087D883 /* MessageThreadTemplates.swift */,
@@ -1182,6 +1189,7 @@
 				A73639AB1D03565400445B24 /* MessageLenses.swift */,
 				A73639AC1D03565400445B24 /* MessageThreadLenses.swift */,
 				A73639AD1D03565400445B24 /* Project.DatesLenses.swift */,
+				D06783B31E01DAD000620C20 /* Project.LiveStreamLenses.swift */,
 				59B0E0571D1356850081D2DC /* Project.MemberDataLenses.swift */,
 				A73639AE1D03565400445B24 /* Project.PersonalizationLenses.swift */,
 				A75CAC421D137E2D00EBF323 /* Project.PhotoLenses.swift */,
@@ -1858,6 +1866,7 @@
 				A757E9B81D19B37B00A5C978 /* SurveyResponseTemplates.swift in Sources */,
 				59B0DF381D0F13BE0081D2DC /* ProjectNotificationTemplates.swift in Sources */,
 				A73639E21D03565400445B24 /* Category.swift in Sources */,
+				D06783B41E01DAD100620C20 /* Project.LiveStreamLenses.swift in Sources */,
 				59B0E0581D1356850081D2DC /* Project.MemberDataLenses.swift in Sources */,
 				A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */,
 				A741766F1DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift in Sources */,
@@ -1973,6 +1982,7 @@
 				0156B42A1D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift in Sources */,
 				A73639E01D03565400445B24 /* CategoriesEnvelope.swift in Sources */,
 				A7363A301D03565400445B24 /* User.swift in Sources */,
+				D06783C61E01DEDA00620C20 /* LiveStreamTemplates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2059,6 +2069,7 @@
 				A75CAC551D138CBC00EBF323 /* MockService.swift in Sources */,
 				A72662101D07671D0087D883 /* UpdateTemplates.swift in Sources */,
 				A7363A2B1D03565400445B24 /* Update.swift in Sources */,
+				D06783B51E01DAD100620C20 /* Project.LiveStreamLenses.swift in Sources */,
 				A75CAC441D137E2D00EBF323 /* Project.PhotoLenses.swift in Sources */,
 				A757E9B91D19B37B00A5C978 /* SurveyResponseTemplates.swift in Sources */,
 				A74176701DAC4C9D000EB831 /* UpdatePledgeEnvelopeTemplates.swift in Sources */,
@@ -2174,6 +2185,7 @@
 				0156B42B1D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift in Sources */,
 				A73639E11D03565400445B24 /* CategoriesEnvelope.swift in Sources */,
 				A7363A311D03565400445B24 /* User.swift in Sources */,
+				D06783C71E01DEDB00620C20 /* LiveStreamTemplates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

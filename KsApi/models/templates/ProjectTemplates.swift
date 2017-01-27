@@ -21,6 +21,7 @@ extension Project {
       stateChangedAt: Date().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0
     ),
     id: 1,
+    liveStreams: nil,
     location: .template,
     name: "The Project",
     personalization: Project.Personalization(
@@ -72,6 +73,7 @@ extension Project {
     |> Project.lens.stats.pledged .~ 22_318
     |> Project.lens.stats.goal .~ 22_000
     |> Project.lens.stats.staticUsdRate .~ 1.31
+    |> Project.lens.liveStreams .~ []
     |> (Project.lens.location • Location.lens.displayableName) .~ "Hastings, UK"
     |> Project.lens.rewards .~ [
       .template
@@ -157,5 +159,6 @@ extension Project {
     |> Project.lens.stats.backersCount .~ 5_770
     |> Project.lens.stats.pledged .~ 406_237
     |> Project.lens.stats.goal .~ 200_000
+    |> Project.lens.liveStreams .~ []
     |> (Project.lens.location • Location.lens.displayableName) .~ "Burbank, CA"
 }
