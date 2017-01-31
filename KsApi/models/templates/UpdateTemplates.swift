@@ -8,7 +8,7 @@ extension Update {
     isPublic: true,
     likesCount: 3,
     projectId: 1,
-    publishedAt: Date().timeIntervalSince1970,
+    publishedAt: Date(timeIntervalSince1970: 1475361315).timeIntervalSince1970,
     sequence: 1,
     title: "Hello",
     urls: Update.UrlsEnvelope(web: Update.UrlsEnvelope.WebEnvelope(
