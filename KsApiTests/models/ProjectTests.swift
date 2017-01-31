@@ -25,7 +25,7 @@ final class ProjectTests: XCTestCase {
     let justLaunched = Project.template
       |> Project.lens.dates.launchedAt .~ Date(timeIntervalSince1970: 1475361315).timeIntervalSince1970
 
-    XCTAssertEqual(false, justLaunched.endsIn48Hours)
+    XCTAssertEqual(false, justLaunched.endsIn48Hours(today: Date(timeIntervalSince1970: 1475361315)))
   }
 
   func testEndsIn48Hours_WithEndingSoonProject() {
@@ -33,7 +33,7 @@ final class ProjectTests: XCTestCase {
       |> Project.lens.dates.deadline .~ (Date(timeIntervalSince1970: 1475361315)
         .timeIntervalSince1970 - 60.0 * 60.0)
 
-    XCTAssertEqual(true, endingSoon.endsIn48Hours)
+    XCTAssertEqual(true, endingSoon.endsIn48Hours(today: Date(timeIntervalSince1970: 1475361315)))
   }
 
   func testEndsIn48Hours_WithTimeZoneEdgeCaseProject() {
@@ -41,7 +41,7 @@ final class ProjectTests: XCTestCase {
       |> Project.lens.dates.deadline .~ (Date(timeIntervalSince1970: 1475361315)
         .timeIntervalSince1970 - 60.0 * 60.0 * 47.0)
 
-    XCTAssertEqual(true, edgeCase.endsIn48Hours)
+    XCTAssertEqual(true, edgeCase.endsIn48Hours(today: Date(timeIntervalSince1970: 1475361315)))
   }
 
   func testIsPotdToday_OnPotd() {
@@ -50,7 +50,7 @@ final class ProjectTests: XCTestCase {
     let potd = Project.template
       |> Project.lens.dates.potdAt .~ potdAt
 
-    XCTAssertEqual(true, potd.isPotdToday())
+//    XCTAssertEqual(true, potd.isPotdToday())
     XCTAssertEqual(true, potd.isPotdToday(today: Date(timeIntervalSince1970: 1475361315)))
     XCTAssertEqual(false, potd.isPotdToday(today:
       Date(timeIntervalSince1970: 1475361315 + (60.0 * 60.0 * 24))))
