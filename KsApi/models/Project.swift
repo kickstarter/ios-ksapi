@@ -123,14 +123,12 @@ public struct Project {
     return self.dates.deadline - today.timeIntervalSince1970 <= 60.0 * 60.0 * 48.0
   }
 
-  public func isFeaturedToday(today: Date = Date(),
-                              calendar: Calendar = .current) -> Bool {
+  public func isFeaturedToday(today: Date = Date(), calendar: Calendar = .current) -> Bool {
     guard let featuredAt = self.dates.featuredAt else { return false }
     return isDateToday(date: featuredAt, today: today, calendar: calendar)
   }
 
-  public func isPotdToday(today: Date = Date(),
-                          calendar: Calendar = .current) -> Bool {
+  public func isPotdToday(today: Date = Date(), calendar: Calendar = .current) -> Bool {
     guard let potdAt = self.dates.potdAt else { return false }
     return isDateToday(date: potdAt, today: today, calendar: calendar)
   }
