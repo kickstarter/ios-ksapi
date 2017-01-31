@@ -14,11 +14,12 @@ extension Project {
       unseenActivityCount: nil
     ),
     dates: Project.Dates(
-      deadline: Date().timeIntervalSince1970 + 60.0 * 60.0 * 24.0 * 15.0,
+      deadline: Date(timeIntervalSince1970: 1475361315).timeIntervalSince1970 + 60.0 * 60.0 * 24.0 * 15.0,
       featuredAt: nil,
-      launchedAt: Date().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0,
+      launchedAt: Date(timeIntervalSince1970: 1475361315).timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0,
       potdAt: nil,
-      stateChangedAt: Date().timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0
+      stateChangedAt: Date(
+        timeIntervalSince1970: 1475361315).timeIntervalSince1970 - 60.0 * 60.0 * 24.0 * 15.0
     ),
     id: 1,
     location: .template,
