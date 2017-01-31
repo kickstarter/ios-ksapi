@@ -2,7 +2,7 @@ extension Activity {
   internal static let template = Activity(
     category: .launch,
     comment: nil,
-    createdAt: Date().timeIntervalSince1970,
+    createdAt: Date(timeIntervalSince1970: 1475361315).timeIntervalSince1970,
     id: 1,
     memberData: Activity.MemberData(
       amount: nil,
