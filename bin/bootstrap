@@ -2,3 +2,6 @@
 
 mkdir -p Frameworks/native-secrets/ios
 cp -n Configs/Secrets.swift.example Frameworks/native-secrets/ios/Secrets.swift
+git submodule sync --recursive
+git submodule update --init --recursive || git submodule foreach git fetch origin --tags
+git submodule update --init --recursive
