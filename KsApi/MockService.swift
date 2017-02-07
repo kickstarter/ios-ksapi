@@ -2,8 +2,9 @@
 // swiftlint:disable file_length
 // swiftlint:disable type_body_length
 // swiftlint:disable function_body_length
-import ReactiveSwift
 import Prelude
+import ReactiveSwift
+import Result
 
 internal struct MockService: ServiceType {
   internal let appId: String
@@ -12,9 +13,9 @@ internal struct MockService: ServiceType {
   internal let language: String
   internal let buildVersion: String
 
-  fileprivate let changePaymentMethodResponse: ChangePaymentMethodEnvelope
+  fileprivate let changePaymentMethodResult: Result<ChangePaymentMethodEnvelope, ErrorEnvelope>?
 
-  fileprivate let createPledgeResponse: CreatePledgeEnvelope
+  fileprivate let createPledgeResult: Result<CreatePledgeEnvelope, ErrorEnvelope>?
 
   fileprivate let facebookConnectResponse: User?
   fileprivate let facebookConnectError: ErrorEnvelope?
@@ -66,8 +67,7 @@ internal struct MockService: ServiceType {
   fileprivate let fetchProjectStatsResponse: ProjectStatsEnvelope?
   fileprivate let fetchProjectStatsError: ErrorEnvelope?
 
-  fileprivate let fetchShippingRulesResponse: [ShippingRule]?
-  fileprivate let fetchShippingRulesError: ErrorEnvelope?
+  fileprivate let fetchShippingRulesResult: Result<[ShippingRule], ErrorEnvelope>?
 
   fileprivate let fetchSurveyResponseResponse: SurveyResponse?
   fileprivate let fetchSurveyResponseError: ErrorEnvelope?
@@ -116,7 +116,7 @@ internal struct MockService: ServiceType {
 
   fileprivate let updateDraftError: ErrorEnvelope?
 
-  fileprivate let updatePledgeResponse: UpdatePledgeEnvelope
+  fileprivate let updatePledgeResult: Result<UpdatePledgeEnvelope, ErrorEnvelope>?
 
   fileprivate let updateProjectNotificationResponse: ProjectNotification?
   fileprivate let updateProjectNotificationError: ErrorEnvelope?
@@ -144,8 +144,8 @@ internal struct MockService: ServiceType {
                 oauthToken: OauthTokenAuthType? = nil,
                 language: String = "en",
                 buildVersion: String = "1",
-                changePaymentMethodResponse: ChangePaymentMethodEnvelope = .template,
-                createPledgeResponse: CreatePledgeEnvelope = .template,
+                changePaymentMethodResult: Result<ChangePaymentMethodEnvelope, ErrorEnvelope>? = nil,
+                createPledgeResult: Result<CreatePledgeEnvelope, ErrorEnvelope>? = nil,
                 facebookConnectResponse: User? = nil,
                 facebookConnectError: ErrorEnvelope? = nil,
                 fetchActivitiesResponse: [Activity]? = nil,
@@ -180,8 +180,7 @@ internal struct MockService: ServiceType {
                 fetchProjectsError: ErrorEnvelope? = nil,
                 fetchProjectStatsResponse: ProjectStatsEnvelope? = nil,
                 fetchProjectStatsError: ErrorEnvelope? = nil,
-                fetchShippingRulesResponse: [ShippingRule]? = [],
-                fetchShippingRulesError: ErrorEnvelope? = nil,
+                fetchShippingRulesResult: Result<[ShippingRule], ErrorEnvelope>? = nil,
                 fetchUserProjectsBackedResponse: [Project]? = nil,
                 fetchUserProjectsBackedError: ErrorEnvelope? = nil,
                 fetchUserResponse: User? = nil,
@@ -209,7 +208,7 @@ internal struct MockService: ServiceType {
                 toggleStarResponse: StarEnvelope? = nil,
                 unfollowFriendError: ErrorEnvelope? = nil,
                 updateDraftError: ErrorEnvelope? = nil,
-                updatePledgeResponse: UpdatePledgeEnvelope? = nil,
+                updatePledgeResult: Result<UpdatePledgeEnvelope, ErrorEnvelope>? = nil,
                 updateProjectNotificationResponse: ProjectNotification? = nil,
                 updateProjectNotificationError: ErrorEnvelope? = nil,
                 updateUserSelfError: ErrorEnvelope? = nil) {
@@ -220,8 +219,8 @@ internal struct MockService: ServiceType {
     self.language = language
     self.buildVersion = buildVersion
 
-    self.changePaymentMethodResponse = changePaymentMethodResponse
-    self.createPledgeResponse = createPledgeResponse
+    self.changePaymentMethodResult = changePaymentMethodResult
+    self.createPledgeResult = createPledgeResult
 
     self.facebookConnectResponse = facebookConnectResponse
     self.facebookConnectError = facebookConnectError
@@ -309,8 +308,7 @@ internal struct MockService: ServiceType {
     self.fetchProjectStatsResponse = fetchProjectStatsResponse
     self.fetchProjectStatsError = fetchProjectStatsError
 
-    self.fetchShippingRulesResponse = fetchShippingRulesResponse
-    self.fetchShippingRulesError = fetchShippingRulesError
+    self.fetchShippingRulesResult = fetchShippingRulesResult
 
     self.fetchSurveyResponseResponse = fetchSurveyResponseResponse
     self.fetchSurveyResponseError = fetchSurveyResponseError
@@ -362,7 +360,7 @@ internal struct MockService: ServiceType {
 
     self.updateDraftError = updateDraftError
 
-    self.updatePledgeResponse = updatePledgeResponse ?? .template
+    self.updatePledgeResult = updatePledgeResult
 
     self.updateProjectNotificationResponse = updateProjectNotificationResponse
 
@@ -766,13 +764,11 @@ internal struct MockService: ServiceType {
   internal func fetchRewardShippingRules(projectId: Int, rewardId: Int)
     -> SignalProducer<ShippingRulesEnvelope, ErrorEnvelope> {
 
-      if let error = fetchShippingRulesError {
+      if let error = self.fetchShippingRulesResult?.error {
         return SignalProducer(error: error)
-      } else if let response = fetchShippingRulesResponse {
-        return SignalProducer(value: .init(shippingRules: response))
       }
 
-      return SignalProducer(value: .init(shippingRules: [.template]))
+      return SignalProducer(value: .init(shippingRules: self.fetchShippingRulesResult?.value ?? [.template]))
   }
 
   internal func fetchUserProjectsBacked() -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
@@ -1081,7 +1077,11 @@ internal struct MockService: ServiceType {
     shippingLocation: Location?,
     tappedReward: Bool) -> SignalProducer<UpdatePledgeEnvelope, ErrorEnvelope> {
 
-    return SignalProducer(value: self.updatePledgeResponse)
+    if let error = self.updatePledgeResult?.error {
+      return SignalProducer(error: error)
+    }
+
+    return SignalProducer(value: self.updatePledgeResult?.value ?? .template)
   }
 
   internal func addImage(file fileURL: URL, toDraft draft: UpdateDraft)
@@ -1113,7 +1113,11 @@ internal struct MockService: ServiceType {
   internal func changePaymentMethod(project: Project)
     -> SignalProducer<ChangePaymentMethodEnvelope, ErrorEnvelope> {
 
-      return SignalProducer(value: self.changePaymentMethodResponse)
+      if let error = self.changePaymentMethodResult?.error {
+        return SignalProducer(error: error)
+      }
+
+      return SignalProducer(value: self.changePaymentMethodResult?.value ?? .template)
   }
 
   internal func delete(video: UpdateDraft.Video, fromDraft draft: UpdateDraft)
@@ -1150,8 +1154,8 @@ private extension MockService {
           oauthToken: $0,
           language: $1.language,
           buildVersion: $1.buildVersion,
-          changePaymentMethodResponse: $1.changePaymentMethodResponse,
-          createPledgeResponse: $1.createPledgeResponse,
+          changePaymentMethodResult: $1.changePaymentMethodResult,
+          createPledgeResult: $1.createPledgeResult,
           facebookConnectResponse: $1.facebookConnectResponse,
           facebookConnectError: $1.facebookConnectError,
           fetchActivitiesResponse: $1.fetchActivitiesResponse,
@@ -1184,8 +1188,7 @@ private extension MockService {
           fetchProjectsError: $1.fetchProjectsError,
           fetchProjectStatsResponse: $1.fetchProjectStatsResponse,
           fetchProjectStatsError: $1.fetchProjectStatsError,
-          fetchShippingRulesResponse: $1.fetchShippingRulesResponse,
-          fetchShippingRulesError: $1.fetchShippingRulesError,
+          fetchShippingRulesResult: $1.fetchShippingRulesResult,
           fetchUserProjectsBackedResponse: $1.fetchUserProjectsBackedResponse,
           fetchUserProjectsBackedError: $1.fetchUserProjectsBackedError,
           fetchUserResponse: $1.fetchUserResponse,
@@ -1213,7 +1216,7 @@ private extension MockService {
           toggleStarResponse: $1.toggleStarResponse,
           unfollowFriendError: $1.unfollowFriendError,
           updateDraftError: $1.updateDraftError,
-          updatePledgeResponse: $1.updatePledgeResponse,
+          updatePledgeResult: $1.updatePledgeResult,
           updateProjectNotificationResponse: $1.updateProjectNotificationResponse,
           updateProjectNotificationError: $1.updateProjectNotificationError,
           updateUserSelfError: $1.updateUserSelfError
