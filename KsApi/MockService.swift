@@ -375,7 +375,11 @@ internal struct MockService: ServiceType {
                              shippingLocation: Location?,
                              tappedReward: Bool) -> SignalProducer<CreatePledgeEnvelope, ErrorEnvelope> {
 
-    return SignalProducer(value: .template)
+    if let error = self.createPledgeResult?.error {
+      return SignalProducer(error: error)
+    }
+
+    return SignalProducer(value: self.createPledgeResult?.value ?? .template)
   }
 
   internal func facebookConnect(facebookAccessToken token: String)
