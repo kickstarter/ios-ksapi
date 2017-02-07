@@ -66,7 +66,8 @@ internal struct MockService: ServiceType {
   fileprivate let fetchProjectStatsResponse: ProjectStatsEnvelope?
   fileprivate let fetchProjectStatsError: ErrorEnvelope?
 
-  fileprivate let fetchShippingRulesResponse: [ShippingRule]
+  fileprivate let fetchShippingRulesResponse: [ShippingRule]?
+  fileprivate let fetchShippingRulesError: ErrorEnvelope?
 
   fileprivate let fetchSurveyResponseResponse: SurveyResponse?
   fileprivate let fetchSurveyResponseError: ErrorEnvelope?
@@ -179,7 +180,8 @@ internal struct MockService: ServiceType {
                 fetchProjectsError: ErrorEnvelope? = nil,
                 fetchProjectStatsResponse: ProjectStatsEnvelope? = nil,
                 fetchProjectStatsError: ErrorEnvelope? = nil,
-                fetchShippingRulesResponse: [ShippingRule] = [],
+                fetchShippingRulesResponse: [ShippingRule]? = [],
+                fetchShippingRulesError: ErrorEnvelope? = nil,
                 fetchUserProjectsBackedResponse: [Project]? = nil,
                 fetchUserProjectsBackedError: ErrorEnvelope? = nil,
                 fetchUserResponse: User? = nil,
@@ -308,6 +310,7 @@ internal struct MockService: ServiceType {
     self.fetchProjectStatsError = fetchProjectStatsError
 
     self.fetchShippingRulesResponse = fetchShippingRulesResponse
+    self.fetchShippingRulesError = fetchShippingRulesError
 
     self.fetchSurveyResponseResponse = fetchSurveyResponseResponse
     self.fetchSurveyResponseError = fetchSurveyResponseError
@@ -763,7 +766,13 @@ internal struct MockService: ServiceType {
   internal func fetchRewardShippingRules(projectId: Int, rewardId: Int)
     -> SignalProducer<ShippingRulesEnvelope, ErrorEnvelope> {
 
-      return .init(value: .init(shippingRules: fetchShippingRulesResponse))
+      if let error = fetchShippingRulesError {
+        return SignalProducer(error: error)
+      } else if let response = fetchShippingRulesResponse {
+        return SignalProducer(value: .init(shippingRules: response))
+      }
+
+      return SignalProducer(value: .init(shippingRules: [.template]))
   }
 
   internal func fetchUserProjectsBacked() -> SignalProducer<ProjectsEnvelope, ErrorEnvelope> {
@@ -1176,6 +1185,7 @@ private extension MockService {
           fetchProjectStatsResponse: $1.fetchProjectStatsResponse,
           fetchProjectStatsError: $1.fetchProjectStatsError,
           fetchShippingRulesResponse: $1.fetchShippingRulesResponse,
+          fetchShippingRulesError: $1.fetchShippingRulesError,
           fetchUserProjectsBackedResponse: $1.fetchUserProjectsBackedResponse,
           fetchUserProjectsBackedError: $1.fetchUserProjectsBackedError,
           fetchUserResponse: $1.fetchUserResponse,
