@@ -58,6 +58,7 @@ internal struct MockService: ServiceType {
   fileprivate let fetchMessageThreadsResponse: [MessageThread]
 
   fileprivate let fetchProjectResponse: Project?
+  fileprivate let fetchProjectError: ErrorEnvelope?
 
   fileprivate let fetchProjectNotificationsResponse: [ProjectNotification]
 
@@ -175,6 +176,7 @@ internal struct MockService: ServiceType {
                 fetchProjectActivitiesResponse: [Activity]? = nil,
                 fetchProjectActivitiesError: ErrorEnvelope? = nil,
                 fetchProjectResponse: Project? = nil,
+                fetchProjectError: ErrorEnvelope? = nil,
                 fetchProjectNotificationsResponse: [ProjectNotification]? = nil,
                 fetchProjectsResponse: [Project]? = nil,
                 fetchProjectsError: ErrorEnvelope? = nil,
@@ -294,6 +296,7 @@ internal struct MockService: ServiceType {
     self.fetchProjectActivitiesError = fetchProjectActivitiesError
 
     self.fetchProjectResponse = fetchProjectResponse
+    self.fetchProjectError = fetchProjectError
 
     self.fetchProjectNotificationsResponse = fetchProjectNotificationsResponse ?? [
       .template |> ProjectNotification.lens.id .~ 1,
@@ -662,6 +665,9 @@ internal struct MockService: ServiceType {
   }
 
   internal func fetchProject(param: Param) -> SignalProducer<Project, ErrorEnvelope> {
+    if let error = self.fetchProjectError {
+      return SignalProducer(error: error)
+    }
     if let project = self.fetchProjectResponse {
       return SignalProducer(value: project)
     }
