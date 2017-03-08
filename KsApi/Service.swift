@@ -328,6 +328,10 @@ public struct Service: ServiceType {
       }
   }
 
+  public func liveAuthToken() -> SignalProducer<LiveAuthTokenEnvelope, ErrorEnvelope> {
+    return request(.liveAuthToken)
+  }
+
   public func login(email: String, password: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope> {
 

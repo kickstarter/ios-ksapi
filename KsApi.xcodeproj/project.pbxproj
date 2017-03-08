@@ -389,6 +389,9 @@
 		A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B56B1C2EED9800FDB616 /* KsApiTests.swift */; };
 		A7FD09CA1C83E8E900332CCB /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		CA43C5FD1BB358F200C180DA /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0BC0E841E709202006C6D41 /* LiveAuthTokenEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0E831E709202006C6D41 /* LiveAuthTokenEnvelope.swift */; };
+		D0BC0E9A1E709427006C6D41 /* LiveAuthTokenEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0E991E709427006C6D41 /* LiveAuthTokenEnvelopeTemplates.swift */; };
+		D0BC0E9C1E7094BA006C6D41 /* LiveAuthTokenEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0E9B1E7094BA006C6D41 /* LiveAuthTokenEnvelopeTests.swift */; };
 		D7C6C7B41DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */; };
 		D7C6C7B51DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */; };
 		D7C6C7C61DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6C7C51DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift */; };
@@ -920,6 +923,9 @@
 		CA43C5F91BB358F200C180DA /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA43C5FC1BB358F200C180DA /* KsApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsApi.h; sourceTree = "<group>"; };
 		CA43C5FE1BB358F200C180DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0BC0E831E709202006C6D41 /* LiveAuthTokenEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAuthTokenEnvelope.swift; sourceTree = "<group>"; };
+		D0BC0E991E709427006C6D41 /* LiveAuthTokenEnvelopeTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAuthTokenEnvelopeTemplates.swift; sourceTree = "<group>"; };
+		D0BC0E9B1E7094BA006C6D41 /* LiveAuthTokenEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAuthTokenEnvelopeTests.swift; sourceTree = "<group>"; };
 		D7C6C7B31DF607B0005DC734 /* CreatePledgeEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePledgeEnvelopeTests.swift; sourceTree = "<group>"; };
 		D7C6C7C51DF63648005DC734 /* ChangePaymentMethodEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePaymentMethodEnvelopeTests.swift; sourceTree = "<group>"; };
 		D7C6C7C81DF63861005DC734 /* SubmitApplePayEnvelopeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitApplePayEnvelopeTests.swift; sourceTree = "<group>"; };
@@ -996,6 +1002,7 @@
 				0156B3811D0F7DC7000C4252 /* FindFriendsEnvelopeTemplates.swift */,
 				0156B41B1D10D4F9000C4252 /* FriendStatsEnvelopeTemplates.swift */,
 				A747A8091D455AD000AF199A /* ItemTemplates.swift */,
+				D0BC0E991E709427006C6D41 /* LiveAuthTokenEnvelopeTemplates.swift */,
 				A72661E31D07671D0087D883 /* LocationTemplates.swift */,
 				A72661E41D07671D0087D883 /* MessageTemplates.swift */,
 				A72661E51D07671D0087D883 /* MessageThreadTemplates.swift */,
@@ -1127,6 +1134,7 @@
 				A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */,
 				A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */,
 				A747A7EB1D455A3F00AF199A /* Item.swift */,
+				D0BC0E831E709202006C6D41 /* LiveAuthTokenEnvelope.swift */,
 				A73639B71D03565400445B24 /* Location.swift */,
 				A73639B81D03565400445B24 /* Message.swift */,
 				A796649C1D52213100454C84 /* MessageSubject.swift */,
@@ -1240,6 +1248,7 @@
 				0156B1FE1D075F84000C4252 /* FindFriendsEnvelopeTests.swift */,
 				0156B2111D076028000C4252 /* FriendStatsEnvelopeTests.swift */,
 				A796A8D31D48EAF8009B6EF6 /* ItemTests.swift */,
+				D0BC0E9B1E7094BA006C6D41 /* LiveAuthTokenEnvelopeTests.swift */,
 				A7363A3C1D03588600445B24 /* LocationTests.swift */,
 				A7363A3D1D03588600445B24 /* MessageTests.swift */,
 				A7363A3E1D03588600445B24 /* MessageThreadTests.swift */,
@@ -1908,6 +1917,7 @@
 				A747A8031D455A7300AF199A /* ItemLenses.swift in Sources */,
 				A7472E871D69F6EA0031949A /* PushEnvelopeLenses.swift in Sources */,
 				A7433B0B1D7F84B600C15400 /* SubmitApplePayEnvelope.swift in Sources */,
+				D0BC0E841E709202006C6D41 /* LiveAuthTokenEnvelope.swift in Sources */,
 				59D1E6A11D19C1F600896A4C /* ProjectStatsEnvelope.swift in Sources */,
 				A74176831DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift in Sources */,
 				59D1E6FF1D1B1CFD00896A4C /* ProjectStatsEnvelope.VideoStatsLenses.swift in Sources */,
@@ -1925,6 +1935,7 @@
 				A7363A121D03565400445B24 /* UserLenses.swift in Sources */,
 				9D9F582E1D1327E300CE81DE /* ProjectActivityEnvelope.swift in Sources */,
 				A777A59A1D05F55A00823FB1 /* VoidEnvelope.swift in Sources */,
+				D0BC0E9A1E709427006C6D41 /* LiveAuthTokenEnvelopeTemplates.swift in Sources */,
 				9D0FB7AB1D761347005774F2 /* CheckoutEnvelope.swift in Sources */,
 				013F78331D1D9EA5005C39F1 /* ProjectStatsEnvelope.RewardDistributionTemplates.swift in Sources */,
 				A777A5AD1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */,
@@ -1986,6 +1997,7 @@
 				809F8B631D08A26B005BADD9 /* UpdateDraftTests.swift in Sources */,
 				A7363A671D03588600445B24 /* RewardTests.swift in Sources */,
 				A757E9BB1D19B8D200A5C978 /* SurveyResponseTests.swift in Sources */,
+				D0BC0E9C1E7094BA006C6D41 /* LiveAuthTokenEnvelopeTests.swift in Sources */,
 				A7363A6F1D03588600445B24 /* User.NotificationsTests.swift in Sources */,
 				A7363A4B1D03588600445B24 /* ActivityTests.swift in Sources */,
 				A7363A511D03588600445B24 /* CommentTests.swift in Sources */,
