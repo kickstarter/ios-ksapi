@@ -15,6 +15,7 @@ extension LiveAuthTokenEnvelope: Decodable {
 }
 
 extension LiveAuthTokenEnvelope {
+  //swiftlint:disable:next type_name
   public enum lens {
     public static let backgroundImage = Lens<LiveAuthTokenEnvelope, String>(
       view: { $0.token },
