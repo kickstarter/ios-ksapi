@@ -389,6 +389,8 @@
 		A7FD09C81C83E8E900332CCB /* KsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753B56B1C2EED9800FDB616 /* KsApiTests.swift */; };
 		A7FD09CA1C83E8E900332CCB /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		CA43C5FD1BB358F200C180DA /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D08986531E709F3E00346EEB /* LiveAuthTokenEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0E831E709202006C6D41 /* LiveAuthTokenEnvelope.swift */; };
+		D08986681E709F5000346EEB /* LiveAuthTokenEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0E991E709427006C6D41 /* LiveAuthTokenEnvelopeTemplates.swift */; };
 		D0BC0E841E709202006C6D41 /* LiveAuthTokenEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0E831E709202006C6D41 /* LiveAuthTokenEnvelope.swift */; };
 		D0BC0E9A1E709427006C6D41 /* LiveAuthTokenEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0E991E709427006C6D41 /* LiveAuthTokenEnvelopeTemplates.swift */; };
 		D0BC0E9C1E7094BA006C6D41 /* LiveAuthTokenEnvelopeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BC0E9B1E7094BA006C6D41 /* LiveAuthTokenEnvelopeTests.swift */; };
@@ -2121,6 +2123,7 @@
 				59F1B71D1D2DB8FA001F7AF5 /* ProjectStatsEnvelope.FundingDateStatsTemplates.swift in Sources */,
 				A7472E881D69F6EA0031949A /* PushEnvelopeLenses.swift in Sources */,
 				A7433B0C1D7F84B600C15400 /* SubmitApplePayEnvelope.swift in Sources */,
+				D08986531E709F3E00346EEB /* LiveAuthTokenEnvelope.swift in Sources */,
 				59B0DF361D0F13960081D2DC /* ProjectNotificationLenses.swift in Sources */,
 				A74176841DAD1E83000EB831 /* ChangePaymentMethodEnvelope.swift in Sources */,
 				A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */,
@@ -2138,6 +2141,7 @@
 				A7363A051D03565400445B24 /* Project.StatsLenses.swift in Sources */,
 				0156B4281D10D502000C4252 /* FriendStatsEnvelopeTemplates.swift in Sources */,
 				A726620E1D07671D0087D883 /* StarEnvelopeTemplates.swift in Sources */,
+				D08986681E709F5000346EEB /* LiveAuthTokenEnvelopeTemplates.swift in Sources */,
 				9D0FB7AC1D761347005774F2 /* CheckoutEnvelope.swift in Sources */,
 				A7363A131D03565400445B24 /* UserLenses.swift in Sources */,
 				A777A59B1D05F55A00823FB1 /* VoidEnvelope.swift in Sources */,
