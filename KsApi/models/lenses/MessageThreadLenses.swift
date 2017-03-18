@@ -24,7 +24,7 @@ extension MessageThread {
     public static let lastMessage = Lens<MessageThread, Message>(
       view: { $0.lastMessage },
       set: { .init(backing: $1.backing, closed: $1.closed, id: $0.id, lastMessage: $0,
-                   participant: $1.participant, project: $1.project, 
+                   participant: $1.participant, project: $1.project,
                    unreadMessagesCount: $1.unreadMessagesCount) }
     )
 
