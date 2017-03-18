@@ -28,6 +28,7 @@ internal enum Route {
   case followFriend(userId: Int)
   case incrementVideoCompletion(project: Project)
   case incrementVideoStart(project: Project)
+  case liveAuthToken
   case login(email: String, password: String, code: String?)
   case markAsRead(MessageThread)
   case messagesForThread(messageThreadId: Int)
@@ -175,6 +176,9 @@ internal enum Route {
       let statsURL = URL(string: project.urls.web.project)?
         .appendingPathComponent("video/plays")
       return (.POST, statsURL?.absoluteString ?? "", ["event_type": "start", "location": "internal"], nil)
+
+    case .liveAuthToken:
+      return (.GET, "/v1/users/self/ksr_live_token", [:], nil)
 
     case let .login(email, password, code):
       var params = ["email": email, "password": password]

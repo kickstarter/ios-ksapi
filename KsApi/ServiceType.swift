@@ -193,6 +193,9 @@ public protocol ServiceType {
   /// Increment the video start stat for a project.
   func incrementVideoStart(forProject project: Project) -> SignalProducer<VoidEnvelope, ErrorEnvelope>
 
+  /// Retrieve an auth token for live chat for the logged in user.
+  func liveAuthToken() -> SignalProducer<LiveAuthTokenEnvelope, ErrorEnvelope>
+
   /// Attempt a login with an email, password and optional code.
   func login(email: String, password: String, code: String?) ->
     SignalProducer<AccessTokenEnvelope, ErrorEnvelope>

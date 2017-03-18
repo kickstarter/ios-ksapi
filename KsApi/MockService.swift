@@ -98,6 +98,9 @@ internal struct MockService: ServiceType {
   fileprivate let fetchProjectActivitiesResponse: [Activity]?
   fileprivate let fetchProjectActivitiesError: ErrorEnvelope?
 
+  fileprivate let liveAuthTokenResponse: LiveAuthTokenEnvelope?
+  fileprivate let liveAuthTokenError: ErrorEnvelope?
+
   fileprivate let loginResponse: AccessTokenEnvelope?
   fileprivate let loginError: ErrorEnvelope?
   fileprivate let resendCodeResponse: ErrorEnvelope?
@@ -198,6 +201,8 @@ internal struct MockService: ServiceType {
                 fetchUserSelfError: ErrorEnvelope? = nil,
                 postCommentResponse: Comment? = nil,
                 postCommentError: ErrorEnvelope? = nil,
+                liveAuthTokenResponse: LiveAuthTokenEnvelope? = nil,
+                liveAuthTokenError: ErrorEnvelope? = nil,
                 loginResponse: AccessTokenEnvelope? = nil,
                 loginError: ErrorEnvelope? = nil,
                 resendCodeResponse: ErrorEnvelope? = nil,
@@ -338,6 +343,9 @@ internal struct MockService: ServiceType {
     self.postCommentResponse = postCommentResponse ?? .template
 
     self.postCommentError = postCommentError
+
+    self.liveAuthTokenResponse = liveAuthTokenResponse
+    self.liveAuthTokenError = liveAuthTokenError
 
     self.loginResponse = loginResponse
 
@@ -518,6 +526,16 @@ internal struct MockService: ServiceType {
     }
 
     return SignalProducer(value: VoidEnvelope())
+  }
+
+  internal func liveAuthToken() -> SignalProducer<LiveAuthTokenEnvelope, ErrorEnvelope> {
+    if let error = self.liveAuthTokenError {
+      return SignalProducer(error: error)
+    }
+
+    let envelope = self.liveAuthTokenResponse ?? .template
+
+    return SignalProducer(value: envelope)
   }
 
   internal func login(_ oauthToken: OauthTokenAuthType) -> MockService {
