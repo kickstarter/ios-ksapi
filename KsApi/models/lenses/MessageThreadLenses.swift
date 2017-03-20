@@ -23,14 +23,15 @@ extension MessageThread {
 
     public static let lastMessage = Lens<MessageThread, Message>(
       view: { $0.lastMessage },
-      set: { MessageThread(backing: $1.backing, closed: $1.closed, id: $0.id, lastMessage: $0,
-        participant: $1.participant, project: $1.project, unreadMessagesCount: $1.unreadMessagesCount) }
+      set: { .init(backing: $1.backing, closed: $1.closed, id: $0.id, lastMessage: $0,
+                   participant: $1.participant, project: $1.project,
+                   unreadMessagesCount: $1.unreadMessagesCount) }
     )
 
     public static let unreadMessagesCount  = Lens<MessageThread, Int>(
       view: { $0.unreadMessagesCount },
-      set: { MessageThread(backing: $1.backing, closed: $1.closed, id: $1.id, lastMessage: $1.lastMessage,
-        participant: $1.participant, project: $1.project, unreadMessagesCount: 0) }
+      set: { .init(backing: $1.backing, closed: $1.closed, id: $1.id, lastMessage: $1.lastMessage,
+                   participant: $1.participant, project: $1.project, unreadMessagesCount: $0) }
     )
   }
 }
