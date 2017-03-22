@@ -5,6 +5,7 @@ disabled_rules:
   - trailing_comma
 excluded:
   - Frameworks
+  - KsApi.playground/
 line_length: 110
 type_body_length:
   warning: 300
