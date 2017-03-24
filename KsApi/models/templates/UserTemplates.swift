@@ -7,7 +7,7 @@ extension User {
     facebookConnected: nil,
     id: 1,
     isFriend: nil,
-    liveAuthToken: "token",
+    liveAuthToken: "deadbeef",
     location: nil,
     name: "Blob",
     newsletters: .template,
