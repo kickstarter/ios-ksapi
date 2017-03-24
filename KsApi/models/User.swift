@@ -7,6 +7,7 @@ public struct User {
   public let facebookConnected: Bool?
   public let id: Int
   public let isFriend: Bool?
+  public let liveAuthToken: String?
   public let location: Location?
   public let name: String
   public let newsletters: NewsletterSubscriptions
@@ -75,6 +76,7 @@ extension User: Decodable {
       <*> json <|? "facebook_connected"
       <*> json <| "id"
       <*> json <|? "is_friend"
+      <*> json <|? "ksr_live_token"
       <*> (json <|? "location" <|> .success(nil))
     return tmp
       <*> json <| "name"
@@ -92,6 +94,7 @@ extension User: EncodableType {
     result["facebook_connected"] = self.facebookConnected ?? false
     result["id"] = self.id
     result["is_friend"] = self.isFriend ?? false
+    result["ksr_live_token"] = self.liveAuthToken
     result["location"] = self.location?.encode()
     result["name"] = self.name
     result = result.withAllValuesFrom(self.newsletters.encode())
