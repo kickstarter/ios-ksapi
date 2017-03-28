@@ -1,6 +1,13 @@
 disabled_rules:
-  - large_tuple
+  - variable_name
+  - function_parameter_count
+  - nesting
   - trailing_comma
 excluded:
-  - Frameworks/
+  - Frameworks
   - KsApi.playground/
+line_length: 110
+type_body_length:
+  warning: 300
+  error: 400
+reporter: "xcode"

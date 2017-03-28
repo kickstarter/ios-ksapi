@@ -28,6 +28,7 @@ final class UserTests: XCTestCase {
       "happening_newsletter": false,
       "games_newsletter": false,
       "facebook_connected": false,
+      "ksr_live_token": "token",
       "location": [
         "country": "US",
         "id": 12,
@@ -49,6 +50,7 @@ final class UserTests: XCTestCase {
     XCTAssertEqual(false, user?.newsletters.games)
     XCTAssertEqual(false, user?.facebookConnected)
     XCTAssertEqual(false, user?.isFriend)
+    XCTAssertEqual("token", user?.liveAuthToken)
     XCTAssertNotNil(user?.location)
     XCTAssertEqual(json as NSDictionary?, user?.encode() as NSDictionary?)
   }
@@ -68,6 +70,7 @@ final class UserTests: XCTestCase {
       "promo_newsletter": false,
       "weekly_newsletter": false,
       "facebook_connected": false,
+      "ksr_live_token": "token",
       "location": [
         "country": "US",
         "id": 12,

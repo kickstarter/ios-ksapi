@@ -6,72 +6,78 @@ extension User {
     public static let avatar = Lens<User, User.Avatar>(
       view: { $0.avatar },
       set: { User(avatar: $0, facebookConnected: $1.facebookConnected, id: $1.id, isFriend: $1.isFriend,
-        location: $1.location, name: $1.name, newsletters: $1.newsletters, notifications: $1.notifications,
-        social: $1.social, stats: $1.stats) }
+        liveAuthToken: $1.liveAuthToken, location: $1.location, name: $1.name, newsletters: $1.newsletters,
+        notifications: $1.notifications, social: $1.social, stats: $1.stats) }
     )
 
     public static let facebookConnected = Lens<User, Bool?>(
       view: { $0.facebookConnected },
       set: { User(avatar: $1.avatar, facebookConnected: $0, id: $1.id, isFriend: $1.isFriend,
-        location: $1.location, name: $1.name, newsletters: $1.newsletters, notifications: $1.notifications,
-        social: $1.social, stats: $1.stats) }
+        liveAuthToken: $1.liveAuthToken, location: $1.location, name: $1.name, newsletters: $1.newsletters,
+        notifications: $1.notifications, social: $1.social, stats: $1.stats) }
     )
 
     public static let id = Lens<User, Int>(
       view: { $0.id },
       set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $0, isFriend: $1.isFriend,
-        location: $1.location, name: $1.name, newsletters: $1.newsletters, notifications: $1.notifications,
-        social: $1.social, stats: $1.stats) }
+        liveAuthToken: $1.liveAuthToken, location: $1.location, name: $1.name, newsletters: $1.newsletters,
+        notifications: $1.notifications, social: $1.social, stats: $1.stats) }
     )
 
     public static let isFriend = Lens<User, Bool?>(
       view: { $0.isFriend },
       set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id, isFriend: $0,
-        location: $1.location, name: $1.name, newsletters: $1.newsletters, notifications: $1.notifications,
-        social: $1.social, stats: $1.stats) }
+        liveAuthToken: $1.liveAuthToken, location: $1.location, name: $1.name, newsletters: $1.newsletters,
+        notifications: $1.notifications, social: $1.social, stats: $1.stats) }
+    )
+
+    public static let liveAuthToken = Lens<User, String?>(
+      view: { $0.liveAuthToken },
+      set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
+        isFriend: $1.isFriend, liveAuthToken: $0, location: $1.location, name: $1.name,
+        newsletters: $1.newsletters, notifications: $1.notifications, social: $1.social, stats: $1.stats) }
     )
 
     public static let location = Lens<User, Location?>(
       view: { $0.location },
       set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
-        isFriend: $1.isFriend, location: $0, name: $1.name, newsletters: $1.newsletters,
-        notifications: $1.notifications,
-        social: $1.social, stats: $1.stats) }
+        isFriend: $1.isFriend, liveAuthToken: $1.liveAuthToken, location: $0, name: $1.name,
+        newsletters: $1.newsletters, notifications: $1.notifications, social: $1.social, stats: $1.stats) }
     )
 
     public static let name = Lens<User, String>(
       view: { $0.name },
       set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
-        isFriend: $1.isFriend, location: $1.location, name: $0, newsletters: $1.newsletters,
-        notifications: $1.notifications, social: $1.social, stats: $1.stats) }
+        isFriend: $1.isFriend, liveAuthToken: $1.liveAuthToken, location: $1.location, name: $0,
+        newsletters: $1.newsletters, notifications: $1.notifications, social: $1.social, stats: $1.stats) }
     )
 
     public static let newsletters = Lens<User, User.NewsletterSubscriptions>(
       view: { $0.newsletters },
       set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
-        isFriend: $1.isFriend, location: $1.location, name: $1.name, newsletters: $0,
-        notifications: $1.notifications, social: $1.social, stats: $1.stats) }
+        isFriend: $1.isFriend, liveAuthToken: $1.liveAuthToken, location: $1.location, name: $1.name,
+        newsletters: $0, notifications: $1.notifications, social: $1.social, stats: $1.stats) }
     )
 
     public static let notifications = Lens<User, User.Notifications>(
       view: { $0.notifications },
       set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
-        isFriend: $1.isFriend, location: $1.location, name: $1.name, newsletters: $1.newsletters,
-        notifications: $0, social: $1.social, stats: $1.stats) }
+        isFriend: $1.isFriend, liveAuthToken: $1.liveAuthToken, location: $1.location, name: $1.name,
+        newsletters: $1.newsletters, notifications: $0, social: $1.social, stats: $1.stats) }
     )
 
     public static let social = Lens<User, Bool?>(
       view: { $0.social },
       set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
-        isFriend: $1.isFriend, location: $1.location, name: $1.name, newsletters: $1.newsletters,
-        notifications: $1.notifications, social: $0, stats: $1.stats) }
+        isFriend: $1.isFriend, liveAuthToken: $1.liveAuthToken, location: $1.location, name: $1.name,
+        newsletters: $1.newsletters, notifications: $1.notifications, social: $0, stats: $1.stats) }
     )
 
     public static let stats = Lens<User, User.Stats>(
       view: { $0.stats },
       set: { User(avatar: $1.avatar, facebookConnected: $1.facebookConnected, id: $1.id,
-        isFriend: $1.isFriend, location: $1.location, name: $1.name, newsletters: $1.newsletters,
-        notifications: $1.notifications, social: $1.social, stats: $0) }
+        isFriend: $1.isFriend, liveAuthToken: $1.liveAuthToken, location: $1.location, name: $1.name,
+        newsletters: $1.newsletters, notifications: $1.notifications, social: $1.social, stats: $0) }
     )
   }
 }
