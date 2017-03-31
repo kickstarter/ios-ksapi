@@ -1,6 +1,9 @@
 import ReactiveSwift
 import KsApi
 import Result
+import PlaygroundSupport
+
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 // Java: Observerable
 //       "hot"  ~> Signal
@@ -8,6 +11,9 @@ import Result
 
 // Signal
 // SignalProducer
+
+
+// ------------------- signals and properties ---------------------
 
 let (signal, observer) = Signal<Int, NoError>.pipe()
 let property = MutableProperty<Int?>(nil)
@@ -22,29 +28,17 @@ property.value = 2
 signal
   .map { $0 + 1 }
   .filter { $0 % 2 == 0 }
-  .observeValues { print($0) }
+//  .observeValues { print($0) }
 
 property.signal
   .skipNil()
   .map { $0 + 1 }
   .filter { $0 % 2 == 0 }
-  .observeValues { print("property: \($0)") }
-
-signal.take(last: <#T##Int#>)
-signal.take(first: <#T##Int#>)
-signal.skip(first: <#T##Int#>)
-signal.skip(last: <#T##Int#>)
-property.signal.skipNil()
-Event
-
+//  .observeValues { print("property: \($0)") }
 observer.send(value: 1)
 observer.send(value: 50)
 property.value = 1
 property.value = 50
-
-
-
-
 
 let (signalA, observerA) = Signal<Int, NoError>.pipe()
 let (signalB, observerB) = Signal<Int, NoError>.pipe()
@@ -54,20 +48,26 @@ Signal.merge(
   signalA,
   signalB
   )
-  .observeValues { print("merge: \($0)") }
+//  .observeValues { print("merge: \($0)") }
 
 Signal.combineLatest(
   signalA,
   signalB,
   signalC
   )
-  .observeValues { print("combineLatest: \($0)") }
+//  .observeValues { print("combineLatest: \($0)") }
 
 Signal.zip(signalA, signalB)
-  .observeValues { print("zip: \($0)") }
+//  .observeValues { print("zip: \($0)") }
 
 // zip: (2, 5)
 // zip: (3, 10)
+
+
+let m: Signal<Event<Int, NoError>, NoError> = signalA
+  .materialize()
+
+//m.observe { print($0) }
 
 observerA.send(value: 2)
 observerB.send(value: 5)
@@ -77,20 +77,68 @@ observerB.send(value: 10)
 
 observerC.send(value: 23)
 
+observerA.sendCompleted()
 
 
 
+// ------------------- producers ---------------------
+
+
+property
+  .signal
+  .skipNil()
+  .map { $0 + 1 }
+//  .observeValues { print("property.signal: \($0)") }
+
+property
+  .producer
+  .skipNil()
+  .map { $0 + 1 }
+//  .startWithValues { print("property.producer: \($0)") }
+
+
+property.value = 4
+property.value = 10
+property.value = 20
+
+
+SignalProducer<Int, NoError>([1, 2, 3, 4, 5])
+//  .start { print("event: \($0)") }
+
+
+// ------------------- flatmap ---------------------
+
+
+signal
+  .switchMap { x in
+//  .flatMap { x in
+    SignalProducer([1])
+      .delay(1, on: QueueScheduler.main)
+      .map { $0 + x }
+  }
+//  .observeValues { print("flatMap: \($0)") }
+  .observeValues { print("switchMap: \($0)") }
+
+observer.send(value: 100)
+observer.send(value: 200)
+observer.send(value: 300)
+observer.send(value: 400)
+observer.send(value: 500)
+observer.send(value: 600)
+observer.send(value: 700)
+observer.send(value: 800)
 
 
 
+// 
 
 
 
+//signal.flatMap { producer }     => signal
 
-
-
-
-
+//producer.flatMap { signal }     => producer
+//producer.flatMap { producer }   => producer
+//signal.flatMap { signal }       => signal
 
 
 
