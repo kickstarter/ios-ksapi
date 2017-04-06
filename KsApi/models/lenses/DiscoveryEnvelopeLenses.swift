@@ -45,13 +45,13 @@ extension DiscoveryEnvelope.StatsEnvelope {
   }
 }
 
-extension LensType where Whole == DiscoveryEnvelope, Part == DiscoveryEnvelope.UrlsEnvelope {
+extension Lens where Whole == DiscoveryEnvelope, Part == DiscoveryEnvelope.UrlsEnvelope {
   public var api: Lens<DiscoveryEnvelope, DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope> {
     return DiscoveryEnvelope.lens.urls • DiscoveryEnvelope.UrlsEnvelope.lens.api
   }
 }
 
-extension LensType where Whole == DiscoveryEnvelope, Part == DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope {
+extension Lens where Whole == DiscoveryEnvelope, Part == DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope {
   public var moreProjects: Lens<DiscoveryEnvelope, String> {
     return DiscoveryEnvelope.lens.urls.api • DiscoveryEnvelope.UrlsEnvelope.ApiEnvelope.lens.moreProjects
   }

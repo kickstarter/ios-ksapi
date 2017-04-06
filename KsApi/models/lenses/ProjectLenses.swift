@@ -174,7 +174,7 @@ extension Project.UrlsEnvelope.WebEnvelope {
   }
 }
 
-extension LensType where Whole == Project, Part == User {
+extension Lens where Whole == Project, Part == User {
   public var avatar: Lens<Project, User.Avatar> {
     return Project.lens.creator • User.lens.avatar
   }
@@ -188,7 +188,7 @@ extension LensType where Whole == Project, Part == User {
   }
 }
 
-extension LensType where Whole == Project, Part == Category {
+extension Lens where Whole == Project, Part == Category {
   public var id: Lens<Project, Int> {
     return Project.lens.category • Category.lens.id
   }
@@ -202,7 +202,7 @@ extension LensType where Whole == Project, Part == Category {
   }
 }
 
-extension LensType where Whole == Project, Part == Location {
+extension Lens where Whole == Project, Part == Location {
   public var name: Lens<Project, String> {
     return Project.lens.location • Location.lens.name
   }
@@ -212,7 +212,7 @@ extension LensType where Whole == Project, Part == Location {
   }
 }
 
-extension LensType where Whole == Project, Part == Project.Stats {
+extension Lens where Whole == Project, Part == Project.Stats {
   public var backersCount: Lens<Project, Int> {
     return Project.lens.stats • Project.Stats.lens.backersCount
   }
@@ -242,7 +242,7 @@ extension LensType where Whole == Project, Part == Project.Stats {
   }
 }
 
-extension LensType where Whole == Project, Part == Project.MemberData {
+extension Lens where Whole == Project, Part == Project.MemberData {
   public var lastUpdatePublishedAt: Lens<Project, TimeInterval?> {
     return Project.lens.memberData • Project.MemberData.lens.lastUpdatePublishedAt
   }
@@ -256,7 +256,7 @@ extension LensType where Whole == Project, Part == Project.MemberData {
   }
 }
 
-extension LensType where Whole == Project, Part == Project.Dates {
+extension Lens where Whole == Project, Part == Project.Dates {
   public var deadline: Lens<Project, TimeInterval> {
     return Project.lens.dates • Project.Dates.lens.deadline
   }
@@ -278,7 +278,7 @@ extension LensType where Whole == Project, Part == Project.Dates {
   }
 }
 
-extension LensType where Whole == Project, Part == Project.Personalization {
+extension Lens where Whole == Project, Part == Project.Personalization {
   public var backing: Lens<Project, Backing?> {
     return Project.lens.personalization • Project.Personalization.lens.backing
   }
@@ -296,7 +296,7 @@ extension LensType where Whole == Project, Part == Project.Personalization {
   }
 }
 
-extension LensType where Whole == Project, Part == Project.Photo {
+extension Lens where Whole == Project, Part == Project.Photo {
   public var full: Lens<Project, String> {
     return Project.lens.photo • Project.Photo.lens.full
   }
@@ -314,19 +314,19 @@ extension LensType where Whole == Project, Part == Project.Photo {
   }
 }
 
-extension LensType where Whole == Project, Part == Project.MemberData {
+extension Lens where Whole == Project, Part == Project.MemberData {
   public var permissions: Lens<Whole, [Project.MemberData.Permission]> {
     return Whole.lens.memberData • Part.lens.permissions
   }
 }
 
-extension LensType where Whole == Project, Part == Project.UrlsEnvelope {
+extension Lens where Whole == Project, Part == Project.UrlsEnvelope {
   public var web: Lens<Whole, Project.UrlsEnvelope.WebEnvelope> {
     return Whole.lens.urls • Part.lens.web
   }
 }
 
-extension LensType where Whole == Project, Part == Project.UrlsEnvelope.WebEnvelope {
+extension Lens where Whole == Project, Part == Project.UrlsEnvelope.WebEnvelope {
   public var project: Lens<Whole, String> {
     return Whole.lens.urls.web • Part.lens.project
   }

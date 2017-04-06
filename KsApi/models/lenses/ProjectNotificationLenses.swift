@@ -25,7 +25,7 @@ extension ProjectNotification {
   }
 }
 
-extension LensType where Whole == ProjectNotification, Part == ProjectNotification.Project {
+extension Lens where Whole == ProjectNotification, Part == ProjectNotification.Project {
   public var id: Lens<ProjectNotification, Int> {
     return ProjectNotification.lens.project • ProjectNotification.Project.lens.id
   }

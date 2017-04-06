@@ -53,7 +53,7 @@ extension Activity {
   }
 }
 
-extension LensType where Whole == Activity, Part == Activity.MemberData {
+extension Lens where Whole == Activity, Part == Activity.MemberData {
   public var amount: Lens<Activity, Int?> {
     return Activity.lens.memberData • Activity.MemberData.lens.amount
   }

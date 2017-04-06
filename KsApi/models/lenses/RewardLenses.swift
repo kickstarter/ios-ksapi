@@ -101,7 +101,7 @@ extension Reward {
   }
 }
 
-extension LensType where Whole == Reward, Part == Reward.Shipping {
+extension Lens where Whole == Reward, Part == Reward.Shipping {
   public var enabled: Lens<Reward, Bool> {
     return Reward.lens.shipping • Reward.Shipping.lens.enabled
   }

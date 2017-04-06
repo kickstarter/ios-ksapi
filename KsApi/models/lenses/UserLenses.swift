@@ -82,7 +82,7 @@ extension User {
   }
 }
 
-extension LensType where Whole == User, Part == User.Avatar {
+extension Lens where Whole == User, Part == User.Avatar {
   public var large: Lens<User, String?> {
     return User.lens.avatar • User.Avatar.lens.large
   }
@@ -96,7 +96,7 @@ extension LensType where Whole == User, Part == User.Avatar {
   }
 }
 
-extension LensType where Whole == User, Part == User.NewsletterSubscriptions {
+extension Lens where Whole == User, Part == User.NewsletterSubscriptions {
   public var games: Lens<User, Bool?> {
     return User.lens.newsletters • User.NewsletterSubscriptions.lens.games
   }
@@ -114,7 +114,7 @@ extension LensType where Whole == User, Part == User.NewsletterSubscriptions {
   }
 }
 
-extension LensType where Whole == User, Part == User.Notifications {
+extension Lens where Whole == User, Part == User.Notifications {
   public var backings: Lens<User, Bool?> {
     return User.lens.notifications • User.Notifications.lens.backings
   }
@@ -164,7 +164,7 @@ extension LensType where Whole == User, Part == User.Notifications {
   }
 }
 
-extension LensType where Whole == User, Part == User.Stats {
+extension Lens where Whole == User, Part == User.Stats {
   public var backedProjectsCount: Lens<User, Int?> {
     return User.lens.stats • User.Stats.lens.backedProjectsCount
   }
