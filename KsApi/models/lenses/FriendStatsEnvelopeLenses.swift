@@ -10,7 +10,7 @@ extension FriendStatsEnvelope {
   }
 }
 
-extension LensType where Whole == FriendStatsEnvelope, Part == FriendStatsEnvelope.Stats {
+extension Lens where Whole == FriendStatsEnvelope, Part == FriendStatsEnvelope.Stats {
   public var friendProjectsCount: Lens<FriendStatsEnvelope, Int> {
     return FriendStatsEnvelope.lens.stats • FriendStatsEnvelope.Stats.lens.friendProjectsCount
   }

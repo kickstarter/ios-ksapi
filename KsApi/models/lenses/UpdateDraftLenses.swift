@@ -58,7 +58,7 @@ extension UpdateDraft.Video {
   }
 }
 
-extension LensType where Whole == UpdateDraft, Part == Update {
+extension Lens where Whole == UpdateDraft, Part == Update {
   public var id: Lens<UpdateDraft, Int> {
     return UpdateDraft.lens.update • Update.lens.id
   }
