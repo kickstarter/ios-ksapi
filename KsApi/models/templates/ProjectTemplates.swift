@@ -73,7 +73,7 @@ extension Project {
     |> Project.lens.stats.pledged .~ 22_318
     |> Project.lens.stats.goal .~ 22_000
     |> Project.lens.stats.staticUsdRate .~ 1.31
-    |> (Project.lens.location • Location.lens.displayableName) .~ "Hastings, UK"
+    |> (Project.lens.location..Location.lens.displayableName) .~ "Hastings, UK"
     |> Project.lens.rewards .~ [
       .template
         |> Reward.lens.id .~ 20
@@ -158,5 +158,5 @@ extension Project {
     |> Project.lens.stats.backersCount .~ 5_770
     |> Project.lens.stats.pledged .~ 406_237
     |> Project.lens.stats.goal .~ 200_000
-    |> (Project.lens.location • Location.lens.displayableName) .~ "Burbank, CA"
+    |> (Project.lens.location..Location.lens.displayableName) .~ "Burbank, CA"
 }

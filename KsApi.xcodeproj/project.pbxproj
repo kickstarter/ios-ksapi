@@ -306,7 +306,6 @@
 		A777A5AE1D05F66200823FB1 /* User.AvatarLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */; };
 		A77967731C2B431C0002166F /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967631C2B431C0002166F /* Service.swift */; };
 		A77967741C2B431C0002166F /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77967641C2B431C0002166F /* ServiceType.swift */; };
-		A77F74701E9D9C8D0028EDF0 /* Runes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A79BE80D1E0720CA0077A9B2 /* Runes.framework */; };
 		A782B4421D2C27DF0069D10E /* Activity.MemberDataLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEE3BA31D1DB9950020C2BE /* Activity.MemberDataLenses.swift */; };
 		A796649D1D52213100454C84 /* MessageSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796649C1D52213100454C84 /* MessageSubject.swift */; };
 		A796649E1D52213100454C84 /* MessageSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796649C1D52213100454C84 /* MessageSubject.swift */; };
@@ -649,13 +648,6 @@
 			remoteGlobalIDString = A7DB1D391C9F355E008244DA;
 			remoteInfo = "ReactiveExtensions-TestHelpers-iOS";
 		};
-		A77F746E1E9D9C6F0028EDF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A79BE8021E0720CA0077A9B2 /* Runes.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F802D4D11A5F218E005E236C;
-			remoteInfo = "Runes-iOS";
-		};
 		A79BE80C1E0720CA0077A9B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A79BE8021E0720CA0077A9B2 /* Runes.xcodeproj */;
@@ -867,7 +859,6 @@
 		A777A5AC1D05F66200823FB1 /* User.AvatarLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.AvatarLenses.swift; sourceTree = "<group>"; };
 		A77967631C2B431C0002166F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A77967641C2B431C0002166F /* ServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
-		A77F74561E9D9C670028EDF0 /* Runes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Runes.framework; path = "../../../../Library/Developer/Xcode/DerivedData/KsApi-bnwkkqtoiovpbeelsjfrgfixvlht/Build/Products/Debug-iphonesimulator/Runes.framework"; sourceTree = "<group>"; };
 		A796649C1D52213100454C84 /* MessageSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSubject.swift; sourceTree = "<group>"; };
 		A79BE8021E0720CA0077A9B2 /* Runes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Runes.xcodeproj; path = Frameworks/Runes/Runes.xcodeproj; sourceTree = "<group>"; };
 		A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStatsEnvelope.CumulativeStatsLenses.swift; sourceTree = "<group>"; };
@@ -930,7 +921,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A77F74701E9D9C8D0028EDF0 /* Runes.framework in Frameworks */,
 				A73639881D03559C00445B24 /* Argo.framework in Frameworks */,
 				A73639891D03559C00445B24 /* Curry.framework in Frameworks */,
 				A736398A1D03559C00445B24 /* Prelude.framework in Frameworks */,
@@ -1256,7 +1246,6 @@
 		A7FD099F1C83E77B00332CCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A77F74561E9D9C670028EDF0 /* Runes.framework */,
 				A736391A1D03550300445B24 /* Argo.xcodeproj */,
 				A73639321D03550700445B24 /* Curry.xcodeproj */,
 				A73639411D03550C00445B24 /* Prelude.xcodeproj */,
@@ -1361,7 +1350,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A77F746F1E9D9C6F0028EDF0 /* PBXTargetDependency */,
 				A73639801D03556C00445B24 /* PBXTargetDependency */,
 				A73639821D03556F00445B24 /* PBXTargetDependency */,
 				A73639841D03557200445B24 /* PBXTargetDependency */,
@@ -2196,11 +2184,6 @@
 			isa = PBXTargetDependency;
 			name = "ReactiveExtensions-TestHelpers-iOS";
 			targetProxy = A75CAC581D138D6600EBF323 /* PBXContainerItemProxy */;
-		};
-		A77F746F1E9D9C6F0028EDF0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Runes-iOS";
-			targetProxy = A77F746E1E9D9C6F0028EDF0 /* PBXContainerItemProxy */;
 		};
 		A7FD09D51C83E8FE00332CCB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

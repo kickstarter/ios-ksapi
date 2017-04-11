@@ -103,14 +103,14 @@ extension Reward {
 
 extension Lens where Whole == Reward, Part == Reward.Shipping {
   public var enabled: Lens<Reward, Bool> {
-    return Reward.lens.shipping • Reward.Shipping.lens.enabled
+    return Reward.lens.shipping..Reward.Shipping.lens.enabled
   }
 
   public var preference: Lens<Reward, Reward.Shipping.Preference?> {
-    return Reward.lens.shipping • Reward.Shipping.lens.preference
+    return Reward.lens.shipping..Reward.Shipping.lens.preference
   }
 
   public var summary: Lens<Reward, String?> {
-    return Reward.lens.shipping • Reward.Shipping.lens.summary
+    return Reward.lens.shipping..Reward.Shipping.lens.summary
   }
 }
