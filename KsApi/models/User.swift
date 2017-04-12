@@ -71,17 +71,19 @@ extension User: CustomDebugStringConvertible {
 extension User: Decodable {
   public static func decode(_ json: JSON) -> Decoded<User> {
     let create = curry(User.init)
-    let tmp = create
-      <^> json <| "avatar"
+    let tmp1 = pure(create)
+      <*> json <| "avatar"
       <*> json <|? "facebook_connected"
       <*> json <| "id"
+    let tmp2 = tmp1
       <*> json <|? "is_friend"
       <*> json <|? "ksr_live_token"
       <*> (json <|? "location" <|> .success(nil))
-    return tmp
+    let tmp3 = tmp2
       <*> json <| "name"
       <*> User.NewsletterSubscriptions.decode(json)
       <*> User.Notifications.decode(json)
+    return tmp3
       <*> json <|? "social"
       <*> User.Stats.decode(json)
   }

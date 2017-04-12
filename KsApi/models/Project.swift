@@ -112,7 +112,8 @@ public struct Project {
   }
 
   public func endsIn48Hours(today: Date = Date()) -> Bool {
-    return self.dates.deadline - today.timeIntervalSince1970 <= 60.0 * 60.0 * 48.0
+    let twoDays: TimeInterval = 60.0 * 60.0 * 48.0
+    return self.dates.deadline - today.timeIntervalSince1970 <= twoDays
   }
 
   public func isFeaturedToday(today: Date = Date(), calendar: Calendar = .current) -> Bool {
