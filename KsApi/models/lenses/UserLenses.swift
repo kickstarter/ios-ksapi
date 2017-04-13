@@ -84,100 +84,100 @@ extension User {
 
 extension Lens where Whole == User, Part == User.Avatar {
   public var large: Lens<User, String?> {
-    return User.lens.avatar • User.Avatar.lens.large
+    return User.lens.avatar..User.Avatar.lens.large
   }
 
   public var medium: Lens<User, String> {
-    return User.lens.avatar • User.Avatar.lens.medium
+    return User.lens.avatar..User.Avatar.lens.medium
   }
 
   public var small: Lens<User, String> {
-    return User.lens.avatar • User.Avatar.lens.small
+    return User.lens.avatar..User.Avatar.lens.small
   }
 }
 
 extension Lens where Whole == User, Part == User.NewsletterSubscriptions {
   public var games: Lens<User, Bool?> {
-    return User.lens.newsletters • User.NewsletterSubscriptions.lens.games
+    return User.lens.newsletters..User.NewsletterSubscriptions.lens.games
   }
 
   public var happening: Lens<User, Bool?> {
-    return User.lens.newsletters • User.NewsletterSubscriptions.lens.happening
+    return User.lens.newsletters..User.NewsletterSubscriptions.lens.happening
   }
 
   public var promo: Lens<User, Bool?> {
-    return User.lens.newsletters • User.NewsletterSubscriptions.lens.promo
+    return User.lens.newsletters..User.NewsletterSubscriptions.lens.promo
   }
 
   public var weekly: Lens<User, Bool?> {
-    return User.lens.newsletters • User.NewsletterSubscriptions.lens.weekly
+    return User.lens.newsletters..User.NewsletterSubscriptions.lens.weekly
   }
 }
 
 extension Lens where Whole == User, Part == User.Notifications {
   public var backings: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.backings
+    return User.lens.notifications..User.Notifications.lens.backings
   }
 
   public var comments: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.comments
+    return User.lens.notifications..User.Notifications.lens.comments
   }
 
   public var follower: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.follower
+    return User.lens.notifications..User.Notifications.lens.follower
   }
 
   public var friendActivity: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.friendActivity
+    return User.lens.notifications..User.Notifications.lens.friendActivity
   }
 
   public var postLikes: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.postLikes
+    return User.lens.notifications..User.Notifications.lens.postLikes
   }
 
   public var updates: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.updates
+    return User.lens.notifications..User.Notifications.lens.updates
   }
 
   public var mobileBackings: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.mobileBackings
+    return User.lens.notifications..User.Notifications.lens.mobileBackings
   }
 
   public var mobileComments: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.mobileComments
+    return User.lens.notifications..User.Notifications.lens.mobileComments
   }
 
   public var mobileFollower: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.mobileFollower
+    return User.lens.notifications..User.Notifications.lens.mobileFollower
   }
 
   public var mobileFriendActivity: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.mobileFriendActivity
+    return User.lens.notifications..User.Notifications.lens.mobileFriendActivity
   }
 
   public var mobilePostLikes: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.mobilePostLikes
+    return User.lens.notifications..User.Notifications.lens.mobilePostLikes
   }
 
   public var mobileUpdates: Lens<User, Bool?> {
-    return User.lens.notifications • User.Notifications.lens.mobileUpdates
+    return User.lens.notifications..User.Notifications.lens.mobileUpdates
   }
 }
 
 extension Lens where Whole == User, Part == User.Stats {
   public var backedProjectsCount: Lens<User, Int?> {
-    return User.lens.stats • User.Stats.lens.backedProjectsCount
+    return User.lens.stats..User.Stats.lens.backedProjectsCount
   }
 
   public var createdProjectsCount: Lens<User, Int?> {
-    return User.lens.stats • User.Stats.lens.createdProjectsCount
+    return User.lens.stats..User.Stats.lens.createdProjectsCount
   }
 
   public var memberProjectsCount: Lens<User, Int?> {
-    return User.lens.stats • User.Stats.lens.memberProjectsCount
+    return User.lens.stats..User.Stats.lens.memberProjectsCount
   }
 
   public var starredProjectsCount: Lens<User, Int?> {
-    return User.lens.stats • User.Stats.lens.starredProjectsCount
+    return User.lens.stats..User.Stats.lens.starredProjectsCount
   }
 }

@@ -176,158 +176,158 @@ extension Project.UrlsEnvelope.WebEnvelope {
 
 extension Lens where Whole == Project, Part == User {
   public var avatar: Lens<Project, User.Avatar> {
-    return Project.lens.creator • User.lens.avatar
+    return Project.lens.creator..User.lens.avatar
   }
 
   public var id: Lens<Project, Int> {
-    return Project.lens.creator • User.lens.id
+    return Project.lens.creator..User.lens.id
   }
 
   public var name: Lens<Project, String> {
-    return Project.lens.creator • User.lens.name
+    return Project.lens.creator..User.lens.name
   }
 }
 
 extension Lens where Whole == Project, Part == Category {
   public var id: Lens<Project, Int> {
-    return Project.lens.category • Category.lens.id
+    return Project.lens.category..Category.lens.id
   }
 
   public var name: Lens<Project, String> {
-    return Project.lens.category • Category.lens.name
+    return Project.lens.category..Category.lens.name
   }
 
   public var parent: Lens<Project, Category?> {
-    return Project.lens.category • Category.lens.parent
+    return Project.lens.category..Category.lens.parent
   }
 }
 
 extension Lens where Whole == Project, Part == Location {
   public var name: Lens<Project, String> {
-    return Project.lens.location • Location.lens.name
+    return Project.lens.location..Location.lens.name
   }
 
   public var displayableName: Lens<Project, String> {
-    return Project.lens.location • Location.lens.displayableName
+    return Project.lens.location..Location.lens.displayableName
   }
 }
 
 extension Lens where Whole == Project, Part == Project.Stats {
   public var backersCount: Lens<Project, Int> {
-    return Project.lens.stats • Project.Stats.lens.backersCount
+    return Project.lens.stats..Project.Stats.lens.backersCount
   }
 
   public var commentsCount: Lens<Project, Int?> {
-    return Project.lens.stats • Project.Stats.lens.commentsCount
+    return Project.lens.stats..Project.Stats.lens.commentsCount
   }
 
   public var goal: Lens<Project, Int> {
-    return Project.lens.stats • Project.Stats.lens.goal
+    return Project.lens.stats..Project.Stats.lens.goal
   }
 
   public var pledged: Lens<Project, Int> {
-    return Project.lens.stats • Project.Stats.lens.pledged
+    return Project.lens.stats..Project.Stats.lens.pledged
   }
 
   public var staticUsdRate: Lens<Project, Float> {
-    return Project.lens.stats • Project.Stats.lens.staticUsdRate
+    return Project.lens.stats..Project.Stats.lens.staticUsdRate
   }
 
   public var updatesCount: Lens<Project, Int?> {
-    return Project.lens.stats • Project.Stats.lens.updatesCount
+    return Project.lens.stats..Project.Stats.lens.updatesCount
   }
 
   public var fundingProgress: Lens<Project, Float> {
-    return Project.lens.stats • Project.Stats.lens.fundingProgress
+    return Project.lens.stats..Project.Stats.lens.fundingProgress
   }
 }
 
 extension Lens where Whole == Project, Part == Project.MemberData {
   public var lastUpdatePublishedAt: Lens<Project, TimeInterval?> {
-    return Project.lens.memberData • Project.MemberData.lens.lastUpdatePublishedAt
+    return Project.lens.memberData..Project.MemberData.lens.lastUpdatePublishedAt
   }
 
   public var unreadMessagesCount: Lens<Project, Int?> {
-    return Project.lens.memberData • Project.MemberData.lens.unreadMessagesCount
+    return Project.lens.memberData..Project.MemberData.lens.unreadMessagesCount
   }
 
   public var unseenActivityCount: Lens<Project, Int?> {
-    return Project.lens.memberData • Project.MemberData.lens.unseenActivityCount
+    return Project.lens.memberData..Project.MemberData.lens.unseenActivityCount
   }
 }
 
 extension Lens where Whole == Project, Part == Project.Dates {
   public var deadline: Lens<Project, TimeInterval> {
-    return Project.lens.dates • Project.Dates.lens.deadline
+    return Project.lens.dates..Project.Dates.lens.deadline
   }
 
   public var featuredAt: Lens<Project, TimeInterval?> {
-    return Project.lens.dates • Project.Dates.lens.featuredAt
+    return Project.lens.dates..Project.Dates.lens.featuredAt
   }
 
   public var launchedAt: Lens<Project, TimeInterval> {
-    return Project.lens.dates • Project.Dates.lens.launchedAt
+    return Project.lens.dates..Project.Dates.lens.launchedAt
   }
 
   public var potdAt: Lens<Project, TimeInterval?> {
-    return Project.lens.dates • Project.Dates.lens.potdAt
+    return Project.lens.dates..Project.Dates.lens.potdAt
   }
 
   public var stateChangedAt: Lens<Project, TimeInterval> {
-    return Project.lens.dates • Project.Dates.lens.stateChangedAt
+    return Project.lens.dates..Project.Dates.lens.stateChangedAt
   }
 }
 
 extension Lens where Whole == Project, Part == Project.Personalization {
   public var backing: Lens<Project, Backing?> {
-    return Project.lens.personalization • Project.Personalization.lens.backing
+    return Project.lens.personalization..Project.Personalization.lens.backing
   }
 
   public var friends: Lens<Project, [User]?> {
-    return Project.lens.personalization • Project.Personalization.lens.friends
+    return Project.lens.personalization..Project.Personalization.lens.friends
   }
 
   public var isBacking: Lens<Project, Bool?> {
-    return Project.lens.personalization • Project.Personalization.lens.isBacking
+    return Project.lens.personalization..Project.Personalization.lens.isBacking
   }
 
   public var isStarred: Lens<Project, Bool?> {
-    return Project.lens.personalization • Project.Personalization.lens.isStarred
+    return Project.lens.personalization..Project.Personalization.lens.isStarred
   }
 }
 
 extension Lens where Whole == Project, Part == Project.Photo {
   public var full: Lens<Project, String> {
-    return Project.lens.photo • Project.Photo.lens.full
+    return Project.lens.photo..Project.Photo.lens.full
   }
 
   public var med: Lens<Project, String> {
-    return Project.lens.photo • Project.Photo.lens.med
+    return Project.lens.photo..Project.Photo.lens.med
   }
 
   public var size1024x768: Lens<Project, String?> {
-    return Project.lens.photo • Project.Photo.lens.size1024x768
+    return Project.lens.photo..Project.Photo.lens.size1024x768
   }
 
   public var small: Lens<Project, String> {
-    return Project.lens.photo • Project.Photo.lens.small
+    return Project.lens.photo..Project.Photo.lens.small
   }
 }
 
 extension Lens where Whole == Project, Part == Project.MemberData {
   public var permissions: Lens<Whole, [Project.MemberData.Permission]> {
-    return Whole.lens.memberData • Part.lens.permissions
+    return Whole.lens.memberData..Part.lens.permissions
   }
 }
 
 extension Lens where Whole == Project, Part == Project.UrlsEnvelope {
   public var web: Lens<Whole, Project.UrlsEnvelope.WebEnvelope> {
-    return Whole.lens.urls • Part.lens.web
+    return Whole.lens.urls..Part.lens.web
   }
 }
 
 extension Lens where Whole == Project, Part == Project.UrlsEnvelope.WebEnvelope {
   public var project: Lens<Whole, String> {
-    return Whole.lens.urls.web • Part.lens.project
+    return Whole.lens.urls.web..Part.lens.project
   }
 }

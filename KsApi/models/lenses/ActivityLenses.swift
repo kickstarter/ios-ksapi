@@ -55,30 +55,30 @@ extension Activity {
 
 extension Lens where Whole == Activity, Part == Activity.MemberData {
   public var amount: Lens<Activity, Int?> {
-    return Activity.lens.memberData • Activity.MemberData.lens.amount
+    return Activity.lens.memberData..Activity.MemberData.lens.amount
   }
 
   public var backing: Lens<Activity, Backing?> {
-    return Activity.lens.memberData • Activity.MemberData.lens.backing
+    return Activity.lens.memberData..Activity.MemberData.lens.backing
   }
 
   public var oldAmount: Lens<Activity, Int?> {
-    return Activity.lens.memberData • Activity.MemberData.lens.oldAmount
+    return Activity.lens.memberData..Activity.MemberData.lens.oldAmount
   }
 
   public var oldRewardId: Lens<Activity, Int?> {
-    return Activity.lens.memberData • Activity.MemberData.lens.oldRewardId
+    return Activity.lens.memberData..Activity.MemberData.lens.oldRewardId
   }
 
   public var newAmount: Lens<Activity, Int?> {
-    return Activity.lens.memberData • Activity.MemberData.lens.newAmount
+    return Activity.lens.memberData..Activity.MemberData.lens.newAmount
   }
 
   public var newRewardId: Lens<Activity, Int?> {
-    return Activity.lens.memberData • Activity.MemberData.lens.newRewardId
+    return Activity.lens.memberData..Activity.MemberData.lens.newRewardId
   }
 
   public var rewardId: Lens<Activity, Int?> {
-    return Activity.lens.memberData • Activity.MemberData.lens.rewardId
+    return Activity.lens.memberData..Activity.MemberData.lens.rewardId
   }
 }
