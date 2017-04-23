@@ -1,5 +1,12 @@
 import Argo
 
+public protocol CountryType {}
+public protocol CategoryType {}
+public protocol ProjectType {}
+public protocol UserType {}
+public protocol LocationType {}
+public protocol RewardType {}
+
 public protocol IdField {
   var id: String { get }
 }
@@ -82,7 +89,7 @@ public enum GQLState: Decodable {
   case SUCCESSFUL
   case SUSPENDED
   case UNKNOWN
-  
+
   public static func decode(_ json: JSON) -> Decoded<GQLState> {
     switch json {
     case .string("CANCELED"):
@@ -104,10 +111,3 @@ public enum GQLState: Decodable {
     }
   }
 }
-
-public protocol CountryType {}
-public protocol CategoryType {}
-public protocol ProjectType {}
-public protocol UserType {}
-public protocol LocationType {}
-public protocol RewardType {}

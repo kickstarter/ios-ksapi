@@ -296,6 +296,10 @@
 		A75CAC551D138CBC00EBF323 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75CAC531D138CBC00EBF323 /* MockService.swift */; };
 		A75CAC5A1D138D6D00EBF323 /* ReactiveExtensions_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73639621D03551000445B24 /* ReactiveExtensions_TestHelpers.framework */; };
 		A75CAC5B1D138D7600EBF323 /* ReactiveExtensions_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73639641D03551000445B24 /* ReactiveExtensions_TestHelpers.framework */; };
+		A772EC281EAC6822002F3A7A /* ProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC261EAC6822002F3A7A /* ProfileQuery.swift */; };
+		A772EC291EAC6822002F3A7A /* ProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC261EAC6822002F3A7A /* ProfileQuery.swift */; };
+		A772EC2A1EAC6822002F3A7A /* StartUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC271EAC6822002F3A7A /* StartUpQuery.swift */; };
+		A772EC2B1EAC6822002F3A7A /* StartUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC271EAC6822002F3A7A /* StartUpQuery.swift */; };
 		A777A5961D05F55A00823FB1 /* FindFriendsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */; };
 		A777A5971D05F55A00823FB1 /* FindFriendsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */; };
 		A777A5981D05F55A00823FB1 /* FriendStatsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */; };
@@ -317,10 +321,6 @@
 		A7E117811EAC32E70070E5EB /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E1177F1EAC32E70070E5EB /* Types.swift */; };
 		A7E117831EAC33890070E5EB /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E117821EAC33890070E5EB /* Schema.swift */; };
 		A7E117841EAC33890070E5EB /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E117821EAC33890070E5EB /* Schema.swift */; };
-		A7E117861EAC34EC0070E5EB /* StartUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E117851EAC34EC0070E5EB /* StartUpQuery.swift */; };
-		A7E117871EAC34EC0070E5EB /* StartUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E117851EAC34EC0070E5EB /* StartUpQuery.swift */; };
-		A7E117891EAC36560070E5EB /* ProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E117881EAC36560070E5EB /* ProfileQuery.swift */; };
-		A7E1178A1EAC36560070E5EB /* ProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E117881EAC36560070E5EB /* ProfileQuery.swift */; };
 		A7E1178C1EAC3D220070E5EB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E1178B1EAC3D220070E5EB /* Errors.swift */; };
 		A7E1178D1EAC3D220070E5EB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E1178B1EAC3D220070E5EB /* Errors.swift */; };
 		A7E1178F1EAC3EAA0070E5EB /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E1178E1EAC3EAA0070E5EB /* Fetch.swift */; };
@@ -816,6 +816,8 @@
 		A75A9DC71D6F6F9D00603D1D /* ShippingRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingRule.swift; sourceTree = "<group>"; };
 		A75CAC421D137E2D00EBF323 /* Project.PhotoLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.PhotoLenses.swift; sourceTree = "<group>"; };
 		A75CAC531D138CBC00EBF323 /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		A772EC261EAC6822002F3A7A /* ProfileQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileQuery.swift; sourceTree = "<group>"; };
+		A772EC271EAC6822002F3A7A /* StartUpQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartUpQuery.swift; sourceTree = "<group>"; };
 		A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsEnvelope.swift; sourceTree = "<group>"; };
 		A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendStatsEnvelope.swift; sourceTree = "<group>"; };
 		A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidEnvelope.swift; sourceTree = "<group>"; };
@@ -827,8 +829,6 @@
 		A7C8DDAD1DE4FC4E008DDA9A /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "Frameworks/native-secrets/ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
 		A7E1177F1EAC32E70070E5EB /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		A7E117821EAC33890070E5EB /* Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
-		A7E117851EAC34EC0070E5EB /* StartUpQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartUpQuery.swift; sourceTree = "<group>"; };
-		A7E117881EAC36560070E5EB /* ProfileQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileQuery.swift; sourceTree = "<group>"; };
 		A7E1178B1EAC3D220070E5EB /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		A7E1178E1EAC3EAA0070E5EB /* Fetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		A7ED1E081E82F5A100BFFA01 /* ActivityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTests.swift; sourceTree = "<group>"; };
@@ -1197,15 +1197,23 @@
 			path = lenses;
 			sourceTree = "<group>";
 		};
+		A772EC251EAC6822002F3A7A /* queries */ = {
+			isa = PBXGroup;
+			children = (
+				A772EC261EAC6822002F3A7A /* ProfileQuery.swift */,
+				A772EC271EAC6822002F3A7A /* StartUpQuery.swift */,
+			);
+			path = queries;
+			sourceTree = "<group>";
+		};
 		A7E1177E1EAC32DB0070E5EB /* graphql */ = {
 			isa = PBXGroup;
 			children = (
 				A7E1178B1EAC3D220070E5EB /* Errors.swift */,
-				A7E117881EAC36560070E5EB /* ProfileQuery.swift */,
-				A7E117821EAC33890070E5EB /* Schema.swift */,
-				A7E117851EAC34EC0070E5EB /* StartUpQuery.swift */,
-				A7E1177F1EAC32E70070E5EB /* Types.swift */,
 				A7E1178E1EAC3EAA0070E5EB /* Fetch.swift */,
+				A7E117821EAC33890070E5EB /* Schema.swift */,
+				A7E1177F1EAC32E70070E5EB /* Types.swift */,
+				A772EC251EAC6822002F3A7A /* queries */,
 			);
 			path = graphql;
 			sourceTree = "<group>";
@@ -1698,6 +1706,7 @@
 				A73639EC1D03565400445B24 /* DiscoveryParams.swift in Sources */,
 				A7363A221D03565400445B24 /* Project.swift in Sources */,
 				A7363A1C1D03565400445B24 /* MessageThreadsEnvelope.swift in Sources */,
+				A772EC2A1EAC6822002F3A7A /* StartUpQuery.swift in Sources */,
 				A73639F01D03565400445B24 /* ActivityLenses.swift in Sources */,
 				A73639F81D03565400445B24 /* DiscoveryParamsLenses.swift in Sources */,
 				A75A9D8A1D6F2AE100603D1D /* ShippingRuleLenses.swift in Sources */,
@@ -1741,11 +1750,11 @@
 				80762DDA1D0709D30074189D /* CategoriesEnvelopeLenses.swift in Sources */,
 				A7363A061D03565400445B24 /* ProjectLenses.swift in Sources */,
 				A7363A161D03565400445B24 /* Message.swift in Sources */,
+				A772EC281EAC6822002F3A7A /* ProfileQuery.swift in Sources */,
 				A7363A101D03565400445B24 /* User.StatsLenses.swift in Sources */,
 				A74176951DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift in Sources */,
 				A7363A021D03565400445B24 /* Project.PersonalizationLenses.swift in Sources */,
 				A7363A141D03565400445B24 /* Location.swift in Sources */,
-				A7E117861EAC34EC0070E5EB /* StartUpQuery.swift in Sources */,
 				A7FD09751C83E74F00332CCB /* Service.swift in Sources */,
 				80FB0AFD1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift in Sources */,
 				A73639F61D03565400445B24 /* CommentLenses.swift in Sources */,
@@ -1806,7 +1815,6 @@
 				A7433B111D7F896600C15400 /* SubmitApplePayTemplates.swift in Sources */,
 				A7433B0E1D7F890800C15400 /* CreatePledgeEnvelopeTemplates.swift in Sources */,
 				A75A9DC51D6F5B4E00603D1D /* ShippingRulesEnvelopeTemplates.swift in Sources */,
-				A7E117891EAC36560070E5EB /* ProfileQuery.swift in Sources */,
 				0156B42D1D10D97C000C4252 /* FriendStatsEnvelopeLenses.swift in Sources */,
 				A7363A181D03565400445B24 /* MessageThread.swift in Sources */,
 				A741765D1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift in Sources */,
@@ -1904,6 +1912,7 @@
 				A747A8041D455A7300AF199A /* ItemLenses.swift in Sources */,
 				A73639ED1D03565400445B24 /* DiscoveryParams.swift in Sources */,
 				A7363A231D03565400445B24 /* Project.swift in Sources */,
+				A772EC2B1EAC6822002F3A7A /* StartUpQuery.swift in Sources */,
 				A7363A1D1D03565400445B24 /* MessageThreadsEnvelope.swift in Sources */,
 				A73639F11D03565400445B24 /* ActivityLenses.swift in Sources */,
 				A75A9D8B1D6F2AE100603D1D /* ShippingRuleLenses.swift in Sources */,
@@ -1947,11 +1956,11 @@
 				A7363A091D03565400445B24 /* RewardLenses.swift in Sources */,
 				A73639E71D03565400445B24 /* CommentsEnvelope.swift in Sources */,
 				59D1E6AB1D19E54800896A4C /* ProjectStatsEnvelope.CumulativeStatsTemplates.swift in Sources */,
+				A772EC291EAC6822002F3A7A /* ProfileQuery.swift in Sources */,
 				A73639F31D03565400445B24 /* BackingLenses.swift in Sources */,
 				A74176961DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift in Sources */,
 				A72661F61D07671D0087D883 /* CategoriesEnvelopeTemplates.swift in Sources */,
 				80762DE61D0710F00074189D /* StarEnvelopeLenses.swift in Sources */,
-				A7E117871EAC34EC0070E5EB /* StartUpQuery.swift in Sources */,
 				80762DDB1D0709D30074189D /* CategoriesEnvelopeLenses.swift in Sources */,
 				A7363A071D03565400445B24 /* ProjectLenses.swift in Sources */,
 				A782B4421D2C27DF0069D10E /* Activity.MemberDataLenses.swift in Sources */,
@@ -2012,7 +2021,6 @@
 				A7433B121D7F896600C15400 /* SubmitApplePayTemplates.swift in Sources */,
 				A7433B0F1D7F890800C15400 /* CreatePledgeEnvelopeTemplates.swift in Sources */,
 				A75A9DC61D6F5B4E00603D1D /* ShippingRulesEnvelopeTemplates.swift in Sources */,
-				A7E1178A1EAC36560070E5EB /* ProfileQuery.swift in Sources */,
 				A713EC9D1C2C51B600B6234E /* ServerConfig.swift in Sources */,
 				A73639E91D03565400445B24 /* Config.swift in Sources */,
 				A741765E1DAC46B1000EB831 /* UpdatePledgeEnvelope.swift in Sources */,

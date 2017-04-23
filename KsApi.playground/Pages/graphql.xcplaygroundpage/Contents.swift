@@ -16,12 +16,13 @@ Query.build(profileQuery)
   .startWithResult { result in
     
     dump(result)
-    (result.value?.me.backedProjects.first).doIfSome(configureWith(project:))
 }
 
-func configureWith <P: ProjectType & NameField & ImageUrlField> (project: P) {
-  project.imageUrl
-  project.name
+
+(fetch(query: fetchStartupQuery) as SignalProducer<StartUpQueryResult, ApiError>)
+  .startWithResult { result in
+    
+    dump(result)
 }
 
 "done"

@@ -11,18 +11,18 @@ public enum ApiError: Error {
 
 public struct GQLError: Error, Decodable {
   let errors: [Error]
-  
+
   public static func decode(_ json: JSON) -> Decoded<GQLError> {
     return pure(GQLError.init)
       <*> json <|| "errors"
   }
-  
+
   public struct Error: Decodable {
     let message: String
     let locations: [Location]
     let fields: [String]
     let path: [String]
-    
+
     public static func decode(_ json: JSON) -> Decoded<GQLError.Error> {
       return pure(curry(Error.init))
         <*> json <| "message"
@@ -30,11 +30,11 @@ public struct GQLError: Error, Decodable {
         <*> (json <|| "fields" <|> .success([]))
         <*> (json <|| "path" <|> .success([]))
     }
-    
+
     public struct Location: Decodable {
       let column: Int
       let line: Int
-      
+
       public static func decode(_ json: JSON) -> Decoded<GQLError.Error.Location> {
         return pure(curry(Location.init))
           <*> json <| "column"

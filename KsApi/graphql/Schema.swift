@@ -1,4 +1,3 @@
-
 public protocol QueryObject: CustomStringConvertible, Hashable {}
 
 extension QueryObject {
@@ -38,14 +37,12 @@ public enum Edges<Q: QueryObject> {
   case node(Set<Q>)
 }
 
-
-
 public enum Query {
   case me(Set<User>)
   case project(slug: String, Set<Project>)
   case rootCategories(Set<Category>)
   case supportedCountries(Set<Country>)
-  
+
   public enum User {
     case backedProjects(Set<Project>)
     case id
@@ -53,23 +50,23 @@ public enum Query {
     case location(Set<Location>)
     case name
   }
-  
+
   public enum Category {
     case id
     case name
     case subcategories(Set<Category>)
   }
-  
+
   public enum Country {
     case code
     case name
   }
-  
+
   public enum Location {
     case id
     case name
   }
-  
+
   public enum Project {
     case category(Set<Category>)
     case creator(Set<User>)
@@ -81,13 +78,13 @@ public enum Query {
     case rewards(Set<Reward>)
     case state
   }
-  
+
   public enum Reward {
     case description
     case id
     case name
   }
-  
+
   public static func build(_ queries: Set<Query>) -> String {
     return "{ \(join(queries)) }"
   }
