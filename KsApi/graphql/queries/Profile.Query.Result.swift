@@ -1,31 +1,7 @@
+// Hopefully this can be code gen'd
 import Argo
 import Curry
 import Runes
-
-public let profileQuery: Set<Query> = [
-  .me(
-    [
-      .backedProjects(
-        [
-          .id,
-          .fundingRatio,
-          .imageUrl(blur: false, width: 300),
-          .name,
-          .state
-        ]
-      ),
-      .id,
-      .name,
-      .imageUrl(width: 300),
-      .location(
-        [
-          .id,
-          .name
-        ]
-      )
-    ]
-  )
-]
 
 public struct ProfileQueryResult: Decodable, MeField {
   public private(set) var me: User

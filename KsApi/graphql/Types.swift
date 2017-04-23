@@ -1,3 +1,4 @@
+// Hopefully this can be code gen'd
 import Argo
 
 public protocol CountryType {}
@@ -28,6 +29,11 @@ public protocol CreatorField {
 public protocol LocationField {
   associatedtype _LocationType: LocationType
   var location: _LocationType { get }
+}
+
+public protocol ProjectField {
+  associatedtype _ProjectType: ProjectType
+  var project: _ProjectType { get }
 }
 
 public protocol RootCategoriesField {

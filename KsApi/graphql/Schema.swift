@@ -1,3 +1,4 @@
+// Hopefully this can be code gen'd
 public protocol QueryObject: CustomStringConvertible, Hashable {}
 
 extension QueryObject {

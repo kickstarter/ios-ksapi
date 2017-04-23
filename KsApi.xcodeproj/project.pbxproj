@@ -296,10 +296,18 @@
 		A75CAC551D138CBC00EBF323 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75CAC531D138CBC00EBF323 /* MockService.swift */; };
 		A75CAC5A1D138D6D00EBF323 /* ReactiveExtensions_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73639621D03551000445B24 /* ReactiveExtensions_TestHelpers.framework */; };
 		A75CAC5B1D138D7600EBF323 /* ReactiveExtensions_TestHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73639641D03551000445B24 /* ReactiveExtensions_TestHelpers.framework */; };
-		A772EC281EAC6822002F3A7A /* ProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC261EAC6822002F3A7A /* ProfileQuery.swift */; };
-		A772EC291EAC6822002F3A7A /* ProfileQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC261EAC6822002F3A7A /* ProfileQuery.swift */; };
-		A772EC2A1EAC6822002F3A7A /* StartUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC271EAC6822002F3A7A /* StartUpQuery.swift */; };
-		A772EC2B1EAC6822002F3A7A /* StartUpQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC271EAC6822002F3A7A /* StartUpQuery.swift */; };
+		A772EC281EAC6822002F3A7A /* Profile.Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC261EAC6822002F3A7A /* Profile.Query.swift */; };
+		A772EC291EAC6822002F3A7A /* Profile.Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC261EAC6822002F3A7A /* Profile.Query.swift */; };
+		A772EC2A1EAC6822002F3A7A /* StartUp.Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC271EAC6822002F3A7A /* StartUp.Query.swift */; };
+		A772EC2B1EAC6822002F3A7A /* StartUp.Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC271EAC6822002F3A7A /* StartUp.Query.swift */; };
+		A772EC2D1EAD12D5002F3A7A /* Profile.Query.Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC2C1EAD12D5002F3A7A /* Profile.Query.Result.swift */; };
+		A772EC2E1EAD12D5002F3A7A /* Profile.Query.Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC2C1EAD12D5002F3A7A /* Profile.Query.Result.swift */; };
+		A772EC301EAD13D9002F3A7A /* ProjectPage.Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC2F1EAD13D9002F3A7A /* ProjectPage.Query.swift */; };
+		A772EC311EAD13D9002F3A7A /* ProjectPage.Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC2F1EAD13D9002F3A7A /* ProjectPage.Query.swift */; };
+		A772EC331EAD13EB002F3A7A /* StartUp.Query.Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC321EAD13EB002F3A7A /* StartUp.Query.Result.swift */; };
+		A772EC341EAD13EB002F3A7A /* StartUp.Query.Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC321EAD13EB002F3A7A /* StartUp.Query.Result.swift */; };
+		A772EC361EAD167A002F3A7A /* ProjectPage.Query.Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC351EAD167A002F3A7A /* ProjectPage.Query.Result.swift */; };
+		A772EC371EAD167A002F3A7A /* ProjectPage.Query.Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = A772EC351EAD167A002F3A7A /* ProjectPage.Query.Result.swift */; };
 		A777A5961D05F55A00823FB1 /* FindFriendsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */; };
 		A777A5971D05F55A00823FB1 /* FindFriendsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */; };
 		A777A5981D05F55A00823FB1 /* FriendStatsEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */; };
@@ -816,8 +824,12 @@
 		A75A9DC71D6F6F9D00603D1D /* ShippingRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingRule.swift; sourceTree = "<group>"; };
 		A75CAC421D137E2D00EBF323 /* Project.PhotoLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.PhotoLenses.swift; sourceTree = "<group>"; };
 		A75CAC531D138CBC00EBF323 /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
-		A772EC261EAC6822002F3A7A /* ProfileQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileQuery.swift; sourceTree = "<group>"; };
-		A772EC271EAC6822002F3A7A /* StartUpQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartUpQuery.swift; sourceTree = "<group>"; };
+		A772EC261EAC6822002F3A7A /* Profile.Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.Query.swift; sourceTree = "<group>"; };
+		A772EC271EAC6822002F3A7A /* StartUp.Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartUp.Query.swift; sourceTree = "<group>"; };
+		A772EC2C1EAD12D5002F3A7A /* Profile.Query.Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.Query.Result.swift; sourceTree = "<group>"; };
+		A772EC2F1EAD13D9002F3A7A /* ProjectPage.Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPage.Query.swift; sourceTree = "<group>"; };
+		A772EC321EAD13EB002F3A7A /* StartUp.Query.Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartUp.Query.Result.swift; sourceTree = "<group>"; };
+		A772EC351EAD167A002F3A7A /* ProjectPage.Query.Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectPage.Query.Result.swift; sourceTree = "<group>"; };
 		A777A5931D05F55A00823FB1 /* FindFriendsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsEnvelope.swift; sourceTree = "<group>"; };
 		A777A5941D05F55A00823FB1 /* FriendStatsEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendStatsEnvelope.swift; sourceTree = "<group>"; };
 		A777A5951D05F55A00823FB1 /* VoidEnvelope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidEnvelope.swift; sourceTree = "<group>"; };
@@ -1200,8 +1212,12 @@
 		A772EC251EAC6822002F3A7A /* queries */ = {
 			isa = PBXGroup;
 			children = (
-				A772EC261EAC6822002F3A7A /* ProfileQuery.swift */,
-				A772EC271EAC6822002F3A7A /* StartUpQuery.swift */,
+				A772EC2C1EAD12D5002F3A7A /* Profile.Query.Result.swift */,
+				A772EC261EAC6822002F3A7A /* Profile.Query.swift */,
+				A772EC351EAD167A002F3A7A /* ProjectPage.Query.Result.swift */,
+				A772EC2F1EAD13D9002F3A7A /* ProjectPage.Query.swift */,
+				A772EC321EAD13EB002F3A7A /* StartUp.Query.Result.swift */,
+				A772EC271EAC6822002F3A7A /* StartUp.Query.swift */,
 			);
 			path = queries;
 			sourceTree = "<group>";
@@ -1706,8 +1722,9 @@
 				A73639EC1D03565400445B24 /* DiscoveryParams.swift in Sources */,
 				A7363A221D03565400445B24 /* Project.swift in Sources */,
 				A7363A1C1D03565400445B24 /* MessageThreadsEnvelope.swift in Sources */,
-				A772EC2A1EAC6822002F3A7A /* StartUpQuery.swift in Sources */,
+				A772EC2A1EAC6822002F3A7A /* StartUp.Query.swift in Sources */,
 				A73639F01D03565400445B24 /* ActivityLenses.swift in Sources */,
+				A772EC331EAD13EB002F3A7A /* StartUp.Query.Result.swift in Sources */,
 				A73639F81D03565400445B24 /* DiscoveryParamsLenses.swift in Sources */,
 				A75A9D8A1D6F2AE100603D1D /* ShippingRuleLenses.swift in Sources */,
 				A747A80D1D455AD000AF199A /* RewardsItemTemplates.swift in Sources */,
@@ -1726,6 +1743,7 @@
 				A73639EE1D03565400445B24 /* ErrorEnvelope.swift in Sources */,
 				A72661FD1D07671D0087D883 /* DiscoveryEnvelopeTemplates.swift in Sources */,
 				A75CAC541D138CBC00EBF323 /* MockService.swift in Sources */,
+				A772EC301EAD13D9002F3A7A /* ProjectPage.Query.swift in Sources */,
 				A726620F1D07671D0087D883 /* UpdateTemplates.swift in Sources */,
 				A7363A2A1D03565400445B24 /* Update.swift in Sources */,
 				A75CAC431D137E2D00EBF323 /* Project.PhotoLenses.swift in Sources */,
@@ -1750,7 +1768,7 @@
 				80762DDA1D0709D30074189D /* CategoriesEnvelopeLenses.swift in Sources */,
 				A7363A061D03565400445B24 /* ProjectLenses.swift in Sources */,
 				A7363A161D03565400445B24 /* Message.swift in Sources */,
-				A772EC281EAC6822002F3A7A /* ProfileQuery.swift in Sources */,
+				A772EC281EAC6822002F3A7A /* Profile.Query.swift in Sources */,
 				A7363A101D03565400445B24 /* User.StatsLenses.swift in Sources */,
 				A74176951DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift in Sources */,
 				A7363A021D03565400445B24 /* Project.PersonalizationLenses.swift in Sources */,
@@ -1758,6 +1776,7 @@
 				A7FD09751C83E74F00332CCB /* Service.swift in Sources */,
 				80FB0AFD1D1061AB00D9EEB8 /* UpdateDraftTemplates.swift in Sources */,
 				A73639F61D03565400445B24 /* CommentLenses.swift in Sources */,
+				A772EC2D1EAD12D5002F3A7A /* Profile.Query.Result.swift in Sources */,
 				A7F16FD61D7F626800B75E9C /* CreatePledgeEnvelope.swift in Sources */,
 				A73639FC1D03565400445B24 /* MessageLenses.swift in Sources */,
 				A747A7ED1D455A3F00AF199A /* Item.swift in Sources */,
@@ -1851,6 +1870,7 @@
 				A73639EA1D03565400445B24 /* DiscoveryEnvelope.swift in Sources */,
 				0156B42A1D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift in Sources */,
 				A73639E01D03565400445B24 /* CategoriesEnvelope.swift in Sources */,
+				A772EC361EAD167A002F3A7A /* ProjectPage.Query.Result.swift in Sources */,
 				A7363A301D03565400445B24 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1912,8 +1932,9 @@
 				A747A8041D455A7300AF199A /* ItemLenses.swift in Sources */,
 				A73639ED1D03565400445B24 /* DiscoveryParams.swift in Sources */,
 				A7363A231D03565400445B24 /* Project.swift in Sources */,
-				A772EC2B1EAC6822002F3A7A /* StartUpQuery.swift in Sources */,
+				A772EC2B1EAC6822002F3A7A /* StartUp.Query.swift in Sources */,
 				A7363A1D1D03565400445B24 /* MessageThreadsEnvelope.swift in Sources */,
+				A772EC341EAD13EB002F3A7A /* StartUp.Query.Result.swift in Sources */,
 				A73639F11D03565400445B24 /* ActivityLenses.swift in Sources */,
 				A75A9D8B1D6F2AE100603D1D /* ShippingRuleLenses.swift in Sources */,
 				A747A80E1D455AD000AF199A /* RewardsItemTemplates.swift in Sources */,
@@ -1932,6 +1953,7 @@
 				A72662041D07671D0087D883 /* MessageThreadTemplates.swift in Sources */,
 				013F78361D1DA122005C39F1 /* ProjectStatsEnvelope.RewardDistributionLenses.swift in Sources */,
 				A73639CD1D03565400445B24 /* OauthToken.swift in Sources */,
+				A772EC311EAD13D9002F3A7A /* ProjectPage.Query.swift in Sources */,
 				A73639D11D03565400445B24 /* EncodableType.swift in Sources */,
 				A73639EF1D03565400445B24 /* ErrorEnvelope.swift in Sources */,
 				A72661FE1D07671D0087D883 /* DiscoveryEnvelopeTemplates.swift in Sources */,
@@ -1956,7 +1978,7 @@
 				A7363A091D03565400445B24 /* RewardLenses.swift in Sources */,
 				A73639E71D03565400445B24 /* CommentsEnvelope.swift in Sources */,
 				59D1E6AB1D19E54800896A4C /* ProjectStatsEnvelope.CumulativeStatsTemplates.swift in Sources */,
-				A772EC291EAC6822002F3A7A /* ProfileQuery.swift in Sources */,
+				A772EC291EAC6822002F3A7A /* Profile.Query.swift in Sources */,
 				A73639F31D03565400445B24 /* BackingLenses.swift in Sources */,
 				A74176961DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift in Sources */,
 				A72661F61D07671D0087D883 /* CategoriesEnvelopeTemplates.swift in Sources */,
@@ -1964,6 +1986,7 @@
 				80762DDB1D0709D30074189D /* CategoriesEnvelopeLenses.swift in Sources */,
 				A7363A071D03565400445B24 /* ProjectLenses.swift in Sources */,
 				A782B4421D2C27DF0069D10E /* Activity.MemberDataLenses.swift in Sources */,
+				A772EC2E1EAD12D5002F3A7A /* Profile.Query.Result.swift in Sources */,
 				A7F16FD71D7F626800B75E9C /* CreatePledgeEnvelope.swift in Sources */,
 				A7363A171D03565400445B24 /* Message.swift in Sources */,
 				A7363A111D03565400445B24 /* User.StatsLenses.swift in Sources */,
@@ -2057,6 +2080,7 @@
 				A73639EB1D03565400445B24 /* DiscoveryEnvelope.swift in Sources */,
 				0156B42B1D10D61F000C4252 /* FriendStatsEnvelope.StatsLenses.swift in Sources */,
 				A73639E11D03565400445B24 /* CategoriesEnvelope.swift in Sources */,
+				A772EC371EAD167A002F3A7A /* ProjectPage.Query.Result.swift in Sources */,
 				A7363A311D03565400445B24 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

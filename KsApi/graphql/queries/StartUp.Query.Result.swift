@@ -1,27 +1,7 @@
+// Hopefully this can be code gen'd
 import Argo
 import Curry
 import Runes
-
-public let fetchStartupQuery: Set<Query> = [
-  .rootCategories(
-    [
-      .id,
-      .name,
-      .subcategories(
-        [
-          .id,
-          .name
-        ]
-      )
-    ]
-  ),
-  .supportedCountries(
-    [
-      .code,
-      .name
-    ]
-  )
-]
 
 public struct StartUpQueryResult: Decodable, RootCategoriesField, SupportedCountriesField {
   public private(set) var rootCategories: [Category]

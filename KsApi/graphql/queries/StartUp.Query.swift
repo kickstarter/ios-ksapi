@@ -1,0 +1,20 @@
+public let fetchStartupQuery: Set<Query> = [
+  .rootCategories(
+    [
+      .id,
+      .name,
+      .subcategories(
+        [
+          .id,
+          .name
+        ]
+      )
+    ]
+  ),
+  .supportedCountries(
+    [
+      .code,
+      .name
+    ]
+  )
+]

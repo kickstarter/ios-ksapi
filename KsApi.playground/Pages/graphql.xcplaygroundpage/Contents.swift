@@ -12,14 +12,17 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 Query.build(profileQuery)
 
-(fetch(query: profileQuery) as SignalProducer<ProfileQueryResult, ApiError>)
-  .startWithResult { result in
-    
-    dump(result)
+//(fetch(query: profileQuery) as SignalProducer<ProfileQueryResult, ApiError>)
+//  .startWithResult { result in
+//
+//    dump(result)
+//}
+
+func doSomething(project: ProjectType & IdField & NameField) {
+
 }
 
-
-(fetch(query: fetchStartupQuery) as SignalProducer<StartUpQueryResult, ApiError>)
+(fetch(query: projectPageQuery(slug: "inventory-the-consumptive-3")) as SignalProducer<ProjectPageQueryResult, ApiError>)
   .startWithResult { result in
     
     dump(result)
