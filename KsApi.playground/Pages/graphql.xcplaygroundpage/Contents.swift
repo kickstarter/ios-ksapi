@@ -10,23 +10,18 @@ import KsApi
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
-Query.build(profileQuery)
-
-//(fetch(query: profileQuery) as SignalProducer<ProfileQueryResult, ApiError>)
-//  .startWithResult { result in
-//
-//    dump(result)
-//}
-
-func doSomething(project: ProjectType & IdField & NameField) {
+func doSomething <P: ProjectType & IdField> (with project: P) {
 
 }
 
-(fetch(query: projectPageQuery(slug: "inventory-the-consumptive-3")) as SignalProducer<ProjectPageQueryResult, ApiError>)
+Query.build(profileQuery)
+
+(fetch(query: profileQuery) as SignalProducer<ProfileQueryResult, ApiError>)
   .startWithResult { result in
-    
+    guard let value = result.value else { return }
+
     dump(result)
+    doSomething(with: value.me.backedProjects.first!)
 }
 
 "done"
-
