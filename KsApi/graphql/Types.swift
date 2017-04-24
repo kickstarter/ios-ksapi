@@ -4,6 +4,7 @@ import Argo
 public protocol CountryType {}
 public protocol CategoryType {}
 public protocol ProjectType {}
+public protocol ProjectsType {}
 public protocol UserType {}
 public protocol LocationType {}
 public protocol RewardType {}
@@ -18,7 +19,7 @@ public protocol NameField {
 
 public protocol CategoryField {
   associatedtype _CategoryType: CategoryType
-  var category: _CategoryType { get }
+  var category: CategoryType { get }
 }
 
 public protocol CreatorField {
@@ -71,9 +72,18 @@ public protocol DescriptionField {
   var description: String { get }
 }
 
+public protocol TotalCountField {
+  var totalCount: Int { get }
+}
+
 public protocol BackedProjectsField {
   associatedtype _ProjectType: ProjectType
   var backedProjects: [_ProjectType] { get }
+}
+
+public protocol ProjectsField {
+  associatedtype _ProjectsType: ProjectsType
+  var projects: [_ProjectsType] { get }
 }
 
 public protocol RewardsField {

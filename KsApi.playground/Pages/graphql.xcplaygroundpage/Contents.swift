@@ -10,17 +10,34 @@ import KsApi
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
-func doSomething <P: ProjectType & IdField> (with project: P) {
-
+func doSomething <P: ProjectType & IdField & FundingRatioField> (with project: P) {
 }
 
-Query.build(profileQuery)
+func doSomething <C: CategoryType & IdField & NameField & SubcategoriesField> (with cs: [C])
+where C._CategoryType: IdField & NameField {
+}
+
+
+(fetch(query: startupQuery) as SignalProducer<StartUpQueryResult, ApiError>)
+  .startWithResult { result in
+    guard let value = result.value else {
+      print(result.error!)
+      return
+    }
+
+    dump(value)
+    doSomething(with: value.rootCategories)
+    value.rootCategories.first?.projects.totalCount
+}
 
 (fetch(query: profileQuery) as SignalProducer<ProfileQueryResult, ApiError>)
   .startWithResult { result in
-    guard let value = result.value else { return }
+    guard let value = result.value else {
+      print(result.error!)
+      return
+    }
 
-    dump(result)
+    dump(value)
     doSomething(with: value.me.backedProjects.first!)
 }
 

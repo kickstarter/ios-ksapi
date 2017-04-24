@@ -1,4 +1,4 @@
-public let fetchStartupQuery: Set<Query> = [
+public let startupQuery: Set<Query> = [
   .rootCategories(
     [
       .id,
@@ -8,7 +8,8 @@ public let fetchStartupQuery: Set<Query> = [
           .id,
           .name
         ]
-      )
+      ),
+      .projects(state: .LIVE, [.totalCount], [])
     ]
   ),
   .supportedCountries(

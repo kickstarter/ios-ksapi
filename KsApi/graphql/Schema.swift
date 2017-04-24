@@ -55,6 +55,7 @@ public enum Query {
   public enum Category {
     case id
     case name
+    case projects(state: GQLState, Set<CategoryProjectsConnection>, Set<Project>)
     case subcategories(Set<Category>)
   }
 
@@ -66,6 +67,10 @@ public enum Query {
   public enum Location {
     case id
     case name
+  }
+
+  public enum CategoryProjectsConnection {
+    case totalCount
   }
 
   public enum Project {
@@ -171,6 +176,13 @@ extension Query.Category: QueryObject {
       return "id"
     case .name:
       return "name"
+    case let .projects(state, connections, fields):
+      let first = "projects(state:\(state)) { \(join(connections, ", ")) "
+      if fields.count == 0 {
+        return first + "}"
+      } else {
+        return first + " nodes { \(join(fields, ", ")) } }"
+      }
     case let .subcategories(fields):
       return "subcategories { nodes { \(join(fields, ", ")) } }"
     }
@@ -182,6 +194,15 @@ extension Query.Country: QueryObject {
     switch self {
     case .code: return "code"
     case .name: return "name"
+    }
+  }
+}
+
+extension Query.CategoryProjectsConnection: QueryObject {
+  public var description: String {
+    switch self {
+    case .totalCount:
+      return "totalCount"
     }
   }
 }

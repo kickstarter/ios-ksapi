@@ -8,21 +8,43 @@ public struct StartUpQueryResult: Decodable, RootCategoriesField, SupportedCount
   public private(set) var supportedCountries: [Country]
 
   public static func decode(_ json: JSON) -> Decoded<StartUpQueryResult> {
-    return pure(curry(StartUpQueryResult.init))
+    return pure(curry(self.init))
       <*> json <|| ["data", "rootCategories"]
       <*> json <|| ["data", "supportedCountries"]
   }
 
-  public struct Category: Decodable, CategoryType, IdField, NameField, SubcategoriesField {
+  public struct Category: Decodable, CategoryType, IdField, NameField, ProjectsField, SubcategoriesField {
     public private(set) var id: String
     public private(set) var name: String
+    public private(set) var projects: Projects
     public private(set) var subcategories: [Category]
 
     public static func decode(_ json: JSON) -> Decoded<StartUpQueryResult.Category> {
-      return pure(curry(Category.init))
+      return pure(curry(self.init))
         <*> json <| "id"
         <*> json <| "name"
-        <*> (json <|| ["subcategories", "nodes"] <|> .success([]))
+        <*> json <| "projects"
+        <*> json <|| ["subcategories", "nodes"]
+    }
+
+    public struct Projects: Decodable, ProjectsType, TotalCountField {
+      public private(set) var totalCount: Int
+
+      public static func decode(_ json: JSON) -> Decoded<StartUpQueryResult.Category.Projects> {
+        return pure(curry(self.init))
+          <*> json <| "totalCount"
+      }
+    }
+
+    public struct Category: Decodable, CategoryType, IdField, NameField {
+      public private(set) var id: String
+      public private(set) var name: String
+
+      public static func decode(_ json: JSON) -> Decoded<StartUpQueryResult.Category.Category> {
+        return pure(curry(self.init))
+          <*> json <| "id"
+          <*> json <| "name"
+      }
     }
   }
 
@@ -31,7 +53,7 @@ public struct StartUpQueryResult: Decodable, RootCategoriesField, SupportedCount
     public private(set) var name: String
 
     public static func decode(_ json: JSON) -> Decoded<StartUpQueryResult.Country> {
-      return pure(curry(Country.init))
+      return pure(curry(self.init))
         <*> json <| "code"
         <*> json <| "name"
     }

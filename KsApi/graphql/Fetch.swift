@@ -4,15 +4,21 @@ import ReactiveSwift
 public func fetch<A: Decodable>(query: Set<Query>) -> SignalProducer<A, ApiError>
   where A == A.DecodedType {
 
-    return SignalProducer<A, ApiError> { observer, _ in
+    return SignalProducer<A, ApiError> { observer, disposable in
 
       let url = URL(string: "http://ksr.dev/graph")!
       var request = URLRequest(url: url)
-      request.httpBody = "query=\(Query.build(query))".data(using: .utf8)
+      let queryString = Query.build(query)
+      request.httpBody = "query=\(queryString)".data(using: .utf8)
       request.httpMethod = "POST"
+      request.allHTTPHeaderFields = [
+        "Accept-Language": "es"
+      ]
+
+      print("GraphQL Fetching: \(queryString)")
 
       let task = URLSession.shared.dataTask(with: request) { data, _, error in
-        defer { observer.sendCompleted() }
+
         if let error = error {
           // todo: http status code?
           observer.send(error: .requestError(error))
@@ -33,6 +39,7 @@ public func fetch<A: Decodable>(query: Set<Query>) -> SignalProducer<A, ApiError
         switch decoded {
         case let .success(value):
           observer.send(value: value)
+          observer.sendCompleted()
         case let .failure(error):
           let jsonString = String(data: data, encoding: .utf8)
           if let gqlError = GQLError.decode(JSON(jsonObject)).value {
@@ -43,6 +50,7 @@ public func fetch<A: Decodable>(query: Set<Query>) -> SignalProducer<A, ApiError
         }
       }
 
+      disposable.add(task.cancel)
       task.resume()
     }
 }
