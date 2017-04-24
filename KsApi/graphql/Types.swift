@@ -1,4 +1,5 @@
 // Hopefully this can be code gen'd
+// swiftlint:disable type_name
 import Argo
 
 public protocol CountryType {}
@@ -57,7 +58,7 @@ public protocol CodeField {
 }
 
 public protocol StateField {
-  var state: GQLState { get }
+  var state: GQLProjectState { get }
 }
 
 public protocol ImageUrlField {
@@ -81,9 +82,10 @@ public protocol BackedProjectsField {
   var backedProjects: [_ProjectType] { get }
 }
 
+// FIXME: this is a hack. it's technically a object of the form {projects: {nodes {}}
 public protocol ProjectsField {
   associatedtype _ProjectsType: ProjectsType
-  var projects: [_ProjectsType] { get }
+  var projects: _ProjectsType { get }
 }
 
 public protocol RewardsField {
@@ -96,7 +98,7 @@ public protocol MeField {
   var me: _UserType { get }
 }
 
-public enum GQLState: Decodable {
+public enum GQLProjectState: Decodable {
   case CANCELED
   case LIVE
   case FAILED
@@ -106,7 +108,7 @@ public enum GQLState: Decodable {
   case SUSPENDED
   case UNKNOWN
 
-  public static func decode(_ json: JSON) -> Decoded<GQLState> {
+  public static func decode(_ json: JSON) -> Decoded<GQLProjectState> {
     switch json {
     case .string("CANCELED"):
       return .success(.CANCELED)

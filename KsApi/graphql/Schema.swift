@@ -38,6 +38,10 @@ public enum Edges<Q: QueryObject> {
   case node(Set<Q>)
 }
 
+public enum Nodes<Q: QueryObject> {
+  case nodes(Set<Q>)
+}
+
 public enum Query {
   case me(Set<User>)
   case project(slug: String, Set<Project>)
@@ -55,7 +59,7 @@ public enum Query {
   public enum Category {
     case id
     case name
-    case projects(state: GQLState, Set<CategoryProjectsConnection>, Set<Project>)
+    case projects(state: GQLProjectState, Set<CategoryProjectsConnection>, Nodes<Project>)
     case subcategories(Set<Category>)
   }
 
@@ -131,6 +135,15 @@ extension Edges: QueryObject {
   }
 }
 
+extension Nodes: QueryObject {
+  public var description: String {
+    switch self {
+    case let .nodes(fields):
+      return "nodes { \(join(fields)) }"
+    }
+  }
+}
+
 extension PageInfo: QueryObject {
   public var description: String {
     return rawValue
@@ -141,13 +154,13 @@ extension Query: QueryObject {
   public var description: String {
     switch self {
     case let .me(fields):
-      return "me { \(join(fields, ", ")) }"
+      return "me { \(join(fields)) }"
     case let .project(slug, fields):
-      return "project(slug: \"\(slug)\") { \(join(fields, ", ")) }"
+      return "project(slug: \"\(slug)\") { \(join(fields)) }"
     case let .rootCategories(fields):
-      return "rootCategories { \(join(fields, ", ")) }"
+      return "rootCategories { \(join(fields)) }"
     case let .supportedCountries(fields):
-      return "supportedCountries { \(join(fields, ", ")) }"
+      return "supportedCountries { \(join(fields)) }"
     }
   }
 }
@@ -156,13 +169,13 @@ extension Query.User: QueryObject {
   public var description: String {
     switch self {
     case let .backedProjects(fields):
-      return "backedProjects { nodes { \(join(fields, ", ")) } }"
+      return "backedProjects { nodes { \(join(fields)) } }"
     case .id:
       return "id"
     case let .imageUrl(width):
       return "imageUrl(width: \(width))"
     case let .location(fields):
-      return "location { \(join(fields, ", ")) }"
+      return "location { \(join(fields)) }"
     case .name:
       return "name"
     }
@@ -176,15 +189,15 @@ extension Query.Category: QueryObject {
       return "id"
     case .name:
       return "name"
-    case let .projects(state, connections, fields):
-      let first = "projects(state:\(state)) { \(join(connections, ", ")) "
+    case let .projects(state, connections, .nodes(fields)):
+      let first = "projects(state:\(state)) { \(join(connections)) "
       if fields.count == 0 {
         return first + "}"
       } else {
-        return first + " nodes { \(join(fields, ", ")) } }"
+        return first + " nodes { \(join(fields)) } }"
       }
     case let .subcategories(fields):
-      return "subcategories { nodes { \(join(fields, ", ")) } }"
+      return "subcategories { nodes { \(join(fields)) } }"
     }
   }
 }
@@ -211,9 +224,9 @@ extension Query.Project: QueryObject {
   public var description: String {
     switch self {
     case let .category(fields):
-      return "category { \(join(fields, ", ")) }"
+      return "category { \(join(fields)) }"
     case let .creator(fields):
-      return "creator { \(join(fields, ", ")) }"
+      return "creator { \(join(fields)) }"
     case .fundingRatio:
       return "fundingRatio"
     case .id:
@@ -221,11 +234,11 @@ extension Query.Project: QueryObject {
     case let .imageUrl(blur, width):
       return "imageUrl(blur: \(blur), width: \(width))"
     case let .location(fields):
-      return "location { \(join(fields, ", ")) }"
+      return "location { \(join(fields)) }"
     case .name:
       return "name"
     case let .rewards(fields):
-      return "rewards { nodes { \(join(fields, ", ")) } }"
+      return "rewards { nodes { \(join(fields)) } }"
     case .state:
       return "state"
     }

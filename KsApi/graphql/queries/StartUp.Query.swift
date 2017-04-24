@@ -9,7 +9,7 @@ public let startupQuery: Set<Query> = [
           .name
         ]
       ),
-      .projects(state: .LIVE, [.totalCount], [])
+      .projects(state: .LIVE, [.totalCount], .nodes([]))
     ]
   ),
   .supportedCountries(

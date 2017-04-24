@@ -13,8 +13,8 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 func doSomething <P: ProjectType & IdField & FundingRatioField> (with project: P) {
 }
 
-func doSomething <C: CategoryType & IdField & NameField & SubcategoriesField> (with cs: [C])
-where C._CategoryType: IdField & NameField {
+func doSomething <C: CategoryType & IdField & NameField & ProjectsField & SubcategoriesField> (with cs: [C])
+  where C._CategoryType: IdField & NameField, C._ProjectsType: TotalCountField {
 }
 
 

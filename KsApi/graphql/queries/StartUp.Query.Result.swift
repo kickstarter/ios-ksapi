@@ -16,6 +16,7 @@ public struct StartUpQueryResult: Decodable, RootCategoriesField, SupportedCount
   public struct Category: Decodable, CategoryType, IdField, NameField, ProjectsField, SubcategoriesField {
     public private(set) var id: String
     public private(set) var name: String
+    // FIXME: this is a hack. it's technically a object of the form {projects: {nodes {}}
     public private(set) var projects: Projects
     public private(set) var subcategories: [Category]
 
@@ -27,6 +28,7 @@ public struct StartUpQueryResult: Decodable, RootCategoriesField, SupportedCount
         <*> json <|| ["subcategories", "nodes"]
     }
 
+    // FIXME: this is a hack. it's technically a object of the form {projects: {nodes {}}
     public struct Projects: Decodable, ProjectsType, TotalCountField {
       public private(set) var totalCount: Int
 

@@ -10,7 +10,8 @@ public struct ProfileQueryResult: Decodable, MeField {
     return pure(ProfileQueryResult.init) <*> json <| ["data", "me"]
   }
 
-  public struct User: Decodable, UserType, BackedProjectsField, IdField, NameField, ImageUrlField, LocationField {
+  public struct User: Decodable, UserType, BackedProjectsField, IdField, NameField, ImageUrlField,
+  LocationField {
     public private(set) var backedProjects: [Project]
     public private(set) var id: String
     public private(set) var name: String
@@ -37,12 +38,13 @@ public struct ProfileQueryResult: Decodable, MeField {
       }
     }
 
-    public struct Project: Decodable, ProjectType, IdField, FundingRatioField, ImageUrlField, NameField, StateField {
+    public struct Project: Decodable, ProjectType, IdField, FundingRatioField, ImageUrlField, NameField,
+    StateField {
       public private(set) var id: String
       public private(set) var fundingRatio: Float
       public private(set) var imageUrl: String
       public private(set) var name: String
-      public private(set) var state: GQLState
+      public private(set) var state: GQLProjectState
 
       public static func decode(_ json: JSON) -> Decoded<ProfileQueryResult.User.Project> {
         return pure(curry(Project.init))
