@@ -12,9 +12,22 @@ public protocol RewardType {}
 public protocol UpdateType {}
 public protocol UpdatesType {}
 public protocol UserType {}
+public protocol CategoryProjectsConnectionType {}
+public protocol CategorySubcategoriesConnectionType {}
+public protocol UserBackedProjectsConnectionType {}
+public protocol PageInfoType {}
 
 public protocol IdField {
   var id: String { get }
+}
+
+public protocol EndCursorField {
+  var endCursor: String? { get }
+}
+
+public protocol PageInfoField {
+  associatedtype _PageInfoType: PageInfoType
+  var pageInfo: _PageInfoType { get }
 }
 
 public protocol NameField {
@@ -60,11 +73,6 @@ public protocol ProjectField {
 public protocol RootCategoriesField {
   associatedtype _CategoryType: CategoryType
   var rootCategories: [_CategoryType] { get }
-}
-
-public protocol SubcategoriesField {
-  associatedtype _CategoryType: CategoryType
-  var subcategories: [_CategoryType] { get }
 }
 
 public protocol SupportedCountriesField {
@@ -127,10 +135,29 @@ public protocol BackedProjectsField {
   var backedProjects: [_ProjectType] { get }
 }
 
-// FIXME: this is a hack. it's technically a object of the form {projects: {nodes {}}
-public protocol ProjectsField {
-  associatedtype _ProjectsType: ProjectsType
-  var projects: _ProjectsType { get }
+public protocol CategoryProjectsConnectionField {
+  associatedtype _CategoryProjectsConnectionType: CategoryProjectsConnectionType
+  var projects: _CategoryProjectsConnectionType { get }
+}
+
+public protocol UserBackedProjectsConnectionField {
+  associatedtype _UserBackedProjectsConnectionType: UserBackedProjectsConnectionType
+  var backedProjects: _UserBackedProjectsConnectionType { get }
+}
+
+public protocol CategorySubcategoriesConnectionField {
+  associatedtype _CategorySubcategoriesConnectionType: CategorySubcategoriesConnectionType
+  var subcategories: _CategorySubcategoriesConnectionType { get }
+}
+
+public protocol CategoryNodesField {
+  associatedtype _CategoryType: CategoryType
+  var nodes: [_CategoryType] { get }
+}
+
+public protocol ProjectNodesField {
+  associatedtype _ProjectType: ProjectType
+  var nodes: [_ProjectType] { get }
 }
 
 public protocol RewardsField {
@@ -143,7 +170,7 @@ public protocol MeField {
   var me: _UserType { get }
 }
 
-public enum GQLProjectState: Decodable {
+public enum GQLProjectState: String, Decodable {
   case CANCELED
   case LIVE
   case FAILED

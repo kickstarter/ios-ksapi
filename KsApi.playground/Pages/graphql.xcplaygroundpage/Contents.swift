@@ -8,42 +8,55 @@ import ReactiveSwift
 import Result
 import KsApi
 
-func configure<P: ProjectType & NameField & PledgedField & CategoryField & RewardsField> (with project: P) {
-
+func doSomething <
+  C: CategoryType
+  & IdField
+  & NameField
+  & CategoryProjectsConnectionField
+  & CategorySubcategoriesConnectionField>
+  (categories: [C])
+  where C._CategoryProjectsConnectionType: TotalCountField,
+  C._CategorySubcategoriesConnectionType: CategoryNodesField,
+  C._CategorySubcategoriesConnectionType._CategoryType: IdField & NameField
+{
+  categories
+  categories.first?.projects.totalCount
 }
+
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
-func doSomething <P: ProjectType & IdField & FundingRatioField & RewardsField> (with project: P)
-where P._RewardType: DescriptionField & IdField & NameField {
-}
-
-func doSomething <C: CategoryType & IdField & NameField & ProjectsField & SubcategoriesField> (with cs: [C])
-  where C._CategoryType: IdField & NameField, C._ProjectsType: TotalCountField {
-}
-
-
 (fetch(query: startupQuery) as SignalProducer<StartUpQueryResult, ApiError>)
   .startWithResult { result in
-    guard let value = result.value else {
-      print(result.error!)
-      return
+    switch result {
+    case let .success(value):
+      dump(value)
+    case let .failure(error):
+      dump(error)
     }
-
-    dump(value)
-    doSomething(with: value.rootCategories)
-    value.rootCategories.first?.projects.totalCount
 }
 
-(fetch(query: profileQuery) as SignalProducer<ProfileQueryResult, ApiError>)
+(fetch(query: profileQuery()) as SignalProducer<ProfileQueryResult, ApiError>)
   .startWithResult { result in
-    guard let value = result.value else {
-      print(result.error!)
-      return
+    switch result {
+    case let .success(value):
+      value.me.backedProjects.nodes
+      value.me.backedProjects.pageInfo.endCursor
+      dump(value)
+    case let .failure(error):
+      dump(error)
     }
+}
 
-    dump(value)
-//    doSomething(with: value.me.backedProjects.first!)
+(fetch(query: categoriesQuery) as SignalProducer<CategoriesQueryResult, ApiError>)
+  .startWithResult { result in
+    switch result {
+    case let .success(value):
+      doSomething(categories: value.rootCategories)
+      dump(value)
+    case let .failure(error):
+      dump(error)
+    }
 }
 
 let projectQuery = projectPageQuery(slug: "the-jim-henson-exhibition-at-museum-of-the-moving")
@@ -51,16 +64,6 @@ let projectQuery = projectPageQuery(slug: "the-jim-henson-exhibition-at-museum-o
   .startWithResult { result in
     switch result {
     case let .success(value):
-      value.project.category.name
-      value.project.fundingRatio
-      value.project.location.id
-      value.project.pledged.amount
-      value.project.percentFunded
-      value.project.fundingRatio
-
-      value.project.rewards.first?.name
-      doSomething(with: value.project)
-      //configure(with: value.project)
       dump(value)
     case let .failure(error):
       dump(error)

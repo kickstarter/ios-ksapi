@@ -15,7 +15,7 @@ private func join<Q: QueryObject>(_ nodes: Set<Q>, _ separator: String = " ") ->
   return nodes.map { $0.description }.sorted().joined(separator: separator)
 }
 
-public enum EdgesContainerArguments {
+public enum QueryArg {
   case after(String)
   case before(String)
   case first(Int)
@@ -49,7 +49,7 @@ public enum Query {
   case supportedCountries(Set<Country>)
 
   public enum User {
-    case backedProjects(Set<Project>)
+    case backedProjects(args: Set<QueryArg>, pageInfo: Set<PageInfo>, nodes: Set<Project>)
     case id
     case imageUrl(width: Int)
     case location(Set<Location>)
@@ -119,7 +119,7 @@ public enum Query {
   }
 }
 
-extension EdgesContainerArguments: QueryObject {
+extension QueryArg: QueryObject {
   public var description: String {
     switch self {
     case let .after(cursor):
@@ -187,8 +187,11 @@ extension Query: QueryObject {
 extension Query.User: QueryObject {
   public var description: String {
     switch self {
-    case let .backedProjects(fields):
-      return "backedProjects { nodes { \(join(fields)) } }"
+    case let .backedProjects(args, pageInfo, fields):
+      if args.count == 0 {
+        return "backedProjects { pageInfo { \(join(pageInfo)) } nodes { \(join(fields)) } }"
+      }
+      return "backedProjects(\(join(args))) { pageInfo { \(join(pageInfo)) } nodes { \(join(fields)) } }"
     case .id:
       return "id"
     case let .imageUrl(width):
