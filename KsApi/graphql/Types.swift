@@ -2,14 +2,16 @@
 // swiftlint:disable type_name
 import Argo
 
-public protocol CurrencyType {}
-public protocol CountryType {}
 public protocol CategoryType {}
+public protocol CountryType {}
+public protocol LocationType {}
+public protocol MoneyType {}
 public protocol ProjectType {}
 public protocol ProjectsType {}
-public protocol UserType {}
-public protocol LocationType {}
 public protocol RewardType {}
+public protocol UpdateType {}
+public protocol UpdatesType {}
+public protocol UserType {}
 
 public protocol IdField {
   var id: String { get }
@@ -82,6 +84,19 @@ public protocol ImageUrlField {
   var imageUrl: String { get }
 }
 
+public protocol SlugField {
+  var slug: String { get }
+}
+
+public protocol UpdatesField {
+  associatedtype _UpdatesType: UpdatesType
+  var updates: _UpdatesType { get }
+}
+
+public protocol UrlField {
+  var url: String { get }
+}
+
 public protocol FundingRatioField {
   var fundingRatio: Float { get }
 }
@@ -92,6 +107,19 @@ public protocol DescriptionField {
 
 public protocol TotalCountField {
   var totalCount: Int { get }
+}
+
+public protocol IsProjectWeLoveField {
+  var isProjectWeLove: Bool { get }
+}
+
+public protocol percentFundedField {
+  var percentFunded: Float { get }
+}
+
+public protocol PledgedField {
+  associatedtype _MoneyType: MoneyType
+  var pledged: _MoneyType { get }
 }
 
 public protocol BackedProjectsField {

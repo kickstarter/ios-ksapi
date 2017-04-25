@@ -187,14 +187,15 @@ extension Project.UrlsEnvelope.WebEnvelope: Decodable {
 
 extension Project.Stats: Decodable {
   public static func decode(_ json: JSON) -> Decoded<Project.Stats> {
-    let create = curry(Project.Stats.init)
-    return create
-      <^> json <| "backers_count"
+    let tmp1 = pure(curry(self.init))
+      <*> json <| "backers_count"
       <*> json <|? "comments_count"
       <*> json <| "goal"
+    let tmp2 = tmp1
       <*> json <| "pledged"
       <*> (json <| "static_usd_rate" <|> .success(1.0))
       <*> json <|? "updates_count"
+    return tmp2
   }
 }
 

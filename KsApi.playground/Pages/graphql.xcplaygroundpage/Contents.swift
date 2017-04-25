@@ -8,10 +8,14 @@ import ReactiveSwift
 import Result
 import KsApi
 
-PlaygroundPage.current.needsIndefiniteExecution = true
-
-func doSomething <P: ProjectType & IdField & FundingRatioField> (with project: P) {
+struct ProjectPageView<
+  P: ProjectType & IdField & FundingRatioField & RewardsField
+  where P._RewardType: DescriptionField & IdField & NameField
+  > {
+  let value: P
 }
+
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 func doSomething <C: CategoryType & IdField & NameField & ProjectsField & SubcategoriesField> (with cs: [C])
   where C._CategoryType: IdField & NameField, C._ProjectsType: TotalCountField {
@@ -38,7 +42,7 @@ func doSomething <C: CategoryType & IdField & NameField & ProjectsField & Subcat
     }
 
     dump(value)
-    doSomething(with: value.me.backedProjects.first!)
+//    doSomething(with: value.me.backedProjects.first!)
 }
 
 let projectQuery = projectPageQuery(slug: "the-jim-henson-exhibition-at-museum-of-the-moving")
@@ -47,7 +51,16 @@ let projectQuery = projectPageQuery(slug: "the-jim-henson-exhibition-at-museum-o
     switch result {
     case let .success(value):
       value.project.category.name
-      dump(value)
+      value.project.fundingRatio
+      value.project.location.id
+      value.project.pledged.amount
+      value.project.percentFunded
+      value.project.fundingRatio
+      value.project.rewards.first?.name
+      doSomething(with: value.project)
+
+      dump(ProjectPageView(value: value.project))
+//      dump(value)
     case let .failure(error):
       dump(error)
     }

@@ -19,12 +19,14 @@ public struct ProfileQueryResult: Decodable, MeField {
     public private(set) var location: Location
 
     public static func decode(_ json: JSON) -> Decoded<ProfileQueryResult.User> {
-      return pure(curry(User.init))
+      let tmp1 = pure(curry(User.init))
         <*> json <|| ["backedProjects", "nodes"]
         <*> json <| "id"
         <*> json <| "name"
+      let tmp2 = tmp1
         <*> json <| "imageUrl"
         <*> json <| "location"
+      return tmp2
     }
 
     public struct Location: Decodable, LocationType, IdField, NameField {
@@ -47,12 +49,14 @@ public struct ProfileQueryResult: Decodable, MeField {
       public private(set) var state: GQLProjectState
 
       public static func decode(_ json: JSON) -> Decoded<ProfileQueryResult.User.Project> {
-        return pure(curry(Project.init))
+        let tmp1 = pure(curry(Project.init))
           <*> json <| "id"
           <*> json <| "fundingRatio"
           <*> json <| "imageUrl"
+        let tmp2 = tmp1
           <*> json <| "name"
           <*> json <| "state"
+        return tmp2
       }
     }
   }
