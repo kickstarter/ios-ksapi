@@ -3,5 +3,6 @@
     <pages>
         <page name='graphql'/>
         <page name='Untitled Page'/>
+        <page name='graphql-phantom'/>
     </pages>
 </playground>

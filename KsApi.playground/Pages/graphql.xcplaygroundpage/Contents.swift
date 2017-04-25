@@ -8,14 +8,15 @@ import ReactiveSwift
 import Result
 import KsApi
 
-struct ProjectPageView<
-  P: ProjectType & IdField & FundingRatioField & RewardsField
-  where P._RewardType: DescriptionField & IdField & NameField
-  > {
-  let value: P
+func configure<P: ProjectType & NameField & PledgedField & CategoryField & RewardsField> (with project: P) {
+
 }
 
 PlaygroundPage.current.needsIndefiniteExecution = true
+
+func doSomething <P: ProjectType & IdField & FundingRatioField & RewardsField> (with project: P)
+where P._RewardType: DescriptionField & IdField & NameField {
+}
 
 func doSomething <C: CategoryType & IdField & NameField & ProjectsField & SubcategoriesField> (with cs: [C])
   where C._CategoryType: IdField & NameField, C._ProjectsType: TotalCountField {
@@ -56,11 +57,11 @@ let projectQuery = projectPageQuery(slug: "the-jim-henson-exhibition-at-museum-o
       value.project.pledged.amount
       value.project.percentFunded
       value.project.fundingRatio
+
       value.project.rewards.first?.name
       doSomething(with: value.project)
-
-      dump(ProjectPageView(value: value.project))
-//      dump(value)
+      //configure(with: value.project)
+      dump(value)
     case let .failure(error):
       dump(error)
     }
