@@ -41,4 +41,16 @@ func doSomething <C: CategoryType & IdField & NameField & ProjectsField & Subcat
     doSomething(with: value.me.backedProjects.first!)
 }
 
+let projectQuery = projectPageQuery(slug: "the-jim-henson-exhibition-at-museum-of-the-moving")
+(fetch(query: projectQuery) as SignalProducer<ProjectPageQueryResult, ApiError>)
+  .startWithResult { result in
+    switch result {
+    case let .success(value):
+      value.project.category.name
+      dump(value)
+    case let .failure(error):
+      dump(error)
+    }
+}
+
 "done"

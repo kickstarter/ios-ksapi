@@ -26,7 +26,7 @@ public struct GQLError: Error, Decodable {
     public static func decode(_ json: JSON) -> Decoded<GQLError.Error> {
       return pure(curry(Error.init))
         <*> json <| "message"
-        <*> json <|| "locations"
+        <*> (json <|| "locations" <|> .success([]))
         <*> (json <|| "fields" <|> .success([]))
         <*> (json <|| "path" <|> .success([]))
     }

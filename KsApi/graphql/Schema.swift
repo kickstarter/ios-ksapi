@@ -77,16 +77,35 @@ public enum Query {
     case totalCount
   }
 
+  public enum Currency {
+    case amount
+    case currency
+  }
+
   public enum Project {
+    case canceledAt
     case category(Set<Category>)
     case creator(Set<User>)
+    case deadlineAt
+    case description
     case fundingRatio
+    case goal(Set<Currency>)
     case id
     case imageUrl(blur: Bool, width: Int)
+    case isProjectWeLove
     case location(Set<Location>)
     case name
+    case percentFunded
+    case pledged(Set<Currency>)
     case rewards(Set<Reward>)
+    case slug
+    case updates(Set<ProjectUpdateConnection>)
+    case url
     case state
+  }
+
+  public enum ProjectUpdateConnection {
+    case totalCount
   }
 
   public enum Reward {
@@ -220,27 +239,56 @@ extension Query.CategoryProjectsConnection: QueryObject {
   }
 }
 
+extension Query.ProjectUpdateConnection: QueryObject {
+  public var description: String {
+    switch self {
+    case .totalCount:
+      return "totalCount"
+    }
+  }
+}
+
 extension Query.Project: QueryObject {
   public var description: String {
     switch self {
+    case .canceledAt:
+      return "canceledAt"
     case let .category(fields):
       return "category { \(join(fields)) }"
+    case .deadlineAt:
+      return "deadlineAt"
+    case .description:
+      return "description"
     case let .creator(fields):
       return "creator { \(join(fields)) }"
     case .fundingRatio:
       return "fundingRatio"
+    case let .goal(fields):
+      return "goal { \(join(fields)) }"
     case .id:
       return "id"
     case let .imageUrl(blur, width):
       return "imageUrl(blur: \(blur), width: \(width))"
+    case .isProjectWeLove:
+      return "isProjectWeLove"
     case let .location(fields):
       return "location { \(join(fields)) }"
     case .name:
       return "name"
+    case .percentFunded:
+      return "percentFunded"
+    case let .pledged(fields):
+      return "pledged { \(join(fields)) }"
     case let .rewards(fields):
       return "rewards { nodes { \(join(fields)) } }"
+    case .slug:
+      return "slug"
     case .state:
       return "state"
+    case let .updates(connections):
+      return "updates { \(join(connections)) }"
+    case .url:
+      return "url"
     }
   }
 }
@@ -250,6 +298,15 @@ extension Query.Location: QueryObject {
     switch self {
     case .id:   return "id"
     case .name: return "name"
+    }
+  }
+}
+
+extension Query.Currency: QueryObject {
+  public var description: String {
+    switch self {
+    case .amount:   return "amount"
+    case .currency: return "currency"
     }
   }
 }

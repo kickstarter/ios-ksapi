@@ -2,6 +2,7 @@
 // swiftlint:disable type_name
 import Argo
 
+public protocol CurrencyType {}
 public protocol CountryType {}
 public protocol CategoryType {}
 public protocol ProjectType {}
@@ -18,9 +19,25 @@ public protocol NameField {
   var name: String { get }
 }
 
+public protocol CanceledAtField {
+  var canceledAt: TimeInterval? { get }
+}
+
+public protocol DeadlineAtField {
+  var deadlineAt: TimeInterval? { get }
+}
+
+public protocol AmountField {
+  var amount: String { get }
+}
+
+public protocol CurrencyField {
+  var currency: GQLCurrency { get }
+}
+
 public protocol CategoryField {
   associatedtype _CategoryType: CategoryType
-  var category: CategoryType { get }
+  var category: _CategoryType { get }
 }
 
 public protocol CreatorField {
@@ -126,6 +143,58 @@ public enum GQLProjectState: Decodable {
       return .success(.SUSPENDED)
     default:
       return .success(.UNKNOWN)
+    }
+  }
+}
+
+public enum GQLCurrency: Decodable {
+  case AUD
+  case CAD
+  case CHF
+  case DKK
+  case EUR
+  case GBP
+  case HKD
+  case MXN
+  case NOK
+  case NZD
+  case SEK
+  case SGD
+  case USD
+  case unknown(currency: String)
+
+  public static func decode(_ json: JSON) -> Decoded<GQLCurrency> {
+    switch json {
+    case .string("AUD"):
+      return .success(.AUD)
+    case .string("CAD"):
+      return .success(.CAD)
+    case .string("CHF"):
+      return .success(.CHF)
+    case .string("DKK"):
+      return .success(.DKK)
+    case .string("EUR"):
+      return .success(.EUR)
+    case .string("GBP"):
+      return .success(.GBP)
+    case .string("HKD"):
+      return .success(.HKD)
+    case .string("MXN"):
+      return .success(.MXN)
+    case .string("NOK"):
+      return .success(.NOK)
+    case .string("NZD"):
+      return .success(.NZD)
+    case .string("SEK"):
+      return .success(.SEK)
+    case .string("SGD"):
+      return .success(.SGD)
+    case .string("USD"):
+      return .success(.USD)
+    case let .string(currency):
+      return .success(.unknown(currency: currency))
+    case .array, .bool, .null, .number, .object:
+      return .failure(.typeMismatch(expected: "String", actual: "\(json)"))
     }
   }
 }
