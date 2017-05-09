@@ -75,6 +75,8 @@ internal struct MockService: ServiceType {
 
   fileprivate let fetchUnansweredSurveyResponsesResponse: [SurveyResponse]
 
+  fileprivate let fetchUpdateCommentsResponse: Result<CommentsEnvelope, ErrorEnvelope>?
+
   fileprivate let fetchUpdateResponse: Update
 
   fileprivate let fetchUserProjectsBackedResponse: [Project]?
@@ -194,6 +196,7 @@ internal struct MockService: ServiceType {
                 fetchSurveyResponseResponse: SurveyResponse? = nil,
                 fetchSurveyResponseError: ErrorEnvelope? = nil,
                 fetchUnansweredSurveyResponsesResponse: [SurveyResponse] = [],
+                fetchUpdateCommentsResponse: Result<CommentsEnvelope, ErrorEnvelope>? = nil,
                 fetchUpdateResponse: Update = .template,
                 fetchUserSelfError: ErrorEnvelope? = nil,
                 postCommentResponse: Comment? = nil,
@@ -317,6 +320,8 @@ internal struct MockService: ServiceType {
     self.fetchSurveyResponseError = fetchSurveyResponseError
 
     self.fetchUnansweredSurveyResponsesResponse = fetchUnansweredSurveyResponsesResponse
+
+    self.fetchUpdateCommentsResponse = fetchUpdateCommentsResponse
 
     self.fetchUpdateResponse = fetchUpdateResponse
 
@@ -450,19 +455,10 @@ internal struct MockService: ServiceType {
 
   internal func fetchComments(update: Update) -> SignalProducer<CommentsEnvelope, ErrorEnvelope> {
 
-    if let error = fetchCommentsError {
+    if let error = fetchUpdateCommentsResponse?.error {
       return SignalProducer(error: error)
-    } else if let comments = fetchCommentsResponse {
-      return SignalProducer(
-        value: CommentsEnvelope(
-          comments: comments,
-          urls: CommentsEnvelope.UrlsEnvelope(
-            api: CommentsEnvelope.UrlsEnvelope.ApiEnvelope(
-              moreComments: ""
-            )
-          )
-        )
-      )
+    } else if let comments = fetchUpdateCommentsResponse {
+      return SignalProducer(value: comments.value ?? .template)
     }
     return .empty
   }
@@ -1210,6 +1206,7 @@ private extension MockService {
           fetchSurveyResponseResponse: $1.fetchSurveyResponseResponse,
           fetchSurveyResponseError: $1.fetchSurveyResponseError,
           fetchUnansweredSurveyResponsesResponse: $1.fetchUnansweredSurveyResponsesResponse,
+          fetchUpdateCommentsResponse: $1.fetchUpdateCommentsResponse,
           fetchUpdateResponse: $1.fetchUpdateResponse,
           fetchUserSelfError: $1.fetchUserSelfError,
           postCommentResponse: $1.postCommentResponse,
