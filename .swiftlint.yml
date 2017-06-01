@@ -1,8 +1,12 @@
 disabled_rules:
   - variable_name
+  - file_length
+  - function_body_length
   - function_parameter_count
   - nesting
   - trailing_comma
+  - type_body_length
+  - type_name
 excluded:
   - Frameworks
   - KsApi.playground/

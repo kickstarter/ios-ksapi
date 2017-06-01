@@ -2,7 +2,6 @@ import XCTest
 @testable import KsApi
 import Prelude
 
-// swiftlint:disable function_body_length
 final class ProjectTests: XCTestCase {
 
   func testFundingProgress() {

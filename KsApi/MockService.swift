@@ -1,7 +1,4 @@
 #if DEBUG
-// swiftlint:disable file_length
-// swiftlint:disable type_body_length
-// swiftlint:disable function_body_length
 import Prelude
 import ReactiveSwift
 import Result
@@ -1153,8 +1150,7 @@ internal struct MockService: ServiceType {
 }
 
 private extension MockService {
-  // swiftlint:disable type_name
-  enum lens {
+    enum lens {
     static let oauthToken = Lens<MockService, OauthTokenAuthType?>(
       view: { $0.oauthToken },
       set: {
