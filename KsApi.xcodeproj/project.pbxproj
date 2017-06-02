@@ -321,6 +321,8 @@
 		A782B4421D2C27DF0069D10E /* Activity.MemberDataLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEE3BA31D1DB9950020C2BE /* Activity.MemberDataLenses.swift */; };
 		A796649D1D52213100454C84 /* MessageSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796649C1D52213100454C84 /* MessageSubject.swift */; };
 		A796649E1D52213100454C84 /* MessageSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A796649C1D52213100454C84 /* MessageSubject.swift */; };
+		A7AD73381EE1B5EC0026E227 /* SchemaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AD73371EE1B5EC0026E227 /* SchemaTests.swift */; };
+		A7AD73391EE1B5EC0026E227 /* SchemaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AD73371EE1B5EC0026E227 /* SchemaTests.swift */; };
 		A7AFC3611D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7AFC3621D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */; };
 		A7C8DDAE1DE4FC4E008DDA9A /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8DDAD1DE4FC4E008DDA9A /* Secrets.swift */; };
@@ -841,6 +843,7 @@
 		A77967631C2B431C0002166F /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		A77967641C2B431C0002166F /* ServiceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		A796649C1D52213100454C84 /* MessageSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSubject.swift; sourceTree = "<group>"; };
+		A7AD73371EE1B5EC0026E227 /* SchemaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchemaTests.swift; sourceTree = "<group>"; };
 		A7AFC3601D231B0B00C99E2A /* ProjectStatsEnvelope.CumulativeStatsLenses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectStatsEnvelope.CumulativeStatsLenses.swift; sourceTree = "<group>"; };
 		A7C8DDAD1DE4FC4E008DDA9A /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = "Frameworks/native-secrets/ios/Secrets.swift"; sourceTree = SOURCE_ROOT; };
 		A7E1177F1EAC32E70070E5EB /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
@@ -1236,6 +1239,7 @@
 				A7E1178B1EAC3D220070E5EB /* Errors.swift */,
 				A7E1178E1EAC3EAA0070E5EB /* Fetch.swift */,
 				A7E117821EAC33890070E5EB /* Schema.swift */,
+				A7AD73371EE1B5EC0026E227 /* SchemaTests.swift */,
 				A7E1177F1EAC32E70070E5EB /* Types.swift */,
 				A772EC251EAC6822002F3A7A /* queries */,
 			);
@@ -1707,6 +1711,7 @@
 				A7ED1E4E1E82F5A200BFFA01 /* SurveyResponseTests.swift in Sources */,
 				A7ED1E441E82F5A200BFFA01 /* SubmitApplePayEnvelopeTests.swift in Sources */,
 				A7ED1E581E82F5A200BFFA01 /* User.AvatarTests.swift in Sources */,
+				A7AD73391EE1B5EC0026E227 /* SchemaTests.swift in Sources */,
 				A7ED1E5C1E82F5A200BFFA01 /* UpdateDraftTests.swift in Sources */,
 				A7ED1E321E82F5A100BFFA01 /* ConfigTests.swift in Sources */,
 				A7ED1E4C1E82F5A200BFFA01 /* PushEnvelopeTests.swift in Sources */,
@@ -1919,6 +1924,7 @@
 				A7ED1E4D1E82F5A200BFFA01 /* SurveyResponseTests.swift in Sources */,
 				A7ED1E431E82F5A200BFFA01 /* SubmitApplePayEnvelopeTests.swift in Sources */,
 				A7ED1E571E82F5A200BFFA01 /* User.AvatarTests.swift in Sources */,
+				A7AD73381EE1B5EC0026E227 /* SchemaTests.swift in Sources */,
 				A7ED1E5B1E82F5A200BFFA01 /* UpdateDraftTests.swift in Sources */,
 				A7ED1E311E82F5A100BFFA01 /* ConfigTests.swift in Sources */,
 				A7ED1E4B1E82F5A200BFFA01 /* PushEnvelopeTests.swift in Sources */,

@@ -43,6 +43,7 @@ public enum Nodes<Q: QueryObject> {
 }
 
 public enum Query {
+  
   case me(Set<User>)
   case project(slug: String, Set<Project>)
   case rootCategories(Set<Category>)
@@ -107,15 +108,16 @@ public enum Query {
   public enum ProjectUpdateConnection {
     case totalCount
   }
+  public static func build(_ queries: Set<Query>) -> String {
+    return "{ \(join(queries)) }"
+  }
+}
 
+extension Query {
   public enum Reward {
     case description
     case id
     case name
-  }
-
-  public static func build(_ queries: Set<Query>) -> String {
-    return "{ \(join(queries)) }"
   }
 }
 

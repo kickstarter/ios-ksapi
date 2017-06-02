@@ -1,3 +1,5 @@
+// VERY EXPERIMENTAL
+
 // Hopefully this can be code gen'd
 // swiftlint:disable type_name
 import Argo
