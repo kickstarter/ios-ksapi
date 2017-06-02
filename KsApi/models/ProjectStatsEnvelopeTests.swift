@@ -3,8 +3,7 @@ import XCTest
 @testable import Argo
 
 final class ProjectStatsEnvelopeTests: XCTestCase {
-  // swiftlint:disable function_body_length
-  func testJSONDecoding() {
+    func testJSONDecoding() {
     let fundingStats: [[String:Any]] = [
       [
         "cumulative_backers_count": 7,
