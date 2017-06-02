@@ -2,7 +2,6 @@ import XCTest
 @testable import KsApi
 import Argo
 
-// swiftlint:disable function_body_length
 internal final class MessageThreadTests: XCTestCase {
   func testDecoding() {
     let result = MessageThread.decodeJSONDictionary([
