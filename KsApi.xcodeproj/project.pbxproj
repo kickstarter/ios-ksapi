@@ -419,6 +419,8 @@
 		A7FD098B1C83E74F00332CCB /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7FD09CA1C83E8E900332CCB /* KsApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA43C5F91BB358F200C180DA /* KsApi.framework */; };
 		CA43C5FD1BB358F200C180DA /* KsApi.h in Headers */ = {isa = PBXBuildFile; fileRef = CA43C5FC1BB358F200C180DA /* KsApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D06E6A771EC1F5DF0054A41E /* CommentsEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E6A761EC1F5DF0054A41E /* CommentsEnvelopeTemplates.swift */; };
+		D06E6A871EC1F5EC0054A41E /* CommentsEnvelopeTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06E6A761EC1F5DF0054A41E /* CommentsEnvelopeTemplates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -894,6 +896,7 @@
 		CA43C5F91BB358F200C180DA /* KsApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KsApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA43C5FC1BB358F200C180DA /* KsApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KsApi.h; sourceTree = "<group>"; };
 		CA43C5FE1BB358F200C180DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D06E6A761EC1F5DF0054A41E /* CommentsEnvelopeTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsEnvelopeTemplates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -957,6 +960,7 @@
 				A72661DF1D07671D0087D883 /* CategoryTemplates.swift */,
 				A74176941DAD1EB2000EB831 /* ChangePaymentMethodEnvelopeTemplates.swift */,
 				9D0FB7BF1D761A2A005774F2 /* CheckoutEnvelopeTemplates.swift */,
+				D06E6A761EC1F5DF0054A41E /* CommentsEnvelopeTemplates.swift */,
 				A72661E01D07671D0087D883 /* CommentTemplates.swift */,
 				A72661E11D07671D0087D883 /* ConfigTemplates.swift */,
 				A7433B0D1D7F890800C15400 /* CreatePledgeEnvelopeTemplates.swift */,
@@ -1750,6 +1754,7 @@
 				A726620B1D07671D0087D883 /* RewardTemplates.swift in Sources */,
 				A726621C1D0767DB0087D883 /* ConfigLenses.swift in Sources */,
 				59F1B71C1D2DB8FA001F7AF5 /* ProjectStatsEnvelope.FundingDateStatsTemplates.swift in Sources */,
+				D06E6A771EC1F5DF0054A41E /* CommentsEnvelopeTemplates.swift in Sources */,
 				A72662031D07671D0087D883 /* MessageThreadTemplates.swift in Sources */,
 				A73639CC1D03565400445B24 /* OauthToken.swift in Sources */,
 				A73639D01D03565400445B24 /* EncodableType.swift in Sources */,
@@ -1963,6 +1968,7 @@
 				A747A8081D455A7300AF199A /* RewardItemLenses.swift in Sources */,
 				59B0DF251D0F13570081D2DC /* ProjectNotification.swift in Sources */,
 				59D1E6A51D19C58900896A4C /* ProjectStatsEnvelopeTemplates.swift in Sources */,
+				D06E6A871EC1F5EC0054A41E /* CommentsEnvelopeTemplates.swift in Sources */,
 				A73639DB1D03565400445B24 /* Activity.swift in Sources */,
 				A726620C1D07671D0087D883 /* RewardTemplates.swift in Sources */,
 				A726621D1D0767DB0087D883 /* ConfigLenses.swift in Sources */,

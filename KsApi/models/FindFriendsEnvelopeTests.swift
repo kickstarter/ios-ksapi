@@ -2,8 +2,7 @@ import XCTest
 @testable import KsApi
 
 final class FindFriendsEnvelopeTests: XCTestCase {
-  // swiftlint:disable function_body_length
-  func testJsonDecoding() {
+    func testJsonDecoding() {
     let json: [String:Any] = [
       "contacts_imported": true,
       "urls": [
